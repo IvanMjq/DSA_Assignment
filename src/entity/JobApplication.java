@@ -14,12 +14,11 @@ import javax.persistence.Id;
  *
  * @author WEI ZHENG
  */
-@Entity
+
 public class JobApplication implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    
+
     private Long id;
 
     public Long getId() {
