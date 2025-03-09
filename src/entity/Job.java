@@ -9,15 +9,15 @@ import java.util.Objects;
 
 /**
  *
- * @author WEI ZHENG
+ * @author ivanmjq
  */
-public class JobApplication implements Serializable {
-
-    private String id;
-    private boolean status;
+public class Job implements Serializable {
     
-
-
+    private String id;
+    private String description;
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -32,13 +32,14 @@ public class JobApplication implements Serializable {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final JobApplication other = (JobApplication) obj;
+        final Job other = (Job) obj;
         return Objects.equals(this.id, other.id); 
+        //check if the id are same
     }
 
     @Override
     public String toString() {
-        return "entity.JobApplication[ id=" + id + " ]";
+        return "entity.Company[ id=" + id + " ]";
     }
     
 }
