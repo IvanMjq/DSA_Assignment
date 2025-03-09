@@ -6,8 +6,13 @@ package adt;
 
 /**
  *
- * @author ivanmjq
+ * @author WEI ZHENG
  */
-public interface ListInterface<T> {
-    
+public interface DoublyLinkedListInterface<T> {
+     void add(T item);
+    void remove(T item);
+    T search(String id);
+    boolean isEmpty();
+    int size();
+    void display();
 }
