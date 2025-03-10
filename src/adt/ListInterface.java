@@ -10,4 +10,11 @@ package adt;
  */
 public interface ListInterface<T> {
     
+    public boolean isEmpty();
+    public int getLength();
+    public void clear();
+    public void add(T item);
+    public void remove(T item);
+    public void display();    
+    
 }

@@ -6,6 +6,8 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Objects;
+import adt.ListInterface;
+import adt.DoublyLinkedList;
 
 /**
  *
@@ -14,13 +16,55 @@ import java.util.Objects;
 public class Job implements Serializable {
     
     private String id;
-    private String description;
+    private String desc;
+    //store all CompanyJob
+    private ListInterface<CompanyJob> companyJobList;
+    // store all JobPosting
+    private ListInterface<JobPosting> jobPostingList;
     
+
+    public Job(String id, String desc) {
+        this.id = id;
+        this.desc = desc;
+        this.companyJobList = new DoublyLinkedList<>();
+        this.jobPostingList = new DoublyLinkedList<>();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
     
+    public ListInterface<CompanyJob> getCompanyJobList() {
+        return companyJobList;
+    }
+
+    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
+        this.companyJobList = companyJobList;
+    }
+
+    public ListInterface<JobPosting> getJobPostingList() {
+        return jobPostingList;
+    }
+
+    public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
+        this.jobPostingList = jobPostingList;
+    }
     
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 1;
         return hash;
     }
     
