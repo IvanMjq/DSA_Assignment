@@ -88,7 +88,5 @@ public class JobPosting implements Serializable {
         return Objects.equals(this.id, other.id); 
         //check if the id are same
     }
-
-    
-       
+        
 }

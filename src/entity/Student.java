@@ -136,8 +136,6 @@ public class Student implements Serializable {
                 achievement + ", education=" + education +
                 ", skills=" + skills + ", jobPostingList=" +
                 jobPostingList + '}';
-    }
-    
-       
+    }      
     
 }

@@ -126,6 +126,4 @@ public class Company implements Serializable {
                 + ", foundedYear=" + foundedYear + '}';
     }  
 
-
-
 }
