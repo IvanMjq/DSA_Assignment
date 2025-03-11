@@ -4,6 +4,8 @@
  */
 package entity;
 
+import adt.DoublyLinkedList;
+import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -19,6 +21,11 @@ public class Company implements Serializable {
     private String email;
     private String address;
     private int foundedYear;
+    // store all CompanyJob
+    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
+    // store all JobPosting
+    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
+    
 
     public Company(String id, String name, String phone, String email, String address, int foundedYear) {
         this.id = id;
@@ -77,6 +84,22 @@ public class Company implements Serializable {
         this.foundedYear = foundedYear;
     }
     
+    public ListInterface<CompanyJob> getCompanyJobList() {
+        return companyJobList;
+    }
+
+    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
+        this.companyJobList = companyJobList;
+    }
+    
+    public ListInterface<JobPosting> getJobPosting() {
+        return jobPostingList;
+    }
+
+    public void setJobPosting(ListInterface<JobPosting> jobPosting) {
+        this.jobPostingList = jobPosting;
+    }    
+    
     @Override
     public int hashCode() {
         int hash = 1;
@@ -102,5 +125,7 @@ public class Company implements Serializable {
                 + ", email=" + email + ", address=" + address 
                 + ", foundedYear=" + foundedYear + '}';
     }  
-    
+
+
+
 }

@@ -16,18 +16,17 @@ import adt.DoublyLinkedList;
 public class Job implements Serializable {
     
     private String id;
+    private String title;
     private String desc;
-    //store all CompanyJob
-    private ListInterface<CompanyJob> companyJobList;
+    // store all CompanyJob
+    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
     // store all JobPosting
-    private ListInterface<JobPosting> jobPostingList;
-    
+    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
 
-    public Job(String id, String desc) {
+    public Job(String id, String title, String desc) {
         this.id = id;
+        this.title = title;
         this.desc = desc;
-        this.companyJobList = new DoublyLinkedList<>();
-        this.jobPostingList = new DoublyLinkedList<>();
     }
 
     public String getId() {
@@ -38,6 +37,14 @@ public class Job implements Serializable {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
     public String getDesc() {
         return desc;
     }
@@ -85,5 +92,5 @@ public class Job implements Serializable {
     public String toString() {
         return "entity.Company[ id=" + id + " ]";
     }
-    
+
 }

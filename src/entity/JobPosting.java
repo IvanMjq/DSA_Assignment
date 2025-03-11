@@ -4,8 +4,11 @@
  */
 package entity;
 
+import adt.DoublyLinkedList;
+import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Date;
 
 /**
  *
@@ -14,15 +17,17 @@ import java.util.Objects;
 public class JobPosting implements Serializable {
     
     private String id;
-    private String jobTitle;
     private String description;
     private String requiredSkill;
+    private Date datePosted;
+    // store all JobApplication
+    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
 
-    public JobPosting(String id, String jobTitle, String description, String requiredSkill) {
+    public JobPosting(String id, String description, String requiredSkill, Date datePosted) {
         this.id = id;
-        this.jobTitle = jobTitle;
         this.description = description;
         this.requiredSkill = requiredSkill;
+        this.datePosted = datePosted;
     }
 
     public String getId() {
@@ -31,14 +36,6 @@ public class JobPosting implements Serializable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
     }
 
     public String getDescription() {
@@ -55,6 +52,22 @@ public class JobPosting implements Serializable {
 
     public void setRequiredSkill(String requiredSkill) {
         this.requiredSkill = requiredSkill;
+    }
+    
+    public Date getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(Date datePosted) {
+        this.datePosted = datePosted;
+    }
+    
+    public ListInterface<JobApplication> getJobApplicationList() {
+        return jobApplicationList;
+    }
+
+    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
+        this.jobApplicationList = jobApplicationList;
     }
     
     @Override
@@ -75,7 +88,7 @@ public class JobPosting implements Serializable {
         return Objects.equals(this.id, other.id); 
         //check if the id are same
     }
+
     
-    
-    
+       
 }

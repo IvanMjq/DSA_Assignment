@@ -4,6 +4,8 @@
  */
 package entity;
 
+import adt.DoublyLinkedList;
+import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,20 +17,32 @@ public class Student implements Serializable {
     
     private String id;
     private String name;
+    private int age;
+    private String address;
+    private String email;
+    private String achievement;
+    private String education;
     private String skills;
-
-    public Student(String studentId, String name, String skills) {
-        this.id = studentId;
+    // store all JobApplication
+    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
+    
+    public Student(String id, String name, int age, String address, String email, String achievement, String education, String skills) {
+        this.id = id;
         this.name = name;
+        this.age = age;
+        this.address = address;
+        this.email = email;
+        this.achievement = achievement;
+        this.education = education;
         this.skills = skills;
     }
 
-    public String getStudentId() {
+    public String getId() {
         return id;
     }
 
-    public void setStudentId(String studentId) {
-        this.id = studentId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,6 +53,46 @@ public class Student implements Serializable {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAchievement() {
+        return achievement;
+    }
+
+    public void setAchievement(String achievement) {
+        this.achievement = achievement;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
     public String getSkills() {
         return skills;
     }
@@ -47,6 +101,14 @@ public class Student implements Serializable {
         this.skills = skills;
     }
 
+    public ListInterface<JobPosting> getJobPostingList() {
+        return jobPostingList;
+    }
+
+    public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
+        this.jobPostingList = jobPostingList;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 1;
@@ -65,12 +127,17 @@ public class Student implements Serializable {
         return Objects.equals(this.id, other.id); 
         //check if the id are same
     }
-    
+
     @Override
     public String toString() {
-        return "Student{" + "studentId=" + id + ", name=" + name + ", skills=" + skills + '}';
+        return "Student{" + "id=" + id + ", name=" + name +
+                ", age=" + age + ", address=" + address +
+                ", email=" + email + ", achievement=" +
+                achievement + ", education=" + education +
+                ", skills=" + skills + ", jobPostingList=" +
+                jobPostingList + '}';
     }
     
-    
+       
     
 }

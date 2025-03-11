@@ -61,8 +61,5 @@ public class CompanyJob implements Serializable {
     public String toString() {
         return "CompanyJob{" + "companyId=" + companyId + ", jobId=" + jobId + '}';
     }
-
-    
-    
-    
+     
 }
