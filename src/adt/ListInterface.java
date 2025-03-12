@@ -10,11 +10,22 @@ package adt;
  */
 public interface ListInterface<T> {
     
-    public boolean isEmpty();
-    public int getLength();
     public void clear();
-    public void add(T item);
-    public void remove(T item);
-    public void display();    
+    
+    public boolean add(T newData);
+    
+    public boolean add(int givenPosition, T newData);
+    
+    public boolean replace(int givenPosition, T newData);
+    
+    public T remove(int givenPosition);
+    
+    public T getEntry(int givenPosition);
+    
+    public int getNumberOfEntries();
+    
+    public boolean isEmpty();
+    
+    public String display();    
     
 }

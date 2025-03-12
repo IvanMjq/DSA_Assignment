@@ -7,7 +7,6 @@ package adt;
 /**
  *
  * @author ivanmjq
- * @author WEI ZHENG
  */
 
 import java.io.Serializable;
@@ -16,29 +15,15 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
     
     private Node head;
     private Node tail;
-    private int length; 
+    private int numberOfEntries; 
     
     public DoublyLinkedList() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+        clear();
     }
-    
-    //check if the list is empty or not
+     
+    // clear all the record in the list
     @Override
-    public boolean isEmpty() {
-        return length == 0;
-    }
-
-    //get the length of the list
-    @Override
-    public int getLength() {
-        return length;
-    }
-    
-    //clear all the record in the list
-    @Override
-    public void clear() {
+    public final void clear() {
         while (tail != null) {
             Node prevNode = tail.prev;
             tail.next = null;  
@@ -47,64 +32,147 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
             tail = prevNode;  
         }
         head = null;  
-        length = 0;  // Reset length after full clearance
+        numberOfEntries = 0;  // Reset length after full clearance
     }
     
+    // add as last node into the list 
     @Override
-    public void add(T data) {
-        Node newNode = new Node(data);
-        if (head == null) {
+    public boolean add(T newData) {
+        Node newNode = new Node(newData);
+        if (isEmpty()) {
             head = newNode;
             tail = newNode;
+            newNode.prev = null;
         } else {
             tail.next = newNode;
             newNode.prev = tail;
             tail = newNode;
         }
-        length++;
+        numberOfEntries++;
+        return true;
     }
     
-    //remove 
+    // add node into the given position
     @Override
-    public void remove(T item) {
-        Node current = head;
-        while (current != null) {
-            //match the provided item with the item of the node
-            if (current.data.equals(item)) {
-                //check the node is head or not
-                if (current.prev != null) { 
-                    current.prev.next = current.next;
-                } else {
-                    head = current.next;
+    public boolean add(int givenPosition, T newData) { // out of memory error possible
+        boolean isSuccessful = true;
+        
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // if the list if empty
+            Node newNode = new Node(newData);
+            
+            if (isEmpty() || (givenPosition == 1)) {
+                newNode.next = head;
+                head = newNode;
+            } else {
+                Node tempNode = head;
+                for (int i = 0; i < givenPosition - 1; ++i) {
+                    tempNode = tempNode.next;
                 }
-                //check the node is tail or not
-                if (current.next != null) {
-                    current.next.prev = current.prev;
+                newNode.prev = tempNode.prev;
+                tempNode.prev = newNode;
+                newNode.next = tempNode;
+                
+                if (newNode.prev != null) {
+                    newNode.prev.next = newNode;
                 } else {
-                    tail = current.prev;
+                    head = newNode;
                 }
-                length--;
-                return;
             }
-            /*
-                if the current node are not match, 
-                assign the next node with current node 
-            */
-            current = current.next;
+            numberOfEntries++;
+        } else {
+            isSuccessful = false;
         }
+        
+        return  isSuccessful;       
+    }
+    
+    // replace the given node with new T data
+    @Override 
+    public boolean replace(int givenPosition, T newData) {
+        boolean isSuccessful = true;
+        
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+            Node current = head;
+            for (int i = 0; i < givenPosition - 1; ++i) {
+                current = current.next;
+            }
+            current.data = newData;
+        } else {
+            isSuccessful = false;
+        }     
+        return isSuccessful;
+    }
+    
+    // remove node with given position
+    @Override
+    public T remove(int givenPosition) {
+        T result = null;
+        
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+            if (givenPosition == 1) {
+                result = head.data;
+                head = head.next;
+            } else {
+                Node choosenNode = head;
+                for (int i = 0; i < givenPosition - 1; ++i) {
+                    choosenNode = choosenNode.next;
+                }
+                result = choosenNode.data;
+                // change next node
+                if (choosenNode.next != null) {
+                    choosenNode.next.prev = choosenNode.prev;
+                }
+                // change previous node
+                if (choosenNode.prev != null) {
+                    choosenNode.prev.next = choosenNode.next;
+                }
+            } 
+            
+            numberOfEntries--;
+        }
+        
+        return result; // return rmemoved entry, or null for failed operations
+    }
+       
+    // get the data with the given entry
+    @Override
+    public T getEntry(int givenPosition) {
+        T result = null;
+        
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+            Node current = head;
+            for (int i = 0; i < givenPosition - 1; ++i) {
+                current = current.next;
+            }
+            result = current.data;
+        }
+        return result;
+    }
+       
+    // get the Number Of Entries of the list
+    @Override
+    public int getNumberOfEntries() {
+        return numberOfEntries;
+    }
+    
+    // check if the list is empty or not
+    @Override
+    public boolean isEmpty() {
+        return numberOfEntries == 0;
     }
     
     // for testing
     @Override
-    public void display() {
+    public String display() {
+        String outputStr = "";
         Node current = head;
         while (current != null) {
-            System.out.println(current.data);
+            outputStr += current.data + "\n";
             current = current.next;
         }
+        return outputStr;
     }
-    
-    
+       
     private class Node {
         private T data;
         private Node next;
@@ -114,13 +182,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
             this.data = data;
             this.next = null;
             this.prev = null;
-        }
-        
-        public Node(T data, Node prev) {
-            this.data = data;
-            this.prev = prev;
-            this.next = null;
-        }
+        }       
         
         public Node(T data, Node prev, Node next) {
             this.data = data;
@@ -128,12 +190,28 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
             this.next = next;
         }      
 
+        public T getData() {
+            return data;
+        }
+        
+        public void setData(T data) {
+            this.data = data;
+        }
+        
         public Node getNext() {
             return next;
         }
-
+        
+        public void setNext(Node next) {
+            this.next = next;
+        }
+        
         public Node getPrev() {
             return prev;
+        }
+        
+        public void setPrev(Node prev) {
+            this.prev = prev;
         }
         
     }
