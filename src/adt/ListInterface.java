@@ -16,6 +16,8 @@ public interface ListInterface<T> {
     
     public boolean add(int givenPosition, T newData);
     
+    public String addAll(T... newDatas);
+    
     public boolean replace(int givenPosition, T newData);
     
     public T remove(int givenPosition);

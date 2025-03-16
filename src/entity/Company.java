@@ -21,9 +21,9 @@ public class Company implements Serializable {
     private String email;
     private String address;
     private int foundedYear;
-    // store all CompanyJob
+    // Store all CompanyJob
     private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
-    // store all JobPosting
+    // Store all JobPosting
     private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
     
 
@@ -116,7 +116,7 @@ public class Company implements Serializable {
         }
         final Company other = (Company) obj;
         return Objects.equals(this.id, other.id); 
-        //check if the id are same
+        // Check if the id are same
     }
 
     @Override

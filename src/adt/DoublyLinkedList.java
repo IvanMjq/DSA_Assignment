@@ -7,6 +7,7 @@ package adt;
 /**
  *
  * @author ivanmjq
+ * @author WEI ZHENG
  */
 
 import java.io.Serializable;
@@ -21,7 +22,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
         clear();
     }
      
-    // clear all the record in the list
+    // Clear all the record in the list
     @Override
     public final void clear() {
         while (tail != null) {
@@ -35,14 +36,13 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
         numberOfEntries = 0;  // Reset length after full clearance
     }
     
-    // add as last node into the list 
+    // Add as last node into the list 
     @Override
     public boolean add(T newData) {
         Node newNode = new Node(newData);
         if (isEmpty()) {
             head = newNode;
             tail = newNode;
-            newNode.prev = null;
         } else {
             tail.next = newNode;
             newNode.prev = tail;
@@ -52,12 +52,12 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
         return true;
     }
     
-    // add node into the given position
+    // Add node into the given position
     @Override
-    public boolean add(int givenPosition, T newData) { // out of memory error possible
+    public boolean add(int givenPosition, T newData) { // Out of memory error possible
         boolean isSuccessful = true;
         
-        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // if the list if empty
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // If the list if empty
             Node newNode = new Node(newData);
             
             if (isEmpty() || (givenPosition == 1)) {
@@ -86,7 +86,30 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
         return  isSuccessful;       
     }
     
-    // replace the given node with new T data
+    // Add few items into the list
+    @Override
+    @SafeVarargs
+    public final String addAll(T... newDatas) {
+        StringBuilder failedMessage = new StringBuilder("Failed to add : \n");
+        int failedCounts = 0;
+        
+        for (T newData : newDatas) {
+            boolean isSuccessful = add(newData);
+            if (!isSuccessful) {          
+                failedMessage.append(newData);
+                failedMessage.append("\n");
+                failedCounts++;
+            }            
+        }
+        
+        if (failedCounts == 0) {
+            return null;
+        } else {
+            return failedMessage.toString();
+        }
+    }
+    
+    // Replace the given node with new T data
     @Override 
     public boolean replace(int givenPosition, T newData) {
         boolean isSuccessful = true;
@@ -103,7 +126,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
         return isSuccessful;
     }
     
-    // remove node with given position
+    // Remove node with given position
     @Override
     public T remove(int givenPosition) {
         T result = null;
@@ -134,7 +157,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
         return result; // return rmemoved entry, or null for failed operations
     }
        
-    // get the data with the given entry
+    // Get the data with the given entry
     @Override
     public T getEntry(int givenPosition) {
         T result = null;
@@ -149,19 +172,19 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
         return result;
     }
        
-    // get the Number Of Entries of the list
+    // Get the Number Of Entries of the list
     @Override
     public int getNumberOfEntries() {
         return numberOfEntries;
     }
     
-    // check if the list is empty or not
+    // Check if the list is empty or not
     @Override
     public boolean isEmpty() {
         return numberOfEntries == 0;
     }
     
-    // for testing
+    // For testing
     @Override
     public String display() {
         String outputStr = "";

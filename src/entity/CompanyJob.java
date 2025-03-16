@@ -54,7 +54,7 @@ public class CompanyJob implements Serializable {
         final CompanyJob other = (CompanyJob) obj;
         return Objects.equals(this.companyId, other.companyId) &&
                 Objects.equals(this.jobId, other.jobId); 
-        //check if the id are same
+        // Check if the id are same
     }
 
     @Override

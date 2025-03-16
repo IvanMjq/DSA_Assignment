@@ -17,16 +17,19 @@ import java.util.Date;
 public class JobPosting implements Serializable {
     
     private String id;
+    private String title;
     private String description;
-    private String requiredSkill;
+    private String[] requiredSkills = null;
     private Date datePosted;
-    // store all JobApplication
+    // Store all JobApplication
     private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
+    // store all RequiredSkills
+    //private ListInterface<String> requiredSkiils = new DoublyLinkedList<>();
 
-    public JobPosting(String id, String description, String requiredSkill, Date datePosted) {
+    public JobPosting(String id, String title, String description, Date datePosted) {
         this.id = id;
+        this.title = title;
         this.description = description;
-        this.requiredSkill = requiredSkill;
         this.datePosted = datePosted;
     }
 
@@ -37,6 +40,14 @@ public class JobPosting implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+    
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getDescription() {
         return description;
@@ -45,13 +56,13 @@ public class JobPosting implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getRequiredSkill() {
-        return requiredSkill;
+    
+    public String[] getRequiredSkills() {
+        return requiredSkills;
     }
 
-    public void setRequiredSkill(String requiredSkill) {
-        this.requiredSkill = requiredSkill;
+    public void setRequiredSkills(String[] requiredSkills) {
+        this.requiredSkills = requiredSkills;
     }
     
     public Date getDatePosted() {
@@ -86,7 +97,19 @@ public class JobPosting implements Serializable {
         }
         final JobPosting other = (JobPosting) obj;
         return Objects.equals(this.id, other.id); 
-        //check if the id are same
+        // Check if the id are same
     }
-        
+    
+    public void displayJobDetails() {
+         System.out.println("Job ID: " + id);
+         System.out.println("Title: " + title);
+         System.out.println("Description: " + description);
+         System.out.print("Required Skills: ");
+         for (String skill : requiredSkills) {
+             System.out.print(skill + ", ");
+         }
+         System.out.print("\n");
+         System.out.println("Date Posted: " + datePosted);
+     }
+    
 }

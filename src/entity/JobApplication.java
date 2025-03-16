@@ -53,7 +53,7 @@ public class JobApplication implements Serializable {
         }
         final JobApplication other = (JobApplication) obj;
         return Objects.equals(this.id, other.id); 
-        //check if the id are same
+        // Check if the id are same
     }
 
 }

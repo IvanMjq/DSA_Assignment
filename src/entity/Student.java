@@ -22,11 +22,11 @@ public class Student implements Serializable {
     private String email;
     private String achievement;
     private String education;
-    private String skills;
-    // store all JobApplication
+    private String[] skills = null;
+    // Store all JobApplication
     private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
     
-    public Student(String id, String name, int age, String address, String email, String achievement, String education, String skills) {
+    public Student(String id, String name, int age, String address, String email, String achievement, String education, String[] skills) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -93,11 +93,11 @@ public class Student implements Serializable {
         this.education = education;
     }
 
-    public String getSkills() {
+    public String[] getSkills() {
         return skills;
     }
 
-    public void setSkills(String skills) {
+    public void setSkills(String[] skills) {
         this.skills = skills;
     }
 
@@ -125,7 +125,7 @@ public class Student implements Serializable {
         }
         final Student other = (Student) obj;
         return Objects.equals(this.id, other.id); 
-        //check if the id are same
+        // Check if the id are same
     }
 
     @Override
@@ -134,7 +134,7 @@ public class Student implements Serializable {
                 ", age=" + age + ", address=" + address +
                 ", email=" + email + ", achievement=" +
                 achievement + ", education=" + education +
-                ", skills=" + skills + ", jobPostingList=" +
+                ", skills=" + "" + ", jobPostingList=" +
                 jobPostingList + '}';
     }      
     
