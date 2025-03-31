@@ -20,13 +20,13 @@ public class Student implements Serializable {
     private int age;
     private String address;
     private String email;
-    private String achievement;
+    private String[] achievement = null;
     private String education;
     private String[] skills = null;
     // Store all JobApplication
     private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
     
-    public Student(String id, String name, int age, String address, String email, String achievement, String education, String[] skills) {
+    public Student(String id, String name, int age, String address, String email, String[] achievement, String education, String[] skills) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -77,11 +77,11 @@ public class Student implements Serializable {
         this.email = email;
     }
 
-    public String getAchievement() {
+    public String[] getAchievement() {
         return achievement;
     }
 
-    public void setAchievement(String achievement) {
+    public void setAchievement(String[] achievement) {
         this.achievement = achievement;
     }
 
@@ -137,5 +137,28 @@ public class Student implements Serializable {
                 ", skills=" + "" + ", jobPostingList=" +
                 jobPostingList + '}';
     }      
+    
+    
+     // Method to display student details
+    public void displayStudent() {
+        System.out.println("\nStudent ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Address: " + address);
+        System.out.println("Email: " + email);
+        System.out.print("Achievements: ");
+        if (achievement.length > 0) {
+            System.out.println(String.join(", ", achievement));
+        } else {
+            System.out.println("None");
+        }
+        System.out.print("Skills: ");
+        if (skills.length > 0) {
+            System.out.println(String.join(", ", skills));
+        } else {
+            System.out.println("None");
+        }
+        System.out.println("-----------------------------");
+    }
     
 }
