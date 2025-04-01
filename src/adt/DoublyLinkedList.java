@@ -87,25 +87,11 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
     }
     
     // Add few items into the list
-    @Override
-    @SafeVarargs
-    public final String addAll(T... newDatas) {
-        StringBuilder failedMessage = new StringBuilder("Failed to add : \n");
-        int failedCounts = 0;
-        
-        for (T newData : newDatas) {
-            boolean isSuccessful = add(newData);
-            if (!isSuccessful) {          
-                failedMessage.append(newData);
-                failedMessage.append("\n");
-                failedCounts++;
-            }            
-        }
-        
-        if (failedCounts == 0) {
-            return null;
-        } else {
-            return failedMessage.toString();
+    
+    
+    public void addAll(T[] newDatas) {
+        for (T newData: newDatas){
+            add(newData);
         }
     }
     

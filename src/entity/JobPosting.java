@@ -26,10 +26,11 @@ public class JobPosting implements Serializable {
     // store all RequiredSkills
     //private ListInterface<String> requiredSkiils = new DoublyLinkedList<>();
 
-    public JobPosting(String id, String title, String description, Date datePosted) {
+    public JobPosting(String id, String title, String description, String[] requiredSkills, Date datePosted) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.requiredSkills = requiredSkills;
         this.datePosted = datePosted;
     }
 
@@ -100,7 +101,7 @@ public class JobPosting implements Serializable {
         // Check if the id are same
     }
     
-    public void displayJobDetails() {
+    public void displayJobPostings() {
          System.out.println("Job ID: " + id);
          System.out.println("Title: " + title);
          System.out.println("Description: " + description);
@@ -111,5 +112,11 @@ public class JobPosting implements Serializable {
          System.out.print("\n");
          System.out.println("Date Posted: " + datePosted);
      }
+
+    public void add(JobPosting jobPost) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
     
 }
