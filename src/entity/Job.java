@@ -18,10 +18,6 @@ public class Job implements Serializable {
     private String id;
     private String title;
     private String desc;
-    // store all CompanyJob
-    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
-    // store all JobPosting
-    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
 
     public Job(String id, String title, String desc) {
         this.id = id;
@@ -53,22 +49,6 @@ public class Job implements Serializable {
         this.desc = desc;
     }
     
-    public ListInterface<CompanyJob> getCompanyJobList() {
-        return companyJobList;
-    }
-
-    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
-        this.companyJobList = companyJobList;
-    }
-
-    public ListInterface<JobPosting> getJobPostingList() {
-        return jobPostingList;
-    }
-
-    public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
-        this.jobPostingList = jobPostingList;
-    }
-    
     @Override
     public int hashCode() {
         int hash = 1;
@@ -87,10 +67,11 @@ public class Job implements Serializable {
         return Objects.equals(this.id, other.id); 
         //check if the id are same
     }
-
+    
     @Override
     public String toString() {
-        return "entity.Company[ id=" + id + " ]";
+        return "Job{" + "id='" + id + '\'' + ", title='" + title + '\'' +
+               ", desc='" + (desc.length() > 60 ? desc.substring(0, 57) + "..." : desc) + '\'' + '}';
     }
 
 }

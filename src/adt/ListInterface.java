@@ -8,7 +8,7 @@ package adt;
  *
  * @author ivanmjq
  */
-public interface ListInterface<T> {
+public interface ListInterface<T> extends Iterable<T>{
     
     public void clear();
     
@@ -16,18 +16,21 @@ public interface ListInterface<T> {
     
     public boolean add(int givenPosition, T newData);
     
-    public String addAll(T... newDatas);
+    public String addAll(T... newDatas); //  ?????
     
     public boolean replace(int givenPosition, T newData);
     
     public T remove(int givenPosition);
     
-    public T getEntry(int givenPosition);
+    public T getData(int givenPosition);
     
-    public int getNumberOfEntries();
+//    public boolean contain(T dataEntry);
+    
+    public int size();
     
     public boolean isEmpty();
     
-    public String display();    
+    public String displayForward();    
     
+    public String displayBackward();   
 }

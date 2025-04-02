@@ -11,8 +11,10 @@ package adt;
  */
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
+public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iterable<T> {
     
     private Node head;
     private Node tail;
@@ -36,6 +38,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
         numberOfEntries = 0;  // Reset length after full clearance
     }
     
+    
     // Add as last node into the list 
     @Override
     public boolean add(T newData) {
@@ -57,34 +60,82 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
     public boolean add(int givenPosition, T newData) { // Out of memory error possible
         boolean isSuccessful = true;
         
-        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // If the list if empty
-            Node newNode = new Node(newData);
+        try{
+            if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // If the list if empty
+                Node newNode = new Node(newData);
             
-            if (isEmpty() || (givenPosition == 1)) {
-                newNode.next = head;
-                head = newNode;
-            } else {
-                Node tempNode = head;
-                for (int i = 0; i < givenPosition - 1; ++i) {
-                    tempNode = tempNode.next;
-                }
-                newNode.prev = tempNode.prev;
-                tempNode.prev = newNode;
-                newNode.next = tempNode;
-                
-                if (newNode.prev != null) {
-                    newNode.prev.next = newNode;
-                } else {
+                if (isEmpty() || (givenPosition == 1)) {
+                    if (head != null) {
+                        newNode.next = head;
+                        head.prev = newNode;
+                    }
                     head = newNode;
+                    if (tail == null) { 
+                        tail = newNode;
+                    }
+              
+                }else if (givenPosition == numberOfEntries + 1) {
+                       tail.next = newNode;
+                       newNode.prev = tail;
+                       tail = newNode;
+                       
+                }else {
+                    Node nodeBefore = head;
+                    
+                    for (int i = 0; i < givenPosition - 1; ++i) {
+                        nodeBefore = nodeBefore.next;
+                    }
+                    
+                    newNode.prev = nodeBefore.prev;
+                    nodeBefore.prev = newNode;
+                    newNode.next = nodeBefore;
+                    newNode.prev.next = newNode;
                 }
+                numberOfEntries++;
+            } else {
+                isSuccessful = false;
             }
-            numberOfEntries++;
-        } else {
+        }catch (Exception e){
+            e.printStackTrace();
             isSuccessful = false;
         }
+
         
         return  isSuccessful;       
     }
+    
+//    @Override
+//    public boolean add(int givenPosition, T newData) { // Out of memory error possible
+//        boolean isSuccessful = true;
+//        
+//        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // If the list if empty
+//            Node newNode = new Node(newData);
+//            
+//            if (isEmpty() || (givenPosition == 1)) {
+//                newNode.next = head;
+//                head = newNode;
+//            } else {
+//                Node tempNode = head;
+//                for (int i = 0; i < givenPosition - 1; ++i) {
+//                    tempNode = tempNode.next;
+//                }
+//                newNode.prev = tempNode.prev;
+//                tempNode.prev = newNode;
+//                newNode.next = tempNode;
+//                
+//                if (newNode.prev != null) {
+//                    newNode.prev.next = newNode;
+//                } else {
+//                    head = newNode;
+//                }
+//            }
+//            numberOfEntries++;
+//        } else {
+//            isSuccessful = false;
+//        }
+//        
+//        return  isSuccessful;       
+//    }
     
     // Add few items into the list
     @Override
@@ -144,13 +195,9 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
                 // change next node
                 if (choosenNode.next != null) {
                     choosenNode.next.prev = choosenNode.prev;
-                }
-                // change previous node
-                if (choosenNode.prev != null) {
-                    choosenNode.prev.next = choosenNode.next;
+                    choosenNode.prev.next = choosenNode.next; 
                 }
             } 
-            
             numberOfEntries--;
         }
         
@@ -159,7 +206,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
        
     // Get the data with the given entry
     @Override
-    public T getEntry(int givenPosition) {
+    public T getData(int givenPosition) {
         T result = null;
         
         if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
@@ -174,7 +221,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
        
     // Get the Number Of Entries of the list
     @Override
-    public int getNumberOfEntries() {
+    public int size() {
         return numberOfEntries;
     }
     
@@ -186,7 +233,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
     
     // For testing
     @Override
-    public String display() {
+    public String displayForward() {
         String outputStr = "";
         Node current = head;
         while (current != null) {
@@ -195,7 +242,40 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable {
         }
         return outputStr;
     }
-       
+    
+    @Override
+    public String displayBackward() {
+	String outputStr = "";
+        Node current = tail;
+	while (current != null) {
+            outputStr += current.data + "\n";
+            current = current.prev;
+	}
+        return outputStr;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                T data = current.data;
+                current = current.next;
+                return data;
+            }
+        }; 
+    }
+    
     private class Node {
         private T data;
         private Node next;

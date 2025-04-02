@@ -9,6 +9,7 @@ import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,68 +18,89 @@ import java.util.Date;
 public class JobPosting implements Serializable {
     
     private String id;
-    private String title;
+    private Company company;
+    private Job job;
     private String description;
-    private String[] requiredSkills = null;
-    private Date datePosted;
-    // Store all JobApplication
-    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
-    // store all RequiredSkills
-    //private ListInterface<String> requiredSkiils = new DoublyLinkedList<>();
+    private String salaryRange;
+    private LocalDate  datePosted;
+    private ListInterface<Skill> skillRequired = new DoublyLinkedList<>();
 
-    public JobPosting(String id, String title, String description, Date datePosted) {
+    // Store all JobApplication
+
+    public JobPosting(String id, Company company, Job job, String description, String salaryRange, LocalDate datePosted, Skill... skillRequired) {
         this.id = id;
-        this.title = title;
+        this.company = company;
+        this.job = job;
         this.description = description;
+        this.salaryRange = salaryRange;
         this.datePosted = datePosted;
+        addSkill(skillRequired);
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-    
-    public String getTitle() {
-        return title;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Job getJob() {
+        return job;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public String[] getRequiredSkills() {
-        return requiredSkills;
+    public String getSalaryRange() {
+        return salaryRange;
     }
 
-    public void setRequiredSkills(String[] requiredSkills) {
-        this.requiredSkills = requiredSkills;
-    }
-    
-    public Date getDatePosted() {
+    public LocalDate getDatePosted() {
         return datePosted;
     }
 
-    public void setDatePosted(Date datePosted) {
-        this.datePosted = datePosted;
-    }
-    
-    public ListInterface<JobApplication> getJobApplicationList() {
-        return jobApplicationList;
+    public ListInterface<Skill> getSkillRequired() {
+        return skillRequired;
     }
 
-    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
-        this.jobApplicationList = jobApplicationList;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setSalaryRange(String salaryRange) {
+        this.salaryRange = salaryRange;
+    }
+
+    public void setDatePosted(LocalDate datePosted) {
+        this.datePosted = datePosted;
+    }
+
+    public void setSkillRequired(ListInterface<Skill> skillRequired) {
+        this.skillRequired = skillRequired;
+    }
+
+
+    
+    public void addSkill(Skill... skillList) {
+        for (Skill skill : skillList) {
+            if (skill != null) {
+                this.skillRequired.add(skill);
+            }
+        }
     }
     
     @Override
@@ -100,16 +122,18 @@ public class JobPosting implements Serializable {
         // Check if the id are same
     }
     
-    public void displayJobDetails() {
-         System.out.println("Job ID: " + id);
-         System.out.println("Title: " + title);
-         System.out.println("Description: " + description);
-         System.out.print("Required Skills: ");
-         for (String skill : requiredSkills) {
-             System.out.print(skill + ", ");
-         }
-         System.out.print("\n");
-         System.out.println("Date Posted: " + datePosted);
-     }
+    @Override
+    public String toString() {
+        StringBuilder skillsStr = new StringBuilder();
+        for (int i = 1; i <= skillRequired.size(); i++) {
+            skillsStr.append(skillRequired.getData(i)).append(", ");
+        }
+        if (skillsStr.length() > 0) {
+            skillsStr.setLength(skillsStr.length() - 2); // Remove last comma
+        }
+
+        return "JobPosting{" + "id='" + id + '\'' + ", companyID='" + company + '\'' + ", jobID='" + job + '\'' + ", description='" + description + '\'' +
+               ", salaryRange='" + salaryRange + '\'' + ", datePosted=" + datePosted + ", requiredSkills=[" + skillsStr + "]" +'}';
+    }
     
 }
