@@ -20,7 +20,7 @@ public class Student implements Serializable {
     private int age;
     private String address;
     private String email;
-    private String[] achievement = null;
+    private String achievement;
     private String education;
     private ListInterface<Skill> skillList = new DoublyLinkedList<>();
     

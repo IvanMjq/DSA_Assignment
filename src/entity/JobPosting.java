@@ -32,7 +32,6 @@ public class JobPosting implements Serializable {
         this.company = company;
         this.job = job;
         this.description = description;
-
         this.salaryRange = salaryRange;
         this.datePosted = datePosted;
         addSkill(skillRequired);
