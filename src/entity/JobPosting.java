@@ -25,22 +25,15 @@ public class JobPosting implements Serializable {
     private LocalDate  datePosted;
     private ListInterface<Skill> skillRequired = new DoublyLinkedList<>();
 
-<<<<<<< HEAD
-    public JobPosting(String id, String title, String description, String[] requiredSkills, Date datePosted) {
-=======
     // Store all JobApplication
 
     public JobPosting(String id, Company company, Job job, String description, String salaryRange, LocalDate datePosted, Skill... skillRequired) {
->>>>>>> 4aac60247332c668b0214e3bf3b2618acc88073b
         this.id = id;
         this.company = company;
         this.job = job;
         this.description = description;
-<<<<<<< HEAD
-        this.requiredSkills = requiredSkills;
-=======
+
         this.salaryRange = salaryRange;
->>>>>>> 4aac60247332c668b0214e3bf3b2618acc88073b
         this.datePosted = datePosted;
         addSkill(skillRequired);
     }
