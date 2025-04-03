@@ -6,6 +6,7 @@ package dsa_assignment;
 
 import adt.DoublyLinkedList;
 import adt.ListInterface;
+import boundary.StudentUI;
 import control.*;
 import dao.*;
 import entity.*;
@@ -23,15 +24,17 @@ public class DSA_Assignment {
      */
     private JobRelatedDataInitialize dataInitialize = new JobRelatedDataInitialize();
     private JobPostingControl jobPostingControl     = new JobPostingControl(dataInitialize.getJobList(), dataInitialize.getCompanyList(), dataInitialize.getJobApplicationList(), dataInitialize.getjobPostingListList(), dataInitialize.getSkillList());
+    private StudentUI studentUI = new StudentUI();
+    private ListInterface<Student> student = new DoublyLinkedList<>();
     
     public void MainMenu() {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
-
         while (!exit) {
 
             System.out.println("============== Main Menu ============");
             System.out.println("1. Job Posting Management");
+            System.out.println("2. Student Management");    
             System.out.println("0. Exit");
             System.out.println("=====================================");
             System.out.print("Enter your choice: ");
@@ -45,6 +48,10 @@ public class DSA_Assignment {
                     break;
                 case 1:
                     jobPostingControl.runJobPostingManagement();
+                    break;
+                case 2:
+                    
+                    studentUI.getAllStudents();
                     break;
              
                 default:
