@@ -123,25 +123,6 @@ public class JobPosting implements Serializable {
         // Check if the id are same
     }
     
-<<<<<<< HEAD
-    public void displayJobPostings() {
-         System.out.println("Job ID: " + id);
-         System.out.println("Title: " + title);
-         System.out.println("Description: " + description);
-         System.out.print("Required Skills: ");
-         for (String skill : requiredSkills) {
-             System.out.print(skill + ", ");
-         }
-         System.out.print("\n");
-         System.out.println("Date Posted: " + datePosted);
-     }
-
-    public void add(JobPosting jobPost) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
-=======
     @Override
     public String toString() {
         StringBuilder skillsStr = new StringBuilder();
@@ -155,6 +136,5 @@ public class JobPosting implements Serializable {
         return "JobPosting{" + "id='" + id + '\'' + ", companyID='" + company + '\'' + ", jobID='" + job + '\'' + ", description='" + description + '\'' +
                ", salaryRange='" + salaryRange + '\'' + ", datePosted=" + datePosted + ", requiredSkills=[" + skillsStr + "]" +'}';
     }
->>>>>>> 4aac60247332c668b0214e3bf3b2618acc88073b
     
 }
