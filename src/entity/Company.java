@@ -21,19 +21,14 @@ public class Company implements Serializable {
     private String email;
     private String address;
     private int foundedYear;
-    // Store all CompanyJob
-    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
-    // Store all JobPosting
-    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
-    
 
     public Company(String id, String name, String phone, String email, String address, int foundedYear) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.foundedYear = foundedYear;
+        this.id             = id;
+        this.name           = name;
+        this.phone          = phone;
+        this.email          = email;
+        this.address        = address;
+        this.foundedYear    = foundedYear;
     }
 
     public String getId() {
@@ -83,22 +78,6 @@ public class Company implements Serializable {
     public void setFoundedYear(int foundedYear) {
         this.foundedYear = foundedYear;
     }
-    
-    public ListInterface<CompanyJob> getCompanyJobList() {
-        return companyJobList;
-    }
-
-    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
-        this.companyJobList = companyJobList;
-    }
-    
-    public ListInterface<JobPosting> getJobPosting() {
-        return jobPostingList;
-    }
-
-    public void setJobPosting(ListInterface<JobPosting> jobPosting) {
-        this.jobPostingList = jobPosting;
-    }    
     
     @Override
     public int hashCode() {
