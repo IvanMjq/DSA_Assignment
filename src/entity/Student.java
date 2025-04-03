@@ -22,91 +22,89 @@ public class Student implements Serializable {
     private String email;
     private String[] achievement = null;
     private String education;
-    private String[] skills = null;
-    // Store all JobApplication
-    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
+    private ListInterface<Skill> skillList = new DoublyLinkedList<>();
     
-    public Student(String id, String name, int age, String address, String email, String[] achievement, String education, String[] skills) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.address = address;
-        this.email = email;
-        this.achievement = achievement;
-        this.education = education;
-        this.skills = skills;
+    public Student(String id, String name, int age, String address, String email, String achievement, String education, Skill... skills) {
+        this.id             = id;
+        this.name           = name;
+        this.age            = age;
+        this.address        = address;
+        this.email          = email;
+        this.achievement    = achievement;
+        this.education      = education;
+        addSkill(skills);
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String[] getAchievement() {
+    public String getAchievement() {
         return achievement;
-    }
-
-    public void setAchievement(String[] achievement) {
-        this.achievement = achievement;
     }
 
     public String getEducation() {
         return education;
     }
 
+    public ListInterface<Skill> getSkillList() {
+        return skillList;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAchievement(String achievement) {
+        this.achievement = achievement;
+    }
+
     public void setEducation(String education) {
         this.education = education;
     }
 
-    public String[] getSkills() {
-        return skills;
+    public void setSkillList(ListInterface<Skill> skillList) {
+        this.skillList = skillList;
     }
-
-    public void setSkills(String[] skills) {
-        this.skills = skills;
-    }
-
-    public ListInterface<JobPosting> getJobPostingList() {
-        return jobPostingList;
-    }
-
-    public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
-        this.jobPostingList = jobPostingList;
+    
+    public void addSkill(Skill... skillList) {
+        for (Skill skill : skillList) {
+            if (skill != null) {
+                this.skillList.add(skill);
+            }
+        }
     }
     
     @Override
@@ -125,40 +123,20 @@ public class Student implements Serializable {
         }
         final Student other = (Student) obj;
         return Objects.equals(this.id, other.id); 
-        // Check if the id are same
     }
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name +
-                ", age=" + age + ", address=" + address +
-                ", email=" + email + ", achievement=" +
-                achievement + ", education=" + education +
-                ", skills=" + "" + ", jobPostingList=" +
-                jobPostingList + '}';
+        StringBuilder skillsStr = new StringBuilder();
+        for (int i = 1; i <= skillList.size(); i++) {
+            skillsStr.append(skillList.getData(i)).append(", ");
+        }
+        if (skillsStr.length() > 0) {
+            skillsStr.setLength(skillsStr.length() - 2); // Remove last comma
+        }
+        
+        return "Student{" + "id = " + id + ", name = " + name + ", age = " + age + ", address = " + address +
+                ", email = " + email + ", achievement = " + achievement + ", education = " + education +
+                ", skills = [" + skillsStr + "]}";
     }      
-    
-    
-     // Method to display student details
-    public void displayStudent() {
-        System.out.println("\nStudent ID: " + id);
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
-        System.out.println("Address: " + address);
-        System.out.println("Email: " + email);
-        System.out.print("Achievements: ");
-        if (achievement.length > 0) {
-            System.out.println(String.join(", ", achievement));
-        } else {
-            System.out.println("None");
-        }
-        System.out.print("Skills: ");
-        if (skills.length > 0) {
-            System.out.println(String.join(", ", skills));
-        } else {
-            System.out.println("None");
-        }
-        System.out.println("-----------------------------");
-    }
-    
 }

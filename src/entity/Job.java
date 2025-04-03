@@ -6,8 +6,6 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Objects;
-import adt.ListInterface;
-import adt.DoublyLinkedList;
 
 /**
  *
@@ -17,15 +15,13 @@ public class Job implements Serializable {
     
     private String id;
     private String title;
+    private String type;
     private String desc;
-    // store all CompanyJob
-    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
-    // store all JobPosting
-    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
 
-    public Job(String id, String title, String desc) {
+    public Job(String id, String title, String type, String desc) {
         this.id = id;
         this.title = title;
+        this.type = type;
         this.desc = desc;
     }
 
@@ -33,40 +29,32 @@ public class Job implements Serializable {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
-    
-    public String getDesc() {
-        return desc;
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setDesc(String desc) {
         this.desc = desc;
-    }
-    
-    public ListInterface<CompanyJob> getCompanyJobList() {
-        return companyJobList;
-    }
-
-    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
-        this.companyJobList = companyJobList;
-    }
-
-    public ListInterface<JobPosting> getJobPostingList() {
-        return jobPostingList;
-    }
-
-    public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
-        this.jobPostingList = jobPostingList;
     }
     
     @Override
@@ -87,10 +75,11 @@ public class Job implements Serializable {
         return Objects.equals(this.id, other.id); 
         //check if the id are same
     }
-
+    
     @Override
     public String toString() {
-        return "entity.Company[ id=" + id + " ]";
+        return "Job{" + "id='" + id + '\'' + ", title='" + title + '\'' +
+               ", desc='" + (desc.length() > 60 ? desc.substring(0, 57) + "..." : desc) + '\'' + '}';
     }
 
 }
