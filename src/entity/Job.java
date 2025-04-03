@@ -6,8 +6,6 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Objects;
-import adt.ListInterface;
-import adt.DoublyLinkedList;
 
 /**
  *
@@ -17,11 +15,13 @@ public class Job implements Serializable {
     
     private String id;
     private String title;
+    private String type;
     private String desc;
 
-    public Job(String id, String title, String desc) {
+    public Job(String id, String title, String type, String desc) {
         this.id = id;
         this.title = title;
+        this.type = type;
         this.desc = desc;
     }
 
@@ -29,20 +29,28 @@ public class Job implements Serializable {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
-    
-    public String getDesc() {
-        return desc;
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setDesc(String desc) {

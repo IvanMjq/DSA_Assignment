@@ -34,16 +34,17 @@ public class JobRelatedDataInitialize {
         skillList.add(new Skill("S-9", "Laravel"));
         skillList.add(new Skill("S-10", "Vue.js"));
         
-        jobList.add(new Job("J-1","Software Engineer","Responsible for designing, developing, and maintaining software applications. Collaborates with cross-functional teams to deliver scalable and efficient software solutions. Proficient in programming languages such as Java, C++, or Python. Strong problem-solving skills and knowledge of software development lifecycle are essential."));
-        jobList.add(new Job("J-2","Data Analyst","Analyze large datasets to extract actionable insights and support business decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI."));
-        jobList.add(new Job("J-3","Cybersecurity Analyst","Monitor and protect company networks and systems from cyber threats. Conduct risk assessments, manage firewalls, and ensure compliance with security protocols."));
-        jobList.add(new Job("J-4","Machine Learning Engineer","Design and implement machine learning models for automation, prediction, and data analysis. Requires knowledge of Python, TensorFlow, and data pipelines."));
-        jobList.add(new Job("J-5","Web Developer","Develop and maintain responsive websites using HTML, CSS, JavaScript, and frameworks like React.js or Vue.js. Collaborate with designers and backend teams."));
-        jobList.add(new Job("J-6","Mobile App Developer","Build and maintain mobile applications for iOS and Android platforms using technologies such as Flutter or Kotlin. Work closely with UI/UX designers and QA teams."));
-        jobList.add(new Job("J-7","Cloud Engineer","Manage and deploy applications on cloud platforms like AWS, Azure, or Google Cloud. Handle infrastructure-as-code, security, and resource optimization."));
-        jobList.add(new Job("J-8","Database Administrator", "Design, maintain, and optimize databases to ensure high availability and performance. Skilled in SQL, data backup, and recovery strategies."));
-        jobList.add(new Job( "J-9", "AI Research Intern", "Support the research and development of AI solutions. Assist with data preparation, training models, and evaluating performance. Python experience preferred."));
-        jobList.add(new Job("J-10","Full-Stack Developer","Develop complete web applications, working on both frontend and backend. Familiarity with React, Node.js, databases, and APIs is essential."));
+        jobList.add(new Job("J-1", "Software Engineer", "Full-Time", "Responsible for designing, developing, and maintaining software applications. Collaborates with cross-functional teams to deliver scalable and efficient software solutions. Proficient in programming languages such as Java, C++, or Python. Strong problem-solving skills and knowledge of software development lifecycle are essential."));
+        jobList.add(new Job("J-2", "Data Analyst", "Full-Time", "Analyze large datasets to extract actionable insights and support business decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI."));
+        jobList.add(new Job("J-3", "Cybersecurity Analyst", "Full-Time", "Monitor and protect company networks and systems from cyber threats. Conduct risk assessments, manage firewalls, and ensure compliance with security protocols."));
+        jobList.add(new Job("J-4", "Machine Learning Engineer", "Full-Time", "Design and implement machine learning models for automation, prediction, and data analysis. Requires knowledge of Python, TensorFlow, and data pipelines."));
+        jobList.add(new Job("J-5", "Web Developer", "Full-Time", "Develop and maintain responsive websites using HTML, CSS, JavaScript, and frameworks like React.js or Vue.js. Collaborate with designers and backend teams."));
+        jobList.add(new Job("J-6", "Mobile App Developer", "Full-Time", "Build and maintain mobile applications for iOS and Android platforms using technologies such as Flutter or Kotlin. Work closely with UI/UX designers and QA teams."));
+        jobList.add(new Job("J-7", "Cloud Engineer", "Full-Time", "Manage and deploy applications on cloud platforms like AWS, Azure, or Google Cloud. Handle infrastructure-as-code, security, and resource optimization."));
+        jobList.add(new Job("J-8", "Database Administrator", "Full-Time", "Design, maintain, and optimize databases to ensure high availability and performance. Skilled in SQL, data backup, and recovery strategies."));
+        jobList.add(new Job("J-9", "AI Research Intern", "Internship", "Support the research and development of AI solutions. Assist with data preparation, training models, and evaluating performance. Python experience preferred."));
+        jobList.add(new Job("J-10","Full-Stack Developer", "Full-Time", "Develop complete web applications, working on both frontend and backend. Familiarity with React, Node.js, databases, and APIs is essential."));
+
 
         companyList.add(new Company("C-1", "ISJ-Technology", "03-5938420", "isj@gmail.com", "No 12A, Main Street", 1958));
         companyList.add(new Company("C-2","NextWave Solutions","03-6123456","contact@nextwave.com","25, Innovation Avenue, Cyberjaya",2003));

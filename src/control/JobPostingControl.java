@@ -56,7 +56,7 @@ public class JobPostingControl {
                     removeJobPost();
                     break;
 //                case 4:
-//                    
+//                    filterJobListing();
 //                    break;
                 case 5:
                     jobPostListing();
@@ -179,6 +179,10 @@ public class JobPostingControl {
         }
     }
     
+    public void filterJobListing(){
+        
+    }
+    
     public int findJobPosting(String input) {
         int count   = 1;
         int noFound = 0;
@@ -214,8 +218,7 @@ public class JobPostingControl {
                  company.getPhone(),
                  company.getEmail(),
                  company.getAddress(),
-                 company.getFoundedYear());
-              
+                 company.getFoundedYear()); 
         }
     }
         

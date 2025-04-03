@@ -113,13 +113,12 @@ public class JobManagementUI {
         }
         
         Skill[] skillArray = new Skill[5];
-        Skill skillInput = null;
+        
         boolean loop = true;
         
         int i = 0;
         while(loop) {
             boolean duplicateInput = false;
-     
             System.out.print("Require Skill(ID/Name), (X=Show List, (Q/q)=Quit): ");
             String input = scanner.nextLine().trim();
             
@@ -132,7 +131,7 @@ public class JobManagementUI {
                 
             } 
             
-            skillInput = jobPostingControl.isSkillExist(input);
+            Skill skillInput = jobPostingControl.isSkillExist(input);
             
             if (skillInput != null) {
                 for (int j = 0; j < i; j++) {
