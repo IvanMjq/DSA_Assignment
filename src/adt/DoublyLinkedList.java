@@ -253,6 +253,22 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
 	}
         return outputStr;
     }
+    
+    public int indexOf(T data) {
+        int index = 0;
+        Node current = head;
+
+        // Traverse the list from the head to the tail
+        while (current != null) {
+            if (current.data.equals(data)) {
+                return index; // Return the index when the data is found
+            }
+            current = current.next;
+            index++;
+        }
+
+        return -1; // Return -1 if the data is not found in the list
+    }
 
     @Override
     public Iterator<T> iterator() {
@@ -275,6 +291,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
             }
         }; 
     }
+    
     
     private class Node {
         private T data;

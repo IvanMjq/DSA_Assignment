@@ -33,6 +33,7 @@ public class Student implements Serializable {
         this.achievement    = achievement;
         this.education      = education;
         addSkill(skills);
+//        this.skillList = skillList;
     }
 
     public String getId() {
