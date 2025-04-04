@@ -14,9 +14,11 @@ public class Skill implements Serializable{
     private String id;
     private String name;
 
+
     public Skill(String id, String name) {
         this.id     = id;
         this.name   = name;
+
     }
 
     public String getId() {
@@ -26,7 +28,7 @@ public class Skill implements Serializable{
     public String getName() {
         return name;
     }
-
+    
     public void setId(String id) {
         this.id = id;
     }
@@ -34,6 +36,7 @@ public class Skill implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
+   
       
     public String toString() {
         return "id: " + id + " (name: " + name + ")";

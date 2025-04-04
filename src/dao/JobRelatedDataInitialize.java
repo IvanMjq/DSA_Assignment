@@ -13,7 +13,8 @@ import java.time.LocalDate;
  * @author Teh Yi Shan
  */
 public class JobRelatedDataInitialize {
-    private ListInterface<Skill> skillList = new DoublyLinkedList<>();
+    private ListInterface<StudentSkill> skillList = new DoublyLinkedList<>();
+    private ListInterface<JobSkillRequirement> requiredSkill = new DoublyLinkedList<>();
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
     private ListInterface<Student> studentList = new DoublyLinkedList<>();
@@ -22,16 +23,27 @@ public class JobRelatedDataInitialize {
     
     
     public JobRelatedDataInitialize(){
-        skillList.add(new Skill("S-1", "Java Langauge"));
-        skillList.add(new Skill("S-2", "C++ Langauge"));
-        skillList.add(new Skill("S-3", "Python Langauge"));
-        skillList.add(new Skill("S-4", "Mandarin"));
-        skillList.add(new Skill("S-5", "English"));
-        skillList.add(new Skill("S-6", "Bahasa Malayu"));
-        skillList.add(new Skill("S-7", "C Langauge"));
-        skillList.add(new Skill("S-8", "React.js"));
-        skillList.add(new Skill("S-9", "Laravel"));
-        skillList.add(new Skill("S-10", "Vue.js"));
+        skillList.add(new StudentSkill("S-1", "Java Langauge", 1));
+        skillList.add(new StudentSkill("S-2", "C++ Langauge", 2));
+        skillList.add(new StudentSkill("S-3", "Python Langauge", 3));
+        skillList.add(new StudentSkill("S-4", "Mandarin", 3));
+        skillList.add(new StudentSkill("S-5", "English", 4));
+        skillList.add(new StudentSkill("S-6", "Bahasa Malayu", 4));
+        skillList.add(new StudentSkill("S-7", "C Langauge", 5));
+        skillList.add(new StudentSkill("S-8", "React.js", 2));
+        skillList.add(new StudentSkill("S-9", "Laravel", 5));
+        skillList.add(new StudentSkill("S-10", "Vue.js", 4));
+        
+        requiredSkill.add(new JobSkillRequirement("S-1", "Java Langauge", 1));
+        requiredSkill.add(new JobSkillRequirement("S-2", "C++ Langauge", 2));
+        requiredSkill.add(new JobSkillRequirement("S-3", "Python Langauge", 3));
+        requiredSkill.add(new JobSkillRequirement("S-4", "Mandarin", 3));
+        requiredSkill.add(new JobSkillRequirement("S-5", "English", 4));
+        requiredSkill.add(new JobSkillRequirement("S-6", "Bahasa Malayu", 4));
+        requiredSkill.add(new JobSkillRequirement("S-7", "C Langauge", 5));
+        requiredSkill.add(new JobSkillRequirement("S-8", "React.js", 2));
+        requiredSkill.add(new JobSkillRequirement("S-9", "Laravel", 5));
+        requiredSkill.add(new JobSkillRequirement("S-10", "Vue.js", 4));
         
         jobList.add(new Job("J-1", "Software Engineer", "Full-Time", "Responsible for designing, developing, and maintaining software applications. Collaborates with cross-functional teams to deliver scalable and efficient software solutions. Proficient in programming languages such as Java, C++, or Python. Strong problem-solving skills and knowledge of software development lifecycle are essential."));
         jobList.add(new Job("J-2", "Data Analyst", "Full-Time", "Analyze large datasets to extract actionable insights and support business decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI."));
@@ -44,12 +56,12 @@ public class JobRelatedDataInitialize {
         jobList.add(new Job("J-9", "AI Research Intern", "Internship", "Support the research and development of AI solutions. Assist with data preparation, training models, and evaluating performance. Python experience preferred."));
         jobList.add(new Job("J-10","Full-Stack Developer", "Full-Time", "Develop complete web applications, working on both frontend and backend. Familiarity with React, Node.js, databases, and APIs is essential."));
 
-        studentList.add(new Student("S001", "Michael Jordan", 15, "123 Main Street", "michael@gmail.com", "2 President List", "Bachelor Degree in Computer Science", skillList.getData(0), skillList.getData(1)));
-        studentList.add(new Student("S002", "Sarah Lee", 20, "456 Elm Avenue", "sarah.lee@example.com", "Dean's List 2023", "Diploma in Data Science", skillList.getData(2), skillList.getData(4), skillList.getData(9)));
-        studentList.add(new Student("S003", "David Wong", 22, "789 Oak Road", "david.wong@example.com", "Hackathon Winner", "Bachelor Degree in Software Engineering", skillList.getData(0), skillList.getData(3), skillList.getData(8)));
-        studentList.add(new Student("S004", "Emily Tan", 19, "321 Pine Street", "emily.tan@example.com", "Top 10 Final Year Project", "Diploma in Computer Networking", skillList.getData(6), skillList.getData(5), skillList.getData(1)));
-        studentList.add(new Student("S005", "Jason Lim", 23, "654 Maple Boulevard", "jason.lim@example.com", "Published Research on AI", "Master Degree in Artificial Intelligence", skillList.getData(2), skillList.getData(7), skillList.getData(8)));
-        studentList.add(new Student("S006", "Alicia Tan", 21, "99 Lakeview Drive", "alicia.tan@example.com", "Certified Cloud Practitioner", "Bachelor Degree in Information Systems", skillList.getData(4), skillList.getData(5), skillList.getData(9)));
+        studentList.add(new Student("S001", "Michael Jordan", 15, "123 Main Street", "michael@gmail.com", "2 President List", "Bachelor Degree in Computer Science", 1,skillList.getData(0), skillList.getData(1)));
+        studentList.add(new Student("S002", "Sarah Lee", 20, "456 Elm Avenue", "sarah.lee@example.com", "Dean's List 2023", "Diploma in Data Science", 2,skillList.getData(2), skillList.getData(4), skillList.getData(9)));
+        studentList.add(new Student("S003", "David Wong", 22, "789 Oak Road", "david.wong@example.com", "Hackathon Winner", "Bachelor Degree in Software Engineering",1, skillList.getData(0), skillList.getData(3), skillList.getData(8)));
+        studentList.add(new Student("S004", "Emily Tan", 19, "321 Pine Street", "emily.tan@example.com", "Top 10 Final Year Project", "Diploma in Computer Networking", 2,skillList.getData(6), skillList.getData(5), skillList.getData(1)));
+        studentList.add(new Student("S005", "Jason Lim", 23, "654 Maple Boulevard", "jason.lim@example.com", "Published Research on AI", "Master Degree in Artificial Intelligence", 3,skillList.getData(2), skillList.getData(7), skillList.getData(8)));
+        studentList.add(new Student("S006", "Alicia Tan", 21, "99 Lakeview Drive", "alicia.tan@example.com", "Certified Cloud Practitioner", "Bachelor Degree in Information Systems", 1,skillList.getData(4), skillList.getData(5), skillList.getData(9)));
         
         companyList.add(new Company("C-1", "ISJ-Technology", "03-5938420", "isj@gmail.com", "No 12A, Main Street", 1958));
         companyList.add(new Company("C-2","NextWave Solutions","03-6123456","contact@nextwave.com","25, Innovation Avenue, Cyberjaya",2003));
@@ -62,22 +74,16 @@ public class JobRelatedDataInitialize {
         companyList.add(new Company("C-9","NovaLink Digital","03-6543210","nova@novalink.com","Block C, Tech City, Seremban",2012));
         companyList.add(new Company("C-10","PixelForge Studio","03-7766554","studio@pixelforge.com","Suite 12, Creative Valley, Ipoh", 2016));
         
-        studentList.add(new Student("stu-1","Michale Jordan",15,"123 Main Street","michale@gmail.com","2 president List","Bachelor Degree in Computer Science",skillList.getData(1),skillList.getData(2)));
-        studentList.add(new Student("stu-2", "Sarah Lee", 20, "456 Elm Avenue", "sarah.lee@example.com", "Dean's List 2023", "Diploma in Data Science",skillList.getData(3), skillList.getData(5), skillList.getData(10)));
-        studentList.add(new Student("stu-3", "David Wong", 22, "789 Oak Road", "david.wong@example.com","Hackathon Winner", "Bachelor Degree in Software Engineering",skillList.getData(1), skillList.getData(4), skillList.getData(9)));
-        studentList.add(new Student("stu-4", "Emily Tan", 19, "321 Pine Street", "emily.tan@example.com", "Top 10 Final Year Project", "Diploma in Computer Networking",skillList.getData(7), skillList.getData(6), skillList.getData(2)));
-        studentList.add(new Student("stu-5", "Jason Lim", 23, "654 Maple Boulevard", "jason.lim@example.com","Published Research on AI", "Master Degree in Artificial Intelligence",skillList.getData(3), skillList.getData(8), skillList.getData(9)));
-        studentList.add(new Student("stu-6", "Alicia Tan", 21, "99 Lakeview Drive", "alicia.tan@example.com","Certified Cloud Practitioner", "Bachelor Degree in Information Systems",skillList.getData(5), skillList.getData(6), skillList.getData(10)));
-        
-        jobPostingList.add(new JobPosting("JP-1", companyList.getData(1), jobList.getData(1),"Analyze complex datasets and present insights for business decisions.","3500.00-5000.00",LocalDate.of(2024, 3, 12),skillList.getData(3),skillList.getData(5),skillList.getData(10)));
-        jobPostingList.add(new JobPosting("JP-2", companyList.getData(1), jobList.getData(1),"Analyze complex datasets and present insights for business decisions.","3500.00-5000.00", LocalDate.of(2024, 3, 12),skillList.getData(3), skillList.getData(5), skillList.getData(10)));
-        jobPostingList.add(new JobPosting("JP-3", companyList.getData(4), jobList.getData(4),"Develop enterprise applications with modern backend frameworks.","4000.00-6000.00", LocalDate.of(2024, 5, 5),skillList.getData(1), skillList.getData(2)));
-        jobPostingList.add(new JobPosting("JP-4", companyList.getData(3), jobList.getData(3),"Work with AI pipelines to optimize ML model deployment.","4800.00-7200.00", LocalDate.of(2024, 1, 20),skillList.getData(3), skillList.getData(9)));
-        jobPostingList.add(new JobPosting("JP-5", companyList.getData(5), jobList.getData(5),"Design and develop cross-platform mobile applications using Flutter and Kotlin.","4500.00-6000.00", LocalDate.of(2024, 4, 10),skillList.getData(3), skillList.getData(5), skillList.getData(6)));
-        jobPostingList.add(new JobPosting("JP-6", companyList.getData(6), jobList.getData(2),"Implement and monitor cybersecurity protocols to safeguard company data.","5000.00-7500.00", LocalDate.of(2024, 2, 22),skillList.getData(1), skillList.getData(4)));
-        jobPostingList.add(new JobPosting("JP-7", companyList.getData(7), jobList.getData(7),"Maintain and optimize large-scale SQL databases for high performance.","4000.00-6500.00", LocalDate.of(2024, 5, 1),skillList.getData(6), skillList.getData(2)));
-        jobPostingList.add(new JobPosting("JP-8", companyList.getData(8), jobList.getData(9),"Develop full-stack web applications with seamless integration of frontend and backend.","4800.00-7000.00", LocalDate.of(2024, 3, 15), skillList.getData(1), skillList.getData(8), skillList.getData(9)));
-        jobPostingList.add(new JobPosting("JP-9", companyList.getData(9), jobList.getData(8),"Assist in AI model training and evaluation for real-world research projects.", "3000.00-4000.00", LocalDate.of(2024, 1, 5), skillList.getData(3), skillList.getData(10)));
+       
+        jobPostingList.add(new JobPosting("JP-1", companyList.getData(1), jobList.getData(1),"Analyze complex datasets and present insights for business decisions.","3500.00-5000.00",1,LocalDate.of(2024, 3, 12),requiredSkill.getData(3),requiredSkill.getData(5),requiredSkill.getData(10)));
+        jobPostingList.add(new JobPosting("JP-2", companyList.getData(1), jobList.getData(1),"Analyze complex datasets and present insights for business decisions.","3500.00-5000.00", 2,LocalDate.of(2024, 3, 12),requiredSkill.getData(3), requiredSkill.getData(5), requiredSkill.getData(10)));
+        jobPostingList.add(new JobPosting("JP-3", companyList.getData(4), jobList.getData(4),"Develop enterprise applications with modern backend frameworks.","4000.00-6000.00", 3,LocalDate.of(2024, 5, 5),requiredSkill.getData(1), requiredSkill.getData(2)));
+        jobPostingList.add(new JobPosting("JP-4", companyList.getData(3), jobList.getData(3),"Work with AI pipelines to optimize ML model deployment.","4800.00-7200.00", 2,LocalDate.of(2024, 1, 20),requiredSkill.getData(3), requiredSkill.getData(9)));
+        jobPostingList.add(new JobPosting("JP-5", companyList.getData(5), jobList.getData(5),"Design and develop cross-platform mobile applications using Flutter and Kotlin.","4500.00-6000.00", 2,LocalDate.of(2024, 4, 10),requiredSkill.getData(3), requiredSkill.getData(5), requiredSkill.getData(6)));
+        jobPostingList.add(new JobPosting("JP-6", companyList.getData(6), jobList.getData(2),"Implement and monitor cybersecurity protocols to safeguard company data.","5000.00-7500.00", 1,LocalDate.of(2024, 2, 22),requiredSkill.getData(1), requiredSkill.getData(4)));
+        jobPostingList.add(new JobPosting("JP-7", companyList.getData(7), jobList.getData(7),"Maintain and optimize large-scale SQL databases for high performance.","4000.00-6500.00", 2,LocalDate.of(2024, 5, 1),requiredSkill.getData(6), requiredSkill.getData(2)));
+        jobPostingList.add(new JobPosting("JP-8", companyList.getData(8), jobList.getData(9),"Develop full-stack web applications with seamless integration of frontend and backend.","4800.00-7000.00", 1,LocalDate.of(2024, 3, 15), requiredSkill.getData(1), requiredSkill.getData(8), requiredSkill.getData(9)));
+        jobPostingList.add(new JobPosting("JP-9", companyList.getData(9), jobList.getData(8),"Assist in AI model training and evaluation for real-world research projects.", "3000.00-4000.00", 1,LocalDate.of(2024, 1, 5), requiredSkill.getData(3), requiredSkill.getData(10)));
         
         jobApplicationList.add(new JobApplication("JA-1", jobPostingList.getData(2),studentList.getData(1), LocalDate.parse("2025-04-20"),JobApplication.InterviewStatus.INTERVIEW_SCHEDULED));
         jobApplicationList.add(new JobApplication("JA-1", jobPostingList.getData(2), studentList.getData(1), LocalDate.parse("2025-04-20"), JobApplication.InterviewStatus.INTERVIEW_SCHEDULED));
@@ -91,8 +97,8 @@ public class JobRelatedDataInitialize {
        
     } 
     
-    public ListInterface<Skill> getSkillList() {
-        return skillList;
+    public ListInterface<JobSkillRequirement> getRequiredSkillList() {
+        return requiredSkill;
     }
     
     public ListInterface<Job> getJobList() {

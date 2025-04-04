@@ -20,12 +20,12 @@ public class StudentDetailsDao {
     
     public StudentDetailsDao(){
         studentList = new DoublyLinkedList<>();
-        studentList.add(new Student("S001", "Michael Jordan", 15, "123 Main Street", "michael@gmail.com", "2 President List", "Bachelor Degree in Computer Science", skillList.getData(0), skillList.getData(1)));
-        studentList.add(new Student("S002", "Sarah Lee", 20, "456 Elm Avenue", "sarah.lee@example.com", "Dean's List 2023", "Diploma in Data Science", skillList.getData(2), skillList.getData(4), skillList.getData(9)));
-        studentList.add(new Student("S003", "David Wong", 22, "789 Oak Road", "david.wong@example.com", "Hackathon Winner", "Bachelor Degree in Software Engineering", skillList.getData(0), skillList.getData(3), skillList.getData(8)));
-        studentList.add(new Student("S004", "Emily Tan", 19, "321 Pine Street", "emily.tan@example.com", "Top 10 Final Year Project", "Diploma in Computer Networking", skillList.getData(6), skillList.getData(5), skillList.getData(1)));
-        studentList.add(new Student("S005", "Jason Lim", 23, "654 Maple Boulevard", "jason.lim@example.com", "Published Research on AI", "Master Degree in Artificial Intelligence", skillList.getData(2), skillList.getData(7), skillList.getData(8)));
-        studentList.add(new Student("S006", "Alicia Tan", 21, "99 Lakeview Drive", "alicia.tan@example.com", "Certified Cloud Practitioner", "Bachelor Degree in Information Systems", skillList.getData(4), skillList.getData(5), skillList.getData(9)));
+//        studentList.add(new Student("S001", "Michael Jordan", 15, "123 Main Street", "michael@gmail.com", "2 President List", "Bachelor Degree in Computer Science", skillList.getData(0), skillList.getData(1)));
+//        studentList.add(new Student("S002", "Sarah Lee", 20, "456 Elm Avenue", "sarah.lee@example.com", "Dean's List 2023", "Diploma in Data Science", skillList.getData(2), skillList.getData(4), skillList.getData(9)));
+//        studentList.add(new Student("S003", "David Wong", 22, "789 Oak Road", "david.wong@example.com", "Hackathon Winner", "Bachelor Degree in Software Engineering", skillList.getData(0), skillList.getData(3), skillList.getData(8)));
+//        studentList.add(new Student("S004", "Emily Tan", 19, "321 Pine Street", "emily.tan@example.com", "Top 10 Final Year Project", "Diploma in Computer Networking", skillList.getData(6), skillList.getData(5), skillList.getData(1)));
+//        studentList.add(new Student("S005", "Jason Lim", 23, "654 Maple Boulevard", "jason.lim@example.com", "Published Research on AI", "Master Degree in Artificial Intelligence", skillList.getData(2), skillList.getData(7), skillList.getData(8)));
+//        studentList.add(new Student("S006", "Alicia Tan", 21, "99 Lakeview Drive", "alicia.tan@example.com", "Certified Cloud Practitioner", "Bachelor Degree in Information Systems", skillList.getData(4), skillList.getData(5), skillList.getData(9)));
     }
     
      // Create a new student

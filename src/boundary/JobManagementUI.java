@@ -102,6 +102,20 @@ public class JobManagementUI {
             }
         }
         
+
+        //testing
+        int requiredExperience = 0;
+        while (requiredExperience <= 0) {
+            System.out.print("Enter required experience (years): ");
+            int input = scanner.nextInt();
+    
+            if (input >= 1) {
+                requiredExperience = input; 
+            } else {
+                System.out.println("Invalid required experience. Please use digit (e.g. 1)");
+            }
+        }
+        
         LocalDate datePosted = null;
         while (datePosted == null) {
             System.out.print("Date of Birth (YYYY-MM-DD): ");
@@ -112,7 +126,7 @@ public class JobManagementUI {
             }
         }
         
-        Skill[] skillArray = new Skill[5];
+        JobSkillRequirement[] skillArray = new JobSkillRequirement[5];
         
         boolean loop = true;
         
@@ -131,7 +145,7 @@ public class JobManagementUI {
                 
             } 
             
-            Skill skillInput = jobPostingControl.isSkillExist(input);
+            JobSkillRequirement skillInput = jobPostingControl.isSkillExist(input);
             
             if (skillInput != null) {
                 for (int j = 0; j < i; j++) {
@@ -158,7 +172,7 @@ public class JobManagementUI {
             }
         }
        
-        JobPosting jobPosting = new JobPosting(jobPostingControl.generateJobPostID(),companySelected, jobSelected, description, salaryRange, datePosted,skillArray);
+        JobPosting jobPosting = new JobPosting(jobPostingControl.generateJobPostID(),companySelected, jobSelected, description, salaryRange, requiredExperience,datePosted,skillArray);
         
         return jobPosting;
     }
@@ -190,8 +204,8 @@ public class JobManagementUI {
         return sb.toString();
     }
     
-    public Skill[] doubleArray(Skill[] oldArray) {
-        Skill[] newArray = new Skill[oldArray.length * 2];
+    public JobSkillRequirement[] doubleArray(JobSkillRequirement[] oldArray) {
+        JobSkillRequirement[] newArray = new JobSkillRequirement[oldArray.length * 2];
         for (int j = 0; j < oldArray.length; j++) {
             newArray[j] = oldArray[j];
         }
