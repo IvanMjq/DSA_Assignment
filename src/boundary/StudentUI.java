@@ -23,8 +23,7 @@ public class StudentUI {
     private ListInterface<Student> studentList = new DoublyLinkedList<>();
     Scanner scanner = new Scanner(System.in);
 
-        
-    
+ 
     public void getAllStudents() {
         studentList = studentDao.getAllStudents();  // Assuming the method in StudentDetailsDao returns ListInterface<Student>
         for(Student student: studentList){

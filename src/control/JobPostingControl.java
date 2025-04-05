@@ -19,7 +19,7 @@ public class JobPostingControl {
     private ListInterface<Company> companyList;
     private ListInterface<JobApplication> jobApplicationList;
     private ListInterface<JobPosting> jobPostingList;
-    private ListInterface<Skill> skillList;
+    private ListInterface<JobSkillRequirement> skillList;
             
     private JobManagementUI jobManagementUI;
 
@@ -27,7 +27,7 @@ public class JobPostingControl {
         
     }
 
-    public JobPostingControl(ListInterface<Job> jobList, ListInterface<Company> companyList, ListInterface<JobApplication> jobApplicationList, ListInterface<JobPosting> jobPostingList, ListInterface<Skill> skillList) {
+    public JobPostingControl(ListInterface<Job> jobList, ListInterface<Company> companyList, ListInterface<JobApplication> jobApplicationList, ListInterface<JobPosting> jobPostingList, ListInterface<JobSkillRequirement> skillList) {
         this.jobList            = jobList;
         this.companyList        = companyList;
         this.jobApplicationList = jobApplicationList;
@@ -195,7 +195,7 @@ public class JobPostingControl {
         return noFound;
     }
     
-    public String displaySkill(ListInterface<Skill> skillList) {
+    public String displaySkill(ListInterface<JobSkillRequirement> skillList) {
         StringBuilder skillsStr = new StringBuilder();
     
         for (int i = 1; i <= skillList.size(); i++) {
@@ -233,7 +233,7 @@ public class JobPostingControl {
     }
     
     public void skillList() {
-        for (Skill skill : (DoublyLinkedList<Skill>) skillList) {
+        for (Skill skill : (DoublyLinkedList<JobSkillRequirement>) skillList) {
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.printf("| %-5s | %-40s |\n",
                     skill.getId(),
@@ -275,8 +275,8 @@ public class JobPostingControl {
         return job;
     }
     
-    public Skill isSkillExist(String info) {
-        Skill skill = null;
+    public JobSkillRequirement isSkillExist(String info) {
+        JobSkillRequirement skill = null;
         
         for(int i = 1; i <= skillList.size(); i++) {
             if (info.equalsIgnoreCase(skillList.getData(i).getId())){

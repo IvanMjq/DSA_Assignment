@@ -23,7 +23,7 @@ public class DSA_Assignment {
      * @param args the command line arguments
      */
     private JobRelatedDataInitialize dataInitialize = new JobRelatedDataInitialize();
-    private JobPostingControl jobPostingControl     = new JobPostingControl(dataInitialize.getJobList(), dataInitialize.getCompanyList(), dataInitialize.getJobApplicationList(), dataInitialize.getjobPostingListList(), dataInitialize.getSkillList());
+    private JobPostingControl jobPostingControl     = new JobPostingControl(dataInitialize.getJobList(), dataInitialize.getCompanyList(), dataInitialize.getJobApplicationList(), dataInitialize.getjobPostingListList(), dataInitialize.getRequiredSkillList());
     private StudentUI studentUI = new StudentUI();
     private ListInterface<Student> student = new DoublyLinkedList<>();
     
