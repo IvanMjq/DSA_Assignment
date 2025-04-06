@@ -11,18 +11,27 @@ import java.io.Serializable;
  * @author WEI ZHENG
  */
 public class MatchingResult implements Serializable{
+    public enum ExperienceCheck {
+        Not_Experienced,
+        Qualified,
+        Very_Experienced
+    }
     
+    private static int counter = 1;
+    private String id;
     private Student student;
     private JobPosting jobPost;
-    private String id;
-    private int score;
-    private double weightage;
+    private double score;
+    private ExperienceCheck status;
+//    private double weightage;
     
-    public MatchingResult(Student student, JobPosting jobPost, String id, int score, double weightage) {
+    public MatchingResult(Student student, JobPosting jobPost, double score, ExperienceCheck status) {
+        this.id = String.format("M%03d", counter++);
         this.student = student;
         this.jobPost = jobPost;
         this.score = score;
-        this.weightage = weightage;
+        this.status = status;
+       
 //        this.reason = reason;
     }
 
@@ -36,21 +45,24 @@ public class MatchingResult implements Serializable{
         return jobPost;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public double getWeightage() {
-        return weightage;
+    public String getId() {
+        return id;
     }
-
+    
+    public ExperienceCheck getExperiencedCheck(){
+        return status;
+    }
     @Override
-    public String toString() {
-        return "MatchResult{" +
-                "Student=" + student.getName() +
-                ", Job=" + jobPost +
-                ", Score=" + score +
-                ", weightage='" + weightage + '\'' +
+       public String toString() {
+        return "MatchingResult{" +
+                "id='" + id + '\'' +
+                ", student=" + student.getName() +
+                ", job=" + jobPost.getJob() +
+                ", score=" + score +
                 '}';
     }
 }

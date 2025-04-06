@@ -23,9 +23,9 @@ public class Student implements Serializable {
     private String achievement;
     private String education;
     private int yearsOfExperience;
-    private ListInterface<Skill> skillList = new DoublyLinkedList<>();
-    
-    public Student(String id, String name, int age, String address, String email, String achievement, String education, int yearsOfExperience,Skill... skills) {
+    private ListInterface<StudentSkill> skillList = new DoublyLinkedList<>();
+    private ListInterface<MatchingResult> matchResult = new DoublyLinkedList<>();
+    public Student(String id, String name, int age, String address, String email, String achievement, String education, int yearsOfExperience, StudentSkill... studentSkill) {
         this.id             = id;
         this.name           = name;
         this.age            = age;
@@ -34,7 +34,7 @@ public class Student implements Serializable {
         this.achievement    = achievement;
         this.education      = education;
         this.yearsOfExperience = yearsOfExperience;
-        addSkill(skills);
+        addSkill(studentSkill);
 
     }
 
@@ -70,8 +70,11 @@ public class Student implements Serializable {
         return yearsOfExperience;
     }
 
-    public ListInterface<Skill> getSkillList() {
+    public ListInterface<StudentSkill> getSkillList() {
         return skillList;
+    }
+    public ListInterface<MatchingResult> getMatchResult() { 
+        return matchResult;
     }
 
     public void setId(String id) {
@@ -106,12 +109,16 @@ public class Student implements Serializable {
         this.yearsOfExperience = yearsOfExperience;
     }
 
-    public void setSkillList(ListInterface<Skill> skillList) {
+    public void setSkillList(ListInterface<StudentSkill> skillList) {
         this.skillList = skillList;
     }
+    public void setMatchResult(ListInterface<MatchingResult> matchResult) { 
+        this.matchResult = matchResult;
+    }
+
     
-    public void addSkill(Skill... skillList) {
-        for (Skill skill : skillList) {
+    public void addSkill(StudentSkill... skillList) {
+        for (StudentSkill skill : skillList) {
             if (skill != null) {
                 this.skillList.add(skill);
             }
