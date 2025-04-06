@@ -6,11 +6,10 @@ package boundary;
 
 import adt.DoublyLinkedList;
 import adt.ListInterface;
-import dao.JobRelatedDataInitialize;
 import dao.StudentDetailsDao;
-import entity.Skill;
 import java.util.Scanner;
 import entity.Student;
+import java.util.Iterator;
     
 
 /**
@@ -23,12 +22,74 @@ public class StudentUI {
     private ListInterface<Student> studentList = new DoublyLinkedList<>();
     Scanner scanner = new Scanner(System.in);
 
- 
-    public void getAllStudents() {
-        studentList = studentDao.getAllStudents();  // Assuming the method in StudentDetailsDao returns ListInterface<Student>
-        for(Student student: studentList){
-            System.out.println("studentList:\n" + student + "\n");
+     // Create a new student
+    public boolean addStudent(Student student) {
+        if(student != null){
+            studentList.add(student);
+            System.out.println("Successfully added");
+            return true;
         }
-        
+        return false;
     }
+
+    // Read student details by studentId
+    public Student getStudentById(int studentId) {
+        for (Student student : studentList) {
+                if (student.getId().equals(studentId)) {
+                    return student;
+                }
+            }
+        return null; // Return null if not found
+    }
+
+
+    // Update student details
+    public boolean updateStudent(int position, Student updatedStudent) {
+        if (position >= 1 && position <= studentList.size()) {
+            return studentList.replace(position, updatedStudent);
+        }
+        return false;
+    }
+    
+    
+    // Delete a student
+    public boolean removeStudentByPosition(int givenPosition) {
+        if(givenPosition >= 1 && givenPosition <= studentList.size()){
+            studentList.remove(givenPosition);
+            System.out.printf("Successfully removed position %d in the student list\n", givenPosition); 
+            return true;
+        }
+        System.out.println("No such position in the student list"); 
+
+        return false;
+    }
+    
+    public boolean removeStudentById(int studentId) {
+        Iterator<Student> iterator = studentList.iterator();
+        while (iterator.hasNext()) {
+            Student student = iterator.next();
+            if (student.getId().equals(studentId)) {
+                studentList.remove(studentList.indexOf(student)); // 1-based index
+                return true;
+            }
+        }
+        return false;    
+    }
+    
+    
+    
+    public ListInterface<Student> getAllStudents() {
+        return studentList;
+    }
+    
+
+    // Display all students
+    public void printAllStudents() {
+//        if (studentList.isEmpty()) {
+//            System.out.println("No students in the system.");
+//        } else {
+//            studentList.displayForward();
+//        }
+    }
+    
 }

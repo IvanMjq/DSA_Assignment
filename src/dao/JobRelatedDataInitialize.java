@@ -117,7 +117,9 @@ public class JobRelatedDataInitialize {
         return jobApplicationList;
     }
     
-    public ListInterface<JobPosting> getjobPostingListList() {
+    public ListInterface<JobPosting> getJobPostingList() {
         return jobPostingList;
     }
+    
+    
 }
