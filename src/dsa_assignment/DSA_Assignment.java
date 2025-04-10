@@ -65,9 +65,10 @@ public class DSA_Assignment {
         while (!exit) {
 
             System.out.println("============== Main Menu ============");
-            System.out.println("1. Job Posting Management");
-            System.out.println("2. Student Management");
-            System.out.println("3. Matching Engine");    
+            System.out.println("1. Company Management");
+            System.out.println("2. Job Posting Management");
+            System.out.println("3. Student Management");
+            System.out.println("4. Matching Engine");    
             System.out.println("0. Exit");
             System.out.println("=====================================");
             System.out.print("Enter your choice: ");
@@ -83,11 +84,11 @@ public class DSA_Assignment {
                 case 2:
                     jobPostingControl.runJobPostingManagement();
                     break;
-                case 2:
+                case 3:
                     //testing purpose, will be replaced with UI
                     studentUI.getAllStudents();
                     break;
-                case 3:
+                case 4:
                     System.out.println(student);
                     matchControl.MatchingRunner(student);
                     break;
