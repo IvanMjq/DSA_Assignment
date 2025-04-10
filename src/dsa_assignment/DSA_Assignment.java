@@ -23,43 +23,44 @@ public class DSA_Assignment {
      * @param args the command line arguments
      */
     private JobRelatedDataInitialize dataInitialize = new JobRelatedDataInitialize();
-    private JobPostingControl jobPostingControl     = new JobPostingControl(dataInitialize.getJobList(), dataInitialize.getCompanyList(), dataInitialize.getJobApplicationList(), dataInitialize.getJobPostingList(), dataInitialize.getRequiredSkillList());
+    private JobPostingControl jobPostingControl = new JobPostingControl(dataInitialize.getJobList(), dataInitialize.getCompanyList(), dataInitialize.getJobApplicationList(), dataInitialize.getJobPostingList(), dataInitialize.getRequiredSkillList());
     private MatchingEngineControl matchControl = new MatchingEngineControl(dataInitialize.getStudentList(), dataInitialize.getJobPostingList());
     private StudentUI studentUI = new StudentUI();
     private ListInterface<Student> studentList = dataInitialize.getStudentList();
-    
-   public void StudentLogin() {
-    Scanner scanner = new Scanner(System.in);
-    boolean loggedIn = false;
-    while (!loggedIn) {
 
-        System.out.println("============== Login ============");
-        System.out.print("Enter Student Id: ");
-        String input1 = scanner.nextLine();
-        System.out.print("Password:");
-        String input2 = scanner.nextLine();
+    public void StudentLogin() {
+        Scanner scanner = new Scanner(System.in);
+        boolean loggedIn = false;
+        while (!loggedIn) {
 
-        for (int i = 1; i <= studentList.size(); i++) {
-            Student student = studentList.getData(i);
-            if (student.getId().equals(input1)) {
-                if(input2.equals("1234")) {  // Example password
-                    System.out.println("Welcome " + student.getName());
-                    MainMenu(student);
-                    loggedIn = true;
-                    break;
-                } else {
-                    System.out.println("Incorrect password");
-                    break;
+            System.out.println("============== Login ============");
+            System.out.print("Enter Student Id: ");
+            String input1 = scanner.nextLine();
+            System.out.print("Password:");
+            String input2 = scanner.nextLine();
+
+            for (int i = 1; i <= studentList.size(); i++) {
+                Student student = studentList.getData(i);
+                if (student.getId().equals(input1)) {
+                    if (input2.equals("1234")) {  // Example password
+                        System.out.println("Welcome " + student.getName());
+                        StudentMainMenu(student);
+                        loggedIn = true;
+                        break;
+                    } else {
+                        System.out.println("Incorrect password");
+                        break;
+                    }
                 }
             }
-        }
 
-        if (!loggedIn) {
-            System.out.println("Student ID not found. Please try again.");
+            if (!loggedIn) {
+                System.out.println("Student ID not found. Please try again.");
+            }
         }
     }
-}
-    public void MainMenu(Student student) {
+
+    public void StudentMainMenu(Student student) {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
         while (!exit) {
@@ -68,7 +69,7 @@ public class DSA_Assignment {
             System.out.println("1. Company Management");
             System.out.println("2. Job Posting Management");
             System.out.println("3. Student Management");
-            System.out.println("4. Matching Engine");    
+            System.out.println("4. Matching Engine");
             System.out.println("0. Exit");
             System.out.println("=====================================");
             System.out.print("Enter your choice: ");
@@ -92,13 +93,13 @@ public class DSA_Assignment {
                     System.out.println(student);
                     matchControl.MatchingRunner(student);
                     break;
-             
+
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
         }
     }
-     
+
     public static void main(String[] args) {
 //         TODO code application logic here
 //        JobRelatedDataInitialize jobRelatedData = new JobRelatedDataInitialize();
