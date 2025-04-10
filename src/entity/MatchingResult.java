@@ -23,14 +23,16 @@ public class MatchingResult implements Serializable{
     private JobPosting jobPost;
     private double score;
     private ExperienceCheck status;
+    private double distance;
 //    private double weightage;
     
-    public MatchingResult(Student student, JobPosting jobPost, double score, ExperienceCheck status) {
+    public MatchingResult(Student student, JobPosting jobPost, double score, ExperienceCheck status, double distance) {
         this.id = String.format("M%03d", counter++);
         this.student = student;
         this.jobPost = jobPost;
         this.score = score;
         this.status = status;
+        this.distance = distance;
        
 //        this.reason = reason;
     }
@@ -56,6 +58,10 @@ public class MatchingResult implements Serializable{
     public ExperienceCheck getExperiencedCheck(){
         return status;
     }
+    
+    public double getDistance(){
+        return distance;
+    }
     @Override
        public String toString() {
         return "MatchingResult{" +
@@ -63,6 +69,8 @@ public class MatchingResult implements Serializable{
                 ", student=" + student.getName() +
                 ", job=" + jobPost.getJob() +
                 ", score=" + score +
+                ",status=" + status +
+                ",distance=" + distance +
                 '}';
     }
 }

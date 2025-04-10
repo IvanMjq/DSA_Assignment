@@ -20,14 +20,18 @@ public class Company implements Serializable {
     private String phone;
     private String email;
     private String address;
+    private double latitude;
+    private double longitude;
     private int foundedYear;
 
-    public Company(String id, String name, String phone, String email, String address, int foundedYear) {
+    public Company(String id, String name, String phone, String email, String address, double latitude, double longitude, int foundedYear) {
         this.id             = id;
         this.name           = name;
         this.phone          = phone;
         this.email          = email;
         this.address        = address;
+        this.latitude       = latitude;
+        this.longitude      = longitude;
         this.foundedYear    = foundedYear;
     }
 
@@ -69,6 +73,23 @@ public class Company implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+    
+    
+    public double getLatitude() {
+        return latitude;
+    }
+
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }   
+    
+    public double getLongitude() {
+        return longitude;
     }
 
     public int getFoundedYear() {

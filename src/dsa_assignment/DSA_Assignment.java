@@ -24,7 +24,8 @@ public class DSA_Assignment {
      */
     private JobRelatedDataInitialize dataInitialize = new JobRelatedDataInitialize();
     private JobPostingControl jobPostingControl = new JobPostingControl(dataInitialize.getJobList(), dataInitialize.getCompanyList(), dataInitialize.getJobApplicationList(), dataInitialize.getJobPostingList(), dataInitialize.getRequiredSkillList());
-    private MatchingEngineControl matchControl = new MatchingEngineControl(dataInitialize.getStudentList(), dataInitialize.getJobPostingList());
+    private GeoUtilControl geo = new GeoUtilControl(dataInitialize.getStudentList(), dataInitialize.getJobPostingList());
+    private MatchingEngineControl matchControl = new MatchingEngineControl(geo.setLatLongForStdAddresses(), geo.setLatLongForJobAddresses());;
     private StudentUI studentUI = new StudentUI();
     private ListInterface<Student> studentList = dataInitialize.getStudentList();
 
