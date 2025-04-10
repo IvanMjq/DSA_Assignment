@@ -31,7 +31,8 @@ public class DSA_Assignment {
         while (!exit) {
 
             System.out.println("============== Main Menu ============");
-            System.out.println("1. Job Posting Management");
+            System.out.println("1. Company Management");
+            System.out.println("2. Job Posting Management");
             System.out.println("0. Exit");
             System.out.println("=====================================");
             System.out.print("Enter your choice: ");
@@ -39,11 +40,12 @@ public class DSA_Assignment {
             int choice = scanner.nextInt();
 
             switch (choice) {
-                 case 0:
+                case 0:
                     System.out.println("Exiting the application. Goodbye!");
                     exit = true;
                     break;
                 case 1:
+                case 2:
                     jobPostingControl.runJobPostingManagement();
                     break;
              
