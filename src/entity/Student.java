@@ -19,17 +19,21 @@ public class Student implements Serializable {
     private String name;
     private int age;
     private String address;
+    private double latitude;
+    private double longitude;
     private String email;
     private String achievement;
     private String education;
     private int yearsOfExperience;
     private ListInterface<StudentSkill> skillList = new DoublyLinkedList<>();
     private ListInterface<MatchingResult> matchResult = new DoublyLinkedList<>();
-    public Student(String id, String name, int age, String address, String email, String achievement, String education, int yearsOfExperience, StudentSkill... studentSkill) {
+    public Student(String id, String name, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, StudentSkill... studentSkill) {
         this.id             = id;
         this.name           = name;
         this.age            = age;
         this.address        = address;
+        this.latitude       = latitude;
+        this.longitude     = longitude;
         this.email          = email;
         this.achievement    = achievement;
         this.education      = education;
@@ -52,6 +56,14 @@ public class Student implements Serializable {
 
     public String getAddress() {
         return address;
+    }
+    
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 
     public String getEmail() {
@@ -91,6 +103,14 @@ public class Student implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public void setEmail(String email) {
@@ -157,4 +177,5 @@ public class Student implements Serializable {
                 ", email = " + email + ", achievement = " + achievement + ", education = " + education + ", yearsOfExperience = " + yearsOfExperience +
                 ", skills = [" + skillsStr + "]}";
     }      
+
 }

@@ -30,6 +30,8 @@ public class MatchingUI {
             matchControl.matchStudentsToJobs();
             matchControl.listScoresForStudent(student);
             System.out.println("============================================================================================================");
+            System.out.println("| 1 - Search");
+            System.out.println("| 2 - Sort");
             System.out.println("Press 0 to exit....");
             int choice = scanner.nextInt();
             scanner.nextLine();
