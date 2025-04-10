@@ -50,9 +50,13 @@ public class MatchingEngineControl {
                 }
                 if (totalScore > 0) {
                     ExperienceCheck experienceStatus = checkExperience(student, jobPostList);
-                    MatchingResult matchingResult = new MatchingResult(student, jobPostList, totalScore, experienceStatus);
+                    double distance = calculateDistance(student.getLatitude(),student.getLongitude(),jobPostList.getCompany().getLatitude(), jobPostList.getCompany().getLongitude());
+                    MatchingResult matchingResult = new MatchingResult(student, jobPostList, totalScore, experienceStatus, distance);
                     matchResults.add(matchingResult);
                     student.getMatchResult().add(matchingResult);
+                }
+                else{
+                    System.out.println("No Job match to you");
                 }
             }
             
@@ -81,6 +85,32 @@ public class MatchingEngineControl {
        }
    }
     
+    public double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+        // Radius of the Earth in kilometers
+        final int R = 6371;
+
+        // Convert degrees to radians
+        double lat1Rad = Math.toRadians(lat1);
+        double lon1Rad = Math.toRadians(lon1);
+        double lat2Rad = Math.toRadians(lat2);
+        double lon2Rad = Math.toRadians(lon2);
+
+        // Differences in latitudes and longitudes
+        double deltaLat = lat2Rad - lat1Rad;
+        double deltaLon = lon2Rad - lon1Rad;
+
+        // Haversine formula
+        double a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+                   Math.cos(lat1Rad) * Math.cos(lat2Rad) *
+                   Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        // Distance in kilometers
+        return R * c;
+    }
+    
+    
+    
     
     public void listScoresForStudent(Student student) {
         ListInterface<MatchingResult> matchResults = student.getMatchResult();
@@ -92,21 +122,23 @@ public class MatchingEngineControl {
 
         // Display the header
         System.out.println("============================================================================================================");
-        System.out.println("Match Scores for Student: " + student.getName() + " (" + student.getId() + ")");
+        System.out.println("Match Scores for Student: " + student.getName() + " (" + student.getId() + ")" );
         System.out.println("============================================================================================================");
-        System.out.printf("%-20s %-50s %-10s %-20s%n", "Job ID", "Job Title", "Score", "Experience Status");
+        System.out.printf("%-20s %-50s %-10s %-20s %-15s%n", "Job Post ID", "Job Title", "Score", "Experience Status", "Distance (km)");
         System.out.println("------------------------------------------------------------------------------------------------------------");
 
         // Display each match result
         for (int i = 1; i <= matchResults.size(); i++) {
-            MatchingResult result = matchResults.getData(i);
-            JobPosting job = result.getJobPosting(); // Assuming getJobPosting() returns a JobPosting object
-            ExperienceCheck experienceStatus = result.getExperiencedCheck(); // Get experience status
-            System.out.printf("%-20s %-50s %-10.2f %-20s%n", 
-                              job.getJob().getId(), 
-                              job.getJob().getTitle(), 
-                              result.getScore(), 
-                              experienceStatus);
+                MatchingResult result = matchResults.getData(i);
+                JobPosting job = result.getJobPosting(); 
+                ExperienceCheck experienceStatus = result.getExperiencedCheck(); // Get experience status
+                double distance = result.getDistance(); // Get the distance
+                System.out.printf("%-20s %-50s %-10.2f %-20s %-15.2f%n", 
+                                  job.getId(), 
+                                  job.getJob().getTitle(), 
+                                  result.getScore(), 
+                                  experienceStatus,
+                                  distance); // Print the distance
         }
     }
 
@@ -115,6 +147,7 @@ public class MatchingEngineControl {
     public void MatchingRunner(Student student){
         int choice = 0;
         do{
+           student.getMatchResult().clear();
            choice = matchingUI.MatchingMenu(student);
         }while(choice != 0);
     }

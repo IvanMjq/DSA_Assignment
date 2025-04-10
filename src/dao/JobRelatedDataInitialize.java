@@ -56,23 +56,23 @@ public class JobRelatedDataInitialize {
         jobList.add(new Job("J-9", "AI Research Intern", "Internship", "Support the research and development of AI solutions. Assist with data preparation, training models, and evaluating performance. Python experience preferred."));
         jobList.add(new Job("J-10","Full-Stack Developer", "Full-Time", "Develop complete web applications, working on both frontend and backend. Familiarity with React, Node.js, databases, and APIs is essential."));
 
-        studentList.add(new Student("S001", "Michael Jordan", 15, "123 Main Street", "michael@gmail.com", "2 President List", "Bachelor Degree in Computer Science", 1,skillList.getData(0), skillList.getData(1)));
-        studentList.add(new Student("S002", "Sarah Lee", 20, "456 Elm Avenue", "sarah.lee@example.com", "Dean's List 2023", "Diploma in Data Science", 2,skillList.getData(2), skillList.getData(4), skillList.getData(9)));
-        studentList.add(new Student("S003", "David Wong", 22, "789 Oak Road", "david.wong@example.com", "Hackathon Winner", "Bachelor Degree in Software Engineering",1, skillList.getData(0), skillList.getData(3), skillList.getData(8)));
-        studentList.add(new Student("S004", "Emily Tan", 19, "321 Pine Street", "emily.tan@example.com", "Top 10 Final Year Project", "Diploma in Computer Networking", 2,skillList.getData(6), skillList.getData(5), skillList.getData(1)));
-        studentList.add(new Student("S005", "Jason Lim", 23, "654 Maple Boulevard", "jason.lim@example.com", "Published Research on AI", "Master Degree in Artificial Intelligence", 3,skillList.getData(2), skillList.getData(7), skillList.getData(8)));
-        studentList.add(new Student("S006", "Alicia Tan", 21, "99 Lakeview Drive", "alicia.tan@example.com", "Certified Cloud Practitioner", "Bachelor Degree in Information Systems", 1,skillList.getData(4), skillList.getData(5), skillList.getData(9)));
+        studentList.add(new Student("S001", "Michael Jordan", 15, "Klang, Selangor", 0, 0 , "michael@gmail.com", "2 President List", "Bachelor Degree in Computer Science", 1,skillList.getData(0), skillList.getData(1)));
+        studentList.add(new Student("S002", "Sarah Lee", 20, "456 Elm Avenue", 0, 0, "sarah.lee@example.com", "Dean's List 2023", "Diploma in Data Science", 2,skillList.getData(2), skillList.getData(4), skillList.getData(9)));
+        studentList.add(new Student("S003", "David Wong", 22, "789 Oak Road", 0, 0, "david.wong@example.com", "Hackathon Winner", "Bachelor Degree in Software Engineering",1, skillList.getData(0), skillList.getData(3), skillList.getData(8)));
+        studentList.add(new Student("S004", "Emily Tan", 19, "321 Pine Street", 0, 0, "emily.tan@example.com", "Top 10 Final Year Project", "Diploma in Computer Networking", 2,skillList.getData(6), skillList.getData(5), skillList.getData(1)));
+        studentList.add(new Student("S005", "Jason Lim", 23, "654 Maple Boulevard", 0, 0, "jason.lim@example.com", "Published Research on AI", "Master Degree in Artificial Intelligence", 3,skillList.getData(2), skillList.getData(7), skillList.getData(8)));
+        studentList.add(new Student("S006", "Alicia Tan", 21, "99 Lakeview Drive", 0, 0, "alicia.tan@example.com", "Certified Cloud Practitioner", "Bachelor Degree in Information Systems", 1,skillList.getData(4), skillList.getData(5), skillList.getData(9)));
         
-        companyList.add(new Company("C-1", "ISJ-Technology", "03-5938420", "isj@gmail.com", "No 12A, Main Street", 1958));
-        companyList.add(new Company("C-2","NextWave Solutions","03-6123456","contact@nextwave.com","25, Innovation Avenue, Cyberjaya",2003));
-        companyList.add(new Company("C-3", "CloudHive Tech","03-6789123","support@cloudhive.com","Lot 7, Cloud Park, Petaling Jaya",2010));
-        companyList.add(new Company("C-4","DataBridge Analytics","03-4455667","info@databridge.com","3A, Jalan Teknologi, Kuala Lumpur",2015));
-        companyList.add(new Company("C-5","Innova Systems","03-8899001","hello@innova.com","88, Enterprise Tower, Johor Bahru",1995));
-        companyList.add(new Company("C-6","QuantumWorks", "03-9081726","careers@quantumworks.com","Level 18, Quantum Square, Penang",2018));
-        companyList.add(new Company("C-7","Visionary Tech Sdn Bhd","03-7832441","admin@visionarytech.com","10A, Jalan Semangat, Shah Alam",2007));
-        companyList.add(new Company("C-8","GreenByte Solutions", "03-5566778","team@greenbyte.com","15, Eco Business Hub, Melaka",2001));
-        companyList.add(new Company("C-9","NovaLink Digital","03-6543210","nova@novalink.com","Block C, Tech City, Seremban",2012));
-        companyList.add(new Company("C-10","PixelForge Studio","03-7766554","studio@pixelforge.com","Suite 12, Creative Valley, Ipoh", 2016));
+        companyList.add(new Company("C-1", "ISJ-Technology", "03-5938420", "isj@gmail.com", "No 12A, Main Street", 0, 0, 1958));
+        companyList.add(new Company("C-2","NextWave Solutions","03-6123456","contact@nextwave.com","25, Innovation Avenue, Cyberjaya", 0, 0,2003));
+        companyList.add(new Company("C-3", "CloudHive Tech","03-6789123","support@cloudhive.com","Lot 7, Cloud Park, Petaling Jaya", 0, 0,2010));
+        companyList.add(new Company("C-4","DataBridge Analytics","03-4455667","info@databridge.com","Kuantan, Pahang", 0, 0,2015));
+        companyList.add(new Company("C-5","Innova Systems","03-8899001","hello@innova.com","88, Enterprise Tower, Johor Bahru", 0, 0,1995));
+        companyList.add(new Company("C-6","QuantumWorks", "03-9081726","careers@quantumworks.com","Level 18, Quantum Square, Penang", 0, 0,2018));
+        companyList.add(new Company("C-7","Visionary Tech Sdn Bhd","03-7832441","admin@visionarytech.com","10A, Jalan Semangat, Shah Alam", 0, 0,2007));
+        companyList.add(new Company("C-8","GreenByte Solutions", "03-5566778","team@greenbyte.com","15, Eco Business Hub, Melaka", 0, 0,2001));
+        companyList.add(new Company("C-9","NovaLink Digital","03-6543210","nova@novalink.com","Block C, Tech City, Seremban", 0, 0,2012));
+        companyList.add(new Company("C-10","PixelForge Studio","03-7766554","studio@pixelforge.com","Suite 12, Creative Valley, Ipoh", 0, 0, 2016));
         
        
         jobPostingList.add(new JobPosting("JP-1", companyList.getData(1), jobList.getData(1),"Analyze complex datasets and present insights for business decisions.","3500.00-5000.00",1,LocalDate.of(2024, 3, 12),requiredSkill.getData(3),requiredSkill.getData(5),requiredSkill.getData(10)));
@@ -96,6 +96,10 @@ public class JobRelatedDataInitialize {
         jobApplicationList.add(new JobApplication("JA-8", jobPostingList.getData(7), studentList.getData(2), LocalDate.parse("2025-04-22"), JobApplication.InterviewStatus.APPLIED));
        
     } 
+    
+    public ListInterface<StudentSkill> getSkillList() {
+        return skillList;
+    }
     
     public ListInterface<JobSkillRequirement> getRequiredSkillList() {
         return requiredSkill;
