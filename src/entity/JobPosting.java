@@ -24,11 +24,11 @@ public class JobPosting implements Serializable {
     private String salaryRange;
     private int requiredExperience;//year (testing purpose)
     private LocalDate  datePosted;
-    private ListInterface<JobSkillRequirement> skillRequired = new DoublyLinkedList<>();
+    private ListInterface<JobRequirementSkill> skillRequired = new DoublyLinkedList<>();
 
     // Store all JobApplication
 
-    public JobPosting(String id, Company company, Job job, String description, String salaryRange, int requiredExperience,LocalDate datePosted, JobSkillRequirement... skillRequired) {
+    public JobPosting(String id, Company company, Job job, String description, String salaryRange, int requiredExperience,LocalDate datePosted, JobRequirementSkill... skillRequired) {
         this.id = id;
         this.company = company;
         this.job = job;
@@ -66,7 +66,7 @@ public class JobPosting implements Serializable {
         return datePosted;
     }
 
-    public ListInterface<JobSkillRequirement> getSkillRequired() {
+    public ListInterface<JobRequirementSkill> getSkillRequired() {
         return skillRequired;
     }
 
@@ -98,14 +98,14 @@ public class JobPosting implements Serializable {
         this.requiredExperience = requiredExperience;
     }
 
-    public void setSkillRequired(ListInterface<JobSkillRequirement> skillRequired) {
+    public void setSkillRequired(ListInterface<JobRequirementSkill> skillRequired) {
         this.skillRequired = skillRequired;
     }
 
 
     
-    public void addSkill(JobSkillRequirement... JobSkillRequirementList) {
-        for (JobSkillRequirement skillRequirement : JobSkillRequirementList) {
+    public void addSkill(JobRequirementSkill... JobSkillRequirementList) {
+        for (JobRequirementSkill skillRequirement : JobSkillRequirementList) {
             if (skillRequirement != null) {
                 this.skillRequired.add(skillRequirement);
             }

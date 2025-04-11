@@ -126,7 +126,7 @@ public class JobManagementUI {
             }
         }
         
-        JobSkillRequirement[] skillArray = new JobSkillRequirement[5];
+        JobRequirementSkill[] skillArray = new JobRequirementSkill[5];
         
         boolean loop = true;
         
@@ -145,7 +145,7 @@ public class JobManagementUI {
                 
             } 
             
-            JobSkillRequirement skillInput = jobPostingControl.isSkillExist(input);
+            JobRequirementSkill skillInput = jobPostingControl.isSkillExist(input);
             
             if (skillInput != null) {
                 for (int j = 0; j < i; j++) {
@@ -204,8 +204,8 @@ public class JobManagementUI {
         return sb.toString();
     }
     
-    public JobSkillRequirement[] doubleArray(JobSkillRequirement[] oldArray) {
-        JobSkillRequirement[] newArray = new JobSkillRequirement[oldArray.length * 2];
+    public JobRequirementSkill[] doubleArray(JobRequirementSkill[] oldArray) {
+        JobRequirementSkill[] newArray = new JobRequirementSkill[oldArray.length * 2];
         for (int j = 0; j < oldArray.length; j++) {
             newArray[j] = oldArray[j];
         }
