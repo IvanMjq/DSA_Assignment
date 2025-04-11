@@ -25,15 +25,16 @@ public class Student implements Serializable {
     private String achievement;
     private String education;
     private int yearsOfExperience;
-    private ListInterface<StudentSkill> skillList = new DoublyLinkedList<>();
-    private ListInterface<MatchingResult> matchResult = new DoublyLinkedList<>();
+    private ListInterface<StudentSkill> studentSkill = new DoublyLinkedList<>();
+ 
+    
     public Student(String id, String name, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, StudentSkill... studentSkill) {
         this.id             = id;
         this.name           = name;
         this.age            = age;
         this.address        = address;
         this.latitude       = latitude;
-        this.longitude     = longitude;
+        this.longitude      = longitude;
         this.email          = email;
         this.achievement    = achievement;
         this.education      = education;
@@ -83,11 +84,9 @@ public class Student implements Serializable {
     }
 
     public ListInterface<StudentSkill> getSkillList() {
-        return skillList;
+        return studentSkill;
     }
-    public ListInterface<MatchingResult> getMatchResult() { 
-        return matchResult;
-    }
+ 
 
     public void setId(String id) {
         this.id = id;
@@ -130,17 +129,14 @@ public class Student implements Serializable {
     }
 
     public void setSkillList(ListInterface<StudentSkill> skillList) {
-        this.skillList = skillList;
-    }
-    public void setMatchResult(ListInterface<MatchingResult> matchResult) { 
-        this.matchResult = matchResult;
+        this.studentSkill = skillList;
     }
 
     
     public void addSkill(StudentSkill... skillList) {
         for (StudentSkill skill : skillList) {
             if (skill != null) {
-                this.skillList.add(skill);
+                this.studentSkill.add(skill);
             }
         }
     }
@@ -166,8 +162,8 @@ public class Student implements Serializable {
     @Override
     public String toString() {
         StringBuilder skillsStr = new StringBuilder();
-        for (int i = 1; i <= skillList.size(); i++) {
-            skillsStr.append(skillList.getData(i)).append(", ");
+        for (int i = 1; i <= studentSkill.size(); i++) {
+            skillsStr.append(studentSkill.getData(i)).append(", ");
         }
         if (skillsStr.length() > 0) {
             skillsStr.setLength(skillsStr.length() - 2); // Remove last comma

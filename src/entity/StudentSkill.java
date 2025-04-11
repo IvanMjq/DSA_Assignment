@@ -8,18 +8,37 @@ package entity;
  *
  * @author WEI ZHENG
  */
-public class StudentSkill extends Skill{
+public class StudentSkill {
+    private Student student;
+    private Skill skill;
     private int proficiencyLevel; // Proficiency level of the student in the skill (1-5)
 
     // Constructor
-    public StudentSkill(String id, String name, int proficiencyLevel) {
-        super(id, name); // Call the parent constructor to initialize id and name
-        this.proficiencyLevel = proficiencyLevel;
+    public StudentSkill(Student student, Skill skill, int proficiencyLevel) {
+       this.student = student;
+       this.skill = skill;
+       this.proficiencyLevel = proficiencyLevel;
     }
 
     // Getter and Setter for proficiencyLevel
     public int getProficiencyLevel() {
         return proficiencyLevel;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 
     public void setProficiencyLevel(int proficiencyLevel) {

@@ -10,17 +10,36 @@ import java.io.Serializable;
  *
  * @author WEI ZHENG
  */
-public class JobSkillRequirement extends Skill{
+public class JobRequirementSkill{
+    private JobPosting jobPost;
+    private Skill skill;
     private int importance; // 1 to 5, how critical the skill is
 
-    public JobSkillRequirement(String id,  String name, int importance) {
-        super(id, name);
+    public JobRequirementSkill(JobPosting jobPost, Skill skill, int importance) {
+        this.jobPost = jobPost;
+        this.skill = skill;
         this.importance = importance;
+    }
+
+    public JobPosting getJobPost() {
+        return jobPost;
+    }
+
+    public Skill getSkill() {
+        return skill;
     }
     
 // Getter and Setter for importance
     public int getImportance() {
         return importance;
+    }
+
+    public void setJobPost(JobPosting jobPost) {
+        this.jobPost = jobPost;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 
     public void setImportance(int importance) {
@@ -29,7 +48,7 @@ public class JobSkillRequirement extends Skill{
 
     @Override
     public String toString() {
-        return "RequiredSkill{skill=" + super.toString() + ", importance=" + importance + "}";
+        return "RequiredSkill{skill=" + "Job Post=" + jobPost + "Skill=" + skill + ", importance=" + importance + "}";
     }
 
 }
