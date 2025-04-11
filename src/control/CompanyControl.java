@@ -61,7 +61,6 @@ public class CompanyControl {
         String streetAddress;
         String area;
         String state;
-        int postCode;
         int foundedYear;
         
         System.out.println("\n--------------------");
@@ -97,6 +96,31 @@ public class CompanyControl {
     
     public boolean isValidName(String name) {
         return name != null && name.matches("^[a-zA-Z0-9\\s]{3,50}$");
+    }
+    
+    public boolean isValidPhone(String phone) {
+        return phone != null && phone.matches("^\\d{3}-\\d{7}$");
+    }
+    
+    public boolean isValidEmail(String email) {
+        return email != null && email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
+    }
+    
+    public boolean isValidStreetAddress(String streetAddress) {
+        return streetAddress != null && streetAddress.matches("^[a-zA-Z0-9\\s,.-]{5,100}$");
+    }
+    
+    public boolean isValidArea(String area) {
+        return area != null && area.matches("^[a-zA-Z\\s]{2,50}$");
+    }
+    
+    public boolean isValidState(String state) {
+        return state != null && state.matches("^[a-zA-Z\\s]{2,50}$");
+    }
+    
+    public boolean isValidFoundedYear(int year) {
+        int currentYear = java.time.Year.now().getValue();
+        return year >= 1800 && year <= currentYear;
     }
     
 }
