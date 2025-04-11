@@ -59,6 +59,7 @@ public class CompanyControl {
         String phone;
         String email;
         String streetAddress;
+        String area;
         String state;
         int postCode;
         int foundedYear;

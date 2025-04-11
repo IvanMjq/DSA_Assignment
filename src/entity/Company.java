@@ -8,6 +8,7 @@ import adt.DoublyLinkedList;
 import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
+import java.time.LocalTime;
 
 /**
  *
@@ -23,16 +24,21 @@ public class Company implements Serializable {
     private double latitude;
     private double longitude;
     private int foundedYear;
+    
+    private LocalTime interviewStartTime;
+    private LocalTime interviewEndTime;
 
-    public Company(String id, String name, String phone, String email, String address, double latitude, double longitude, int foundedYear) {
-        this.id             = id;
-        this.name           = name;
-        this.phone          = phone;
-        this.email          = email;
-        this.address        = address;
-        this.latitude       = latitude;
-        this.longitude      = longitude;
-        this.foundedYear    = foundedYear;
+    public Company(String id, String name, String phone, String email, String address, double latitude, double longitude, int foundedYear, LocalTime interviewStartTime, LocalTime interviewEndTime) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.foundedYear = foundedYear;
+        this.interviewStartTime = interviewStartTime;
+        this.interviewEndTime = interviewEndTime;
     }
 
     public String getId() {
@@ -78,11 +84,9 @@ public class Company implements Serializable {
         this.latitude = latitude;
     }
     
-    
     public double getLatitude() {
         return latitude;
     }
-
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
@@ -98,6 +102,22 @@ public class Company implements Serializable {
 
     public void setFoundedYear(int foundedYear) {
         this.foundedYear = foundedYear;
+    }
+
+    public LocalTime getAvailableStartTime() {
+        return interviewStartTime;
+    }
+
+    public void setInterviewStartTime(LocalTime interviewStartTime) {
+        this.interviewStartTime = interviewStartTime;
+    }
+
+    public LocalTime getInterviewEndTime() {
+        return interviewEndTime;
+    }
+
+    public void setInterviewEndTime(LocalTime interviewEndTime) {
+        this.interviewEndTime = interviewEndTime;
     }
     
     @Override
