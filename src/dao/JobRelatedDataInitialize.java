@@ -13,7 +13,8 @@ import java.time.LocalDate;
  * @author Teh Yi Shan
  */
 public class JobRelatedDataInitialize {
-    private ListInterface<StudentSkill> skillList = new DoublyLinkedList<>();
+    private ListInterface<Skill> skillList = new DoublyLinkedList<>();
+    private ListInterface<StudentSkill> studentSkill = new DoublyLinkedList<>();
     private ListInterface<JobRequirementSkill> requiredSkill = new DoublyLinkedList<>();
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
@@ -23,27 +24,42 @@ public class JobRelatedDataInitialize {
     
     
     public JobRelatedDataInitialize(){
-        skillList.add(new StudentSkill("S-1", "Java Langauge", 1));
-        skillList.add(new StudentSkill("S-2", "C++ Langauge", 2));
-        skillList.add(new StudentSkill("S-3", "Python Langauge", 3));
-        skillList.add(new StudentSkill("S-4", "Mandarin", 3));
-        skillList.add(new StudentSkill("S-5", "English", 4));
-        skillList.add(new StudentSkill("S-6", "Bahasa Malayu", 4));
-        skillList.add(new StudentSkill("S-7", "C Langauge", 5));
-        skillList.add(new StudentSkill("S-8", "React.js", 2));
-        skillList.add(new StudentSkill("S-9", "Laravel", 5));
-        skillList.add(new StudentSkill("S-10", "Vue.js", 4));
+        skillList.add(new Skill("S-1", "Java Langauge"));
+        skillList.add(new Skill("S-2", "C++ Langauge"));
+        skillList.add(new Skill("S-3", "Java"));
+        skillList.add(new Skill("S-4", "Mandarin"));
+        skillList.add(new Skill("S-5", "English"));
+        skillList.add(new Skill("S-6", "Bahasa Malayu"));
+        skillList.add(new Skill("S-7", "C Langauge"));
+        skillList.add(new Skill("S-8", "React.js"));
+        skillList.add(new Skill("S-9", "Laravel"));
+        skillList.add(new Skill("S-10", "Vue.js"));
         
-        requiredSkill.add(new JobRequirementSkill("S-1", "Java Langauge", 1));
-        requiredSkill.add(new JobRequirementSkill("S-2", "C++ Langauge", 2));
-        requiredSkill.add(new JobRequirementSkill("S-3", "Python Langauge", 3));
-        requiredSkill.add(new JobRequirementSkill("S-4", "Mandarin", 3));
-        requiredSkill.add(new JobRequirementSkill("S-5", "English", 4));
-        requiredSkill.add(new JobRequirementSkill("S-6", "Bahasa Malayu", 4));
-        requiredSkill.add(new JobRequirementSkill("S-7", "C Langauge", 5));
-        requiredSkill.add(new JobRequirementSkill("S-8", "React.js", 2));
-        requiredSkill.add(new JobRequirementSkill("S-9", "Laravel", 5));
-        requiredSkill.add(new JobRequirementSkill("S-10", "Vue.js", 4));
+        studentSkill.add(new StudentSkill(studentList.getData(0), skillList.getData(0), 1));
+        studentSkill.add(new StudentSkill(studentList.getData(1), skillList.getData(1), 2));
+        studentSkill.add(new StudentSkill(studentList.getData(2), skillList.getData(2), 3));
+        studentSkill.add(new StudentSkill(studentList.getData(3), skillList.getData(3), 4));
+        studentSkill.add(new StudentSkill(studentList.getData(4), skillList.getData(4), 5));
+        studentSkill.add(new StudentSkill(studentList.getData(0), skillList.getData(5), 1));
+        studentSkill.add(new StudentSkill(studentList.getData(1), skillList.getData(6), 2));
+        studentSkill.add(new StudentSkill(studentList.getData(2), skillList.getData(7), 3));
+        studentSkill.add(new StudentSkill(studentList.getData(3), skillList.getData(8), 4));
+        studentSkill.add(new StudentSkill(studentList.getData(4), skillList.getData(9), 4));
+
+        
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(0), skillList.getData(0), 1));
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(1), skillList.getData(1), 2));
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(2), skillList.getData(2), 3));
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(3), skillList.getData(3), 4));
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(4), skillList.getData(4), 5));
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(5), skillList.getData(5), 1));
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(6), skillList.getData(6), 2));
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(7), skillList.getData(7), 3));
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(8), skillList.getData(8), 4));
+        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(0), skillList.getData(9), 5));
+
+
+
         
         jobList.add(new Job("J-1", "Software Engineer", "Full-Time", "Responsible for designing, developing, and maintaining software applications. Collaborates with cross-functional teams to deliver scalable and efficient software solutions. Proficient in programming languages such as Java, C++, or Python. Strong problem-solving skills and knowledge of software development lifecycle are essential."));
         jobList.add(new Job("J-2", "Data Analyst", "Full-Time", "Analyze large datasets to extract actionable insights and support business decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI."));
@@ -56,7 +72,7 @@ public class JobRelatedDataInitialize {
         jobList.add(new Job("J-9", "AI Research Intern", "Internship", "Support the research and development of AI solutions. Assist with data preparation, training models, and evaluating performance. Python experience preferred."));
         jobList.add(new Job("J-10","Full-Stack Developer", "Full-Time", "Develop complete web applications, working on both frontend and backend. Familiarity with React, Node.js, databases, and APIs is essential."));
 
-        studentList.add(new Student("S001", "Michael Jordan", 15, "Kepong", 0, 0 , "michael@gmail.com", "2 President List", "Bachelor Degree in Computer Science", 1,skillList.getData(0), skillList.getData(1)));
+        studentList.add(new Student("S001", "Michael Jordan", 15, "Kepong", 0, 0 , "michael@gmail.com", "2 President List", "Bachelor Degree in Computer Science", 1, studentSkill.getData(0), skillList.getData(1)));
         studentList.add(new Student("S002", "Sarah Lee", 20, "456 Elm Avenue", 0, 0, "sarah.lee@example.com", "Dean's List 2023", "Diploma in Data Science", 2,skillList.getData(2), skillList.getData(4), skillList.getData(9)));
         studentList.add(new Student("S003", "David Wong", 22, "789 Oak Road", 0, 0, "david.wong@example.com", "Hackathon Winner", "Bachelor Degree in Software Engineering",1, skillList.getData(0), skillList.getData(3), skillList.getData(8)));
         studentList.add(new Student("S004", "Emily Tan", 19, "321 Pine Street", 0, 0, "emily.tan@example.com", "Top 10 Final Year Project", "Diploma in Computer Networking", 2,skillList.getData(6), skillList.getData(5), skillList.getData(1)));
@@ -98,7 +114,7 @@ public class JobRelatedDataInitialize {
     } 
     
     public ListInterface<StudentSkill> getSkillList() {
-        return skillList;
+        return studentSkill;
     }
     
     public ListInterface<JobRequirementSkill> getRequiredSkillList() {
