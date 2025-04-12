@@ -28,7 +28,7 @@ public class DSA_Assignment {
     private ListInterface<JobPosting> jobPost = dataInitialized.getJobPostingList();
     private ListInterface<Student> studentList = dataInitialized.getStudentList();
 
-    private MatchingEngineControl matchControl = new MatchingEngineControl(studentSkill, requiredSkill, studentList, jobPost);
+//    private MatchingEngineControl matchControl = new MatchingEngineControl(studentSkill, requiredSkill, studentList, jobPost);
 //    private StudentUI studentUI = new StudentUI();
     
 //
@@ -94,8 +94,8 @@ public class DSA_Assignment {
 //                    studentUI.getAllStudents();
                     break;
                 case 4:
-                    System.out.println(student);
-                    matchControl.MatchingRunner(student);
+//                    System.out.println(student);
+//                    matchControl.MatchingRunner(student);
                     break;
 
                 default:
@@ -135,7 +135,7 @@ public class DSA_Assignment {
                     new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList());
                     break;
                 case 3:
-                    StudentLogin();
+                    new MatchingEngineControl(dataInitialized.getStudentSkillList(), dataInitialized.getJobRequiredSkillList(), dataInitialized.getStudentList(),dataInitialized.getJobPostingList());
 //                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList());
                     break;
                 case 4:

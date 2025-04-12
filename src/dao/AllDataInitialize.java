@@ -778,11 +778,6 @@ public class AllDataInitialize {
                 skillList.getData(9),
                 4
         ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(10),
-                skillList.getData(10),
-                5
-        ));
     }
 
     // -----------------
