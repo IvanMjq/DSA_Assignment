@@ -55,111 +55,6 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
         return true;
     }
     
-    // Add node into the given position
-//    @Override
-//    public boolean add(int givenPosition, T newData) { // Out of memory error possible
-//        boolean isSuccessful = true;
-//        
-//        try{
-//            if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // If the list if empty
-//                Node newNode = new Node(newData);
-//            
-//                if (isEmpty() || (givenPosition == 1)) {
-//                    if (head != null) {
-//                        newNode.next = head;
-//                        head.prev = newNode;
-//                    }
-//                    head = newNode;
-//                    if (tail == null) { 
-//                        tail = newNode;
-//                    }
-//              
-//                }else if (givenPosition == numberOfEntries + 1) {
-//                       tail.next = newNode;
-//                       newNode.prev = tail;
-//                       tail = newNode;
-//                       
-//                }else {
-//                    Node nodeBefore = head;
-//                    
-//                    for (int i = 0; i < givenPosition - 1; ++i) {
-//                        nodeBefore = nodeBefore.next;
-//                    }
-//                    
-//                    newNode.prev = nodeBefore.prev;
-//                    nodeBefore.prev = newNode;
-//                    newNode.next = nodeBefore;
-//                    newNode.prev.next = newNode;
-//                }
-//                numberOfEntries++;
-//            } else {
-//                isSuccessful = false;
-//            }
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            isSuccessful = false;
-//        }
-//
-//        
-//        return  isSuccessful;       
-//    }
-    
-//    @Override
-//    public boolean add(int givenPosition, T newData) { // Out of memory error possible
-//        boolean isSuccessful = true;
-//        
-//        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // If the list if empty
-//            Node newNode = new Node(newData);
-//            
-//            if (isEmpty() || (givenPosition == 1)) {
-//                newNode.next = head;
-//                head = newNode;
-//            } else {
-//                Node tempNode = head;
-//                for (int i = 0; i < givenPosition - 1; ++i) {
-//                    tempNode = tempNode.next;
-//                }
-//                newNode.prev = tempNode.prev;
-//                tempNode.prev = newNode;
-//                newNode.next = tempNode;
-//                
-//                if (newNode.prev != null) {
-//                    newNode.prev.next = newNode;
-//                } else {
-//                    head = newNode;
-//                }
-//            }
-//            numberOfEntries++;
-//        } else {
-//            isSuccessful = false;
-//        }
-//        
-//        return  isSuccessful;       
-//    }
-    
-    // Add few items into the list
-//    @Override
-//    @SafeVarargs
-//    public final String addAll(T... newDatas) {
-//        StringBuilder failedMessage = new StringBuilder("Failed to add : \n");
-//        int failedCounts = 0;
-//        
-//        for (T newData : newDatas) {
-//            boolean isSuccessful = add(newData);
-//            if (!isSuccessful) {          
-//                failedMessage.append(newData);
-//                failedMessage.append("\n");
-//                failedCounts++;
-//            }            
-//        }
-//        
-//        if (failedCounts == 0) {
-//            return null;
-//        } else {
-//            return failedMessage.toString();
-//        }
-//    }
-    
     // Replace the given node with new T data
     @Override 
     public boolean replace(int givenPosition, T newData) {
@@ -203,7 +98,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
             numberOfEntries--;
         }
         
-        return result; // return rmemoved entry, or null for failed operations
+        return result; // Return rmemoved entry, or null for failed operations
     }
        
     // Get the data with the given entry
@@ -261,6 +156,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
         return outputStr;
     }
     
+    @Override 
     public int indexOf(T data) {
         int index = 0;
         Node current = head;

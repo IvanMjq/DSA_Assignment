@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class AllDataInitialize {
     private ListInterface<Skill> skillList = new DoublyLinkedList<>();
     private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
-    private ListInterface<JobRequirementSkill> requiredSkill = new DoublyLinkedList<>();
+    private ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
     private ListInterface<Student> studentList = new DoublyLinkedList<>();
@@ -124,6 +124,9 @@ public class AllDataInitialize {
        
     } 
     
+    // -----------------
+    // Getter and Setter
+    
     public ListInterface<Skill> getSkillList() {
         return skillList;
     }
@@ -131,8 +134,8 @@ public class AllDataInitialize {
         return studentSkillList;
     }
     
-    public ListInterface<JobRequirementSkill> getRequiredSkillList() {
-        return requiredSkill;
+    public ListInterface<JobRequiredSkill> getJobRequiredSkillList() {
+        return jobRequiredSkillList;
     }
     
     public ListInterface<Job> getJobList() {
