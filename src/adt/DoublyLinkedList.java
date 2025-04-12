@@ -56,53 +56,53 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
     }
     
     // Add node into the given position
-    @Override
-    public boolean add(int givenPosition, T newData) { // Out of memory error possible
-        boolean isSuccessful = true;
-        
-        try{
-            if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // If the list if empty
-                Node newNode = new Node(newData);
-            
-                if (isEmpty() || (givenPosition == 1)) {
-                    if (head != null) {
-                        newNode.next = head;
-                        head.prev = newNode;
-                    }
-                    head = newNode;
-                    if (tail == null) { 
-                        tail = newNode;
-                    }
-              
-                }else if (givenPosition == numberOfEntries + 1) {
-                       tail.next = newNode;
-                       newNode.prev = tail;
-                       tail = newNode;
-                       
-                }else {
-                    Node nodeBefore = head;
-                    
-                    for (int i = 0; i < givenPosition - 1; ++i) {
-                        nodeBefore = nodeBefore.next;
-                    }
-                    
-                    newNode.prev = nodeBefore.prev;
-                    nodeBefore.prev = newNode;
-                    newNode.next = nodeBefore;
-                    newNode.prev.next = newNode;
-                }
-                numberOfEntries++;
-            } else {
-                isSuccessful = false;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            isSuccessful = false;
-        }
-
-        
-        return  isSuccessful;       
-    }
+//    @Override
+//    public boolean add(int givenPosition, T newData) { // Out of memory error possible
+//        boolean isSuccessful = true;
+//        
+//        try{
+//            if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1)) { // If the list if empty
+//                Node newNode = new Node(newData);
+//            
+//                if (isEmpty() || (givenPosition == 1)) {
+//                    if (head != null) {
+//                        newNode.next = head;
+//                        head.prev = newNode;
+//                    }
+//                    head = newNode;
+//                    if (tail == null) { 
+//                        tail = newNode;
+//                    }
+//              
+//                }else if (givenPosition == numberOfEntries + 1) {
+//                       tail.next = newNode;
+//                       newNode.prev = tail;
+//                       tail = newNode;
+//                       
+//                }else {
+//                    Node nodeBefore = head;
+//                    
+//                    for (int i = 0; i < givenPosition - 1; ++i) {
+//                        nodeBefore = nodeBefore.next;
+//                    }
+//                    
+//                    newNode.prev = nodeBefore.prev;
+//                    nodeBefore.prev = newNode;
+//                    newNode.next = nodeBefore;
+//                    newNode.prev.next = newNode;
+//                }
+//                numberOfEntries++;
+//            } else {
+//                isSuccessful = false;
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            isSuccessful = false;
+//        }
+//
+//        
+//        return  isSuccessful;       
+//    }
     
 //    @Override
 //    public boolean add(int givenPosition, T newData) { // Out of memory error possible
@@ -138,27 +138,27 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
 //    }
     
     // Add few items into the list
-    @Override
-    @SafeVarargs
-    public final String addAll(T... newDatas) {
-        StringBuilder failedMessage = new StringBuilder("Failed to add : \n");
-        int failedCounts = 0;
-        
-        for (T newData : newDatas) {
-            boolean isSuccessful = add(newData);
-            if (!isSuccessful) {          
-                failedMessage.append(newData);
-                failedMessage.append("\n");
-                failedCounts++;
-            }            
-        }
-        
-        if (failedCounts == 0) {
-            return null;
-        } else {
-            return failedMessage.toString();
-        }
-    }
+//    @Override
+//    @SafeVarargs
+//    public final String addAll(T... newDatas) {
+//        StringBuilder failedMessage = new StringBuilder("Failed to add : \n");
+//        int failedCounts = 0;
+//        
+//        for (T newData : newDatas) {
+//            boolean isSuccessful = add(newData);
+//            if (!isSuccessful) {          
+//                failedMessage.append(newData);
+//                failedMessage.append("\n");
+//                failedCounts++;
+//            }            
+//        }
+//        
+//        if (failedCounts == 0) {
+//            return null;
+//        } else {
+//            return failedMessage.toString();
+//        }
+//    }
     
     // Replace the given node with new T data
     @Override 
@@ -196,6 +196,8 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
                 if (choosenNode.next != null) {
                     choosenNode.next.prev = choosenNode.prev;
                     choosenNode.prev.next = choosenNode.next; 
+                } else {
+                    tail = choosenNode.prev; 
                 }
             } 
             numberOfEntries--;
@@ -217,6 +219,11 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
             result = current.data;
         }
         return result;
+    }
+    
+    @Override
+    public T getLastData() {
+        return tail.data;
     }
        
     // Get the Number Of Entries of the list

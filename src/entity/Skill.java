@@ -14,7 +14,6 @@ public class Skill implements Serializable{
     private String id;
     private String name;
 
-
     public Skill(String id, String name) {
         this.id     = id;
         this.name   = name;

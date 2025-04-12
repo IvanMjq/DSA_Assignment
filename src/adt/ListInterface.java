@@ -16,9 +16,9 @@ public interface ListInterface<T> extends Iterable<T>{
     
     public boolean add(T newData);
     
-    public boolean add(int givenPosition, T newData);
+//    public boolean add(int givenPosition, T newData);
     
-    public String addAll(T... newDatas); //  ?????
+//    public String addAll(T... newDatas); //  ?????
     
     public boolean replace(int givenPosition, T newData);
     
@@ -29,6 +29,8 @@ public interface ListInterface<T> extends Iterable<T>{
 //    public boolean contain(T dataEntry);
     
     public int size();
+    
+    public T getLastData();
     
     public boolean isEmpty();
     

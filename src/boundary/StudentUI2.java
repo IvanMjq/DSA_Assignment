@@ -16,7 +16,7 @@ import java.util.Iterator;
  *
  * @author WEI ZHENG
  */
-public class StudentUI {
+public class StudentUI2 {
 
     StudentDetailsDao studentDao = new StudentDetailsDao();
     private ListInterface<Student> studentList = new DoublyLinkedList<>();

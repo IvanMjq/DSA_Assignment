@@ -14,9 +14,9 @@ import java.util.Objects;
  * @author ivanmjq
  */
 public class Student implements Serializable {
-    
     private String id;
     private String name;
+    private String password;
     private int age;
     private String address;
     private double latitude;
@@ -25,22 +25,19 @@ public class Student implements Serializable {
     private String achievement;
     private String education;
     private int yearsOfExperience;
-    private ListInterface<StudentSkill> studentSkill = new DoublyLinkedList<>();
- 
-    
-    public Student(String id, String name, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, StudentSkill... studentSkill) {
-        this.id             = id;
-        this.name           = name;
-        this.age            = age;
-        this.address        = address;
-        this.latitude       = latitude;
-        this.longitude      = longitude;
-        this.email          = email;
-        this.achievement    = achievement;
-        this.education      = education;
-        this.yearsOfExperience = yearsOfExperience;
-        addSkill(studentSkill);
 
+    public Student(String id, String name, String password, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.age = age;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.email = email;
+        this.achievement = achievement;
+        this.education = education;
+        this.yearsOfExperience = yearsOfExperience;
     }
 
     public String getId() {
@@ -51,6 +48,10 @@ public class Student implements Serializable {
         return name;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public int getAge() {
         return age;
     }
@@ -58,7 +59,7 @@ public class Student implements Serializable {
     public String getAddress() {
         return address;
     }
-    
+
     public double getLatitude() {
         return latitude;
     }
@@ -78,15 +79,10 @@ public class Student implements Serializable {
     public String getEducation() {
         return education;
     }
-    
-    public int getYearsOfExperience(){
+
+    public int getYearsOfExperience() {
         return yearsOfExperience;
     }
-
-    public ListInterface<StudentSkill> getSkillList() {
-        return studentSkill;
-    }
- 
 
     public void setId(String id) {
         this.id = id;
@@ -96,6 +92,10 @@ public class Student implements Serializable {
         this.name = name;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
@@ -103,7 +103,7 @@ public class Student implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-    
+
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
@@ -123,23 +123,20 @@ public class Student implements Serializable {
     public void setEducation(String education) {
         this.education = education;
     }
-    
-    public void setYearsOfExperience(int yearsOfExperience){
+
+    public void setYearsOfExperience(int yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
     }
 
-    public void setSkillList(ListInterface<StudentSkill> skillList) {
-        this.studentSkill = skillList;
-    }
-
     
-    public void addSkill(StudentSkill... skillList) {
-        for (StudentSkill skill : skillList) {
-            if (skill != null) {
-                this.studentSkill.add(skill);
-            }
-        }
-    }
+    
+//    public void addSkill(StudentSkill... skillList) {
+//        for (StudentSkill skill : skillList) {
+//            if (skill != null) {
+//                this.studentSkill.add(skill);
+//            }
+//        }
+//    }
     
     @Override
     public int hashCode() {
@@ -161,17 +158,17 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder skillsStr = new StringBuilder();
-        for (int i = 1; i <= studentSkill.size(); i++) {
-            skillsStr.append(studentSkill.getData(i)).append(", ");
-        }
-        if (skillsStr.length() > 0) {
-            skillsStr.setLength(skillsStr.length() - 2); // Remove last comma
-        }
+//        StringBuilder skillsStr = new StringBuilder();
+//        for (int i = 1; i <= studentSkill.size(); i++) {
+//            skillsStr.append(studentSkill.getData(i)).append(", ");
+//        }
+//        if (skillsStr.length() > 0) {
+//            skillsStr.setLength(skillsStr.length() - 2); // Remove last comma
+//        }
         
         return "Student{" + "id = " + id + ", name = " + name + ", age = " + age + ", address = " + address +
-                ", email = " + email + ", achievement = " + achievement + ", education = " + education + ", yearsOfExperience = " + yearsOfExperience +
-                ", skills = [" + skillsStr + "]}";
+                ", email = " + email + ", achievement = " + achievement + ", education = " + education + ", yearsOfExperience = " 
+                + yearsOfExperience + "]}";
     }      
 
 }

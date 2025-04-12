@@ -47,10 +47,10 @@ public class JobPostingControl {
                     System.out.println("Exiting Donee Management...");
                     break;
                 case 1:
-                    addJobPost();
+//                    addJobPost();
                     break;
                 case 2:
-                    updateJobPost();
+//                    updateJobPost();
                     break;
                 case 3:
                     removeJobPost();
@@ -96,54 +96,54 @@ public class JobPostingControl {
         }
     }
     
-    public void addJobPost() {
-        jobManagementUI.addJobPostUI();
-        JobPosting newJobPost = jobManagementUI.newJobPostDetails();
-        boolean isConfirm = jobManagementUI.confirmation("Confirm add " + newJobPost.getId() + " as new Job Post?");
-        
-        if (isConfirm) {
-            jobPostingList.add(newJobPost);
-            jobPostListing();
-            System.out.println("Job posting added successfully!");
-        } else {
-            System.out.println("Failed to add job posting.");
-        }
-    } 
+//    public void addJobPost() {
+//        jobManagementUI.addJobPostUI();
+//        JobPosting newJobPost = jobManagementUI.newJobPostDetails();
+//        boolean isConfirm = jobManagementUI.confirmation("Confirm add " + newJobPost.getId() + " as new Job Post?");
+//        
+//        if (isConfirm) {
+//            jobPostingList.add(newJobPost);
+//            jobPostListing();
+//            System.out.println("Job posting added successfully!");
+//        } else {
+//            System.out.println("Failed to add job posting.");
+//        }
+//    } 
     
-    public void updateJobPost() {
-        jobManagementUI.updateJobPostUI();
-        jobPostListing();
-        int jobPostingPosition = 0;
-        do{
-            System.out.print("Enter ID, (Q=Quit): ");
-            String selectedPost = scanner.nextLine().trim();
-            jobPostingPosition = findJobPosting(selectedPost);
-            
-            if(Character.toUpperCase(selectedPost.charAt(0)) == 'Q'){
-                jobPostingPosition = -1;
-            }
-            
-            if(jobPostingPosition == 0){
-                System.out.println("ID Not Found");
-            }
-        }while(jobPostingPosition == 0);
-        
-        if(jobPostingPosition != -1){
-            JobPosting oriData = jobPostingList.getData(jobPostingPosition);
-            System.out.println(oriData);
-            boolean isConfirm = jobManagementUI.confirmation("Confirm " + oriData.getId() +  " as Edit Job Post?");
-            
-            if(isConfirm){
-                JobPosting updateJobPost = jobManagementUI.newJobPostDetails();
-                updateJobPost.setId(oriData.getId());
-                jobPostingList.replace(jobPostingPosition, updateJobPost);
-                jobPostListing();
-                System.out.println("Job posting update successfully!");
-            }else {
-                System.out.println("Failed to update job posting.");
-            }
-        }
-    } 
+//    public void updateJobPost() {
+//        jobManagementUI.updateJobPostUI();
+//        jobPostListing();
+//        int jobPostingPosition = 0;
+//        do{
+//            System.out.print("Enter ID, (Q=Quit): ");
+//            String selectedPost = scanner.nextLine().trim();
+//            jobPostingPosition = findJobPosting(selectedPost);
+//            
+//            if(Character.toUpperCase(selectedPost.charAt(0)) == 'Q'){
+//                jobPostingPosition = -1;
+//            }
+//            
+//            if(jobPostingPosition == 0){
+//                System.out.println("ID Not Found");
+//            }
+//        }while(jobPostingPosition == 0);
+//        
+//        if(jobPostingPosition != -1){
+//            JobPosting oriData = jobPostingList.getData(jobPostingPosition);
+//            System.out.println(oriData);
+//            boolean isConfirm = jobManagementUI.confirmation("Confirm " + oriData.getId() +  " as Edit Job Post?");
+//            
+//            if(isConfirm){
+//                JobPosting updateJobPost = jobManagementUI.newJobPostDetails();
+//                updateJobPost.setId(oriData.getId());
+//                jobPostingList.replace(jobPostingPosition, updateJobPost);
+//                jobPostListing();
+//                System.out.println("Job posting update successfully!");
+//            }else {
+//                System.out.println("Failed to update job posting.");
+//            }
+//        }
+//    } 
     
     public void removeJobPost() {
         jobManagementUI.removeJobPostUI();
@@ -232,14 +232,14 @@ public class JobPostingControl {
         }
     }
     
-    public void skillList() {
-        for (Skill skill : (DoublyLinkedList<JobRequirementSkill>) skillList) {
-            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.printf("| %-5s | %-40s |\n",
-                    skill.getId(),
-                    skill.getName());
-        }
-    }
+//    public void skillList() {
+//        for (Skill skill : (DoublyLinkedList<JobRequirementSkill>) skillList) {
+//            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+//            System.out.printf("| %-5s | %-40s |\n",
+//                    skill.getId(),
+//                    skill.getName());
+//        }
+//    }
     
     public Company isCompanyExist(String info) {
         Company company = null;
@@ -274,23 +274,23 @@ public class JobPostingControl {
         }
         return job;
     }
-    
-    public JobRequirementSkill isSkillExist(String info) {
-        JobRequirementSkill skill = null;
-        
-        for(int i = 1; i <= skillList.size(); i++) {
-            if (info.equalsIgnoreCase(skillList.getData(i).getId())){
-                skill = skillList.getData(i);
-                break;
-            }
-            
-            if (info.equalsIgnoreCase(skillList.getData(i).getName())){
-                skill = skillList.getData(i);
-                break;
-            }
-        }
-        return skill;
-    }
+//    
+//    public JobRequirementSkill isSkillExist(String info) {
+//        JobRequirementSkill skill = null;
+//        
+//        for(int i = 1; i <= skillList.size(); i++) {
+//            if (info.equalsIgnoreCase(skillList.getData(i).getId())){
+//                skill = skillList.getData(i);
+//                break;
+//            }
+//            
+//            if (info.equalsIgnoreCase(skillList.getData(i).getName())){
+//                skill = skillList.getData(i);
+//                break;
+//            }
+//        }
+//        return skill;
+//    }
         
     public String generateJobPostID() {
         if(jobPostingList.size() != 0){
