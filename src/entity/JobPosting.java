@@ -20,7 +20,7 @@ public class JobPosting implements Serializable {
     private String description;
     private double minimumSalary;
     private double maximumSalary;
-    private int requiredExperience; // Year (testing purpose)
+    private int requiredExperience;
     private LocalDate  datePosted;
 
     public JobPosting(String id, Company company, Job job, String description, double minimumSalary, double maximumSalary, int requiredExperience, LocalDate datePosted) {
