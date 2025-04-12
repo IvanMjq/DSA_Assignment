@@ -1,0 +1,234 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package boundary;
+
+import control.*;
+import entity.*;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Teh Yi Shan
+ */
+public class StudentPortalUI {
+    Scanner scanner = new Scanner(System.in);
+    private StudentPortalControl studentPortalControl;
+     
+    public StudentPortalUI(StudentPortalControl studentPortalControl) {
+        this.studentPortalControl = studentPortalControl;
+    }
+     
+    public int homePage() {
+        System.out.println("\nStudent Portal");
+        System.out.println("=====================================");
+        System.out.println("1. Register");
+        System.out.println("2. Logn");
+        System.out.println("3. Logout");
+        System.out.println("0. Exit");
+        System.out.print("Enter option: ");
+
+        int option = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println();
+        return option;
+    }
+     
+    public void addStudentUI(){
+        System.out.println("--------------------------------------");
+        System.out.println("Add New Student");
+        System.out.println("--------------------------------------");
+        System.out.println("Enter Student Infomation:");
+        System.out.println("======================================");
+    }
+    
+    public Student newStudentDetails() {
+        String name = null;
+        while(name == null) {
+            System.out.print("Enter Name: ");
+            String input = scanner.nextLine().trim();
+            
+            if(nameValidation(input)){
+               name = input;
+            }
+        }
+        
+        String password = null;
+        while(password == null) {
+            System.out.print("Enter Password: ");
+            String input = scanner.nextLine().trim();
+            
+            if(passwordValidation(input)){
+               password = input;
+            }
+        }
+      
+        int age = -1;
+        while(age == -1) {
+            System.out.print("Enter Age): ");
+            int input = scanner.nextInt();
+            
+            if(ageValidation(input)){
+                age = input;
+            } 
+        }
+
+        System.out.print("Enter Address: ");
+        String address = scanner.nextLine();
+        
+        String email = null;
+        while (email == null) {
+            System.out.print("Enter Email: ");
+            String input = scanner.nextLine().trim();
+    
+            if (emailValidation(input)) {
+                email = input; 
+            }
+        }
+        
+        String achievement = null;
+        while (achievement == null) {
+            System.out.print("Enter Achievement: ");
+            String input = scanner.nextLine().trim();
+    
+            if (achievementValidation(input)) {
+                achievement = input; 
+            }
+        }
+        
+        String education = null;
+        while (education == null) {
+            System.out.print("Enter Education: ");
+            String input = scanner.nextLine().trim();
+    
+            if (educationValidation(input)) {
+                education = input; 
+            }
+        }
+        
+        int yearsOfExperience = -1;
+        while(age == -1) {
+            System.out.print("Enter Age): ");
+            int input = scanner.nextInt();
+            
+            if(ageValidation(input)){
+                age = input;
+            } 
+        }
+        
+        Student newStudent = new Student(studentPortalControl.generateStudentID(), name, password, age, address, 3.1390, 101.6869, email, achievement,education,yearsOfExperience);
+        
+        return newStudent;
+    }
+    
+    public boolean nameValidation(String input) {
+        boolean isValid = true;
+        
+        if(input.isEmpty()) {
+            System.out.println("Name cannot be empty or spaces only. Please try again.");
+            isValid = false;
+        }  
+        
+        if (!input.matches("[a-zA-Z ]+")) {
+            System.out.println("Invalid name. Only alphabets and spaces are allowed.");
+            isValid = false;
+        }  
+        
+        if (input.length() > 30) {
+            System.out.println("Max 30 characters.");
+            isValid = false;
+        } 
+        
+        return isValid;
+    }
+    
+    public boolean passwordValidation(String input) { 
+        if (input == null || input.trim().isEmpty()) {
+            System.out.println("Password cannot be empty.");
+            return false;
+        }
+
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+
+        if (!input.matches(passwordRegex)) {
+            System.out.println("Password must be at least 8 characters, include uppercase, lowercase, number, and special character.");
+            return false;
+        } 
+        
+        return true;
+    }
+    
+    
+    public boolean ageValidation(int input) { 
+        if(input >= 12 && input <= 120) {
+            return true;
+        }
+        
+        System.out.println("Invalid age.  Please try again");
+        return false;
+    }
+    
+     public boolean emailValidation(String input) { 
+         boolean isValid = false;
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+         
+        if(!input.isEmpty()) {
+            isValid = true;
+        }  
+        
+        if (input.matches(emailRegex)) {
+           
+            isValid = true;
+        } 
+        System.out.println("Invalid email. Please try again");
+        return isValid;
+    }
+     
+    public boolean achievementValidation(String input) { 
+        if(!input.isEmpty()) {
+            return true;
+        }  
+        System.out.println("Invalid achievement. Please try again");
+        return false;
+    }
+    
+    public boolean educationValidation(String input) { 
+        if(!input.isEmpty()) {
+            return true;
+        }  
+        System.out.println("Invalid education. Please try again");
+        return false;
+    }
+    
+    public void loginUI() {
+        boolean loop = true;
+        while(loop){
+            System.out.print("Enter Student ID, (Q/q)=Quit): ");
+            String inputID = scanner.nextLine().trim();
+            
+            if((Character.toUpperCase(inputID.charAt(0)) == 'Q')){
+                System.out.println("Quitting login...");
+                break;
+            }
+            
+            System.out.print("Enter Password: ");
+            String inputPassword = scanner.nextLine().trim();
+            
+            if(studentPortalControl.loginValidation(inputID, inputPassword)) {
+                System.out.println("Login Successful");
+                loop = false;
+            } else {
+                System.out.println("Invalid Student ID / Password. Please try again");
+            }
+        } 
+    }
+    
+    public void logoutUI() {
+        if(studentPortalControl.isLogin()) {
+            System.out.println("Logout Successful");
+        }else {
+            System.out.println("Invalid Logout Request.");
+        }
+    }
+}
