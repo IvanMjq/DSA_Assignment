@@ -13,28 +13,28 @@ import java.util.Objects;
  */
 public class CompanyJob implements Serializable {
 
-    private String companyId;
-    private String jobId;
+    private Company company;
+    private Job job;
 
-    public CompanyJob(String companyId, String jobId) {
-        this.companyId = companyId;
-        this.jobId = jobId;
+    public CompanyJob(Company company, Job job) {
+        this.company = company;
+        this.job = job;
     }
 
-    public String getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public String getJobId() {
-        return jobId;
+    public Job getJob() {
+        return job;
     }
 
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
+    public void setJob(Job job) {
+        this.job = job;
     }
 
     @Override
@@ -52,14 +52,14 @@ public class CompanyJob implements Serializable {
             return false;
         }
         final CompanyJob other = (CompanyJob) obj;
-        return Objects.equals(this.companyId, other.companyId) &&
-                Objects.equals(this.jobId, other.jobId); 
+        return Objects.equals(this.company.getId(), other.company.getId()) &&
+                Objects.equals(this.job.getId(), other.job.getId()); 
         // Check if the id are same
     }
 
     @Override
     public String toString() {
-        return "CompanyJob{" + "companyId=" + companyId + ", jobId=" + jobId + '}';
+        return "CompanyJob{" + "company=" + company + ", job=" + job + '}';
     }
      
 }

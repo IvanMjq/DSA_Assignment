@@ -4,6 +4,8 @@
  */
 package entity;
 
+import adt.DoublyLinkedList;
+import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,6 +19,9 @@ public class Job implements Serializable {
     private String title;
     private String type;
     private String desc;
+    
+    private ListInterface<CompanyJob> companyJobsList = new DoublyLinkedList<>();
+    private ListInterface<JobPosting> jobPostingsList = new DoublyLinkedList<>();
 
     public Job(String id, String title, String type, String desc) {
         this.id = id;
@@ -56,6 +61,22 @@ public class Job implements Serializable {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    public ListInterface<CompanyJob> getCompanyJobsList() {
+        return companyJobsList;
+    }
+
+    public void setCompanyJobsList(ListInterface<CompanyJob> companyJobsList) {
+        this.companyJobsList = companyJobsList;
+    }
+
+    public ListInterface<JobPosting> getJobPostingsList() {
+        return jobPostingsList;
+    }
+
+    public void setJobPostingsList(ListInterface<JobPosting> jobPostingsList) {
+        this.jobPostingsList = jobPostingsList;
+    }
     
     @Override
     public int hashCode() {
@@ -75,11 +96,10 @@ public class Job implements Serializable {
         return Objects.equals(this.id, other.id); 
         //check if the id are same
     }
-    
+
     @Override
     public String toString() {
-        return "Job{" + "id='" + id + '\'' + ", title='" + title + '\'' +
-               ", desc='" + (desc.length() > 60 ? desc.substring(0, 57) + "..." : desc) + '\'' + '}';
+        return "Job{" + "id=" + id + ", title=" + title + ", type=" + type + ", desc=" + desc + ", companyJobsList=" + companyJobsList + ", jobPostingsList=" + jobPostingsList + '}';
     }
 
 }

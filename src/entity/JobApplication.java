@@ -4,10 +4,7 @@
  */
 package entity;
 
-import adt.DoublyLinkedList;
-import adt.ListInterface;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -15,28 +12,24 @@ import java.util.Objects;
  * @author ivanmjq
  */
 public class JobApplication implements Serializable {
-    public enum InterviewStatus {
-        APPLIED,
-        INTERVIEW_SCHEDULED,
-        INTERVIEWED,
-        OFFERED,
-        REJECTED,
-        ACCEPTED,
-        DECLINED
-    }
     
     private String id; 
     private JobPosting jobPost;
     private Student student;
-    private LocalDate dateOfInterview;
-    private InterviewStatus interviewStatus;
+    
+    private Interview interview = new Interview();
 
-    public JobApplication(String id, JobPosting jobPost, Student student, LocalDate dateOfInterview, InterviewStatus interviewStatus) {
+    public JobApplication(String id, JobPosting jobPost, Student student) {
         this.id = id;
         this.jobPost = jobPost;
         this.student = student;
-        this.dateOfInterview = dateOfInterview;
-        this.interviewStatus = interviewStatus;
+    }
+
+    public JobApplication(String id, JobPosting jobPost, Student student, Interview interview) {
+        this.id = id;
+        this.jobPost = jobPost;
+        this.student = student;
+        this.interview = interview;
     }
 
     public String getId() {
@@ -51,14 +44,6 @@ public class JobApplication implements Serializable {
         return student;
     }
 
-    public LocalDate getDateOfInterview() {
-        return dateOfInterview;
-    }
-
-    public InterviewStatus getInterviewStatus() {
-        return interviewStatus;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -69,14 +54,6 @@ public class JobApplication implements Serializable {
 
     public void setStudent(Student student) {
         this.student = student;
-    }
-
-    public void setDateOfInterview(LocalDate dateOfInterview) {
-        this.dateOfInterview = dateOfInterview;
-    }
-
-    public void setInterviewStatus(InterviewStatus interviewStatus) {
-        this.interviewStatus = interviewStatus;
     }
     
     @Override
@@ -97,11 +74,11 @@ public class JobApplication implements Serializable {
         return Objects.equals(this.id, other.id); 
         // Check if the id are same
     }
-    
+
     @Override
     public String toString() {
-        return "JobApplication{" +"id='" + id + '\'' + ", jobPostingID='" + jobPost + '\'' +
-            ", studentID='" + student + '\'' +
-            ", dateOfInterview=" + dateOfInterview + ", interviewStatus=" + interviewStatus +'}';
+        return "JobApplication{" + "id=" + id + ", jobPost=" + jobPost + ", student=" + student + '}';
     }
+    
+
 }

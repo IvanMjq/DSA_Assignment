@@ -4,41 +4,42 @@
  */
 package entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author WEI ZHENG
  */
-public class StudentSkill {
+public class StudentSkill implements Serializable {
+
     private Student student;
     private Skill skill;
     private int proficiencyLevel; // Proficiency level of the student in the skill (1-5)
 
-    // Constructor
     public StudentSkill(Student student, Skill skill, int proficiencyLevel) {
-       this.student = student;
-       this.skill = skill;
-       this.proficiencyLevel = proficiencyLevel;
-    }
-
-    // Getter and Setter for proficiencyLevel
-    public int getProficiencyLevel() {
-        return proficiencyLevel;
+        this.student = student;
+        this.skill = skill;
+        this.proficiencyLevel = proficiencyLevel;
     }
 
     public Student getStudent() {
         return student;
     }
 
-    public Skill getSkill() {
-        return skill;
-    }
-
     public void setStudent(Student student) {
         this.student = student;
     }
 
+    public Skill getSkill() {
+        return skill;
+    }
+
     public void setSkill(Skill skill) {
         this.skill = skill;
+    }
+
+    public int getProficiencyLevel() {
+        return proficiencyLevel;
     }
 
     public void setProficiencyLevel(int proficiencyLevel) {
@@ -47,6 +48,7 @@ public class StudentSkill {
 
     @Override
     public String toString() {
-        return "StudentSkill{skill=" + super.toString() + ", proficiencyLevel=" + proficiencyLevel + "}";
+        return "StudentSkill{" + "student=" + student + ", skill=" + skill + ", proficiencyLevel=" + proficiencyLevel + '}';
     }
+
 }

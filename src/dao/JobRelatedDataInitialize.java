@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class JobRelatedDataInitialize {
     private ListInterface<Skill> skillList = new DoublyLinkedList<>();
     private ListInterface<StudentSkill> studentSkill = new DoublyLinkedList<>();
-    private ListInterface<JobRequirementSkill> requiredSkill = new DoublyLinkedList<>();
+    private ListInterface<JobRequiredSkill> requiredSkill = new DoublyLinkedList<>();
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
     private ListInterface<Student> studentList = new DoublyLinkedList<>();
@@ -47,16 +47,16 @@ public class JobRelatedDataInitialize {
         studentSkill.add(new StudentSkill(studentList.getData(4), skillList.getData(9), 4));
 
         
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(0), skillList.getData(0), 1));
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(1), skillList.getData(1), 2));
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(2), skillList.getData(2), 3));
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(3), skillList.getData(3), 4));
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(4), skillList.getData(4), 5));
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(5), skillList.getData(5), 1));
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(6), skillList.getData(6), 2));
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(7), skillList.getData(7), 3));
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(8), skillList.getData(8), 4));
-        requiredSkill.add(new JobRequirementSkill(jobPostingList.getData(0), skillList.getData(9), 5));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(0), skillList.getData(0), 1));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(1), skillList.getData(1), 2));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(2), skillList.getData(2), 3));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(3), skillList.getData(3), 4));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(4), skillList.getData(4), 5));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(5), skillList.getData(5), 1));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(6), skillList.getData(6), 2));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(7), skillList.getData(7), 3));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(8), skillList.getData(8), 4));
+        requiredSkill.add(new JobRequiredSkill(jobPostingList.getData(0), skillList.getData(9), 5));
 
 
 
@@ -117,7 +117,7 @@ public class JobRelatedDataInitialize {
         return studentSkill;
     }
     
-    public ListInterface<JobRequirementSkill> getRequiredSkillList() {
+    public ListInterface<JobRequiredSkill> getRequiredSkillList() {
         return requiredSkill;
     }
     

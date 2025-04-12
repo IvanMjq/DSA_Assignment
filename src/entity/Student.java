@@ -26,119 +26,106 @@ public class Student implements Serializable {
     private String education;
     private int yearsOfExperience;
     private ListInterface<StudentSkill> studentSkill = new DoublyLinkedList<>();
- 
-    
-    public Student(String id, String name, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, StudentSkill... studentSkill) {
-        this.id             = id;
-        this.name           = name;
-        this.age            = age;
-        this.address        = address;
-        this.latitude       = latitude;
-        this.longitude      = longitude;
-        this.email          = email;
-        this.achievement    = achievement;
-        this.education      = education;
-        this.yearsOfExperience = yearsOfExperience;
-        addSkill(studentSkill);
 
+    public Student(String id, String name, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.email = email;
+        this.achievement = achievement;
+        this.education = education;
+        this.yearsOfExperience = yearsOfExperience;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-    
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getAchievement() {
-        return achievement;
-    }
-
-    public String getEducation() {
-        return education;
-    }
-    
-    public int getYearsOfExperience(){
-        return yearsOfExperience;
-    }
-
-    public ListInterface<StudentSkill> getSkillList() {
-        return studentSkill;
-    }
- 
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
-    
+
+    public double getLatitude() {
+        return latitude;
+    }
+
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAchievement() {
+        return achievement;
     }
 
     public void setAchievement(String achievement) {
         this.achievement = achievement;
     }
 
+    public String getEducation() {
+        return education;
+    }
+
     public void setEducation(String education) {
         this.education = education;
     }
-    
-    public void setYearsOfExperience(int yearsOfExperience){
+
+    public int getYearsOfExperience() {
+        return yearsOfExperience;
+    }
+
+    public void setYearsOfExperience(int yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
     }
 
-    public void setSkillList(ListInterface<StudentSkill> skillList) {
-        this.studentSkill = skillList;
+    public ListInterface<StudentSkill> getStudentSkill() {
+        return studentSkill;
     }
 
-    
-    public void addSkill(StudentSkill... skillList) {
-        for (StudentSkill skill : skillList) {
-            if (skill != null) {
-                this.studentSkill.add(skill);
-            }
-        }
+    public void setStudentSkill(ListInterface<StudentSkill> studentSkill) {
+        this.studentSkill = studentSkill;
     }
     
     @Override
@@ -161,17 +148,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder skillsStr = new StringBuilder();
-        for (int i = 1; i <= studentSkill.size(); i++) {
-            skillsStr.append(studentSkill.getData(i)).append(", ");
-        }
-        if (skillsStr.length() > 0) {
-            skillsStr.setLength(skillsStr.length() - 2); // Remove last comma
-        }
-        
-        return "Student{" + "id = " + id + ", name = " + name + ", age = " + age + ", address = " + address +
-                ", email = " + email + ", achievement = " + achievement + ", education = " + education + ", yearsOfExperience = " + yearsOfExperience +
-                ", skills = [" + skillsStr + "]}";
-    }      
+        return "Student{" + "id=" + id + ", name=" + name + ", age=" + age + ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + ", studentSkill=" + studentSkill + '}';
+    }
 
 }

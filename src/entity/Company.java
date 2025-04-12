@@ -20,7 +20,9 @@ public class Company implements Serializable {
     private String name;
     private String phone;
     private String email;
-    private String address;
+    private String streetAddress;
+    private String area;
+    private String state; 
     private double latitude;
     private double longitude;
     private int foundedYear;
@@ -28,12 +30,14 @@ public class Company implements Serializable {
     private LocalTime interviewStartTime;
     private LocalTime interviewEndTime;
 
-    public Company(String id, String name, String phone, String email, String address, double latitude, double longitude, int foundedYear, LocalTime interviewStartTime, LocalTime interviewEndTime) {
+    public Company(String id, String name, String phone, String email, String streetAddress, String area, String state, double latitude, double longitude, int foundedYear, LocalTime interviewStartTime, LocalTime interviewEndTime) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.streetAddress = streetAddress;
+        this.area = area;
+        this.state = state;
         this.latitude = latitude;
         this.longitude = longitude;
         this.foundedYear = foundedYear;
@@ -73,13 +77,30 @@ public class Company implements Serializable {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
     }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+    
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
@@ -141,9 +162,7 @@ public class Company implements Serializable {
 
     @Override
     public String toString() {
-        return "Company{" + "id=" + id + ", name=" + name + ", phone=" + phone 
-                + ", email=" + email + ", address=" + address 
-                + ", foundedYear=" + foundedYear + '}';
-    }  
+        return "Company{" + "id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", streetAddress=" + streetAddress + ", area=" + area + ", state=" + state + ", latitude=" + latitude + ", longitude=" + longitude + ", foundedYear=" + foundedYear + ", interviewStartTime=" + interviewStartTime + ", interviewEndTime=" + interviewEndTime + '}';
+    }
 
 }

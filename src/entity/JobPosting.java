@@ -8,7 +8,6 @@ import adt.DoublyLinkedList;
 import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Date;
 import java.time.LocalDate;
 
 /**
@@ -22,13 +21,13 @@ public class JobPosting implements Serializable {
     private Job job;
     private String description;
     private String salaryRange;
-    private int requiredExperience;//year (testing purpose)
+    private int requiredExperience; // Year (testing purpose)
     private LocalDate  datePosted;
-    private ListInterface<JobRequirementSkill> skillRequired = new DoublyLinkedList<>();
+    
+    private ListInterface<JobRequiredSkill> jobRequiredSkillsList = new DoublyLinkedList<>();
+    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
 
-    // Store all JobApplication
-
-    public JobPosting(String id, Company company, Job job, String description, String salaryRange, int requiredExperience,LocalDate datePosted, JobRequirementSkill... skillRequired) {
+    public JobPosting(String id, Company company, Job job, String description, String salaryRange, int requiredExperience, LocalDate datePosted) {
         this.id = id;
         this.company = company;
         this.job = job;
@@ -36,7 +35,6 @@ public class JobPosting implements Serializable {
         this.salaryRange = salaryRange;
         this.requiredExperience = requiredExperience;
         this.datePosted = datePosted;
-        addSkill(skillRequired);
     }
 
     public String getId() {
@@ -66,10 +64,6 @@ public class JobPosting implements Serializable {
         return datePosted;
     }
 
-    public ListInterface<JobRequirementSkill> getSkillRequired() {
-        return skillRequired;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -94,22 +88,24 @@ public class JobPosting implements Serializable {
         this.datePosted = datePosted;
     }
 
-    public void setRequiredExperience(int RequiredExperience) {
+    public void setRequiredExperience(int requiredExperience) {
         this.requiredExperience = requiredExperience;
     }
 
-    public void setSkillRequired(ListInterface<JobRequirementSkill> skillRequired) {
-        this.skillRequired = skillRequired;
+    public ListInterface<JobRequiredSkill> getJobRequiredSkillsList() {
+        return jobRequiredSkillsList;
     }
 
+    public void setJobRequiredSkillsList(ListInterface<JobRequiredSkill> jobRequiredSkillsList) {
+        this.jobRequiredSkillsList = jobRequiredSkillsList;
+    }
 
-    
-    public void addSkill(JobRequirementSkill... JobSkillRequirementList) {
-        for (JobRequirementSkill skillRequirement : JobSkillRequirementList) {
-            if (skillRequirement != null) {
-                this.skillRequired.add(skillRequirement);
-            }
-        }
+    public ListInterface<JobApplication> getJobApplicationList() {
+        return jobApplicationList;
+    }
+
+    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
+        this.jobApplicationList = jobApplicationList;
     }
     
     @Override
@@ -130,19 +126,12 @@ public class JobPosting implements Serializable {
         return Objects.equals(this.id, other.id); 
         // Check if the id are same
     }
-    
+
     @Override
     public String toString() {
-        StringBuilder skillsStr = new StringBuilder();
-        for (int i = 1; i <= skillRequired.size(); i++) {
-            skillsStr.append(skillRequired.getData(i)).append(", ");
-        }
-        if (skillsStr.length() > 0) {
-            skillsStr.setLength(skillsStr.length() - 2); // Remove last comma
-        }
-
-        return "JobPosting{" + "id='" + id + '\'' + ", companyID='" + company + '\'' + ", jobID='" + job + '\'' + ", description='" + description + '\'' +
-               ", salaryRange='" + salaryRange + '\'' + ", requiredExperience="+ requiredExperience + '\'' + ", datePosted=" + datePosted + ", requiredSkills=[" + skillsStr + "]" +'}';
+        return "JobPosting{" + "id=" + id + ", company=" + company + ", job=" + job + ", description=" + description + ", salaryRange=" + salaryRange + ", requiredExperience=" + requiredExperience + ", datePosted=" + datePosted + ", jobRequiredSkillsList=" + jobRequiredSkillsList + ", jobApplicationList=" + jobApplicationList + '}';
     }
+    
+    
     
 }

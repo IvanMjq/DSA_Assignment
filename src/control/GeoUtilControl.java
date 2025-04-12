@@ -83,7 +83,7 @@ public class GeoUtilControl {
       public ListInterface<JobPosting> setLatLongForJobAddresses() {
 
         for(int j = 1; j <= jobPost.size(); j++){
-            String jobAddress = jobPost.getData(j).getCompany().getAddress();
+            String jobAddress = jobPost.getData(j).getCompany().getArea();
             double[] coords = getLatLong(jobAddress);
             jobPost.getData(j).getCompany().setLatitude(coords[0]);
             jobPost.getData(j).getCompany().setLongitude(coords[1]);

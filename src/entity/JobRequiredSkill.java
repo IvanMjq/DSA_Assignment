@@ -10,12 +10,13 @@ import java.io.Serializable;
  *
  * @author WEI ZHENG
  */
-public class JobRequirementSkill{
+public class JobRequiredSkill implements Serializable {
+    
     private JobPosting jobPost;
     private Skill skill;
     private int importance; // 1 to 5, how critical the skill is
 
-    public JobRequirementSkill(JobPosting jobPost, Skill skill, int importance) {
+    public JobRequiredSkill(JobPosting jobPost, Skill skill, int importance) {
         this.jobPost = jobPost;
         this.skill = skill;
         this.importance = importance;
@@ -29,7 +30,6 @@ public class JobRequirementSkill{
         return skill;
     }
     
-// Getter and Setter for importance
     public int getImportance() {
         return importance;
     }
