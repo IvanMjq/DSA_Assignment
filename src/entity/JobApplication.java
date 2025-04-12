@@ -6,29 +6,24 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.time.*;
 
 /**
  *
  * @author ivanmjq
  */
 public class JobApplication implements Serializable {
-    
     private String id; 
     private JobPosting jobPost;
     private Student student;
-    
-    private Interview interview = new Interview();
+    private LocalDateTime appliedDateTime;
+    private Interview interview;
 
-    public JobApplication(String id, JobPosting jobPost, Student student) {
+    public JobApplication(String id, JobPosting jobPost, Student student, LocalDateTime appliedDateTime, Interview interview) {
         this.id = id;
         this.jobPost = jobPost;
         this.student = student;
-    }
-
-    public JobApplication(String id, JobPosting jobPost, Student student, Interview interview) {
-        this.id = id;
-        this.jobPost = jobPost;
-        this.student = student;
+        this.appliedDateTime = appliedDateTime;
         this.interview = interview;
     }
 
@@ -44,6 +39,14 @@ public class JobApplication implements Serializable {
         return student;
     }
 
+    public LocalDateTime getAppliedDateTime() {
+        return appliedDateTime;
+    }
+
+    public Interview getInterview() {
+        return interview;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -56,14 +59,14 @@ public class JobApplication implements Serializable {
         this.student = student;
     }
 
-    public Interview getInterview() {
-        return interview;
+    public void setAppliedDateTime(LocalDateTime appliedDateTime) {
+        this.appliedDateTime = appliedDateTime;
     }
 
     public void setInterview(Interview interview) {
         this.interview = interview;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 1;
@@ -85,7 +88,8 @@ public class JobApplication implements Serializable {
 
     @Override
     public String toString() {
-        return "JobApplication{" + "id=" + id + ", jobPost=" + jobPost + ", student=" + student + ", interview=" + interview + '}';
-    }   
+        return "JobApplication{" + "id='" + id + '\'' + ", jobPost=" + jobPost +
+           ", student=" + student + ", appliedDateTime=" + appliedDateTime + '}';
+    }
 
 }

@@ -16,20 +16,26 @@ import java.util.Scanner;
 public class StudentPortalControl {
     Scanner scanner = new Scanner(System.in);
     
+    
     private ListInterface<Student> studentList;
     private ListInterface<StudentSkill> studentSkillList;
     private ListInterface<Skill> skillList;
+    private ListInterface<Job> jobList;
     private Student loginStudent;
     private StudentPortalUI studentPortalUI;
+    private StudentControl studentControl;
+    
     
     public StudentPortalControl() { 
     }
     
-    public StudentPortalControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList) {
-        this.studentList = studentList;
-        this.studentSkillList = studentSkillList;
-        this.skillList = skillList;
+    public StudentPortalControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList) {
+        this.studentList        = studentList;
+        this.studentSkillList   = studentSkillList;
+        this.skillList          = skillList;
+        this.jobList            = jobList;
         this.studentPortalUI    = new StudentPortalUI(this);
+        this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList);
         runJobPostingManagement();
     }
     
@@ -43,7 +49,7 @@ public class StudentPortalControl {
                     System.out.println("Exiting Student Portal...");
                     break;
                 case 1:
-                    addStudent();
+                    registerStudent();
                     break;
                 case 2:
                     studentLogin();
@@ -58,21 +64,17 @@ public class StudentPortalControl {
         } while (option != 0);
     }
     
-    public void addStudent() {
-        studentPortalUI.addStudentUI();
-        Student newStudent = studentPortalUI.newStudentDetails();
-        
-        
+    public void registerStudent() {
+        studentControl.addStudent();
     }
+
     
     public void studentLogin() {
         studentPortalUI.loginUI();
-        System.out.println("Welcome" + loginStudent.getName() + ".");
     }
     
     public void studentLogout() {
         studentPortalUI.logoutUI();
-        System.out.println("See you" + loginStudent.getName() + ".");
         loginStudent = null;
     }
     
@@ -101,15 +103,7 @@ public class StudentPortalControl {
         return false;
     }
     
-    public String generateStudentID() {
-        String id;
-        if(studentList.getLastData() != null){
-            id = studentList.getLastData().getId();
-            int num = Integer.parseInt(id.substring(3)); 
-             return "STU-" + (num + 1);
-        }else{
-            return "STU-" + 1;
-        }
-        
+    public Student getLoginStudent() {
+        return loginStudent;
     }
 }

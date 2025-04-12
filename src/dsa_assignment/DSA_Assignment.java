@@ -20,12 +20,9 @@ public class DSA_Assignment {
     /**
      * @param args the command line arguments
      */
-    private AllDataInitialize dataInitialized = new AllDataInitialize();
-//    private JobPostingControl jobPostingControl = new JobPostingControl(dataInitialized.getJobList(), dataInitialized.getCompanyList(), dataInitialized.getJobApplicationList(), dataInitialized.getJobPostingList(), dataInitialized.getRequiredSkillList());
-//    private GeoUtilControl geo = new GeoUtilControl(dataInitialize.getStudentList(), dataInitialize.getJobPostingList());
-//    private MatchingEngineControl matchControl = new MatchingEngineControl(geo.setLatLongForStdAddresses(), geo.setLatLongForJobAddresses());;
-//    private StudentUI studentUI = new StudentUI();
-//    private ListInterface<Student> studentList = dataInitialize.getStudentList();
+    private AllDataInitialize dataInitialized   = new AllDataInitialize();
+//    private StudentControl studentControl       = new StudentControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList());
+
 
 //    public void StudentLogin() {
 //        Scanner scanner = new Scanner(System.in);
@@ -109,8 +106,7 @@ public class DSA_Assignment {
 
             System.out.println("============== Main Menu ============");
             System.out.println("1. Admin Portal");
-//            System.out.println("2. Job Posting Management");
-            System.out.println("3. Student Portal");
+            System.out.println("2. Student Portal");
 //            System.out.println("4. Matching Engine");
             System.out.println("0. Exit");
             System.out.println("=====================================");
@@ -125,10 +121,9 @@ public class DSA_Assignment {
                     break;
                 case 1:
                 case 2:
-//                    jobPostingControl.runJobPostingManagement();
+                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList());
                     break;
                 case 3:
-                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList());
                     break;
                 case 4:
 //                    System.out.println(student);

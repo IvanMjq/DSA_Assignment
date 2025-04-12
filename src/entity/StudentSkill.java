@@ -11,35 +11,44 @@ import java.io.Serializable;
  * @author WEI ZHENG
  */
 public class StudentSkill implements Serializable {
-
+    private String id;
     private Student student;
     private Skill skill;
     private int proficiencyLevel; // Proficiency level of the student in the skill (1-5)
 
-    public StudentSkill(Student student, Skill skill, int proficiencyLevel) {
+    public StudentSkill(String id, Student student, Skill skill, int proficiencyLevel) {
+        this.id = id;
         this.student = student;
         this.skill = skill;
         this.proficiencyLevel = proficiencyLevel;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Student getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
     public Skill getSkill() {
         return skill;
     }
 
-    public void setSkill(Skill skill) {
-        this.skill = skill;
-    }
-
     public int getProficiencyLevel() {
         return proficiencyLevel;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 
     public void setProficiencyLevel(int proficiencyLevel) {
