@@ -109,8 +109,7 @@ public class DSA_Assignment {
 
             System.out.println("============== Main Menu ============");
             System.out.println("1. Admin Portal");
-//            System.out.println("2. Job Posting Management");
-            System.out.println("3. Student Portal");
+            System.out.println("2. Student Portal");
 //            System.out.println("4. Matching Engine");
             System.out.println("0. Exit");
             System.out.println("=====================================");

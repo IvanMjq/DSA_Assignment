@@ -74,8 +74,29 @@ public class StudentPortalUI {
             } 
         }
 
-        System.out.print("Enter Address: ");
-        String address = scanner.nextLine();
+        System.out.print("Enter streetAddress: ");
+        String address = scanner.nextLine().trim();
+                
+        String area = null;
+        while(area == null){
+            System.out.print("Enter area: ");
+            String input = scanner.nextLine().trim();
+            
+            if(alphabetValidation(input)){
+                area = input;
+            }
+        }
+
+        String state = null;
+        while(state == null) {
+            System.out.print("Enter state: ");
+            String input = scanner.nextLine().trim();
+            
+            if(alphabetValidation(input)){
+                state = input;
+            }
+        }
+       
         
         String email = null;
         while (email == null) {
@@ -145,7 +166,7 @@ public class StudentPortalUI {
             i++;
         }
         
-        Student newStudent = new Student(studentPortalControl.generateStudentID(), name, password, age, address, 3.1390, 101.6869, email, achievement, education, yearsOfExperience, jobTypes);
+        Student newStudent = new Student(studentPortalControl.generateStudentID(), name, password, age, address, area, state,3.1390, 101.6869, email, achievement, education, yearsOfExperience, jobTypes);
         
         return newStudent;
     }
@@ -200,6 +221,22 @@ public class StudentPortalUI {
         } 
 
         return true;
+    }
+    
+    public boolean alphabetValidation(String input) {
+        boolean isValid = true;
+        
+        if(input.isEmpty()) {
+            System.out.println("Cannot be empty or spaces only. Please try again.");
+            isValid = false;
+        }  
+        
+        if(input.matches("^[A-Za-z]+$")) {
+            System.out.println("Input must only contain alphabets only. Please try again.");
+            isValid = false;
+        }  
+        
+        return isValid;
     }
     
      public boolean emailValidation(String input) { 
