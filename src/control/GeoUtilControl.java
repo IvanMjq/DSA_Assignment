@@ -70,7 +70,7 @@ public class GeoUtilControl {
     
     public ListInterface<Student> setLatLongForStdAddresses() {
         for (int i = 1; i <= studentList.size() ; i++){
-            String studentAddress = studentList.getData(i).getAddress();
+            String studentAddress = studentList.getData(i).getArea() + studentList.getData(i).getState();
             double[] coords = getLatLong(studentAddress);
             studentList.getData(i).setLatitude(coords[0]);
             studentList.getData(i).setLongitude(coords[1]);
@@ -83,7 +83,7 @@ public class GeoUtilControl {
       public ListInterface<JobPosting> setLatLongForJobAddresses() {
 
         for(int j = 1; j <= jobPost.size(); j++){
-            String jobAddress = jobPost.getData(j).getCompany().getArea();
+            String jobAddress = jobPost.getData(j).getCompany().getArea() + jobPost.getData(j).getCompany().getState();
             double[] coords = getLatLong(jobAddress);
             jobPost.getData(j).getCompany().setLatitude(coords[0]);
             jobPost.getData(j).getCompany().setLongitude(coords[1]);

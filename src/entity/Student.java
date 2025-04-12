@@ -4,8 +4,6 @@
  */
 package entity;
 
-import adt.DoublyLinkedList;
-import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -19,7 +17,9 @@ public class Student implements Serializable {
     private String name;
     private String password;
     private int age;
-    private String address;
+    private String streetAddress;
+    private String area;
+    private String state;
     private double latitude;
     private double longitude;
     private String email;
@@ -27,12 +27,14 @@ public class Student implements Serializable {
     private String education;
     private int yearsOfExperience;
 
-    public Student(String id, String name, String password, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience) {
+    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.age = age;
-        this.address = address;
+        this.streetAddress = streetAddress;
+        this.area = area;
+        this.state = state;
         this.latitude = latitude;
         this.longitude = longitude;
         this.email = email;
@@ -73,12 +75,28 @@ public class Student implements Serializable {
         this.age = age;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public double getLatitude() {
@@ -129,11 +147,7 @@ public class Student implements Serializable {
         this.yearsOfExperience = yearsOfExperience;
     }
     
-    @Override
-    public int hashCode() {
-        int hash = 1;
-        return hash;
-    }
+    
     
     @Override
     public boolean equals(Object obj) {
@@ -149,7 +163,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age + ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + '}';
+        return "Student{" + "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age + ", streetAddress=" + streetAddress + ", area=" + area + ", state=" + state + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + '}';
     }
 
 }
