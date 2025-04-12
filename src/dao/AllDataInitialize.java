@@ -730,5 +730,5 @@ public class AllDataInitialize {
         return jobPostingList;
     }
 
-    // -----------------
+
 }

@@ -28,21 +28,21 @@ public class Student implements Serializable {
     private int yearsOfExperience;
     private String[] desiredJobTypes;
 
-    public Student(String id, String name, String password, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, String... desireJobTypes) {
-        this.id                 = id;
-        this.name               = name;
-        this.password           = password;
-        this.age                = age;
-        this.streetAddress      = streetAddress;
-        this.area               = area;
-        this.state              = state;
-        this.latitude           = latitude;
-        this.longitude          = longitude;
-        this.email              = email;
-        this.achievement        = achievement;
-        this.education          = education;
-        this.yearsOfExperience  = yearsOfExperience;
-        this.desiredJobTypes    = desireJobTypes;
+    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, String... desiredJobTypes) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.age = age;
+        this.streetAddress = streetAddress;
+        this.area = area;
+        this.state = state;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.email = email;
+        this.achievement = achievement;
+        this.education = education;
+        this.yearsOfExperience = yearsOfExperience;
+        this.desiredJobTypes = desiredJobTypes;
     }
 
     public String getId() {
@@ -61,8 +61,16 @@ public class Student implements Serializable {
         return age;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public String getState() {
+        return state;
     }
 
     public double getLatitude() {
@@ -109,8 +117,16 @@ public class Student implements Serializable {
         this.age = age;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public void setLatitude(double latitude) {
@@ -139,9 +155,7 @@ public class Student implements Serializable {
 
     public void setDesiredJobTypes(String[] desiredJobTypes) {
         this.desiredJobTypes = desiredJobTypes;
-    }
-    
-    
+    }    
     
     @Override
     public boolean equals(Object obj) {
@@ -157,6 +171,8 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age + ", streetAddress=" + streetAddress + ", area=" + area + ", state=" + state + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + '}';
+        return "Student{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", age=" + age + ", address='" + streetAddress + ", " + area + ", " + state + '\'' +
+           ", email='" + email + '\'' + ", education='" + education + '\'' + ", yearsOfExperience=" + yearsOfExperience + ", desiredJobTypes=" +  String.join(", ", desiredJobTypes) +
+           '}';
     }
 }
