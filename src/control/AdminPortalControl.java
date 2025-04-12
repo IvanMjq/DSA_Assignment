@@ -14,9 +14,8 @@ import java.util.Scanner;
  * @author Teh Yi Shan
  */
 public class AdminPortalControl {
-
-    Scanner sc = new Scanner(System.in);
-
+    Scanner scanner = new Scanner(System.in);
+    
     private ListInterface<Student> studentList;
     private ListInterface<StudentSkill> studentSkillList;
     private ListInterface<Skill> skillList;
@@ -24,10 +23,11 @@ public class AdminPortalControl {
     private Student loginStudent;
     private AdminPortalUI adminPortalUI;
     private StudentControl studentControl;
-
-    public AdminPortalControl() {
+    
+    
+    public AdminPortalControl() { 
     }
-
+    
     public AdminPortalControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList) {
         this.studentList        = studentList;
         this.studentSkillList   = studentSkillList;
