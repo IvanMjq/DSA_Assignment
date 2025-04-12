@@ -72,7 +72,7 @@ public class CompanyControl {
         id = IdGeneration.generateID(companyList, "C");
 
         System.out.println("\n--------------------");
-        System.out.println("Add Company ");
+        System.out.println(" Add Company ");
         System.out.println("--------------------");
 
         do {
@@ -139,7 +139,18 @@ public class CompanyControl {
     }
 
     public void viewCompany() {
-
+        System.out.println("\n--------------------");
+        System.out.println(" Company List ");
+        System.out.println("--------------------");
+        
+        if (companyList.isEmpty()) {
+            System.out.println("No companies found.");
+        } else {
+            for (Company company : companyList) {
+                System.out.println(company);
+            }
+        }
+        System.out.println("\n");
     }
 
     public void editCompany() {
