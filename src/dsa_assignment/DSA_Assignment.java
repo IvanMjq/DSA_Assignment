@@ -109,8 +109,7 @@ public class DSA_Assignment {
 
             System.out.println("============== Main Menu ============");
             System.out.println("1. Admin Portal");
-//            System.out.println("2. Job Posting Management");
-            System.out.println("3. Student Portal");
+            System.out.println("2. Student Portal");
 //            System.out.println("4. Matching Engine");
             System.out.println("0. Exit");
             System.out.println("=====================================");
@@ -128,7 +127,7 @@ public class DSA_Assignment {
 //                    jobPostingControl.runJobPostingManagement();
                     break;
                 case 3:
-                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList());
+                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList());
                     break;
                 case 4:
 //                    System.out.println(student);

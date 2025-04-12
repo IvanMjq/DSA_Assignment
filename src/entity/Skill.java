@@ -11,7 +11,6 @@ import java.io.Serializable;
  * @author Teh Yi Shan
  */
 public class Skill implements Serializable {
-    
     private String id;
     private String name;
 
