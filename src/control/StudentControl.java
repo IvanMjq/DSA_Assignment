@@ -14,25 +14,35 @@ import java.util.Scanner;
  *
  * @author Teh Yi Shan
  */
-public class StudentControl {
+public class StudentControl{
     Scanner scanner = new Scanner(System.in);
     
     private ListInterface<Student> studentList;
     private ListInterface<StudentSkill> studentSkillList;
     private ListInterface<Skill> skillList;
     private ListInterface<Job> jobList;
-    private Student loginStudent;
     private StudentUI studentUI;
+    private StudentPortalControl studentPortalControl;
     
     public StudentControl() { 
     }
     
     public StudentControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList) {
-        this.studentList        = studentList;
-        this.studentSkillList   = studentSkillList;
-        this.skillList          = skillList;
-        this.jobList            = jobList;
-        this.studentUI          = new StudentUI(this);
+        this.studentList            = studentList;
+        this.studentSkillList       = studentSkillList;
+        this.skillList              = skillList;
+        this.jobList                = jobList;
+        this.studentUI              = new StudentUI(this);
+        
+    }
+    
+    public StudentControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList, StudentPortalControl studentPortalControl) {
+        this.studentList            = studentList;
+        this.studentSkillList       = studentSkillList;
+        this.skillList              = skillList;
+        this.jobList                = jobList;
+        this.studentUI              = new StudentUI(this);
+        this.studentPortalControl = studentPortalControl;
     }
     
     public void adminStudentManagement() {
@@ -42,7 +52,7 @@ public class StudentControl {
             option = studentUI.adminStudentMenu();
             switch (option) {
                 case 0:
-                    System.out.println("Exiting Student Portal...");
+                    System.out.println("Exiting Student Menu...");
                     break;
                 case 1:
                     studentListing();
@@ -63,13 +73,37 @@ public class StudentControl {
         } while (option != 0);
     }
     
+    
+    public void studentOwnListing () {
+        
+        studentUI.studentListingUI();
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-70s |\n",
+                    studentPortalControl.getLoginStudent().getId(),
+                    studentPortalControl.getLoginStudent().getName(),
+                    studentPortalControl.getLoginStudent().getPassword(),
+                    studentPortalControl.getLoginStudent().getAge(),
+                    studentPortalControl.getLoginStudent().getStreetAddress(),
+                    studentPortalControl.getLoginStudent().getArea(),
+                    studentPortalControl.getLoginStudent().getState(),
+                    studentPortalControl.getLoginStudent().getLatitude(),
+                    studentPortalControl.getLoginStudent().getLongitude(),
+                    studentPortalControl.getLoginStudent().getEmail(),
+                    studentPortalControl.getLoginStudent().getAchievement(),
+                    studentPortalControl.getLoginStudent().getEducation(),
+                    studentPortalControl.getLoginStudent().getYearsOfExperience(),
+                    convertArrayToString(studentPortalControl.getLoginStudent().getDesiredJobTypes())
+                );
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    }
+    
     public void studentListing() {
         studentUI.studentListingUI();
         if(studentList.size() > 0){
             
             for (Student student : studentList) {
-                System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-                System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-30s |\n",
+                System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-70s |\n",
                     student.getId(),
                     student.getName(),
                     student.getPassword(),
@@ -86,7 +120,7 @@ public class StudentControl {
                     convertArrayToString(student.getDesiredJobTypes())
                 );
             }
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
     
@@ -195,10 +229,11 @@ public class StudentControl {
         return newArray;
     }
     
-    public boolean isJobTypeDuplicateEnter(int input, String[] jobType) {
+    public boolean noJobTypeDuplicateEnter(int input, String[] jobType) {
         int i = 0;
         while(jobType[i] != null){
             if(jobList.getData(input).getType().equals(jobType[i])) {
+                System.out.println("Current Job Type had selected.");
                 return false;
             }
             i++;
@@ -207,17 +242,30 @@ public class StudentControl {
         return true;
     }
     
+    public void updateOwnStudent() {
+        studentUI.updateStudentUI();
+        
+        int studentPosition = studentList.indexOf(studentPortalControl.getLoginStudent());
+        if(studentPosition != -1){
+            Student oriData     = studentList.getData(studentPosition);
+            updateStudentDetails(oriData);
+            System.out.println(oriData);
+            Student updatedData     = studentList.getData(studentPosition);
+            System.out.println(updatedData);
+        }
+    }
+    
     public void updateStudent() {
-        studentUI.removeStudentUI();
+        studentUI.updateStudentUI();
         studentListing();
         
         int studentPosition = 0;
         do{
             System.out.print("Enter ID, (Q=Quit): ");
-            String selectedPost = scanner.nextLine().trim();
-            studentPosition = findStudent(selectedPost);
+            String selectedStudent = scanner.nextLine().trim();
+            studentPosition = findStudent(selectedStudent);
             
-            if(Character.toUpperCase(selectedPost.charAt(0)) == 'Q'){
+            if(Character.toUpperCase(selectedStudent.charAt(0)) == 'Q'){
                 studentPosition = -1;
             }
             
@@ -273,6 +321,9 @@ public class StudentControl {
                     break;
                 case 10:
                     updateYearOfExp(ori);
+                    break;
+                case 11:
+                    updateDesireJobType(ori);
                     break;
                 default:
                     System.out.println("This is an invalid option!!!");
@@ -473,6 +524,51 @@ public class StudentControl {
         }
     }
     
+    public void updateDesireJobType(Student ori) {
+        boolean loop = true;
+        int i = 0;
+        String[] jobTypes = new String[3];
+        while(loop) {
+            if(i == 3)
+                break;
+            
+            int[] option = jobTypeList();
+            System.out.print("Choose min 1 to 3 Job Type.");
+            System.out.print("Chooese Desire Job Type, Q=Done: ");
+            String input = scanner.nextLine().trim();
+            
+            if (input.equalsIgnoreCase("Q")) {
+                if (i == 0) 
+                    System.out.println("You must select at least one job type.");
+                break;
+            } 
+            
+            if(studentUI.digitValidation(input)){
+                int intInput = Integer.parseInt(input);
+                if( (intInput <= option.length)) {
+                    if (noJobTypeDuplicateEnter(option[intInput - 1], jobTypes)) {
+                        jobTypes[i] = getJobType(option[intInput - 1]);
+                        i++;
+                    }
+                }
+            }
+           
+            
+        }
+        
+        if(jobTypes != null) {
+            boolean isConfirm = studentUI.confirmation("Confirm update " + convertArrayToString(ori.getDesiredJobTypes()) + " as " + convertArrayToString(jobTypes) + "?");
+               
+            if(isConfirm){
+                ori.setDesiredJobTypes(jobTypes);
+                System.out.println("Student update successfully!");
+            }else {
+                System.out.println("Failed to update.");
+            }
+        }
+    }
+
+    
     public void removeStudent() {
         studentUI.removeStudentUI();
         studentListing();
@@ -528,5 +624,6 @@ public class StudentControl {
         }else{
             return "STU-" + 1;
         }
-    }
+    }    
+    
 }
