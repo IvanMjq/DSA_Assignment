@@ -26,126 +26,117 @@ public class Student implements Serializable {
     private String achievement;
     private String education;
     private int yearsOfExperience;
-    
-    private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
-    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
+    private String[] desiredJobTypes;
 
-    public Student(String id, String name, String password, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.age = age;
-        this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.email = email;
-        this.achievement = achievement;
-        this.education = education;
-        this.yearsOfExperience = yearsOfExperience;
+    public Student(String id, String name, String password, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, String... desireJobTypes) {
+        this.id                 = id;
+        this.name               = name;
+        this.password           = password;
+        this.age                = age;
+        this.address            = address;
+        this.latitude           = latitude;
+        this.longitude          = longitude;
+        this.email              = email;
+        this.achievement        = achievement;
+        this.education          = education;
+        this.yearsOfExperience  = yearsOfExperience;
+        this.desiredJobTypes = desireJobTypes;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public int getAge() {
         return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public double getLatitude() {
         return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
     }
 
     public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getAchievement() {
         return achievement;
     }
 
-    public void setAchievement(String achievement) {
-        this.achievement = achievement;
-    }
-
     public String getEducation() {
         return education;
-    }
-
-    public void setEducation(String education) {
-        this.education = education;
     }
 
     public int getYearsOfExperience() {
         return yearsOfExperience;
     }
 
+    public String[] getDesiredJobTypes() {
+        return desiredJobTypes;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAchievement(String achievement) {
+        this.achievement = achievement;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
     public void setYearsOfExperience(int yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
     }
 
-    public ListInterface<StudentSkill> getStudentSkillList() {
-        return studentSkillList;
-    }
-
-    public void setStudentSkillList(ListInterface<StudentSkill> studentSkillList) {
-        this.studentSkillList = studentSkillList;
-    }
-
-    public ListInterface<JobApplication> getJobApplicationList() {
-        return jobApplicationList;
-    }
-
-    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
-        this.jobApplicationList = jobApplicationList;
+    public void setDesiredJobTypes(String[] desiredJobTypes) {
+        this.desiredJobTypes = desiredJobTypes;
     }
     
     @Override
@@ -168,7 +159,20 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age + ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + ", studentSkillList=" + studentSkillList + ", jobApplicationList=" + jobApplicationList + '}';
+        StringBuilder jobsTypeStr = new StringBuilder();
+        if (desiredJobTypes != null) {
+            for (String job : desiredJobTypes) {
+                jobsTypeStr.append(job).append(", ");
+            }
+            if (jobsTypeStr.length() > 0) {
+                jobsTypeStr.setLength(jobsTypeStr.length() - 2); // remove last comma
+            }
+        }
+        
+        return "Student{" +
+            "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age +
+            ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude +
+            ", email=" + email + ", achievement=" + achievement + ", education=" + education +
+            ", yearsOfExperience=" + yearsOfExperience + ", desiredJobTypes=[" + jobsTypeStr + "]" + '}';
     }
-
 }

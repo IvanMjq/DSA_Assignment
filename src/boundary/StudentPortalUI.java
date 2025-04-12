@@ -24,7 +24,7 @@ public class StudentPortalUI {
         System.out.println("\nStudent Portal");
         System.out.println("=====================================");
         System.out.println("1. Register");
-        System.out.println("2. Logn");
+        System.out.println("2. Login");
         System.out.println("3. Logout");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
@@ -66,11 +66,11 @@ public class StudentPortalUI {
       
         int age = -1;
         while(age == -1) {
-            System.out.print("Enter Age): ");
-            int input = scanner.nextInt();
+            System.out.print("Enter Age: ");
+            String input = scanner.nextLine().trim();
             
             if(ageValidation(input)){
-                age = input;
+                age = Integer.parseInt(input);
             } 
         }
 
@@ -108,16 +108,44 @@ public class StudentPortalUI {
         }
         
         int yearsOfExperience = -1;
-        while(age == -1) {
-            System.out.print("Enter Age): ");
-            int input = scanner.nextInt();
+        while(yearsOfExperience == -1) {
+            System.out.print("Enter Years Of Experience: ");
+            String input = scanner.nextLine().trim();
             
-            if(ageValidation(input)){
-                age = input;
+            if(digitValidation(input)){
+                yearsOfExperience = Integer.parseInt(input);
             } 
         }
         
-        Student newStudent = new Student(studentPortalControl.generateStudentID(), name, password, age, address, 3.1390, 101.6869, email, achievement,education,yearsOfExperience);
+        boolean loop = true;
+        int i = 0;
+        String[] jobTypes = new String[4];
+        while(loop) {
+            int[] option = studentPortalControl.jobTypeList();
+            System.out.print("Choose min 1 to 3 Job Type.");
+            System.out.print("Chooese Desire Job Type, Q=Done: ");
+            String input = scanner.nextLine().trim();
+            
+            if (input.equalsIgnoreCase("Q")) {
+                if (i == 0) 
+                    System.out.println("You must select at least one job type.");
+            } else  if(i == 3){
+                break;
+            }
+            
+            if(digitValidation(input)){
+                int intInput = Integer.parseInt(input);
+                if( (intInput <= option.length)) {
+                    if (studentPortalControl.isJobTypeDuplicateEnter(intInput, jobTypes)) {
+                        jobTypes[i] = studentPortalControl.getJobType(intInput);
+                    }
+                }
+            }
+           
+            i++;
+        }
+        
+        Student newStudent = new Student(studentPortalControl.generateStudentID(), name, password, age, address, 3.1390, 101.6869, email, achievement, education, yearsOfExperience, jobTypes);
         
         return newStudent;
     }
@@ -149,7 +177,7 @@ public class StudentPortalUI {
             return false;
         }
 
-        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$";
 
         if (!input.matches(passwordRegex)) {
             System.out.println("Password must be at least 8 characters, include uppercase, lowercase, number, and special character.");
@@ -160,28 +188,33 @@ public class StudentPortalUI {
     }
     
     
-    public boolean ageValidation(int input) { 
-        if(input >= 12 && input <= 120) {
-            return true;
+    public boolean ageValidation(String input) { 
+        if(!digitValidation(input)) {
+            return false;
         }
         
-        System.out.println("Invalid age.  Please try again");
-        return false;
+        int age = Integer.parseInt(input);
+        if (age < 12 || age > 120) {
+            System.out.println("Invalid age.  Please try again");
+            return false;
+        } 
+
+        return true;
     }
     
      public boolean emailValidation(String input) { 
-         boolean isValid = false;
+         boolean isValid = true;
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
          
-        if(!input.isEmpty()) {
-            isValid = true;
+        if(input.isEmpty()) {
+            isValid = false;
         }  
         
-        if (input.matches(emailRegex)) {
-           
-            isValid = true;
+        if (!input.matches(emailRegex)) {
+            System.out.println("Invalid email. Please try again");
+            isValid = false;
         } 
-        System.out.println("Invalid email. Please try again");
+        
         return isValid;
     }
      
@@ -201,6 +234,14 @@ public class StudentPortalUI {
         return false;
     }
     
+    public boolean digitValidation(String input) { 
+        if (!input.matches("\\d+")) {
+            System.out.println("Invalid input. Must be digits only.");
+            return false;
+        }
+        return true;
+    }
+    
     public void loginUI() {
         boolean loop = true;
         while(loop){
@@ -216,7 +257,7 @@ public class StudentPortalUI {
             String inputPassword = scanner.nextLine().trim();
             
             if(studentPortalControl.loginValidation(inputID, inputPassword)) {
-                System.out.println("Login Successful");
+                System.out.println("Login Successful, Welcome " + studentPortalControl.getLoginStudent().getName() + ".");
                 loop = false;
             } else {
                 System.out.println("Invalid Student ID / Password. Please try again");
@@ -226,9 +267,15 @@ public class StudentPortalUI {
     
     public void logoutUI() {
         if(studentPortalControl.isLogin()) {
-            System.out.println("Logout Successful");
+            System.out.println("Logout Successful, See you " + studentPortalControl.getLoginStudent().getName() + ".");
         }else {
             System.out.println("Invalid Logout Request.");
         }
+    }
+    
+    public boolean confirmation(String message) {
+        System.out.print(message + " (Y/N): ");
+        char confirmation = scanner.nextLine().toUpperCase().charAt(0);
+        return confirmation == 'Y';
     }
 }

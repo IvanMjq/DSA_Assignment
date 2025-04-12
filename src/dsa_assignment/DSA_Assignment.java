@@ -128,7 +128,7 @@ public class DSA_Assignment {
 //                    jobPostingControl.runJobPostingManagement();
                     break;
                 case 3:
-                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList());
+                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList());
                     break;
                 case 4:
 //                    System.out.println(student);
