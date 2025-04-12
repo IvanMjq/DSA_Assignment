@@ -55,6 +55,14 @@ public class JobApplication implements Serializable {
     public void setStudent(Student student) {
         this.student = student;
     }
+
+    public Interview getInterview() {
+        return interview;
+    }
+
+    public void setInterview(Interview interview) {
+        this.interview = interview;
+    }
     
     @Override
     public int hashCode() {
@@ -77,8 +85,7 @@ public class JobApplication implements Serializable {
 
     @Override
     public String toString() {
-        return "JobApplication{" + "id=" + id + ", jobPost=" + jobPost + ", student=" + student + '}';
-    }
-    
+        return "JobApplication{" + "id=" + id + ", jobPost=" + jobPost + ", student=" + student + ", interview=" + interview + '}';
+    }   
 
 }

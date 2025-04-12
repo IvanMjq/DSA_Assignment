@@ -26,9 +26,6 @@ public class Student implements Serializable {
     private String achievement;
     private String education;
     private int yearsOfExperience;
-    
-    private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
-    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
 
     public Student(String id, String name, String password, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience) {
         this.id = id;
@@ -131,22 +128,6 @@ public class Student implements Serializable {
     public void setYearsOfExperience(int yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
     }
-
-    public ListInterface<StudentSkill> getStudentSkillList() {
-        return studentSkillList;
-    }
-
-    public void setStudentSkillList(ListInterface<StudentSkill> studentSkillList) {
-        this.studentSkillList = studentSkillList;
-    }
-
-    public ListInterface<JobApplication> getJobApplicationList() {
-        return jobApplicationList;
-    }
-
-    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
-        this.jobApplicationList = jobApplicationList;
-    }
     
     @Override
     public int hashCode() {
@@ -168,7 +149,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age + ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + ", studentSkillList=" + studentSkillList + ", jobApplicationList=" + jobApplicationList + '}';
+        return "Student{" + "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age + ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + '}';
     }
 
 }

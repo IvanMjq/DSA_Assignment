@@ -4,8 +4,6 @@
  */
 package entity;
 
-import adt.DoublyLinkedList;
-import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalDate;
@@ -23,9 +21,6 @@ public class JobPosting implements Serializable {
     private String salaryRange;
     private int requiredExperience; // Year (testing purpose)
     private LocalDate  datePosted;
-    
-    private ListInterface<JobRequiredSkill> jobRequiredSkillsList = new DoublyLinkedList<>();
-    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
 
     public JobPosting(String id, Company company, Job job, String description, String salaryRange, int requiredExperience, LocalDate datePosted) {
         this.id = id;
@@ -91,22 +86,6 @@ public class JobPosting implements Serializable {
     public void setRequiredExperience(int requiredExperience) {
         this.requiredExperience = requiredExperience;
     }
-
-    public ListInterface<JobRequiredSkill> getJobRequiredSkillsList() {
-        return jobRequiredSkillsList;
-    }
-
-    public void setJobRequiredSkillsList(ListInterface<JobRequiredSkill> jobRequiredSkillsList) {
-        this.jobRequiredSkillsList = jobRequiredSkillsList;
-    }
-
-    public ListInterface<JobApplication> getJobApplicationList() {
-        return jobApplicationList;
-    }
-
-    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
-        this.jobApplicationList = jobApplicationList;
-    }
     
     @Override
     public int hashCode() {
@@ -129,9 +108,7 @@ public class JobPosting implements Serializable {
 
     @Override
     public String toString() {
-        return "JobPosting{" + "id=" + id + ", company=" + company + ", job=" + job + ", description=" + description + ", salaryRange=" + salaryRange + ", requiredExperience=" + requiredExperience + ", datePosted=" + datePosted + ", jobRequiredSkillsList=" + jobRequiredSkillsList + ", jobApplicationList=" + jobApplicationList + '}';
-    }
-    
-    
+        return "JobPosting{" + "id=" + id + ", company=" + company + ", job=" + job + ", description=" + description + ", salaryRange=" + salaryRange + ", requiredExperience=" + requiredExperience + ", datePosted=" + datePosted + '}';
+    }       
     
 }

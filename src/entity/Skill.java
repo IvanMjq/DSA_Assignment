@@ -4,8 +4,6 @@
  */
 package entity;
 
-import adt.DoublyLinkedList;
-import adt.ListInterface;
 import java.io.Serializable;
 
 /**
@@ -16,9 +14,6 @@ public class Skill implements Serializable {
     
     private String id;
     private String name;
-    
-    private ListInterface<StudentSkill> studentSkillsList = new DoublyLinkedList<>();
-    private ListInterface<JobRequiredSkill> jobRequiredSkillsList = new DoublyLinkedList<>();
 
     public Skill(String id, String name) {
         this.id     = id;
@@ -41,25 +36,9 @@ public class Skill implements Serializable {
         this.name = name;
     }
 
-    public ListInterface<StudentSkill> getStudentSkillsList() {
-        return studentSkillsList;
-    }
-
-    public void setStudentSkillsList(ListInterface<StudentSkill> studentSkillsList) {
-        this.studentSkillsList = studentSkillsList;
-    }
-
-    public ListInterface<JobRequiredSkill> getJobRequiredSkillsList() {
-        return jobRequiredSkillsList;
-    }
-
-    public void setJobRequiredSkillsList(ListInterface<JobRequiredSkill> jobRequiredSkillsList) {
-        this.jobRequiredSkillsList = jobRequiredSkillsList;
-    } 
-
     @Override
     public String toString() {
-        return "Skill{" + "id=" + id + ", name=" + name + ", studentSkillsList=" + studentSkillsList + ", jobRequiredSkillsList=" + jobRequiredSkillsList + '}';
+        return "Skill{" + "id=" + id + ", name=" + name + '}';
     }
-    
+ 
 }
