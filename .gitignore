@@ -1,6 +1,7 @@
 # NetBeans specific #
 nbproject/private/
 build/
+build/built-jar.properties
 nbbuild/
 dist/
 nbdist/
