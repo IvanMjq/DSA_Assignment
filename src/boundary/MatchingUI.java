@@ -24,19 +24,19 @@ public class MatchingUI {
             this.matchControl = matchControl;
         }
         
-//        public int MatchingMenu(Student student){
-//            Scanner scanner = new Scanner(System.in);
-//            System.out.println("These are the job that match with you");
-//            matchControl.matchStudentsToJobs();
-//            matchControl.listScoresForStudent(student);
-//            System.out.println("============================================================================================================");
-//            System.out.println("| 1 - Search");
-//            System.out.println("| 2 - Sort");
-//            System.out.println("Press 0 to exit....");
-//            int choice = scanner.nextInt();
-//            scanner.nextLine();
-//            return choice;
-//
-//        }
+        public int MatchingMenu(Student student){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("These are the job that match with you");
+            matchControl.matchStudentsToJobs(student.getId());
+            matchControl.listScoresForStudent(student);
+            System.out.println("============================================================================================================");
+            System.out.println("| 1 - Search");
+            System.out.println("| 2 - Sort");
+            System.out.println("Press 0 to exit....");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            return choice;
+
+        }
 
 }
