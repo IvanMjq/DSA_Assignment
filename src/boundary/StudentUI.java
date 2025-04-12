@@ -175,6 +175,7 @@ public class StudentUI {
             if (input.equalsIgnoreCase("Q")) {
                 if (i == 0) 
                     System.out.println("You must select at least one job type.");
+                break;
             } else  if(i == 3){
                 break;
             }

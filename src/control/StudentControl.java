@@ -110,7 +110,7 @@ public class StudentControl {
         studentUI.addStudentUI();
         Student newStudent = studentUI.newStudentDetails();
         
-        boolean isConfirm = studentUI.confirmation("Confirm add " + newStudent.getId() + " as new Job Post?");
+        boolean isConfirm = studentUI.confirmation("Confirm Register " + newStudent.getId() + " as new Student?");
         
         if (isConfirm) {
             studentList.add(newStudent);
@@ -288,7 +288,7 @@ public class StudentControl {
             String input = scanner.nextLine().trim();
             
             if(studentUI.nameValidation(input)){
-               boolean isConfirm = studentUI.confirmation("Confirm " + ori.getName() + " as update Student?");
+               boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getName() + " as " + input + "?");
                if(isConfirm){
                     ori.setName(input);
                     System.out.println("Student update successfully!");
@@ -307,7 +307,7 @@ public class StudentControl {
             String input = scanner.nextLine().trim();
             
             if(studentUI.passwordValidation(input)){
-                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getPassword() + " as update Student?");
+                boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getPassword() + " as " + input + "?");
                 if(isConfirm){
                     ori.setPassword(input);
                     System.out.println("Student update successfully!");
@@ -326,7 +326,7 @@ public class StudentControl {
             String input = scanner.nextLine().trim();
             
             if(studentUI.ageValidation(input)){
-                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getAge()+ " as update Student?");
+                boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getAge() + " as " + input + "?");
                 if(isConfirm){
                     ori.setAge(Integer.parseInt(input));
                     System.out.println("Student update successfully!");
@@ -342,8 +342,7 @@ public class StudentControl {
         System.out.print("Enter Street Address: ");
         String input = scanner.nextLine().trim();
             
-       
-        boolean isConfirm = studentUI.confirmation("Confirm " + ori.getStreetAddress()+ " as update Student?");
+        boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getStreetAddress() + " as " + input + "?");
         if(isConfirm){
             ori.setStreetAddress(input);
             System.out.println("Student update successfully!");
@@ -359,7 +358,8 @@ public class StudentControl {
             String input = scanner.nextLine().trim();
             
             if(studentUI.alphabetValidation(input)){
-                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getArea()+ " as update Student?");
+                boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getArea() + " as " + input + "?");
+
                 if(isConfirm){
                     ori.setArea(input);
                     System.out.println("Student update successfully!");
@@ -378,7 +378,8 @@ public class StudentControl {
             String input = scanner.nextLine().trim();
             
             if(studentUI.alphabetValidation(input)){
-                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getState()+ " as update Student?");
+                boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getState() + " as " + input + "?");
+                
                 if(isConfirm){
                     ori.setState(input);
                     System.out.println("Student update successfully!");
@@ -399,7 +400,7 @@ public class StudentControl {
             String input = scanner.nextLine().trim();
             
             if(studentUI.emailValidation(input)){
-                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getEmail()+ " as update Student?");
+                boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getEmail() + " as " + input + "?");
                 if(isConfirm){
                     ori.setEmail(input);
                     System.out.println("Student update successfully!");
@@ -418,7 +419,8 @@ public class StudentControl {
             String input = scanner.nextLine().trim();
             
             if(studentUI.achievementValidation(input)){
-                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getAchievement()+ " as update Student?");
+                boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getAchievement() + " as " + input + "?");
+               
                 if(isConfirm){
                     ori.setAchievement(input);
                     System.out.println("Student update successfully!");
@@ -437,7 +439,8 @@ public class StudentControl {
             String input = scanner.nextLine().trim();
             
             if(studentUI.educationValidation(input)){
-                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getEducation()+ " as update Student?");
+                boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getEducation() + " as " + input + "?");
+                
                 if(isConfirm){
                     ori.setEducation(input);
                     System.out.println("Student update successfully!");
@@ -456,7 +459,8 @@ public class StudentControl {
             String input = scanner.nextLine().trim();
             
             if(studentUI.digitValidation(input)){
-                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getYearsOfExperience()+ " as update Student?");
+                boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getYearsOfExperience() + " as " + input + "?");
+                
                 if(isConfirm){
                     ori.setYearsOfExperience(Integer.parseInt(input));
                     System.out.println("Student update successfully!");
