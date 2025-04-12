@@ -23,9 +23,9 @@ public class StudentPortalUI {
     public int homePage() {
         System.out.println("\nStudent Portal");
         System.out.println("=====================================");
-        System.out.println("1.Register");
-        System.out.println("2.Logn");
-        System.out.println("3.Logout");
+        System.out.println("1. Register");
+        System.out.println("2. Logn");
+        System.out.println("3. Logout");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
 
@@ -207,19 +207,20 @@ public class StudentPortalUI {
             System.out.print("Enter Student ID, (Q/q)=Quit): ");
             String inputID = scanner.nextLine().trim();
             
-            if((Character.toUpperCase(inputID.charAt(0)) != 'Q')){
+            if((Character.toUpperCase(inputID.charAt(0)) == 'Q')){
+                System.out.println("Quitting login...");
                 break;
             }
             
             System.out.print("Enter Password: ");
             String inputPassword = scanner.nextLine().trim();
             
-//            if(studentPortalControl.loginValidation(inputID, inputPassword)) {
-//                System.out.println("Login Successful");
-//                loop = false;
-//            } else {
-//                System.out.println("Invalid Student ID / Password. Please try again");
-//            }
+            if(studentPortalControl.loginValidation(inputID, inputPassword)) {
+                System.out.println("Login Successful");
+                loop = false;
+            } else {
+                System.out.println("Invalid Student ID / Password. Please try again");
+            }
         } 
     }
     

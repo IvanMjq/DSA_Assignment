@@ -67,10 +67,12 @@ public class StudentPortalControl {
     
     public void studentLogin() {
         studentPortalUI.loginUI();
+        System.out.println("Welcome" + loginStudent.getName() + ".");
     }
     
     public void studentLogout() {
         studentPortalUI.logoutUI();
+        System.out.println("See you" + loginStudent.getName() + ".");
         loginStudent = null;
     }
     
@@ -84,7 +86,7 @@ public class StudentPortalControl {
             }
         }
         
-        if(found.getPassword().equals(inputPassword)) {
+        if(found != null && found.getPassword().equals(inputPassword)) {
             loginStudent = found;
             isValid = true;
         }
