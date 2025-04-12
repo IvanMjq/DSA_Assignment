@@ -162,8 +162,7 @@ public class Company implements Serializable, IdGeneration.Identifiable {
 
     @Override
     public String toString() {
-        return "\n------------------------------"
-                + "\nCompany ID         : " + id
+        return "\nCompany ID         : " + id
                 + "\nName               : " + name
                 + "\nPhone              : " + phone
                 + "\nEmail              : " + email
@@ -174,8 +173,7 @@ public class Company implements Serializable, IdGeneration.Identifiable {
                 + "\nLongitude          : " + longitude
                 + "\nFounded Year       : " + foundedYear
                 + "\nInterview Start    : " + interviewStartTime.toString()
-                + "\nInterview End      : " + interviewEndTime.toString()
-                + "\n------------------------------";
+                + "\nInterview End      : " + interviewEndTime.toString();
     }
 
 }
