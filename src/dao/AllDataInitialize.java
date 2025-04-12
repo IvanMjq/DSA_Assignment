@@ -208,62 +208,141 @@ public class AllDataInitialize {
         jobList.add(new Job(
                 "J-1",
                 "Software Engineer",
-                "Full-Time",
+                "Computer & Technology",
                 "Responsible for designing, developing, and maintaining software applications. Collaborates with cross-functional teams to deliver scalable and efficient software solutions. Proficient in programming languages such as Java, C++, or Python. Strong problem-solving skills and knowledge of software development lifecycle are essential."
         ));
         jobList.add(new Job(
                 "J-2",
                 "Data Analyst",
-                "Full-Time",
+                "Computer & Technology",
                 "Analyze large datasets to extract actionable insights and support business decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI."
         ));
         jobList.add(new Job(
                 "J-3",
                 "Cybersecurity Analyst",
-                "Full-Time",
+                "Computer & Technology",
                 "Monitor and protect company networks and systems from cyber threats. Conduct risk assessments, manage firewalls, and ensure compliance with security protocols."
         ));
         jobList.add(new Job(
                 "J-4",
                 "Machine Learning Engineer",
-                "Full-Time",
+                "Computer & Technology",
                 "Design and implement machine learning models for automation, prediction, and data analysis. Requires knowledge of Python, TensorFlow, and data pipelines."
         ));
         jobList.add(new Job(
                 "J-5",
                 "Web Developer",
-                "Full-Time",
+                "Computer & Technology",
                 "Develop and maintain responsive websites using HTML, CSS, JavaScript, and frameworks like React.js or Vue.js. Collaborate with designers and backend teams."
         ));
         jobList.add(new Job(
                 "J-6",
                 "Mobile App Developer",
-                "Full-Time",
+                "Computer & Technology",
                 "Build and maintain mobile applications for iOS and Android platforms using technologies such as Flutter or Kotlin. Work closely with UI/UX designers and QA teams."
         ));
         jobList.add(new Job(
                 "J-7",
                 "Cloud Engineer",
-                "Full-Time",
+                "Computer & Technology",
                 "Manage and deploy applications on cloud platforms like AWS, Azure, or Google Cloud. Handle infrastructure-as-code, security, and resource optimization."
         ));
         jobList.add(new Job(
                 "J-8",
                 "Database Administrator",
-                "Full-Time",
+                "Computer & Technology",
                 "Design, maintain, and optimize databases to ensure high availability and performance. Skilled in SQL, data backup, and recovery strategies."
         ));
         jobList.add(new Job(
                 "J-9",
                 "AI Research Intern",
-                "Internship",
+               "Computer & Technology",
                 "Support the research and development of AI solutions. Assist with data preparation, training models, and evaluating performance. Python experience preferred."
         ));
         jobList.add(new Job(
                 "J-10",
                 "Full-Stack Developer",
-                "Full-Time",
+                "Computer & Technology",
                 "Develop complete web applications, working on both frontend and backend. Familiarity with React, Node.js, databases, and APIs is essential."
+        ));
+        jobList.add(new Job(
+                "J-16",
+                "Credit Risk Analyst",
+                "Finance & Banking",
+                "Evaluate credit data and financial statements to assess the risk in lending. Experience with credit scoring models and risk analysis is preferred."
+        ));
+        jobList.add(new Job(
+               "J-12",
+            "Financial Analyst",
+            "Finance & Banking",
+            "Analyze financial data, create financial models, and assist in strategic planning. Proficiency in Excel, financial forecasting, and risk assessment is required."
+        ));
+        jobList.add(new Job(
+                "J-13",
+              "Accountant",
+                "Finance & Banking",
+                "Manage financial records, prepare tax documents, and ensure regulatory compliance. Attention to detail and knowledge of accounting software are essential."
+        ));
+        jobList.add(new Job(
+                "J-14",
+            "Investment Banker",
+            "Finance",
+            "Help clients raise capital and provide strategic financial advice. Requires strong analytical skills, financial modeling, and knowledge of market trends."
+        ));
+        jobList.add(new Job(
+            "J-15",
+            "Budget Analyst",
+            "Finance & Banking",
+            "Evaluate budget proposals, monitor organizational spending, and prepare financial reports. Experience in budgeting tools and government finance is a plus."
+        ));
+        jobList.add(new Job(
+            "J-16",
+         "Medical Laboratory Technologist",
+          "Healthcare",
+          "Perform diagnostic tests on patient samples, analyze results, and support accurate medical diagnoses. Attention to detail and lab safety knowledge are essential."
+        ));
+        jobList.add(new Job(
+          "J-17",
+         "Secondary School Teacher",
+          "Education",
+         "Plan and deliver lessons for students aged 13–17 in accordance with the national curriculum. Patience, subject expertise, and classroom management are essential."
+        ));
+        jobList.add(new Job(
+            "J-18",
+         "Early Childhood Educator",
+            "Education",
+            "Design and implement learning activities for children aged 3–6. Strong understanding of child development and creative teaching methods is essential."
+        ));
+        jobList.add(new Job(
+            "J-19",
+            "Online Course Instructor",
+            "Education",
+            "Teach academic or professional subjects through online platforms. Requires excellent communication skills, subject expertise, and familiarity with e-learning tools."
+        ));
+        jobList.add(new Job(
+            "J-20",
+            "Mechanical Engineer",
+         "Engineering",
+          "Design, analyze, and improve mechanical systems and devices. Proficiency in CAD software and solid understanding of thermodynamics and materials required."
+        ));
+        jobList.add(new Job(
+         "J-21",
+          "Civil Engineer",
+            "Engineering",
+            "Plan and oversee construction projects including roads, bridges, and buildings. Requires strong project management skills and knowledge of structural analysis."
+        ));
+        
+        jobList.add(new Job(
+             "J-22",
+            "Electrical Engineer",
+            "Engineering",
+            "Develop and test electrical systems and equipment. Must have experience with circuit design, signal processing, and electrical safety standards."
+        ));
+        jobList.add(new Job(
+                "J-23",
+            "Registered Nurse",
+            "Healthcare",
+            "Provide patient care, administer medications, and assist in treatment plans. Strong communication, empathy, and knowledge of clinical procedures are essential."
         ));
     }
 
@@ -546,97 +625,107 @@ public class AllDataInitialize {
     }
 
     private void initializeJobApplication() {
-        jobApplicationList.add(new JobApplication(
-                "JA-1",
-                jobPostingList.getData(2),
-                studentList.getData(1)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-1", jobPostingList.getData(2),
-                studentList.getData(1)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-2",
-                jobPostingList.getData(6),
-                studentList.getData(2)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-3",
-                jobPostingList.getData(1),
-                studentList.getData(4)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-4",
-                jobPostingList.getData(3),
-                studentList.getData(6)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-5",
-                jobPostingList.getData(4),
-                studentList.getData(5)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-6", jobPostingList.getData(5),
-                studentList.getData(3)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-7",
-                jobPostingList.getData(8),
-                studentList.getData(1)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-8",
-                jobPostingList.getData(7),
-                studentList.getData(2)
-        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-1",
+//                jobPostingList.getData(2),
+//                studentList.getData(1)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-1", jobPostingList.getData(2),
+//                studentList.getData(1)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-2",
+//                jobPostingList.getData(6),
+//                studentList.getData(2)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-3",
+//                jobPostingList.getData(1),
+//                studentList.getData(4)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-4",
+//                jobPostingList.getData(3),
+//                studentList.getData(6)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-5",
+//                jobPostingList.getData(4),
+//                studentList.getData(5)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-6", jobPostingList.getData(5),
+//                studentList.getData(3)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-7",
+//                jobPostingList.getData(8),
+//                studentList.getData(1)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-8",
+//                jobPostingList.getData(7),
+//                studentList.getData(2)
+//        ));
     }
 
     private void initializeStudentSkillList() {
         studentSkillList.add(new StudentSkill(
+                "SKK-1",
                 studentList.getData(1),
                 skillList.getData(1),
                 1
         ));
         studentSkillList.add(new StudentSkill(
+                "SKK-2",
                 studentList.getData(1),
                 skillList.getData(1),
                 2
         ));
         studentSkillList.add(new StudentSkill(
+                "SKK-3",
                 studentList.getData(2),
                 skillList.getData(2),
                 3
         ));
         studentSkillList.add(new StudentSkill(
+                "SKK-4",
                 studentList.getData(3),
                 skillList.getData(3),
                 4
         ));
         studentSkillList.add(new StudentSkill(
+                "SKK-5",
                 studentList.getData(4),
                 skillList.getData(4),
                 5
         ));
         studentSkillList.add(new StudentSkill(
+                "SKK-6",
                 studentList.getData(1),
                 skillList.getData(5),
                 1
         ));
         studentSkillList.add(new StudentSkill(
+                "SKK-7",
                 studentList.getData(1),
                 skillList.getData(6),
                 2
         ));
         studentSkillList.add(new StudentSkill(
+                "SKK-8",
                 studentList.getData(2),
                 skillList.getData(7), 3
         ));
         studentSkillList.add(new StudentSkill(
+                "SKK-9",
                 studentList.getData(3),
                 skillList.getData(8),
                 4
         ));
         studentSkillList.add(new StudentSkill(
+                "SKK-10",
                 studentList.getData(4),
                 skillList.getData(9),
                 4
@@ -729,6 +818,4 @@ public class AllDataInitialize {
     public ListInterface<JobPosting> getJobPostingList() {
         return jobPostingList;
     }
-
-
 }
