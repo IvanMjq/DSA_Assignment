@@ -53,6 +53,9 @@ public class StudentControl {
                 case 3:
                     removeStudent();
                     break;
+                case 4:
+                    updateStudent();
+                    break;
                 default:
                     System.out.println("This is an invalid option!!!");
 
@@ -65,8 +68,8 @@ public class StudentControl {
         if(studentList.size() > 0){
             
             for (Student student : studentList) {
-                System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-                System.out.printf("| %-5s | %-30s | %-30s | %-5s | %-15s | %-15s | %-15s | %-15s | %-15s | %-30s | %-30s | %-30s | %-5s | %-30s |\n",
+                System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-30s |\n",
                     student.getId(),
                     student.getName(),
                     student.getPassword(),
@@ -83,7 +86,7 @@ public class StudentControl {
                     convertArrayToString(student.getDesiredJobTypes())
                 );
             }
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
     
@@ -99,6 +102,7 @@ public class StudentControl {
                 }
             }
         }
+        
         return result;
     }
     
@@ -203,6 +207,314 @@ public class StudentControl {
         return true;
     }
     
+    public void updateStudent() {
+        studentUI.removeStudentUI();
+        studentListing();
+        
+        int studentPosition = 0;
+        do{
+            System.out.print("Enter ID, (Q=Quit): ");
+            String selectedPost = scanner.nextLine().trim();
+            studentPosition = findStudent(selectedPost);
+            
+            if(Character.toUpperCase(selectedPost.charAt(0)) == 'Q'){
+                studentPosition = -1;
+            }
+            
+            if(studentPosition == 0){
+                System.out.println("ID Not Found");
+            }
+        }while(studentPosition == 0);
+        
+        if(studentPosition != -1){
+            Student oriData     = studentList.getData(studentPosition);
+            updateStudentDetails(oriData);
+            System.out.println(oriData);
+            Student updatedData     = studentList.getData(studentPosition);
+            System.out.println(updatedData);
+        }
+    }
+    
+    public void updateStudentDetails(Student ori) {
+        int option = 0;
+
+        do {
+            option = studentUI.updateStudentMenu();
+            switch (option) {
+                case 0:
+                    System.out.println("Exiting Update Menu...");
+                    break;
+                case 1:
+                    updateName(ori);
+                    break;
+                case 2:
+                    updatePassword(ori);
+                    break;
+                case 3:
+                    updateAge(ori);
+                    break;
+                case 4:
+                    updateStreetAddress(ori);
+                    break;
+                case 5:
+                    updateArea(ori);
+                    break;
+                case 6:
+                    updateState(ori);
+                    break;
+                case 7:
+                    updateEmail(ori);
+                    break;
+                case 8:
+                    updateAchievement(ori);
+                    break;
+                case 9:
+                    updateEducation(ori);
+                    break;
+                case 10:
+                    updateYearOfExp(ori);
+                    break;
+                default:
+                    System.out.println("This is an invalid option!!!");
+
+            }
+        } while (option != 0);
+    }
+     
+    public void updateName(Student ori) {
+        boolean loop = true;
+        while(loop) {
+            System.out.print("Enter Name: ");
+            String input = scanner.nextLine().trim();
+            
+            if(studentUI.nameValidation(input)){
+               boolean isConfirm = studentUI.confirmation("Confirm " + ori.getName() + " as update Student?");
+               if(isConfirm){
+                    ori.setName(input);
+                    System.out.println("Student update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+                loop = false;
+            }
+        }
+    }
+    
+    public void updatePassword(Student ori) {
+        boolean loop = true;
+        while(loop) {
+            System.out.print("Enter Password: ");
+            String input = scanner.nextLine().trim();
+            
+            if(studentUI.passwordValidation(input)){
+                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getPassword() + " as update Student?");
+                if(isConfirm){
+                    ori.setPassword(input);
+                    System.out.println("Student update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+                loop = false;
+            }
+        }
+    }
+    
+    public void updateAge(Student ori) {
+        boolean loop = true;
+        while(loop) {
+            System.out.print("Enter Password: ");
+            String input = scanner.nextLine().trim();
+            
+            if(studentUI.ageValidation(input)){
+                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getAge()+ " as update Student?");
+                if(isConfirm){
+                    ori.setAge(Integer.parseInt(input));
+                    System.out.println("Student update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+                loop = false;
+            }
+        }
+    }
+    
+    public void updateStreetAddress(Student ori) {
+        System.out.print("Enter Street Address: ");
+        String input = scanner.nextLine().trim();
+            
+       
+        boolean isConfirm = studentUI.confirmation("Confirm " + ori.getStreetAddress()+ " as update Student?");
+        if(isConfirm){
+            ori.setStreetAddress(input);
+            System.out.println("Student update successfully!");
+        }else {
+            System.out.println("Failed to update.");
+        }
+    }
+    
+    public void updateArea(Student ori) {
+        boolean loop = true;
+        while(loop){
+            System.out.print("Enter Area: ");
+            String input = scanner.nextLine().trim();
+            
+            if(studentUI.alphabetValidation(input)){
+                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getArea()+ " as update Student?");
+                if(isConfirm){
+                    ori.setArea(input);
+                    System.out.println("Student update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+                loop = false;
+            }
+        }
+    }
+    
+    public void updateState(Student ori) {
+        boolean loop = true;
+        while(loop){
+            System.out.print("Enter State: ");
+            String input = scanner.nextLine().trim();
+            
+            if(studentUI.alphabetValidation(input)){
+                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getState()+ " as update Student?");
+                if(isConfirm){
+                    ori.setState(input);
+                    System.out.println("Student update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+                loop = false;
+            }
+        }
+    }
+    
+
+    
+    public void updateEmail(Student ori) {
+        boolean loop = true;
+        while(loop){
+            System.out.print("Enter Email: ");
+            String input = scanner.nextLine().trim();
+            
+            if(studentUI.emailValidation(input)){
+                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getEmail()+ " as update Student?");
+                if(isConfirm){
+                    ori.setEmail(input);
+                    System.out.println("Student update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+                loop = false;
+            }
+        }
+    }
+    
+    public void updateAchievement(Student ori) {
+        boolean loop = true;
+        while(loop){
+            System.out.print("Enter Achievement: ");
+            String input = scanner.nextLine().trim();
+            
+            if(studentUI.achievementValidation(input)){
+                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getAchievement()+ " as update Student?");
+                if(isConfirm){
+                    ori.setAchievement(input);
+                    System.out.println("Student update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+                loop = false;
+            }
+        }
+    }
+    
+    public void updateEducation(Student ori) {
+        boolean loop = true;
+        while(loop){
+            System.out.print("Enter Education: ");
+            String input = scanner.nextLine().trim();
+            
+            if(studentUI.educationValidation(input)){
+                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getEducation()+ " as update Student?");
+                if(isConfirm){
+                    ori.setEducation(input);
+                    System.out.println("Student update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+                loop = false;
+            }
+        }
+    }
+    
+    public void updateYearOfExp(Student ori) {
+        boolean loop = true;
+        while(loop){
+            System.out.print("Enter Years Of Experience: ");
+            String input = scanner.nextLine().trim();
+            
+            if(studentUI.digitValidation(input)){
+                boolean isConfirm = studentUI.confirmation("Confirm " + ori.getYearsOfExperience()+ " as update Student?");
+                if(isConfirm){
+                    ori.setYearsOfExperience(Integer.parseInt(input));
+                    System.out.println("Student update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+                loop = false;
+                
+            }
+        }
+    }
+    
+    public void removeStudent() {
+        studentUI.removeStudentUI();
+        studentListing();
+        
+        int studentPosition = 0;
+        do{
+            System.out.print("Enter ID, (Q=Quit): ");
+            String selectedPost = scanner.nextLine().trim();
+            studentPosition = findStudent(selectedPost);
+            
+            if(Character.toUpperCase(selectedPost.charAt(0)) == 'Q'){
+                studentPosition = -1;
+            }
+            
+            if(studentPosition == 0){
+                System.out.println("ID Not Found");
+            }
+        }while(studentPosition == 0);
+        
+        if(studentPosition != -1){
+            Student oriData = studentList.getData(studentPosition);
+            System.out.println(oriData);
+            boolean isConfirm = studentUI.confirmation("Confirm " + oriData.getId() + " as remove Student?");
+            
+            if(isConfirm){
+                studentList.remove(studentPosition);
+                studentListing();
+                System.out.println("Student remove successfully!");
+            }else {
+                System.out.println("Failed to remove Student.");
+            }
+        }
+    }
+    
+    public int findStudent(String input) {
+        int count   = 1;
+        int noFound = 0;
+        for (int i = 1; i <= studentList.size(); i++) {
+            if (studentList.getData(i).getId().equalsIgnoreCase(input)) {
+                return count;
+            }
+            count++;
+        }
+        return noFound;
+    }
+    
     public String generateStudentID() {
         String id;
         if(studentList.getLastData() != null){
@@ -212,9 +524,5 @@ public class StudentControl {
         }else{
             return "STU-" + 1;
         }
-    }
-    
-    public void removeStudent() {
-        
     }
 }

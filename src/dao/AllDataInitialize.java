@@ -360,7 +360,7 @@ public class AllDataInitialize {
                 "alan.chopper@example.com",
                 "Dean's List Award",
                 "Bachelor of Computer Science",
-                1));
+                1, "Engineering", "Healthcare"));
 
         studentList.add(new Student(
                 "STU-2",
@@ -375,7 +375,7 @@ public class AllDataInitialize {
                 "brenda.lee@example.com",
                 "Hackathon Winner",
                 "Bachelor of Software Engineering",
-                2));
+                2, "Healthcare"));
 
         studentList.add(new Student(
                 "STU-3",
@@ -390,7 +390,7 @@ public class AllDataInitialize {
                 "charles.tan@example.com",
                 "Top GPA",
                 "Diploma in Information Technology",
-                1));
+                1, "Healthcare"));
 
         studentList.add(new Student(
                 "STU-4",
@@ -405,7 +405,7 @@ public class AllDataInitialize {
                 "diana.wong@example.com",
                 "Intern of the Year",
                 "Bachelor of Computer Science",
-                2));
+                2, "Healthcare"));
 
         studentList.add(new Student(
                 "STU-5",
@@ -420,7 +420,7 @@ public class AllDataInitialize {
                 "ethan.lim@example.com",
                 "Research Assistant",
                 "Master of Data Science",
-                3));
+                3, "Healthcare"));
 
         studentList.add(new Student(
                 "STU-6",
@@ -435,7 +435,7 @@ public class AllDataInitialize {
                 "fiona.teh@example.com",
                 "Coding Bootcamp Grad",
                 "Diploma in Computer Science",
-                1));
+                1, "Engineering"));
 
         studentList.add(new Student(
                 "STU-7",
@@ -450,7 +450,7 @@ public class AllDataInitialize {
                 "george.ng@example.com",
                 "Volunteer Mentor",
                 "Bachelor of Software Engineering",
-                1));
+                1,"Engineering"));
 
         studentList.add(new Student(
                 "STU-8",
@@ -465,7 +465,7 @@ public class AllDataInitialize {
                 "hannah.yap@example.com",
                 "Scholarship Recipient",
                 "Bachelor of IT",
-                2));
+                2, "Engineering"));
 
         studentList.add(new Student(
                 "STU-9",
@@ -480,7 +480,7 @@ public class AllDataInitialize {
                 "ivan.raj@example.com",
                 "Startup Founder",
                 "Bachelor of Computer Science",
-                3));
+                3, "Engineering"));
 
         studentList.add(new Student(
                 "STU-10",
@@ -495,7 +495,7 @@ public class AllDataInitialize {
                 "jasmine.koh@example.com",
                 "Exchange Program Alumni",
                 "Bachelor of AI",
-                2));
+                2, "Engineering"));
     }
 
     private void initializeCompanyJobList() {

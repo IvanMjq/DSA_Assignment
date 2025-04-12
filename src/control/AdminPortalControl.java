@@ -35,10 +35,10 @@ public class AdminPortalControl {
         this.jobList            = jobList;
         this.adminPortalUI      = new AdminPortalUI(this);
         this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList);
-        runJobPostingManagement();
+        runAdminPortalManagement();
     }
     
-    public void runJobPostingManagement() {
+    public void runAdminPortalManagement() {
         int option = 0;
 
         do {

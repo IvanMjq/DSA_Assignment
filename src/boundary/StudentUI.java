@@ -39,7 +39,25 @@ public class StudentUI {
     
     public void studentListingUI() {
         System.out.println("--------------------------------------");
-        System.out.println("Job Post Listing");
+        System.out.println("Student Listing");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15s | %-15s | %-30s | %-30s | %-40s | %-20s | %-30s |\n",
+                    "ID",
+                    "Name",
+                    "Password",
+                    "Age",
+                    "Street Address",
+                    "Area",
+                    "State",
+                    "Latitute",
+                    "Longitute",
+                    "Email",
+                    "Achievement",
+                    "Education",
+                    "Year Of Experience",
+                    "Desired Job Types"
+                );
+        
     }
     
     public void addStudentUI(){
@@ -286,6 +304,38 @@ public class StudentUI {
             return false;
         }
         return true;
+    }
+    
+    public void updateStudentUI() {
+        System.out.println("--------------------------------------");
+        System.out.println("Update Student Details");
+    } 
+    
+    public int updateStudentMenu() {
+        System.out.println("\nStudent Update Menu");
+        System.out.println("=====================================");
+        System.out.println("1. Name");
+        System.out.println("2. Password");
+        System.out.println("3. Age");
+        System.out.println("4. Street Address");
+        System.out.println("5. Area");
+        System.out.println("6. State");
+        System.out.println("7. Email");
+        System.out.println("8. Achievement");
+        System.out.println("9. Education");
+        System.out.println("10. Year Of Experience");
+        System.out.println("0. Exit");
+        System.out.print("Enter option: ");
+
+        int option = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println();
+        return option;
+    }
+    
+    public void removeStudentUI() {
+        System.out.println("--------------------------------------");
+        System.out.println("Remove Student Post");
     }
     
     public boolean confirmation(String message) {
