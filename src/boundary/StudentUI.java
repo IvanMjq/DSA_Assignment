@@ -21,7 +21,7 @@ public class StudentUI {
     }
      
     public int adminStudentMenu() {
-        System.out.println("\nStudent Portal");
+        System.out.println("\nStudent Menu");
         System.out.println("=====================================");
         System.out.println("1. Listing");
         System.out.println("2. Register");
@@ -37,11 +37,13 @@ public class StudentUI {
         return option;
     }
     
+
+    
     public void studentListingUI() {
         System.out.println("--------------------------------------");
         System.out.println("Student Listing");
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15s | %-15s | %-30s | %-30s | %-40s | %-20s | %-30s |\n",
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15s | %-15s | %-30s | %-30s | %-40s | %-20s | %-70s |\n",
                     "ID",
                     "Name",
                     "Password",
@@ -165,8 +167,11 @@ public class StudentUI {
         
         boolean loop = true;
         int i = 0;
-        String[] jobTypes = new String[4];
+        String[] jobTypes = new String[3];
         while(loop) {
+            if(i == 3)
+                break;
+            
             int[] option = studentControl.jobTypeList();
             System.out.print("Choose min 1 to 3 Job Type.");
             System.out.print("Chooese Desire Job Type, Q=Done: ");
@@ -176,20 +181,20 @@ public class StudentUI {
                 if (i == 0) 
                     System.out.println("You must select at least one job type.");
                 break;
-            } else  if(i == 3){
-                break;
-            }
+            } 
             
             if(digitValidation(input)){
                 int intInput = Integer.parseInt(input);
                 if( (intInput <= option.length)) {
-                    if (studentControl.isJobTypeDuplicateEnter(intInput, jobTypes)) {
-                        jobTypes[i] = studentControl.getJobType(intInput);
+                    if (studentControl.noJobTypeDuplicateEnter(option[intInput - 1], jobTypes)) {
+                        jobTypes[i] = studentControl.getJobType(option[intInput - 1]);
+                         i++;
                     }
+                } else {
+                    System.out.println("You must select existed number only.");
                 }
             }
            
-            i++;
         }
         
         Student newStudent = new Student(studentControl.generateStudentID(), name, password, age, address, area, state,3.1390, 101.6869, email, achievement, education, yearsOfExperience, jobTypes);
@@ -325,6 +330,7 @@ public class StudentUI {
         System.out.println("8. Achievement");
         System.out.println("9. Education");
         System.out.println("10. Year Of Experience");
+        System.out.println("11. Desire Job Type");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
 
