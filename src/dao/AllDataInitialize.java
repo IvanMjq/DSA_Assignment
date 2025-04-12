@@ -6,8 +6,10 @@ package dao;
 
 import adt.*;
 import entity.*;
+import entity.Interview.InterviewStatus;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -24,6 +26,7 @@ public class AllDataInitialize {
     private ListInterface<Skill> skillList = new DoublyLinkedList<>();
     private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
     private ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
+    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
 
     public AllDataInitialize() {
 
@@ -44,6 +47,8 @@ public class AllDataInitialize {
         initializeStudentSkillList();
 
         initializeJobRequiredSkill();
+        
+        initializeInterview();
 
     }
 
@@ -783,6 +788,21 @@ public class AllDataInitialize {
                 skillList.getData(9),
                 5
         ));
+    }
+    
+    public void initializeInterview(){
+        
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 1, 13, 0), InterviewStatus.INTERVIEWED, 78));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 2, 14, 0), InterviewStatus.OFFERED, 80));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 3, 9, 0), InterviewStatus.REJECTED, 45));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 5, 10, 0), InterviewStatus.ACCEPTED, 92));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 7, 15, 0), InterviewStatus.INTERVIEW_SCHEDULED, 56));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 8, 16, 0), InterviewStatus.DECLINED, 63));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 9, 13, 0), InterviewStatus.OFFERED, 89));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.INTERVIEWED, 77));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.ACCEPTED, 95));
+        
     }
 
     // -----------------

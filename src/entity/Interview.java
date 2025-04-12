@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 /**
  *
- * @author Secret
+ * @author Lim Zi Qi
  */
 public class Interview implements Serializable {
 
