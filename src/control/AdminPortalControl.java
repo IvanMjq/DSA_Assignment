@@ -29,15 +29,16 @@ public class AdminPortalControl {
     }
 
     public AdminPortalControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList) {
-        this.studentList = studentList;
-        this.studentSkillList = studentSkillList;
-        this.skillList = skillList;
-        this.jobList = jobList;
-        this.adminPortalUI = new AdminPortalUI(this);
-        this.studentControl = new StudentControl(studentList, skillList, studentSkillList, jobList);
+        this.studentList        = studentList;
+        this.studentSkillList   = studentSkillList;
+        this.skillList          = skillList;
+        this.jobList            = jobList;
+        this.adminPortalUI      = new AdminPortalUI(this);
+        this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList);
+        runAdminPortalManagement();
     }
-
-    public void runJobPostingManagement() {
+    
+    public void runAdminPortalManagement() {
         int option = 0;
 
         do {
