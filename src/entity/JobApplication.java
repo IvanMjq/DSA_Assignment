@@ -61,12 +61,14 @@ public class JobApplication implements Serializable {
 
     public void setAppliedDateTime(LocalDateTime appliedDateTime) {
         this.appliedDateTime = appliedDateTime;
+    public Interview getInterview() {
+        return interview;
     }
 
     public void setInterview(Interview interview) {
         this.interview = interview;
     }
-  
+    
     @Override
     public int hashCode() {
         int hash = 1;
@@ -91,6 +93,5 @@ public class JobApplication implements Serializable {
         return "JobApplication{" + "id='" + id + '\'' + ", jobPost=" + jobPost +
            ", student=" + student + ", appliedDateTime=" + appliedDateTime + '}';
     }
-    
 
 }

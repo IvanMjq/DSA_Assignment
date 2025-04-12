@@ -4,8 +4,6 @@
  */
 package entity;
 
-import adt.DoublyLinkedList;
-import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -19,7 +17,9 @@ public class Student implements Serializable {
     private String name;
     private String password;
     private int age;
-    private String address;
+    private String streetAddress;
+    private String area;
+    private String state;
     private double latitude;
     private double longitude;
     private String email;
@@ -33,14 +33,16 @@ public class Student implements Serializable {
         this.name               = name;
         this.password           = password;
         this.age                = age;
-        this.address            = address;
+        this.streetAddress      = streetAddress;
+        this.area               = area;
+        this.state              = state;
         this.latitude           = latitude;
         this.longitude          = longitude;
         this.email              = email;
         this.achievement        = achievement;
         this.education          = education;
         this.yearsOfExperience  = yearsOfExperience;
-        this.desiredJobTypes = desireJobTypes;
+        this.desiredJobTypes    = desireJobTypes;
     }
 
     public String getId() {
@@ -139,11 +141,7 @@ public class Student implements Serializable {
         this.desiredJobTypes = desiredJobTypes;
     }
     
-    @Override
-    public int hashCode() {
-        int hash = 1;
-        return hash;
-    }
+    
     
     @Override
     public boolean equals(Object obj) {
@@ -159,20 +157,6 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder jobsTypeStr = new StringBuilder();
-        if (desiredJobTypes != null) {
-            for (String job : desiredJobTypes) {
-                jobsTypeStr.append(job).append(", ");
-            }
-            if (jobsTypeStr.length() > 0) {
-                jobsTypeStr.setLength(jobsTypeStr.length() - 2); // remove last comma
-            }
-        }
-        
-        return "Student{" +
-            "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age +
-            ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude +
-            ", email=" + email + ", achievement=" + achievement + ", education=" + education +
-            ", yearsOfExperience=" + yearsOfExperience + ", desiredJobTypes=[" + jobsTypeStr + "]" + '}';
+        return "Student{" + "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age + ", streetAddress=" + streetAddress + ", area=" + area + ", state=" + state + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + '}';
     }
 }

@@ -4,8 +4,6 @@
  */
 package entity;
 
-import adt.DoublyLinkedList;
-import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalDate;
@@ -20,19 +18,18 @@ public class JobPosting implements Serializable {
     private Company company;
     private Job job;
     private String description;
-    private String salaryRange;
+    private double minimumSalary;
+    private double maximumSalary;
     private int requiredExperience; // Year (testing purpose)
     private LocalDate  datePosted;
-    
-    private ListInterface<JobRequiredSkill> jobRequiredSkillsList = new DoublyLinkedList<>();
-    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
 
-    public JobPosting(String id, Company company, Job job, String description, String salaryRange, int requiredExperience, LocalDate datePosted) {
+    public JobPosting(String id, Company company, Job job, String description, double minimumSalary, double maximumSalary, int requiredExperience, LocalDate datePosted) {
         this.id = id;
         this.company = company;
         this.job = job;
         this.description = description;
-        this.salaryRange = salaryRange;
+        this.minimumSalary = minimumSalary;
+        this.maximumSalary = maximumSalary;
         this.requiredExperience = requiredExperience;
         this.datePosted = datePosted;
     }
@@ -41,71 +38,64 @@ public class JobPosting implements Serializable {
         return id;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public Job getJob() {
-        return job;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getSalaryRange() {
-        return salaryRange;
-    }
-    public int getRequiredExperience() {
-        return requiredExperience;
-    }
-
-    public LocalDate getDatePosted() {
-        return datePosted;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Company getCompany() {
+        return company;
     }
 
     public void setCompany(Company company) {
         this.company = company;
     }
 
+    public Job getJob() {
+        return job;
+    }
+
     public void setJob(Job job) {
         this.job = job;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setSalaryRange(String salaryRange) {
-        this.salaryRange = salaryRange;
+    public double getMinimumSalary() {
+        return minimumSalary;
     }
-    
-    public void setDatePosted(LocalDate datePosted) {
-        this.datePosted = datePosted;
+
+    public void setMinimumSalary(int minimumSalary) {
+        this.minimumSalary = minimumSalary;
+    }
+
+    public double getMaximumSalary() {
+        return maximumSalary;
+    }
+
+    public void setMaximumSalary(int maximumSalary) {
+        this.maximumSalary = maximumSalary;
+    }
+
+    public int getRequiredExperience() {
+        return requiredExperience;
     }
 
     public void setRequiredExperience(int requiredExperience) {
         this.requiredExperience = requiredExperience;
     }
 
-    public ListInterface<JobRequiredSkill> getJobRequiredSkillsList() {
-        return jobRequiredSkillsList;
+    public LocalDate getDatePosted() {
+        return datePosted;
     }
 
-    public void setJobRequiredSkillsList(ListInterface<JobRequiredSkill> jobRequiredSkillsList) {
-        this.jobRequiredSkillsList = jobRequiredSkillsList;
-    }
-
-    public ListInterface<JobApplication> getJobApplicationList() {
-        return jobApplicationList;
-    }
-
-    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
-        this.jobApplicationList = jobApplicationList;
+    public void setDatePosted(LocalDate datePosted) {
+        this.datePosted = datePosted;
     }
     
     @Override
@@ -129,9 +119,7 @@ public class JobPosting implements Serializable {
 
     @Override
     public String toString() {
-        return "JobPosting{" + "id=" + id + ", company=" + company + ", job=" + job + ", description=" + description + ", salaryRange=" + salaryRange + ", requiredExperience=" + requiredExperience + ", datePosted=" + datePosted + ", jobRequiredSkillsList=" + jobRequiredSkillsList + ", jobApplicationList=" + jobApplicationList + '}';
-    }
-    
-    
+        return "JobPosting{" + "id=" + id + ", company=" + company + ", job=" + job + ", description=" + description + ", salaryRange=" + minimumSalary + " - " + maximumSalary + ", requiredExperience=" + requiredExperience + ", datePosted=" + datePosted + '}';
+    }       
     
 }

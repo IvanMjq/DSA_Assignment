@@ -4,8 +4,6 @@
  */
 package entity;
 
-import adt.DoublyLinkedList;
-import adt.ListInterface;
 import java.io.Serializable;
 
 /**
@@ -39,7 +37,7 @@ public class Skill implements Serializable {
 
     @Override
     public String toString() {
-        return "Skill{" + "id=" + id + ", name=" + name + ", studentSkillsList=" + '}';
+        return "Skill{" + "id=" + id + ", name=" + name + '}';
     }
-    
+ 
 }

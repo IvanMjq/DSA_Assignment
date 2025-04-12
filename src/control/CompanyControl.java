@@ -99,7 +99,7 @@ public class CompanyControl {
     }
     
     public boolean isValidPhone(String phone) {
-        return phone != null && phone.matches("^\\d{3}-\\d{7}$");
+        return phone != null && phone.matches("^\\d{2,3}-\\d{7}$");
     }
     
     public boolean isValidEmail(String email) {
