@@ -12,7 +12,7 @@ import adt.ListInterface;
  */
 public class IdGeneration {
 
-    public <T extends Identifiable> String generateID(ListInterface<T> list, String prefix) {
+    public static <T extends Identifiable> String generateID(ListInterface<T> list, String prefix) {
         if (list.getLastData() != null) {
             String id = list.getLastData().getId();
             int num = Integer.parseInt(id.substring(prefix.length() + 1));

@@ -36,10 +36,10 @@ public class StudentPortalControl {
         this.jobList            = jobList;
         this.studentPortalUI    = new StudentPortalUI(this);
         this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList);
-        runJobPostingManagement();
+        runStudentPortalManagement();
     }
     
-    public void runJobPostingManagement() {
+    public void runStudentPortalManagement() {
         int option = 0;
 
         do {

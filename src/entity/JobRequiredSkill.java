@@ -48,7 +48,7 @@ public class JobRequiredSkill implements Serializable {
 
     @Override
     public String toString() {
-        return "RequiredSkill{skill=" + "Job Post=" + jobPost + "Skill=" + skill + ", importance=" + importance + "}";
+        return "JobRequiredSkill{" + "jobPost=" + jobPost + ", skill=" + skill + ", importance=" + importance + '}';
     }
 
 }

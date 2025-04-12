@@ -4,29 +4,28 @@
  */
 package entity;
 
-import adt.DoublyLinkedList;
-import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalTime;
+import utility.IdGeneration;
 
 /**
  *
  * @author ivanmjq
  */
-public class Company implements Serializable {
-    
+public class Company implements Serializable, IdGeneration.Identifiable {
+
     private String id;
     private String name;
     private String phone;
     private String email;
     private String streetAddress;
     private String area;
-    private String state; 
+    private String state;
     private double latitude;
     private double longitude;
     private int foundedYear;
-    
+
     private LocalTime interviewStartTime;
     private LocalTime interviewEndTime;
 
@@ -45,10 +44,11 @@ public class Company implements Serializable {
         this.interviewEndTime = interviewEndTime;
     }
 
+    @Override
     public String getId() {
         return id;
     }
-        
+
     public void setId(String id) {
         this.id = id;
     }
@@ -100,19 +100,19 @@ public class Company implements Serializable {
     public void setState(String state) {
         this.state = state;
     }
-    
+
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-    
+
     public double getLatitude() {
         return latitude;
     }
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
-    }   
-    
+    }
+
     public double getLongitude() {
         return longitude;
     }
@@ -140,13 +140,13 @@ public class Company implements Serializable {
     public void setInterviewEndTime(LocalTime interviewEndTime) {
         this.interviewEndTime = interviewEndTime;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 1;
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -156,13 +156,24 @@ public class Company implements Serializable {
             return false;
         }
         final Company other = (Company) obj;
-        return Objects.equals(this.id, other.id); 
+        return Objects.equals(this.id, other.id);
         // Check if the id are same
     }
 
     @Override
     public String toString() {
-        return "Company{" + "id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", streetAddress=" + streetAddress + ", area=" + area + ", state=" + state + ", latitude=" + latitude + ", longitude=" + longitude + ", foundedYear=" + foundedYear + ", interviewStartTime=" + interviewStartTime + ", interviewEndTime=" + interviewEndTime + '}';
+        return "\nCompany ID         : " + id
+                + "\nName               : " + name
+                + "\nPhone              : " + phone
+                + "\nEmail              : " + email
+                + "\nStreet Address     : " + streetAddress
+                + "\nArea               : " + area
+                + "\nState              : " + state
+                + "\nLatitude           : " + latitude
+                + "\nLongitude          : " + longitude
+                + "\nFounded Year       : " + foundedYear
+                + "\nInterview Start    : " + interviewStartTime.toString()
+                + "\nInterview End      : " + interviewEndTime.toString();
     }
 
 }

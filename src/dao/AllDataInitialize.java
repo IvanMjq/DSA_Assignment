@@ -365,7 +365,7 @@ public class AllDataInitialize {
                 "alan.chopper@example.com",
                 "Dean's List Award",
                 "Bachelor of Computer Science",
-                1));
+                1, "Engineering", "Healthcare"));
 
         studentList.add(new Student(
                 "STU-2",
@@ -380,7 +380,7 @@ public class AllDataInitialize {
                 "brenda.lee@example.com",
                 "Hackathon Winner",
                 "Bachelor of Software Engineering",
-                2));
+                2, "Healthcare"));
 
         studentList.add(new Student(
                 "STU-3",
@@ -395,7 +395,7 @@ public class AllDataInitialize {
                 "charles.tan@example.com",
                 "Top GPA",
                 "Diploma in Information Technology",
-                1));
+                1, "Healthcare"));
 
         studentList.add(new Student(
                 "STU-4",
@@ -410,7 +410,7 @@ public class AllDataInitialize {
                 "diana.wong@example.com",
                 "Intern of the Year",
                 "Bachelor of Computer Science",
-                2));
+                2, "Healthcare"));
 
         studentList.add(new Student(
                 "STU-5",
@@ -425,7 +425,7 @@ public class AllDataInitialize {
                 "ethan.lim@example.com",
                 "Research Assistant",
                 "Master of Data Science",
-                3));
+                3, "Healthcare"));
 
         studentList.add(new Student(
                 "STU-6",
@@ -440,7 +440,7 @@ public class AllDataInitialize {
                 "fiona.teh@example.com",
                 "Coding Bootcamp Grad",
                 "Diploma in Computer Science",
-                1));
+                1, "Engineering"));
 
         studentList.add(new Student(
                 "STU-7",
@@ -455,7 +455,7 @@ public class AllDataInitialize {
                 "george.ng@example.com",
                 "Volunteer Mentor",
                 "Bachelor of Software Engineering",
-                1));
+                1,"Engineering"));
 
         studentList.add(new Student(
                 "STU-8",
@@ -470,7 +470,7 @@ public class AllDataInitialize {
                 "hannah.yap@example.com",
                 "Scholarship Recipient",
                 "Bachelor of IT",
-                2));
+                2, "Engineering"));
 
         studentList.add(new Student(
                 "STU-9",
@@ -485,7 +485,7 @@ public class AllDataInitialize {
                 "ivan.raj@example.com",
                 "Startup Founder",
                 "Bachelor of Computer Science",
-                3));
+                3, "Engineering"));
 
         studentList.add(new Student(
                 "STU-10",
@@ -500,39 +500,39 @@ public class AllDataInitialize {
                 "jasmine.koh@example.com",
                 "Exchange Program Alumni",
                 "Bachelor of AI",
-                2));
+                2, "Engineering"));
     }
 
     private void initializeCompanyJobList() {
-        companyJobList.add(new CompanyJob(companyList.getData(0), jobList.getData(0))); // ISJ - Software Engineer
-        companyJobList.add(new CompanyJob(companyList.getData(0), jobList.getData(1))); // ISJ - Data Analyst
+        companyJobList.add(new CompanyJob(companyList.getData(1), jobList.getData(0))); // ISJ - Software Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(1), jobList.getData(1))); // ISJ - Data Analyst
 
-        companyJobList.add(new CompanyJob(companyList.getData(1), jobList.getData(2))); // NextWave - Cybersecurity Analyst
-        companyJobList.add(new CompanyJob(companyList.getData(1), jobList.getData(3))); // NextWave - ML Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(2), jobList.getData(2))); // NextWave - Cybersecurity Analyst
+        companyJobList.add(new CompanyJob(companyList.getData(2), jobList.getData(3))); // NextWave - ML Engineer
 
-        companyJobList.add(new CompanyJob(companyList.getData(2), jobList.getData(4))); // CloudHive - Web Developer
-        companyJobList.add(new CompanyJob(companyList.getData(2), jobList.getData(0))); // CloudHive - Software Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(3), jobList.getData(4))); // CloudHive - Web Developer
+        companyJobList.add(new CompanyJob(companyList.getData(3), jobList.getData(0))); // CloudHive - Software Engineer
 
-        companyJobList.add(new CompanyJob(companyList.getData(3), jobList.getData(5))); // DataBridge - Mobile Dev
-        companyJobList.add(new CompanyJob(companyList.getData(3), jobList.getData(6))); // DataBridge - Cloud Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(4), jobList.getData(5))); // DataBridge - Mobile Dev
+        companyJobList.add(new CompanyJob(companyList.getData(4), jobList.getData(6))); // DataBridge - Cloud Engineer
 
-        companyJobList.add(new CompanyJob(companyList.getData(4), jobList.getData(7))); // Innova - DBA
-        companyJobList.add(new CompanyJob(companyList.getData(4), jobList.getData(4))); // Innova - Web Developer
+        companyJobList.add(new CompanyJob(companyList.getData(5), jobList.getData(7))); // Innova - DBA
+        companyJobList.add(new CompanyJob(companyList.getData(5), jobList.getData(4))); // Innova - Web Developer
 
-        companyJobList.add(new CompanyJob(companyList.getData(5), jobList.getData(8))); // QuantumWorks - AI Intern
-        companyJobList.add(new CompanyJob(companyList.getData(5), jobList.getData(5))); // QuantumWorks - Mobile Dev
+        companyJobList.add(new CompanyJob(companyList.getData(6), jobList.getData(8))); // QuantumWorks - AI Intern
+        companyJobList.add(new CompanyJob(companyList.getData(6), jobList.getData(5))); // QuantumWorks - Mobile Dev
 
-        companyJobList.add(new CompanyJob(companyList.getData(6), jobList.getData(9))); // Visionary - Full Stack Dev
-        companyJobList.add(new CompanyJob(companyList.getData(6), jobList.getData(2))); // Visionary - Cybersecurity Analyst
+        companyJobList.add(new CompanyJob(companyList.getData(7), jobList.getData(9))); // Visionary - Full Stack Dev
+        companyJobList.add(new CompanyJob(companyList.getData(7), jobList.getData(2))); // Visionary - Cybersecurity Analyst
 
-        companyJobList.add(new CompanyJob(companyList.getData(7), jobList.getData(1))); // GreenByte - Data Analyst
-        companyJobList.add(new CompanyJob(companyList.getData(7), jobList.getData(9))); // GreenByte - Full Stack Dev
+        companyJobList.add(new CompanyJob(companyList.getData(8), jobList.getData(1))); // GreenByte - Data Analyst
+        companyJobList.add(new CompanyJob(companyList.getData(8), jobList.getData(9))); // GreenByte - Full Stack Dev
 
-        companyJobList.add(new CompanyJob(companyList.getData(8), jobList.getData(6))); // NovaLink - Cloud Engineer
-        companyJobList.add(new CompanyJob(companyList.getData(8), jobList.getData(0))); // NovaLink - Software Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(9), jobList.getData(6))); // NovaLink - Cloud Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(9), jobList.getData(0))); // NovaLink - Software Engineer
 
-        companyJobList.add(new CompanyJob(companyList.getData(9), jobList.getData(7))); // PixelForge - DBA
-        companyJobList.add(new CompanyJob(companyList.getData(9), jobList.getData(3))); // PixelForge - ML Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(10), jobList.getData(7))); // PixelForge - DBA
+        companyJobList.add(new CompanyJob(companyList.getData(10), jobList.getData(3))); // PixelForge - ML Engineer
     }
 
     private void initializeJobPosting() {
@@ -739,53 +739,53 @@ public class AllDataInitialize {
 
     private void initializeJobRequiredSkill() {
         jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(0),
-                skillList.getData(0),
-                1
-        ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
                 jobPostingList.getData(1),
                 skillList.getData(1),
-                2
+                1
         ));
         jobRequiredSkillList.add(new JobRequiredSkill(
                 jobPostingList.getData(2),
                 skillList.getData(2),
-                3
+                2
         ));
         jobRequiredSkillList.add(new JobRequiredSkill(
                 jobPostingList.getData(3),
                 skillList.getData(3),
-                4
+                3
         ));
         jobRequiredSkillList.add(new JobRequiredSkill(
                 jobPostingList.getData(4),
                 skillList.getData(4),
-                5
+                4
         ));
         jobRequiredSkillList.add(new JobRequiredSkill(
                 jobPostingList.getData(5),
                 skillList.getData(5),
-                1
+                5
         ));
         jobRequiredSkillList.add(new JobRequiredSkill(
                 jobPostingList.getData(6),
                 skillList.getData(6),
-                2
+                1
         ));
         jobRequiredSkillList.add(new JobRequiredSkill(
                 jobPostingList.getData(7),
                 skillList.getData(7),
-                3
+                2
         ));
         jobRequiredSkillList.add(new JobRequiredSkill(
                 jobPostingList.getData(8),
                 skillList.getData(8),
+                3
+        ));
+        jobRequiredSkillList.add(new JobRequiredSkill(
+                jobPostingList.getData(9),
+                skillList.getData(9),
                 4
         ));
         jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(0),
-                skillList.getData(9),
+                jobPostingList.getData(10),
+                skillList.getData(10),
                 5
         ));
     }
@@ -807,35 +807,87 @@ public class AllDataInitialize {
 
     // -----------------
     // Getter and Setter
-    public ListInterface<Skill> getSkillList() {
-        return skillList;
+
+    public ListInterface<Company> getCompanyList() {
+        return companyList;
     }
 
-    public ListInterface<StudentSkill> getStudentSkillList() {
-        return studentSkillList;
+    public void setCompanyList(ListInterface<Company> companyList) {
+        this.companyList = companyList;
     }
 
-    public ListInterface<JobRequiredSkill> getJobRequiredSkillList() {
-        return jobRequiredSkillList;
+    public ListInterface<CompanyJob> getCompanyJobList() {
+        return companyJobList;
+    }
+
+    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
+        this.companyJobList = companyJobList;
     }
 
     public ListInterface<Job> getJobList() {
         return jobList;
     }
 
-    public ListInterface<Company> getCompanyList() {
-        return companyList;
+    public void setJobList(ListInterface<Job> jobList) {
+        this.jobList = jobList;
     }
 
-    public ListInterface<Student> getStudentList() {
-        return studentList;
+    public ListInterface<JobPosting> getJobPostingList() {
+        return jobPostingList;
+    }
+
+    public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
+        this.jobPostingList = jobPostingList;
     }
 
     public ListInterface<JobApplication> getJobApplicationList() {
         return jobApplicationList;
     }
 
-    public ListInterface<JobPosting> getJobPostingList() {
-        return jobPostingList;
+    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
+        this.jobApplicationList = jobApplicationList;
+    }
+
+    public ListInterface<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(ListInterface<Student> studentList) {
+        this.studentList = studentList;
+    }
+
+    public ListInterface<Skill> getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(ListInterface<Skill> skillList) {
+        this.skillList = skillList;
+    }
+
+    public ListInterface<StudentSkill> getStudentSkillList() {
+        return studentSkillList;
+    }
+
+    public void setStudentSkillList(ListInterface<StudentSkill> studentSkillList) {
+        this.studentSkillList = studentSkillList;
+    }
+
+    public ListInterface<JobRequiredSkill> getJobRequiredSkillList() {
+        return jobRequiredSkillList;
+    }
+
+    public void setJobRequiredSkillList(ListInterface<JobRequiredSkill> jobRequiredSkillList) {
+        this.jobRequiredSkillList = jobRequiredSkillList;
+    }
+    
+    // -----------------
+    
+    
+    public static void main(String[] args) {
+        AllDataInitialize dataInitialize = new AllDataInitialize();
+        
+        for (Job a : dataInitialize.getJobList()) {
+            System.out.println(a);
+        }
     }
 }
