@@ -17,6 +17,7 @@ public class Student implements Serializable {
     
     private String id;
     private String name;
+    private String password;
     private int age;
     private String address;
     private double latitude;
@@ -25,11 +26,14 @@ public class Student implements Serializable {
     private String achievement;
     private String education;
     private int yearsOfExperience;
-    private ListInterface<StudentSkill> studentSkill = new DoublyLinkedList<>();
+    
+    private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
+    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
 
-    public Student(String id, String name, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience) {
+    public Student(String id, String name, String password, int age, String address, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience) {
         this.id = id;
         this.name = name;
+        this.password = password;
         this.age = age;
         this.address = address;
         this.latitude = latitude;
@@ -54,6 +58,14 @@ public class Student implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getAge() {
@@ -120,12 +132,20 @@ public class Student implements Serializable {
         this.yearsOfExperience = yearsOfExperience;
     }
 
-    public ListInterface<StudentSkill> getStudentSkill() {
-        return studentSkill;
+    public ListInterface<StudentSkill> getStudentSkillList() {
+        return studentSkillList;
     }
 
-    public void setStudentSkill(ListInterface<StudentSkill> studentSkill) {
-        this.studentSkill = studentSkill;
+    public void setStudentSkillList(ListInterface<StudentSkill> studentSkillList) {
+        this.studentSkillList = studentSkillList;
+    }
+
+    public ListInterface<JobApplication> getJobApplicationList() {
+        return jobApplicationList;
+    }
+
+    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
+        this.jobApplicationList = jobApplicationList;
     }
     
     @Override
@@ -148,7 +168,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name + ", age=" + age + ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + ", studentSkill=" + studentSkill + '}';
+        return "Student{" + "id=" + id + ", name=" + name + ", password=" + password + ", age=" + age + ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude + ", email=" + email + ", achievement=" + achievement + ", education=" + education + ", yearsOfExperience=" + yearsOfExperience + ", studentSkillList=" + studentSkillList + ", jobApplicationList=" + jobApplicationList + '}';
     }
 
 }
