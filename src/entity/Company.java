@@ -4,17 +4,16 @@
  */
 package entity;
 
-import adt.DoublyLinkedList;
-import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalTime;
+import utility.IdGeneration;
 
 /**
  *
  * @author ivanmjq
  */
-public class Company implements Serializable {
+public class Company implements Serializable, IdGeneration.Identifiable {
     
     private String id;
     private String name;

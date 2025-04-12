@@ -16,9 +16,7 @@ public class CompanyManagementUI {
 
     public CompanyManagementUI() {
     }
-    
-    
-    
+        
     public int companyManagementMainMenu() {
         int option = -1; 
         boolean validInput = false; 
@@ -64,10 +62,43 @@ public class CompanyManagementUI {
     public String getName() {
         System.out.print("Enter Company Name : ");
         return sc.nextLine();
-    } 
+    }
+
+    public String getPhone() {
+        System.out.print("Enter Phone Number (e.g. 03-12345678): ");
+        return sc.nextLine();
+    }
+
+    public String getEmail() {
+        System.out.print("Enter Email Address: ");
+        return sc.nextLine();
+    }
+
+    public String getStreetAddress() {
+        System.out.print("Enter Street Address: ");
+        return sc.nextLine();
+    }
+
+    public String getArea() {
+        System.out.print("Enter Area: ");
+        return sc.nextLine();
+    }
+
+    public String getState() {
+        System.out.print("Enter State: ");
+        return sc.nextLine();
+    }
     
-    public void inValidName() {
-        System.err.println("Invalid Company Name. It must be 3-50 characters long and contain only alphabets, integers and spaces.");
+    public int getFoundedYear() {
+        System.out.print("Enter Founded Year: ");
+        while (!sc.hasNextInt()) {
+            System.err.println("Invalid input. Please enter a integer.");
+            sc.nextLine(); // Clear the invalid input
+            System.out.print("Enter Founded Year: ");
+        }
+        int year = sc.nextInt();
+        sc.nextLine(); // Clear the newline character
+        return year;
     }
     
     

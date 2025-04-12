@@ -7,7 +7,9 @@ package control;
 import adt.DoublyLinkedList;
 import adt.ListInterface;
 import boundary.CompanyManagementUI;
+import dao.AllDataInitialize;
 import entity.Company;
+import utility.*;
 
 /**
  *
@@ -19,11 +21,8 @@ public class CompanyControl {
     
     CompanyManagementUI companyManagementUI = new CompanyManagementUI();
     
-    public CompanyControl() {
-    }
-
     public CompanyControl(ListInterface<Company> companyList) {
-        companyList = this.companyList;
+        this.companyList = companyList;
     }
     
     public void startComanyManagement() {
@@ -62,18 +61,61 @@ public class CompanyControl {
         String area;
         String state;
         int foundedYear;
-        
+
         System.out.println("\n--------------------");
         System.out.println("Add Company ");
         System.out.println("--------------------");
-        
-        do {            
+
+        do {
             name = companyManagementUI.getName();
-            if (!isValidName(name)) {
-                companyManagementUI.inValidName();
+            if (!ValidationFunction.isValidName(name)) {
+                InvalidMessage.invalidName();
             }
-        } while (!isValidName(name));
-        
+        } while (!ValidationFunction.isValidName(name));
+
+        do {
+            phone = companyManagementUI.getPhone();
+            if (!ValidationFunction.isValidPhone(phone)) {
+                InvalidMessage.invalidPhone();
+            }
+        } while (!ValidationFunction.isValidPhone(phone));
+
+        do {
+            email = companyManagementUI.getEmail();
+            if (!ValidationFunction.isValidEmail(email)) {
+                InvalidMessage.invalidEmail();
+            }
+        } while (!ValidationFunction.isValidEmail(email));
+
+        do {
+            streetAddress = companyManagementUI.getStreetAddress();
+            if (!ValidationFunction.isValidStreetAddress(streetAddress)) {
+                InvalidMessage.invalidStreetAddress();
+            }
+        } while (!ValidationFunction.isValidStreetAddress(streetAddress));
+
+        do {
+            area = companyManagementUI.getArea();
+            if (!ValidationFunction.isValidArea(area)) {
+                InvalidMessage.invalidArea();
+            }
+        } while (!ValidationFunction.isValidArea(area));
+
+        do {
+            state = companyManagementUI.getState();
+            if (!ValidationFunction.isValidState(state)) {
+                InvalidMessage.invalidState();
+            }
+        } while (!ValidationFunction.isValidState(state));
+
+        do {
+            foundedYear = companyManagementUI.getFoundedYear();
+            if (!ValidationFunction.isValidFoundedYear(foundedYear)) {
+                InvalidMessage.invalidFoundedYear();
+            }
+        } while (!ValidationFunction.isValidFoundedYear(foundedYear));
+
+        id = IdGeneration.generateID(companyList, "C");
     }
     
     public void viewCompany() {
@@ -90,37 +132,10 @@ public class CompanyControl {
     
     // Just for testing purpose
     public static void main(String[] args) {
-        CompanyControl companyControl = new CompanyControl();
+        AllDataInitialize dataInitialize = new AllDataInitialize();
+        
+        CompanyControl companyControl = new CompanyControl(dataInitialize.getCompanyList());
         companyControl.startComanyManagement();
-    }
-    
-    public boolean isValidName(String name) {
-        return name != null && name.matches("^[a-zA-Z0-9\\s]{3,50}$");
-    }
-    
-    public boolean isValidPhone(String phone) {
-        return phone != null && phone.matches("^\\d{2,3}-\\d{7}$");
-    }
-    
-    public boolean isValidEmail(String email) {
-        return email != null && email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
-    }
-    
-    public boolean isValidStreetAddress(String streetAddress) {
-        return streetAddress != null && streetAddress.matches("^[a-zA-Z0-9\\s,.-]{5,100}$");
-    }
-    
-    public boolean isValidArea(String area) {
-        return area != null && area.matches("^[a-zA-Z\\s]{2,50}$");
-    }
-    
-    public boolean isValidState(String state) {
-        return state != null && state.matches("^[a-zA-Z\\s]{2,50}$");
-    }
-    
-    public boolean isValidFoundedYear(int year) {
-        int currentYear = java.time.Year.now().getValue();
-        return year >= 1800 && year <= currentYear;
     }
     
 }
