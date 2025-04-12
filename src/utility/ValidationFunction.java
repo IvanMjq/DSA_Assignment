@@ -4,6 +4,8 @@
  */
 package utility;
 
+import adt.ListInterface;
+import entity.Company;
 import java.time.LocalTime;
 
 /**
@@ -116,4 +118,28 @@ public class ValidationFunction {
 
         return true;
     }
+
+    public static Company isValidCompanyId(String id, ListInterface<Company> companyList) {
+        String prefixPattern = "C-\\d+";
+
+        if (id == null || id.trim().isEmpty()) {
+            System.err.println("ID cannot be null or empty.");
+            return null;
+        }
+
+        if (!id.matches(prefixPattern)) {
+            System.err.println("Invalid ID format. ID should follow the format 'C-<number>' (e.g. C-1, C-2).");
+            return null;
+        }
+
+        for (Company c : companyList) {
+            if (c.getId().equals(id.trim())) {
+                return c;
+            }
+        }
+
+        System.err.println("No company found with ID: " + id);
+        return null;
+    }
+
 }
