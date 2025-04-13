@@ -50,7 +50,7 @@ public class JobApplicationControl {
                     jobApplicationListing();
                     break;
                 case 2:
-                    addJobApplication();
+//                    addJobApplication();
                     break;
                 case 3:
 //                    removeStudent();
@@ -85,20 +85,20 @@ public class JobApplicationControl {
         }
     }
 
-    public void addJobApplication() {
-        jobApplicationUI.addJobAppicationUI();
-        Student newStudent = jobApplicationUI.newJobAppicationDetails();
-        
-        boolean isConfirm = jobApplicationUI.confirmation("Confirm Register " + newStudent.getId() + " as new Student?");
-        
-        if (isConfirm) {
-            studentList.add(newStudent);
-            System.out.println("Student Register successfully!");
-        } else {
-            System.out.println("Failed to add job posting.");
-        }
-    }
-    
+//    public void addJobApplication() {
+//        jobApplicationUI.addJobAppicationUI();
+//        Student newStudent = jobApplicationUI.newJobAppicationDetails();
+//        
+//        boolean isConfirm = jobApplicationUI.confirmation("Confirm Register " + newStudent.getId() + " as new Student?");
+//        
+//        if (isConfirm) {
+//            studentList.add(newStudent);
+//            System.out.println("Student Register successfully!");
+//        } else {
+//            System.out.println("Failed to add job posting.");
+//        }
+//    }
+//    
     public void companyList() {
         for (Company company : companyList) {
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------");

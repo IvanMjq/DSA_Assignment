@@ -132,10 +132,11 @@ public class DSA_Assignment {
                     new AdminPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList());
                     break;
                 case 2:
-                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList());
+                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList(), dataInitialized.getJobPostingList(), dataInitialized.getJobRequiredSkillList());
                     break;
                 case 3:
-                    new MatchingEngineControl(dataInitialized.getStudentSkillList(), dataInitialized.getJobRequiredSkillList(), dataInitialized.getStudentList(),dataInitialized.getJobPostingList());
+
+//                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList());
                     break;
                 case 4:
 //                    System.out.println(student);
