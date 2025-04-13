@@ -20,11 +20,11 @@ public class JobApplication implements Serializable {
     private Interview interview;
 
     public JobApplication(String id, JobPosting jobPost, Student student, LocalDateTime appliedDateTime, Interview interview) {
-        this.id = id;
-        this.jobPost = jobPost;
-        this.student = student;
-        this.appliedDateTime = appliedDateTime;
-        this.interview = interview;
+        this.id                 = id;
+        this.jobPost            = jobPost;
+        this.student            = student;
+        this.appliedDateTime    = appliedDateTime;
+        this.interview          = interview;
     }
 
     public String getId() {

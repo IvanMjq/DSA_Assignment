@@ -185,7 +185,8 @@ public class StudentUI {
             
             if(digitValidation(input)){
                 int intInput = Integer.parseInt(input);
-                if( (intInput <= option.length)) {
+   
+                if( (intInput <= studentControl.checkItemLength(option))) {
                     if (studentControl.noJobTypeDuplicateEnter(option[intInput - 1], jobTypes)) {
                         jobTypes[i] = studentControl.getJobType(option[intInput - 1]);
                          i++;
@@ -201,6 +202,8 @@ public class StudentUI {
         
         return newStudent;
     }
+    
+
     
     
     

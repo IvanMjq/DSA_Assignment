@@ -42,7 +42,7 @@ public class StudentControl{
         this.skillList              = skillList;
         this.jobList                = jobList;
         this.studentUI              = new StudentUI(this);
-        this.studentPortalControl = studentPortalControl;
+        this.studentPortalControl   = studentPortalControl;
     }
     
     public void adminStudentManagement() {
@@ -174,8 +174,8 @@ public class StudentControl{
     
     public int[] jobTypeList() {
         int count = 0;
-        String[] typeListed = new String[10];
-        int[] option = new int[10];
+        String[] typeListed = new String[5];
+        int[] option = new int[5];
       
         System.out.println("====================================================================================================");
         System.out.printf("| %-10s | %-40s  |\n", "Option","Type");
@@ -545,7 +545,7 @@ public class StudentControl{
             
             if(studentUI.digitValidation(input)){
                 int intInput = Integer.parseInt(input);
-                if( (intInput <= option.length)) {
+                if( (intInput <= checkItemLength(option))) {
                     if (noJobTypeDuplicateEnter(option[intInput - 1], jobTypes)) {
                         jobTypes[i] = getJobType(option[intInput - 1]);
                         i++;
@@ -568,6 +568,14 @@ public class StudentControl{
         }
     }
 
+    public int checkItemLength(int[] input){
+        for (int i = 0; i < input.length; i++) {
+            if (input[i] == 0) { 
+                return i;
+            }
+        }
+        return input.length; 
+    }
     
     public void removeStudent() {
         studentUI.removeStudentUI();
