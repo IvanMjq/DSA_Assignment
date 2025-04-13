@@ -34,6 +34,20 @@ public class StudentPortalUI {
         System.out.println();
         return option;
     }
+    
+    public int studentStudentMenu() {
+        System.out.println("\nStudent Portal " + "{User Login: " + studentPortalControl.getLoginStudent().getId() + "}");
+        System.out.println("=====================================");
+        System.out.println("1. Listing");
+        System.out.println("2. Update");
+        System.out.println("0. Exit");
+        System.out.print("Enter option: ");
+
+        int option = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println();
+        return option;
+    }
      
     public void loginUI() {
         boolean loop = true;
@@ -57,6 +71,8 @@ public class StudentPortalUI {
             }
         } 
     }
+    
+    
     
     public void logoutUI() {
         if(studentPortalControl.isLogin()) {

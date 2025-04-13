@@ -6,8 +6,10 @@ package dao;
 
 import adt.*;
 import entity.*;
+import entity.Interview.InterviewStatus;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -24,6 +26,7 @@ public class AllDataInitialize {
     private ListInterface<Skill> skillList = new DoublyLinkedList<>();
     private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
     private ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
+    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
 
     public AllDataInitialize() {
 
@@ -499,35 +502,35 @@ public class AllDataInitialize {
     }
 
     private void initializeCompanyJobList() {
-        companyJobList.add(new CompanyJob(companyList.getData(1), jobList.getData(0))); // ISJ - Software Engineer
-        companyJobList.add(new CompanyJob(companyList.getData(1), jobList.getData(1))); // ISJ - Data Analyst
+        companyJobList.add(new CompanyJob(companyList.getData(1), jobList.getData(1))); // ISJ - Software Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(1), jobList.getData(2))); // ISJ - Data Analyst
 
-        companyJobList.add(new CompanyJob(companyList.getData(2), jobList.getData(2))); // NextWave - Cybersecurity Analyst
-        companyJobList.add(new CompanyJob(companyList.getData(2), jobList.getData(3))); // NextWave - ML Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(2), jobList.getData(3))); // NextWave - Cybersecurity Analyst
+        companyJobList.add(new CompanyJob(companyList.getData(2), jobList.getData(4))); // NextWave - ML Engineer
 
-        companyJobList.add(new CompanyJob(companyList.getData(3), jobList.getData(4))); // CloudHive - Web Developer
-        companyJobList.add(new CompanyJob(companyList.getData(3), jobList.getData(0))); // CloudHive - Software Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(3), jobList.getData(5))); // CloudHive - Web Developer
+        companyJobList.add(new CompanyJob(companyList.getData(3), jobList.getData(1))); // CloudHive - Software Engineer
 
-        companyJobList.add(new CompanyJob(companyList.getData(4), jobList.getData(5))); // DataBridge - Mobile Dev
-        companyJobList.add(new CompanyJob(companyList.getData(4), jobList.getData(6))); // DataBridge - Cloud Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(4), jobList.getData(6))); // DataBridge - Mobile Dev
+        companyJobList.add(new CompanyJob(companyList.getData(4), jobList.getData(7))); // DataBridge - Cloud Engineer
 
-        companyJobList.add(new CompanyJob(companyList.getData(5), jobList.getData(7))); // Innova - DBA
-        companyJobList.add(new CompanyJob(companyList.getData(5), jobList.getData(4))); // Innova - Web Developer
+        companyJobList.add(new CompanyJob(companyList.getData(5), jobList.getData(8))); // Innova - DBA
+        companyJobList.add(new CompanyJob(companyList.getData(5), jobList.getData(5))); // Innova - Web Developer
 
-        companyJobList.add(new CompanyJob(companyList.getData(6), jobList.getData(8))); // QuantumWorks - AI Intern
-        companyJobList.add(new CompanyJob(companyList.getData(6), jobList.getData(5))); // QuantumWorks - Mobile Dev
+        companyJobList.add(new CompanyJob(companyList.getData(6), jobList.getData(9))); // QuantumWorks - AI Intern
+        companyJobList.add(new CompanyJob(companyList.getData(6), jobList.getData(6))); // QuantumWorks - Mobile Dev
 
-        companyJobList.add(new CompanyJob(companyList.getData(7), jobList.getData(9))); // Visionary - Full Stack Dev
-        companyJobList.add(new CompanyJob(companyList.getData(7), jobList.getData(2))); // Visionary - Cybersecurity Analyst
+        companyJobList.add(new CompanyJob(companyList.getData(7), jobList.getData(10))); // Visionary - Full Stack Dev
+        companyJobList.add(new CompanyJob(companyList.getData(7), jobList.getData(3))); // Visionary - Cybersecurity Analyst
 
-        companyJobList.add(new CompanyJob(companyList.getData(8), jobList.getData(1))); // GreenByte - Data Analyst
-        companyJobList.add(new CompanyJob(companyList.getData(8), jobList.getData(9))); // GreenByte - Full Stack Dev
+        companyJobList.add(new CompanyJob(companyList.getData(8), jobList.getData(2))); // GreenByte - Data Analyst
+        companyJobList.add(new CompanyJob(companyList.getData(8), jobList.getData(10))); // GreenByte - Full Stack Dev
 
-        companyJobList.add(new CompanyJob(companyList.getData(9), jobList.getData(6))); // NovaLink - Cloud Engineer
-        companyJobList.add(new CompanyJob(companyList.getData(9), jobList.getData(0))); // NovaLink - Software Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(9), jobList.getData(7))); // NovaLink - Cloud Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(9), jobList.getData(1))); // NovaLink - Software Engineer
 
-        companyJobList.add(new CompanyJob(companyList.getData(10), jobList.getData(7))); // PixelForge - DBA
-        companyJobList.add(new CompanyJob(companyList.getData(10), jobList.getData(3))); // PixelForge - ML Engineer
+        companyJobList.add(new CompanyJob(companyList.getData(10), jobList.getData(8))); // PixelForge - DBA
+        companyJobList.add(new CompanyJob(companyList.getData(10), jobList.getData(4))); // PixelForge - ML Engineer
     }
 
     private void initializeJobPosting() {
@@ -625,49 +628,67 @@ public class AllDataInitialize {
     }
 
     private void initializeJobApplication() {
-//        jobApplicationList.add(new JobApplication(
-//                "JA-1",
-//                jobPostingList.getData(2),
-//                studentList.getData(1)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-1", jobPostingList.getData(2),
-//                studentList.getData(1)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-2",
-//                jobPostingList.getData(6),
-//                studentList.getData(2)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-3",
-//                jobPostingList.getData(1),
-//                studentList.getData(4)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-4",
-//                jobPostingList.getData(3),
-//                studentList.getData(6)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-5",
-//                jobPostingList.getData(4),
-//                studentList.getData(5)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-6", jobPostingList.getData(5),
-//                studentList.getData(3)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-7",
-//                jobPostingList.getData(8),
-//                studentList.getData(1)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-8",
-//                jobPostingList.getData(7),
-//                studentList.getData(2)
-//        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-1",
+                jobPostingList.getData(2),
+                studentList.getData(1),
+                LocalDateTime.of(2025, 4, 1, 13, 0),
+                interviewList.getData(1)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-1", jobPostingList.getData(2),
+                studentList.getData(1),
+                LocalDateTime.of(2025, 7, 1, 13, 0),
+                interviewList.getData(1)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-2",
+                jobPostingList.getData(6),
+                studentList.getData(2),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(1)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-3",
+                jobPostingList.getData(1),
+                studentList.getData(4),
+                LocalDateTime.of(2024, 6, 1, 13, 0),
+                interviewList.getData(5)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-4",
+                jobPostingList.getData(3),
+                studentList.getData(6),
+                LocalDateTime.of(2024, 7, 1, 19, 0),
+                interviewList.getData(4)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-5",
+                jobPostingList.getData(4),
+                studentList.getData(5),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(8)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-6", jobPostingList.getData(5),
+                studentList.getData(3),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(6)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-7",
+                jobPostingList.getData(8),
+                studentList.getData(1),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(3)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-8",
+                jobPostingList.getData(7),
+                studentList.getData(2),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(4)
+        ));
     }
 
     private void initializeStudentSkillList() {
@@ -778,6 +799,22 @@ public class AllDataInitialize {
                 skillList.getData(9),
                 4
         ));
+
+    }
+    
+     public void initializeInterview(){
+        
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 1, 13, 0), InterviewStatus.INTERVIEWED, 78));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 2, 14, 0), InterviewStatus.OFFERED, 80));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 3, 9, 0), InterviewStatus.REJECTED, 45));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 5, 10, 0), InterviewStatus.ACCEPTED, 92));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 7, 15, 0), InterviewStatus.INTERVIEW_SCHEDULED, 56));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 8, 16, 0), InterviewStatus.DECLINED, 63));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 9, 13, 0), InterviewStatus.OFFERED, 89));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.INTERVIEWED, 77));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.ACCEPTED, 95));
+        
     }
 
     // -----------------
@@ -787,72 +824,36 @@ public class AllDataInitialize {
         return companyList;
     }
 
-    public void setCompanyList(ListInterface<Company> companyList) {
-        this.companyList = companyList;
-    }
-
     public ListInterface<CompanyJob> getCompanyJobList() {
         return companyJobList;
-    }
-
-    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
-        this.companyJobList = companyJobList;
     }
 
     public ListInterface<Job> getJobList() {
         return jobList;
     }
 
-    public void setJobList(ListInterface<Job> jobList) {
-        this.jobList = jobList;
-    }
-
     public ListInterface<JobPosting> getJobPostingList() {
         return jobPostingList;
-    }
-
-    public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
-        this.jobPostingList = jobPostingList;
     }
 
     public ListInterface<JobApplication> getJobApplicationList() {
         return jobApplicationList;
     }
 
-    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
-        this.jobApplicationList = jobApplicationList;
-    }
-
     public ListInterface<Student> getStudentList() {
         return studentList;
-    }
-
-    public void setStudentList(ListInterface<Student> studentList) {
-        this.studentList = studentList;
     }
 
     public ListInterface<Skill> getSkillList() {
         return skillList;
     }
 
-    public void setSkillList(ListInterface<Skill> skillList) {
-        this.skillList = skillList;
-    }
-
     public ListInterface<StudentSkill> getStudentSkillList() {
         return studentSkillList;
     }
 
-    public void setStudentSkillList(ListInterface<StudentSkill> studentSkillList) {
-        this.studentSkillList = studentSkillList;
-    }
-
     public ListInterface<JobRequiredSkill> getJobRequiredSkillList() {
         return jobRequiredSkillList;
-    }
-
-    public void setJobRequiredSkillList(ListInterface<JobRequiredSkill> jobRequiredSkillList) {
-        this.jobRequiredSkillList = jobRequiredSkillList;
     }
     
     // -----------------
@@ -861,7 +862,7 @@ public class AllDataInitialize {
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
         
-        for (Job a : dataInitialize.getJobList()) {
+        for (JobRequiredSkill a : dataInitialize.getJobRequiredSkillList()) {
             System.out.println(a);
         }
     }

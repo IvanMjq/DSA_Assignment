@@ -21,9 +21,10 @@ public class StudentPortalControl {
     private ListInterface<StudentSkill> studentSkillList;
     private ListInterface<Skill> skillList;
     private ListInterface<Job> jobList;
-    private Student loginStudent;
     private StudentPortalUI studentPortalUI;
     private StudentControl studentControl;
+    
+    protected Student loginStudent;
     
     
     public StudentPortalControl() { 
@@ -35,7 +36,7 @@ public class StudentPortalControl {
         this.skillList          = skillList;
         this.jobList            = jobList;
         this.studentPortalUI    = new StudentPortalUI(this);
-        this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList);
+        this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList, this);
         runStudentPortalManagement();
     }
     
@@ -64,6 +65,28 @@ public class StudentPortalControl {
         } while (option != 0);
     }
     
+    public void studentStudentManagement() {
+        int option = 0;
+
+        do {
+            option = studentPortalUI.studentStudentMenu();
+            switch (option) {
+                case 0:
+                    System.out.println("Exiting Student Menu...");
+                    break;
+                case 1:
+                    studentControl.studentOwnListing();
+                    break;
+                case 2:
+                    studentControl.updateOwnStudent();
+                    break;
+                default:
+                    System.out.println("This is an invalid option!!!");
+
+            }
+        } while (option != 0);
+    }
+    
     public void registerStudent() {
         studentControl.addStudent();
     }
@@ -71,11 +94,14 @@ public class StudentPortalControl {
     
     public void studentLogin() {
         studentPortalUI.loginUI();
+        if(this.loginStudent != null) {
+            studentStudentManagement();
+        }
     }
     
     public void studentLogout() {
         studentPortalUI.logoutUI();
-        loginStudent = null;
+        this.loginStudent = null;
     }
     
     public boolean loginValidation(String inputID, String inputPassword) {
@@ -89,7 +115,7 @@ public class StudentPortalControl {
         }
         
         if(found != null && found.getPassword().equals(inputPassword)) {
-            loginStudent = found;
+            this.loginStudent = found;
             isValid = true;
         }
         

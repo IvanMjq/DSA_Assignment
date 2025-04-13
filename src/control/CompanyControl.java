@@ -30,7 +30,7 @@ public class CompanyControl {
         int option;
 
         do {
-            option = companyManagementUI.companyManagementMainMenu();
+            option = companyManagementUI.companyManagementMenu();
 
             switch (option) {
                 case 1:
@@ -76,36 +76,36 @@ public class CompanyControl {
         System.out.println("--------------------");
 
         do {
-            name = companyManagementUI.getNamePrompt();
+            name = companyManagementUI.getStringInput("Enter Company Name : ");
         } while (!ValidationFunction.isValidName(name));
 
         do {
-            phone = companyManagementUI.getPhonePrompt();
+            phone = companyManagementUI.getStringInput("Enter Phone Number (e.g. 03-12345678): ");
         } while (!ValidationFunction.isValidPhone(phone));
 
         do {
-            email = companyManagementUI.getEmailPrompt();
+            email = companyManagementUI.getStringInput("Enter Email Address : ");
         } while (!ValidationFunction.isValidEmail(email));
 
         do {
-            streetAddress = companyManagementUI.getStreetAddressPrompt();
+            streetAddress = companyManagementUI.getStringInput("Enter Street Address : ");
         } while (!ValidationFunction.isValidStreetAddress(streetAddress));
 
         do {
-            area = companyManagementUI.getAreaPrompt();
+            area = companyManagementUI.getStringInput("Enter Area : ");
         } while (!ValidationFunction.isValidArea(area));
 
         do {
-            state = companyManagementUI.getStatePrompt();
+            state = companyManagementUI.getStringInput("Enter State : ");
         } while (!ValidationFunction.isValidState(state));
 
         do {
-            foundedYear = companyManagementUI.getFoundedYearPrompt();
+            foundedYear = companyManagementUI.getIntegerInput("Enter Founded Year : ");
         } while (!ValidationFunction.isValidFoundedYear(foundedYear));
 
         do {
-            interviewStartTime = companyManagementUI.getInterviewTimePrompt("Enter interview start time");
-            interviewEndTime = companyManagementUI.getInterviewTimePrompt("Enter interview end time");
+            interviewStartTime = companyManagementUI.getInterviewTimePrompt("Enter interview start time : ");
+            interviewEndTime = companyManagementUI.getInterviewTimePrompt("Enter interview end time : ");
         } while (!ValidationFunction.isValidTimeRange(interviewStartTime, interviewEndTime));
 
         do {
@@ -140,20 +140,79 @@ public class CompanyControl {
 
     public void viewCompany() {
         System.out.println("\n--------------------");
-        System.out.println(" Company List ");
+        System.out.println(" View Company List ");
         System.out.println("--------------------");
-        
+
+        System.out.println("*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*");
+        System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-17s | %-9s | %-9s | %-6s | %-6s | %-6s |\n",
+                "ID", "Name", "Phone", "Email", "Street", "Area", "State",
+                "Latitude", "Longitude", "Year", "Start", "End");
+        System.out.println("+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+
         if (companyList.isEmpty()) {
             System.out.println("No companies found.");
         } else {
-            for (Company company : companyList) {
-                System.out.println(company);
+            for (Company c : companyList) {
+                System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-17s | %-9.4f | %-9.4f | %-6d | %-6s | %-6s |\n",
+                        c.getId(),
+                        c.getName(),
+                        c.getPhone(),
+                        c.getEmail(),
+                        c.getStreetAddress(),
+                        c.getArea(),
+                        c.getState(),
+                        c.getLatitude(),
+                        c.getLongitude(),
+                        c.getFoundedYear(),
+                        c.getInterviewStartTime(),
+                        c.getInterviewEndTime());
             }
         }
-        System.out.println("\n");
+        System.out.println("*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*\n");
+
     }
 
     public void editCompany() {
+        if (companyList.isEmpty()) {
+            System.out.println("No companies available to edit.");
+            return;
+        }
+
+        String id;
+        Company companyFound = null;
+        String confirmationToEdit1;
+        boolean confirmationToEdit2;
+
+        do {
+            
+            do {
+                viewCompany();
+                System.out.println("Type 0 or X to return to the previous menu.\n");
+                id = companyManagementUI.getStringInput("Enter Company ID : ");
+                id = id.toUpperCase();
+                
+                if (id.equals("0") || id.equals("X")) {
+                    return;
+                }
+                
+                companyFound = ValidationFunction.isValidCompanyId(id, companyList);
+            } while (companyFound == null);
+
+            System.out.println(companyFound);
+            
+            do {
+                confirmationToEdit1 = companyManagementUI.getConfirmationPrompt("Do you want to edit this company?");
+            } while (!ValidationFunction.isValidConfirmation(confirmationToEdit1));
+
+        } while (confirmationToEdit1.equals("N"));
+        
+        int option;
+        
+        do {            
+            option = companyManagementUI.companyEditMenu();
+            
+            
+        } while (option != 0);
 
     }
 

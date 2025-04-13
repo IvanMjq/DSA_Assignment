@@ -18,7 +18,7 @@ public class CompanyManagementUI {
     public CompanyManagementUI() {
     }
 
-    public int companyManagementMainMenu() {
+    public int companyManagementMenu() {
         int option = -1;
         boolean validInput = false;
         boolean isFirstInput = true;
@@ -60,42 +60,64 @@ public class CompanyManagementUI {
         return option;
     }
 
-    public String getNamePrompt() {
-        System.out.print("Enter Company Name : ");
+    public int companyEditMenu() {
+        int option = -1;
+        boolean validInput = false;
+        boolean isFirstInput = true;
+
+        while (validInput != true) {
+            System.out.println("\n\n");
+            System.out.println("*--------------------------------*");
+            System.out.printf("|  %-30s|\n", "Company Management Menu");
+            System.out.println("+--------------------------------+");
+            System.out.printf("|  %-30s|\n", "1. Company Name ");
+            System.out.printf("|  %-30s|\n", "2. Phone Number");
+            System.out.printf("|  %-30s|\n", "3. Email Address");
+            System.out.printf("|  %-30s|\n", "4. Street Address");
+            System.out.printf("|  %-30s|\n", "5. Area");
+            System.out.printf("|  %-30s|\n", "6. State");
+            System.out.printf("|  %-30s|\n", "7. Founded Year");
+            System.out.printf("|  %-30s|\n", "8. Interview Start and End Time");
+            System.out.printf("|  %-30s|\n", "0. Exit to Main Menu");
+            System.out.println("*--------------------------------*\n");
+
+            // Check if the user input was invalid before
+            if (!isFirstInput) {
+                System.out.println("Invalid option. Please choose a number between 0 - 4.");
+            }
+
+            // Prompt user input message
+            System.out.print("Please enter your option : ");
+
+            // Validate user input
+            if (sc.hasNextInt()) {
+                option = sc.nextInt();
+                sc.nextLine(); // Clear newline character
+                if (option >= 0 && option <= 8) {
+                    validInput = true;
+                }
+            } else {
+                sc.nextLine(); // Clear the invalid input
+            }
+            isFirstInput = false;
+
+        }
+
+        return option;
+
+    }
+
+    public String getStringInput(String promptMsg) {
+        System.out.print(promptMsg);
         return sc.nextLine().trim();
     }
 
-    public String getPhonePrompt() {
-        System.out.print("Enter Phone Number (e.g. 03-12345678): ");
-        return sc.nextLine().trim();
-    }
-
-    public String getEmailPrompt() {
-        System.out.print("Enter Email Address: ");
-        return sc.nextLine().trim();
-    }
-
-    public String getStreetAddressPrompt() {
-        System.out.print("Enter Street Address: ");
-        return sc.nextLine().trim();
-    }
-
-    public String getAreaPrompt() {
-        System.out.print("Enter Area: ");
-        return sc.nextLine().trim();
-    }
-
-    public String getStatePrompt() {
-        System.out.print("Enter State: ");
-        return sc.nextLine().trim();
-    }
-
-    public int getFoundedYearPrompt() {
-        System.out.print("Enter Founded Year: ");
+    public int getIntegerInput(String promptMsg) {
+        System.out.print(promptMsg);
         while (!sc.hasNextInt()) {
             System.err.println("Invalid input. Please enter a integer.");
             sc.nextLine(); // Clear the invalid input
-            System.out.print("Enter Founded Year: ");
+            System.out.print(promptMsg);
         }
         int year = sc.nextInt();
         sc.nextLine(); // Clear the newline character
@@ -106,12 +128,12 @@ public class CompanyManagementUI {
         while (true) {
             System.out.print(message + " (HH:mm): ");
             String input = sc.nextLine().trim();
-            
+
             if (input == null || input.isEmpty()) {
                 System.err.println("Input cannot be null or empty.");
                 continue;
             }
-            
+
             try {
                 return LocalTime.parse(input); // Accepts format HH:mm
             } catch (Exception e) {
@@ -128,7 +150,7 @@ public class CompanyManagementUI {
     // Just for testing purpose
     public static void main(String[] args) {
         CompanyManagementUI cm = new CompanyManagementUI();
-        System.out.println(cm.companyManagementMainMenu());
+        System.out.println(cm.companyManagementMenu());
     }
 
 }
