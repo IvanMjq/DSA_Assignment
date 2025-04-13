@@ -97,7 +97,6 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
             } 
             numberOfEntries--;
         }
-        
         return result; // Return rmemoved entry, or null for failed operations
     }
        
@@ -158,7 +157,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
     
     @Override 
     public int indexOf(T data) {
-        int index = 0;
+        int index = 1;
         Node current = head;
 
         // Traverse the list from the head to the tail

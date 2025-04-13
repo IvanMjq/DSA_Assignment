@@ -162,18 +162,23 @@ public class Company implements Serializable, IdGeneration.Identifiable {
 
     @Override
     public String toString() {
-        return "\nCompany ID         : " + id
-                + "\nName               : " + name
-                + "\nPhone              : " + phone
-                + "\nEmail              : " + email
-                + "\nStreet Address     : " + streetAddress
-                + "\nArea               : " + area
-                + "\nState              : " + state
-                + "\nLatitude           : " + latitude
-                + "\nLongitude          : " + longitude
-                + "\nFounded Year       : " + foundedYear
-                + "\nInterview Start    : " + interviewStartTime.toString()
-                + "\nInterview End      : " + interviewEndTime.toString();
+        String line = "+---------------------------------------------------------------------------+\n";
+        return "\n" + line
+                + String.format("| %-73s |\n", "Company Information")
+                + line
+                + String.format("| %-20s : %-50s |\n", "Company ID", id)
+                + String.format("| %-20s : %-50s |\n", "Name", name)
+                + String.format("| %-20s : %-50s |\n", "Phone", phone)
+                + String.format("| %-20s : %-50s |\n", "Email", email)
+                + String.format("| %-20s : %-50s |\n", "Street Address", streetAddress)
+                + String.format("| %-20s : %-50s |\n", "Area", area)
+                + String.format("| %-20s : %-50s |\n", "State", state)
+                + String.format("| %-20s : %-50.6f |\n", "Latitude", latitude)
+                + String.format("| %-20s : %-50.6f |\n", "Longitude", longitude)
+                + String.format("| %-20s : %-50d |\n", "Founded Year", foundedYear)
+                + String.format("| %-20s : %-50s |\n", "Interview Start", interviewStartTime.toString())
+                + String.format("| %-20s : %-50s |\n", "Interview End", interviewEndTime.toString())
+                + line;
     }
 
 }
