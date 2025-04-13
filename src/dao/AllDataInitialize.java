@@ -17,16 +17,16 @@ import java.time.LocalDateTime;
  */
 public class AllDataInitialize {
 
-    private ListInterface<Company> companyList = new DoublyLinkedList<>();
-    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
-    private ListInterface<Job> jobList = new DoublyLinkedList<>();
-    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
-    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
-    private ListInterface<Student> studentList = new DoublyLinkedList<>();
-    private ListInterface<Skill> skillList = new DoublyLinkedList<>();
-    private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
-    private ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
-    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
+    private ListInterface<Company> companyList                      = new DoublyLinkedList<>();
+    private ListInterface<CompanyJob> companyJobList                = new DoublyLinkedList<>();
+    private ListInterface<Job> jobList                              = new DoublyLinkedList<>();
+    private ListInterface<JobPosting> jobPostingList                = new DoublyLinkedList<>();
+    private ListInterface<JobApplication> jobApplicationList        = new DoublyLinkedList<>();
+    private ListInterface<Student> studentList                      = new DoublyLinkedList<>();
+    private ListInterface<Skill> skillList                          = new DoublyLinkedList<>();
+    private ListInterface<StudentSkill> studentSkillList            = new DoublyLinkedList<>();
+    private ListInterface<JobRequiredSkill> jobRequiredSkillList    = new DoublyLinkedList<>();
+    private ListInterface<Interview> interviewList                  = new DoublyLinkedList<>();
 
     public AllDataInitialize() {
 
@@ -261,7 +261,7 @@ public class AllDataInitialize {
         jobList.add(new Job(
                 "J-9",
                 "AI Research Intern",
-               "Computer & Technology",
+                "Computer & Technology",
                 "Support the research and development of AI solutions. Assist with data preparation, training models, and evaluating performance. Python experience preferred."
         ));
         jobList.add(new Job(
@@ -277,77 +277,77 @@ public class AllDataInitialize {
                 "Evaluate credit data and financial statements to assess the risk in lending. Experience with credit scoring models and risk analysis is preferred."
         ));
         jobList.add(new Job(
-               "J-12",
-            "Financial Analyst",
-            "Finance & Banking",
-            "Analyze financial data, create financial models, and assist in strategic planning. Proficiency in Excel, financial forecasting, and risk assessment is required."
+                "J-12",
+                "Financial Analyst",
+                "Finance & Banking",
+                "Analyze financial data, create financial models, and assist in strategic planning. Proficiency in Excel, financial forecasting, and risk assessment is required."
         ));
         jobList.add(new Job(
                 "J-13",
-              "Accountant",
+                "Accountant",
                 "Finance & Banking",
                 "Manage financial records, prepare tax documents, and ensure regulatory compliance. Attention to detail and knowledge of accounting software are essential."
         ));
         jobList.add(new Job(
                 "J-14",
-            "Investment Banker",
-            "Finance",
-            "Help clients raise capital and provide strategic financial advice. Requires strong analytical skills, financial modeling, and knowledge of market trends."
+                "Investment Banker",
+                "Finance",
+                "Help clients raise capital and provide strategic financial advice. Requires strong analytical skills, financial modeling, and knowledge of market trends."
         ));
         jobList.add(new Job(
-            "J-15",
-            "Budget Analyst",
-            "Finance & Banking",
-            "Evaluate budget proposals, monitor organizational spending, and prepare financial reports. Experience in budgeting tools and government finance is a plus."
+                "J-15",
+                "Budget Analyst",
+                "Finance & Banking",
+                "Evaluate budget proposals, monitor organizational spending, and prepare financial reports. Experience in budgeting tools and government finance is a plus."
         ));
         jobList.add(new Job(
-            "J-16",
-         "Medical Laboratory Technologist",
-          "Healthcare",
-          "Perform diagnostic tests on patient samples, analyze results, and support accurate medical diagnoses. Attention to detail and lab safety knowledge are essential."
+                "J-16",
+                "Medical Laboratory Technologist",
+                "Healthcare",
+                "Perform diagnostic tests on patient samples, analyze results, and support accurate medical diagnoses. Attention to detail and lab safety knowledge are essential."
         ));
         jobList.add(new Job(
-          "J-17",
-         "Secondary School Teacher",
-          "Education",
-         "Plan and deliver lessons for students aged 13–17 in accordance with the national curriculum. Patience, subject expertise, and classroom management are essential."
+                "J-17",
+                "Secondary School Teacher",
+                "Education",
+                "Plan and deliver lessons for students aged 13–17 in accordance with the national curriculum. Patience, subject expertise, and classroom management are essential."
         ));
         jobList.add(new Job(
-            "J-18",
-         "Early Childhood Educator",
-            "Education",
-            "Design and implement learning activities for children aged 3–6. Strong understanding of child development and creative teaching methods is essential."
+                "J-18",
+                "Early Childhood Educator",
+                "Education",
+                "Design and implement learning activities for children aged 3–6. Strong understanding of child development and creative teaching methods is essential."
         ));
         jobList.add(new Job(
-            "J-19",
-            "Online Course Instructor",
-            "Education",
-            "Teach academic or professional subjects through online platforms. Requires excellent communication skills, subject expertise, and familiarity with e-learning tools."
+                "J-19",
+                "Online Course Instructor",
+                "Education",
+                "Teach academic or professional subjects through online platforms. Requires excellent communication skills, subject expertise, and familiarity with e-learning tools."
         ));
         jobList.add(new Job(
-            "J-20",
-            "Mechanical Engineer",
-         "Engineering",
-          "Design, analyze, and improve mechanical systems and devices. Proficiency in CAD software and solid understanding of thermodynamics and materials required."
+                "J-20",
+                "Mechanical Engineer",
+                "Engineering",
+                "Design, analyze, and improve mechanical systems and devices. Proficiency in CAD software and solid understanding of thermodynamics and materials required."
         ));
         jobList.add(new Job(
-         "J-21",
-          "Civil Engineer",
-            "Engineering",
-            "Plan and oversee construction projects including roads, bridges, and buildings. Requires strong project management skills and knowledge of structural analysis."
+                "J-21",
+                "Civil Engineer",
+                "Engineering",
+                "Plan and oversee construction projects including roads, bridges, and buildings. Requires strong project management skills and knowledge of structural analysis."
         ));
-        
+
         jobList.add(new Job(
-             "J-22",
-            "Electrical Engineer",
-            "Engineering",
-            "Develop and test electrical systems and equipment. Must have experience with circuit design, signal processing, and electrical safety standards."
+                "J-22",
+                "Electrical Engineer",
+                "Engineering",
+                "Develop and test electrical systems and equipment. Must have experience with circuit design, signal processing, and electrical safety standards."
         ));
         jobList.add(new Job(
                 "J-23",
-            "Registered Nurse",
-            "Healthcare",
-            "Provide patient care, administer medications, and assist in treatment plans. Strong communication, empathy, and knowledge of clinical procedures are essential."
+                "Registered Nurse",
+                "Healthcare",
+                "Provide patient care, administer medications, and assist in treatment plans. Strong communication, empathy, and knowledge of clinical procedures are essential."
         ));
     }
 
@@ -455,7 +455,7 @@ public class AllDataInitialize {
                 "george.ng@example.com",
                 "Volunteer Mentor",
                 "Bachelor of Software Engineering",
-                1,"Engineering"));
+                1, "Engineering"));
 
         studentList.add(new Student(
                 "STU-8",
@@ -803,9 +803,8 @@ public class AllDataInitialize {
         ));
 
     }
-    
-     public void initializeInterview(){
-        
+
+    public void initializeInterview() {
         interviewList.add(new Interview(LocalDateTime.of(2025, 4, 1, 13, 0), InterviewStatus.INTERVIEWED, 78));
         interviewList.add(new Interview(LocalDateTime.of(2025, 4, 2, 14, 0), InterviewStatus.OFFERED, 80));
         interviewList.add(new Interview(LocalDateTime.of(2025, 4, 3, 9, 0), InterviewStatus.REJECTED, 45));
@@ -816,7 +815,7 @@ public class AllDataInitialize {
         interviewList.add(new Interview(LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.INTERVIEWED, 77));
         interviewList.add(new Interview(LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
         interviewList.add(new Interview(LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.ACCEPTED, 95));
-        
+
     }
     
     public void initializeInterview(){
@@ -836,7 +835,6 @@ public class AllDataInitialize {
 
     // -----------------
     // Getter and Setter
-
     public ListInterface<Company> getCompanyList() {
         return companyList;
     }
@@ -872,14 +870,13 @@ public class AllDataInitialize {
     public ListInterface<JobRequiredSkill> getJobRequiredSkillList() {
         return jobRequiredSkillList;
     }
-    
+
     // -----------------
-    
-    
+    // Display for testing
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
-        
-        for (JobRequiredSkill a : dataInitialize.getJobRequiredSkillList()) {
+
+        for (Company a : dataInitialize.getCompanyList()) {
             System.out.println(a);
         }
     }

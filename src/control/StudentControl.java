@@ -148,7 +148,6 @@ public class StudentControl{
         
         if (isConfirm) {
             studentList.add(newStudent);
-//            jobPostListing();
             System.out.println("Student Register successfully!");
         } else {
             System.out.println("Failed to add job posting.");

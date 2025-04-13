@@ -9,6 +9,9 @@ import adt.ListInterface;
 import boundary.CompanyManagementUI;
 import dao.AllDataInitialize;
 import entity.Company;
+import entity.CompanyJob;
+import entity.JobPosting;
+import entity.JobRequiredSkill;
 import java.time.LocalTime;
 import utility.*;
 
@@ -19,14 +22,20 @@ import utility.*;
 public class CompanyControl {
 
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
+    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
+    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
+    private ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
 
     CompanyManagementUI companyManagementUI = new CompanyManagementUI();
 
-    public CompanyControl(ListInterface<Company> companyList) {
+    public CompanyControl(ListInterface<Company> companyList, ListInterface<CompanyJob> companyJobList, ListInterface<JobPosting> jobPostingList, ListInterface<JobRequiredSkill> jobRequiredSkillList) {
         this.companyList = companyList;
+        this.companyJobList = companyJobList;
+        this.jobPostingList = jobPostingList;
+        this.jobRequiredSkillList = jobRequiredSkillList;
     }
 
-    public void startComanyManagement() {
+    public void startCompanyManagement() {
         int option;
 
         do {
@@ -46,7 +55,7 @@ public class CompanyControl {
                     deleteCompany();
                     break;
                 case 0:
-                    System.out.println("Returing to Company Management Menu ...");
+                    System.out.println("Returing to Main Menu ...");
                     break;
             }
 
@@ -77,40 +86,40 @@ public class CompanyControl {
 
         do {
             name = companyManagementUI.getStringInput("Enter Company Name : ");
-        } while (!ValidationFunction.isValidName(name));
+        } while (!CompanyValidateFunction.isValidName(name));
 
         do {
             phone = companyManagementUI.getStringInput("Enter Phone Number (e.g. 03-12345678): ");
-        } while (!ValidationFunction.isValidPhone(phone));
+        } while (!CompanyValidateFunction.isValidPhone(phone));
 
         do {
             email = companyManagementUI.getStringInput("Enter Email Address : ");
-        } while (!ValidationFunction.isValidEmail(email));
+        } while (!CompanyValidateFunction.isValidEmail(email));
 
         do {
             streetAddress = companyManagementUI.getStringInput("Enter Street Address : ");
-        } while (!ValidationFunction.isValidStreetAddress(streetAddress));
+        } while (!CompanyValidateFunction.isValidStreetAddress(streetAddress));
 
         do {
             area = companyManagementUI.getStringInput("Enter Area : ");
-        } while (!ValidationFunction.isValidArea(area));
+        } while (!CompanyValidateFunction.isValidArea(area));
 
         do {
             state = companyManagementUI.getStringInput("Enter State : ");
-        } while (!ValidationFunction.isValidState(state));
+        } while (!CompanyValidateFunction.isValidState(state));
 
         do {
             foundedYear = companyManagementUI.getIntegerInput("Enter Founded Year : ");
-        } while (!ValidationFunction.isValidFoundedYear(foundedYear));
+        } while (!CompanyValidateFunction.isValidFoundedYear(foundedYear));
 
         do {
-            interviewStartTime = companyManagementUI.getInterviewTimePrompt("Enter interview start time : ");
-            interviewEndTime = companyManagementUI.getInterviewTimePrompt("Enter interview end time : ");
-        } while (!ValidationFunction.isValidTimeRange(interviewStartTime, interviewEndTime));
+            interviewStartTime = companyManagementUI.getInterviewTimePrompt("Enter Interview Start Time : ");
+            interviewEndTime = companyManagementUI.getInterviewTimePrompt("Enter Interview End Time : ");
+        } while (!CompanyValidateFunction.isValidTimeRange(interviewStartTime, interviewEndTime));
 
         do {
             addConfirmation = companyManagementUI.getConfirmationPrompt("Do you want to add this company?");
-        } while (!ValidationFunction.isValidConfirmation(addConfirmation));
+        } while (!CompanyValidateFunction.isValidConfirmation(addConfirmation));
 
         if (addConfirmation.equals("Y")) {
 
@@ -128,9 +137,13 @@ public class CompanyControl {
                     interviewStartTime,
                     interviewEndTime
             );
-            companyList.add(newCompany);
-            System.out.println("Company added successfully!");
-            System.out.println("");
+            boolean isAdded = companyList.add(newCompany);
+            if (isAdded) {
+                System.out.println("Company added successfully!");
+            } else {
+                System.err.println("Failed to add company. Please try agian.");
+                System.err.flush();
+            }
         } else {
             // Cancel the addition
             System.out.println("Company addition canceled.");
@@ -180,43 +193,204 @@ public class CompanyControl {
 
         String id;
         Company companyFound = null;
-        String confirmationToEdit1;
-        boolean confirmationToEdit2;
+        String confirmationToEdit;
 
         do {
-            
             do {
                 viewCompany();
                 System.out.println("Type 0 or X to return to the previous menu.\n");
                 id = companyManagementUI.getStringInput("Enter Company ID : ");
                 id = id.toUpperCase();
-                
+
                 if (id.equals("0") || id.equals("X")) {
                     return;
                 }
-                
-                companyFound = ValidationFunction.isValidCompanyId(id, companyList);
+
+                companyFound = CompanyValidateFunction.isValidCompanyId(id, companyList);
             } while (companyFound == null);
 
             System.out.println(companyFound);
-            
-            do {
-                confirmationToEdit1 = companyManagementUI.getConfirmationPrompt("Do you want to edit this company?");
-            } while (!ValidationFunction.isValidConfirmation(confirmationToEdit1));
 
-        } while (confirmationToEdit1.equals("N"));
-        
+            do {
+                confirmationToEdit = companyManagementUI.getConfirmationPrompt("Do you want to edit this company?");
+            } while (!CompanyValidateFunction.isValidConfirmation(confirmationToEdit));
+
+        } while (confirmationToEdit.equals("N"));
+
         int option;
-        
-        do {            
+
+        do {
             option = companyManagementUI.companyEditMenu();
-            
-            
+
+            switch (option) {
+                case 1: // Name
+                    String newName;
+                    do {
+                        newName = companyManagementUI.getStringInput("Enter New Company Name : ");
+                    } while (!CompanyValidateFunction.isValidName(newName));
+                    companyFound.setName(newName);
+                    break;
+                case 2: // Phone number
+                    String newPhone;
+                    do {
+                        newPhone = companyManagementUI.getStringInput("Enter New Phone Number (e.g. 03-12345678): ");
+                    } while (!CompanyValidateFunction.isValidPhone(newPhone));
+                    companyFound.setPhone(newPhone);
+                    break;
+                case 3: // Email address
+                    String newEmail;
+                    do {
+                        newEmail = companyManagementUI.getStringInput("Enter New Email Address : ");
+                    } while (!CompanyValidateFunction.isValidEmail(newEmail));
+                    companyFound.setEmail(newEmail);
+                    break;
+                case 4: // Street Address
+                    String newStreet;
+                    do {
+                        newStreet = companyManagementUI.getStringInput("Enter New Street Address : ");
+                    } while (!CompanyValidateFunction.isValidStreetAddress(newStreet));
+                    companyFound.setStreetAddress(newStreet);
+                    break;
+                case 5: // Area
+                    String newArea;
+                    do {
+                        newArea = companyManagementUI.getStringInput("Enter New Area : ");
+                    } while (!CompanyValidateFunction.isValidArea(newArea));
+                    companyFound.setArea(newArea);
+                    break;
+                case 6: // State
+                    String newState;
+                    do {
+                        newState = companyManagementUI.getStringInput("Enter New State : ");
+                    } while (!CompanyValidateFunction.isValidState(newState));
+                    companyFound.setState(newState);
+                    break;
+                case 7: // Founded Year
+                    int newFoundedYear;
+                    do {
+                        newFoundedYear = companyManagementUI.getIntegerInput("Enter New Founded Year : ");
+                    } while (!CompanyValidateFunction.isValidFoundedYear(newFoundedYear));
+                    companyFound.setFoundedYear(newFoundedYear);
+                    break;
+                case 8: // Interview Start and End Time
+                    LocalTime newInterviewStartTime,
+                     newInterviewEndTime;
+                    do {
+                        newInterviewStartTime = companyManagementUI.getInterviewTimePrompt("Enter New Interview Start Time : ");
+                        newInterviewEndTime = companyManagementUI.getInterviewTimePrompt("Enter New Interview End Time : ");
+                    } while (!CompanyValidateFunction.isValidTimeRange(newInterviewStartTime, newInterviewEndTime));
+                    companyFound.setInterviewStartTime(newInterviewStartTime);
+                    companyFound.setInterviewEndTime(newInterviewEndTime);
+                    break;
+                case 0:
+                    System.out.println("Returning to Company Management Menu..");
+            }
+
+            // Display the updated company
+            System.out.println("\n\nUpdated Company : ");
+            System.out.println(companyFound);
+
         } while (option != 0);
 
     }
 
     public void deleteCompany() {
+        if (companyList.isEmpty()) {
+            System.out.println("No companies available to edit.");
+            return;
+        }
+
+        String id;
+        Company companyFound = null;
+        String confirmationToDelete;
+
+        do {
+            do {
+                viewCompany();
+                System.out.println("Type 0 or X to return to the previous menu.\n");
+                id = companyManagementUI.getStringInput("Enter Company ID : ");
+                id = id.toUpperCase();
+
+                if (id.equals("0") || id.equals("X")) {
+                    return;
+                }
+
+                companyFound = CompanyValidateFunction.isValidCompanyId(id, companyList);
+            } while (companyFound == null);
+
+            System.out.println(companyFound);
+
+            do {
+                confirmationToDelete = companyManagementUI.getConfirmationPrompt("Do you want to delete this company?");
+            } while (!CompanyValidateFunction.isValidConfirmation(confirmationToDelete));
+
+        } while (confirmationToDelete.equals("N"));
+
+        // Check the list backwards, so we dont need to care about the shifting when delete
+        // Remove the CompanyJob first 
+        for (int i = companyJobList.size(); i > 0; i--) {
+            CompanyJob cj = companyJobList.getData(i);
+            if (cj.getCompany().equals(companyFound)) {
+                CompanyJob removedCompanyJob = companyJobList.remove(i);
+                if (removedCompanyJob != null) {
+                    System.out.println("Successfully removed Company Job with ID : " + removedCompanyJob.getCompany().getId() + ", " + removedCompanyJob.getJob().getId());
+                } else {
+                    System.err.println("Failed to removed Company Job with ID : " + cj.getCompany().getId() + ", " + cj.getJob().getId());
+                    System.err.flush();
+                }
+            }
+        }
+
+        // Remove JobPosting and its JobRequiredskill
+        for (int i = jobPostingList.size(); i > 0; i--) {
+            JobPosting jp = jobPostingList.getData(i);
+
+            if (jp.getCompany().equals(companyFound)) {
+                // Remove the JobRequiredSkill of the JobPosting
+                for (int j = jobRequiredSkillList.size(); j > 0; j--) {
+                    JobRequiredSkill jrs = jobRequiredSkillList.getData(j);
+
+                    if (jrs.getJobPost().equals(jp)) {
+                        JobRequiredSkill removedJobRequiredSkill = jobRequiredSkillList.remove(j);
+                        if (removedJobRequiredSkill != null) {
+                            System.out.println("Successfully removed Job Requred Skill with ID : " + removedJobRequiredSkill.getJobPost().getId() + ", " + removedJobRequiredSkill.getSkill().getId());
+                        } else {
+                            System.err.println("Failed to removed Job Requred Skill with ID : " + jrs.getJobPost().getId() + ", " + jrs.getSkill().getId());
+                            System.err.flush();
+                        }
+                    }
+
+                }
+                System.out.println(jobPostingList.size());
+                JobPosting removedJobPosting = jobPostingList.remove(i);
+                System.out.println(jobPostingList.size());
+                if (removedJobPosting != null) {
+                    System.out.println("Successfully removed Job Post with ID : " + removedJobPosting.getId() + ", " + removedJobPosting.getCompany().getId());
+                } else {
+                    System.err.println("Failed to removed Job Post with ID : " + jp.getId() + ", " + jp.getCompany().getId());
+                    System.err.flush();
+                }
+
+            }
+        }
+
+        // Remove the company
+        int companyIndex = companyList.indexOf(companyFound);
+
+        if (companyIndex != -1) {
+            System.out.println(companyList.size());
+            Company removedCompany = companyList.remove(companyIndex);
+            System.out.println(companyList.size());
+            if (removedCompany != null) {
+                System.out.println("Successfully removed Company with ID : " + removedCompany.getId());
+            } else {
+                System.err.println("Error. Failed to removed Company with ID : " + companyFound.getId());
+                System.err.flush();
+            }
+        } else {
+            System.err.println("Error. Failed to get company. ");
+            System.err.flush();
+        }
 
     }
 
@@ -224,8 +398,14 @@ public class CompanyControl {
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
 
-        CompanyControl companyControl = new CompanyControl(dataInitialize.getCompanyList());
-        companyControl.startComanyManagement();
+        ListInterface<Company> companyList = dataInitialize.getCompanyList();
+        ListInterface<CompanyJob> companyJobList = dataInitialize.getCompanyJobList();
+        ListInterface<JobPosting> jobPostingList = dataInitialize.getJobPostingList();
+        ListInterface<JobRequiredSkill> jobRequiredSkillList = dataInitialize.getJobRequiredSkillList();
+
+        CompanyControl companyControl = new CompanyControl(companyList, companyJobList, jobPostingList, jobRequiredSkillList);
+
+        companyControl.startCompanyManagement();
     }
 
 }

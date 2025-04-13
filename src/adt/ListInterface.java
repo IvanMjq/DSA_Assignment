@@ -16,17 +16,11 @@ public interface ListInterface<T> extends Iterable<T>{
     
     public boolean add(T newData);
     
-//    public boolean add(int givenPosition, T newData);
-    
-//    public String addAll(T... newDatas); //  ?????
-    
     public boolean replace(int givenPosition, T newData);
     
     public T remove(int givenPosition);
     
     public T getData(int givenPosition);
-    
-//    public boolean contain(T dataEntry);
     
     public int size();
     
