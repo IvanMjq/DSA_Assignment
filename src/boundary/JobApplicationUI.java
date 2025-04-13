@@ -6,6 +6,7 @@ package boundary;
 
 
 import control.*;
+import entity.*;
 import java.util.Scanner;
 
 /**
@@ -39,7 +40,7 @@ public class JobApplicationUI {
     
     public void jobApplicationListingUI() {
         System.out.println("--------------------------------------");
-        System.out.println("Student Listing");
+        System.out.println("Job Appication Listing");
         System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("| %-7s | %-30s | %-30s | %-30s | %-30s | %-30s | %-30s |\n",
                     "ID",
@@ -54,11 +55,43 @@ public class JobApplicationUI {
         
     }
     
-    public void addStudentUI(){
+    public void addJobAppicationUI(){
         System.out.println("--------------------------------------");
-        System.out.println("Add New Student");
+        System.out.println("Add Job Appication");
         System.out.println("--------------------------------------");
-        System.out.println("Enter Student Infomation:");
+        System.out.println("Enter Job Appication Infomation:");
         System.out.println("======================================");
+    }
+    
+//    public Student newJobAppicationDetails() {
+//        Company companySelected = null;
+//        while(companySelected == null) {
+//            System.out.print("Company ID/Name, (X=Show list): ");
+//            String input = scanner.nextLine().trim();
+//            
+//            if(Character.toUpperCase(input.charAt(0)) == 'X') {
+//                compannyList();
+//            }
+//            
+//            companySelected = jobApplicationControl.isCompanyExist(input);
+//            
+//            if( (companySelected == null) && (Character.toUpperCase(input.charAt(0)) != 'X'))
+//                System.out.println("Company Not Found");
+//         
+//        }
+//    }
+    
+    public void compannyList() {
+        System.out.println("==========================================================================================================================================================================");
+        System.out.printf("| %-5s | %-40s | %-20s | %-35s | %-40s | %-10s |\n",
+                        "ID", "Name", "Contact", "Phone", "Email", "Address", "Founded Year");
+        jobApplicationControl.companyList();
+        System.out.println("==========================================================================================================================================================================");
+    }
+    
+    public boolean confirmation(String message) {
+        System.out.print(message + " (Y/N): ");
+        char confirmation = scanner.nextLine().toUpperCase().charAt(0);
+        return confirmation == 'Y';
     }
 }

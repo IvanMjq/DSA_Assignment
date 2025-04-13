@@ -17,6 +17,7 @@ public class JobApplicationControl {
     Scanner scanner = new Scanner(System.in);
     
     private ListInterface<Student> studentList;
+    private ListInterface<Company> companyList;
     private ListInterface<JobPosting> jobPostingList;
     private ListInterface<JobApplication> jobApplicationList;
     private JobApplicationUI jobApplicationUI;
@@ -49,7 +50,7 @@ public class JobApplicationControl {
                     jobApplicationListing();
                     break;
                 case 2:
-//                    addStudent();
+                    addJobApplication();
                     break;
                 case 3:
 //                    removeStudent();
@@ -66,7 +67,7 @@ public class JobApplicationControl {
      
      public void jobApplicationListing() {
         jobApplicationUI.jobApplicationListingUI();
-        if(studentList.size() > 0){
+        if(jobApplicationList.size() > 0){
             
             for (JobApplication jobApplication : jobApplicationList) {
                 System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
@@ -84,6 +85,49 @@ public class JobApplicationControl {
         }
     }
 
+    public void addJobApplication() {
+        jobApplicationUI.addJobAppicationUI();
+        Student newStudent = jobApplicationUI.newJobAppicationDetails();
+        
+        boolean isConfirm = jobApplicationUI.confirmation("Confirm Register " + newStudent.getId() + " as new Student?");
+        
+        if (isConfirm) {
+            studentList.add(newStudent);
+            System.out.println("Student Register successfully!");
+        } else {
+            System.out.println("Failed to add job posting.");
+        }
+    }
     
+    public void companyList() {
+        for (Company company : companyList) {
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("| %-5s | %-40s | %-20s | %-35s | %-40s | %-10s |\n",
+                 company.getId(),
+                 company.getName(),
+                 company.getPhone(),
+                 company.getEmail(),
+//                 company.getAddress(),
+                 company.getFoundedYear()); 
+        }
+    }
+    
+
+    public Company isCompanyExist(String info) {
+        Company company = null;
+        
+        for(int i = 1; i <= companyList.size(); i++) {
+            if (info.equalsIgnoreCase(companyList.getData(i).getId())){
+                company = companyList.getData(i);
+                break;
+            }
+            
+            if (info.equalsIgnoreCase(companyList.getData(i).getName())){
+                company = companyList.getData(i);
+                break;
+            }
+        }
+        return company;
+    }
     
 }
