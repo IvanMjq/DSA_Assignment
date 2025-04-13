@@ -92,7 +92,8 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
                     choosenNode.next.prev = choosenNode.prev;
                     choosenNode.prev.next = choosenNode.next; 
                 } else {
-                    tail = choosenNode.prev; 
+                    tail = choosenNode.prev;
+                    tail.next = null;
                 }
             } 
             numberOfEntries--;
