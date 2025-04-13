@@ -36,7 +36,7 @@ public class StudentPortalControl {
         this.skillList          = skillList;
         this.jobList            = jobList;
         this.studentPortalUI    = new StudentPortalUI(this);
-        this.studentControl = new StudentControl(studentList, skillList, studentSkillList, jobList, this);
+        this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList, this);
         runStudentPortalManagement();
     }
     
