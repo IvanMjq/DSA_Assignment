@@ -20,130 +20,132 @@ import java.io.Serializable;
  * @author WEI ZHENG
  */
 public class MatchingEngineControl {
-    private MatchingUI matchingUI;
     private ListInterface<Student> studentList = new DoublyLinkedList<>();
     private ListInterface<JobPosting> jobPostList = new DoublyLinkedList<>();
     private ListInterface<StudentSkill> studentSkill = new DoublyLinkedList<>();
     private ListInterface<JobRequiredSkill> jobRequiredSkill = new DoublyLinkedList<>();
     private ListInterface<MatchingResult> matchResults = new DoublyLinkedList<>();
-
-    
+    private MatchingUI matchingUI;
+    public MatchingEngineControl(){
+        
+    }
     public MatchingEngineControl(ListInterface<StudentSkill> studentSkill, ListInterface<JobRequiredSkill> jobRequiredSkill, ListInterface<Student> studentList, ListInterface<JobPosting> jobPostList){
         this.matchingUI = new MatchingUI(this);
         this.studentSkill = studentSkill;
         this.jobRequiredSkill = jobRequiredSkill;
         this.studentList = studentList;
         this.jobPostList = jobPostList;
-        MatchingRunner(studentList.getData(4));
+       
     }
     
     
     
-        public void matchStudentsToJobs(Student student) {
-            matchResults.clear();
-            for (int i = 1; i <= jobPostList.size(); i++) {
-                JobPosting jobPost = jobPostList.getData(i);
-                double totalScore = 0;
-                for (int j = 1; j <= jobRequiredSkill.size(); j++) {
-                    JobRequiredSkill requiredSkill = jobRequiredSkill.getData(j);
-                    if (jobPost.getId().equals(requiredSkill.getJobPost().getId())) {
-                        for (int k = 1; k <= studentSkill.size(); k++) {
-                            StudentSkill stdSkill = studentSkill.getData(k);
-                            if (stdSkill.getStudent().getId().equals(student.getId())) {
-                                if (stdSkill.getSkill().equals(requiredSkill.getSkill())) {
-                                    totalScore += calculateScore(stdSkill.getProficiencyLevel(), requiredSkill.getImportance());
-                                }
+      public void matchStudentsToJobs(Student student) {
+        matchResults.clear();
+
+        for (int i = 1; i <= jobPostList.size(); i++) {
+            JobPosting jobPost = jobPostList.getData(i);
+            double totalScore = 0;
+
+            for (int j = 1; j <= jobRequiredSkill.size(); j++) {
+                JobRequiredSkill requiredSkill = jobRequiredSkill.getData(j);
+
+                if (jobPost.getId().equals(requiredSkill.getJobPost().getId())) {
+                    for (int k = 1; k <= studentSkill.size(); k++) {
+                        StudentSkill stdSkill = studentSkill.getData(k);
+
+                        if (stdSkill.getStudent().getId().equals(student.getId())) {
+                            if (stdSkill.getSkill().equals(requiredSkill.getSkill())) {
+                                totalScore += calculateScore(stdSkill.getProficiencyLevel(), requiredSkill.getImportance());
                             }
                         }
                     }
                 }
-
-                if (totalScore > 0) {
-                    ExperienceCheck experienceStatus = checkExperience(student, jobPost);
-                    switch (experienceStatus) {
-                        case Very_Experienced:
-                            totalScore += 20;
-                            break;
-                        case Qualified:
-                            totalScore += 10;
-                            break;
-                        default:
-                            totalScore -= 10;
-                            break;
-                    }
-                    double distance = calculateDistance(
-                            student.getLatitude(),
-                            student.getLongitude(),
-                            jobPost.getCompany().getLatitude(),
-                            jobPost.getCompany().getLongitude()
-                    );
-                    MatchingResult matchingResult = new MatchingResult(student, jobPost, totalScore, experienceStatus, distance);
-                    System.out.println(matchingResult);
-                    matchResults.add(matchingResult);
-                }
             }
+
+            if (totalScore > 0) {
+                MatchingResult.ExperienceCheck experienceStatus = checkExperience(student, jobPost);
+
+                switch (experienceStatus) {
+                    case Very_Experienced:
+                        totalScore += 20;
+                        break;
+                    case Qualified:
+                        totalScore += 10;
+                        break;
+                    default:
+                        totalScore -= 10;
+                        break;
+                }
+
+                double distance = calculateDistance(
+                    student.getLatitude(),
+                    student.getLongitude(),
+                    jobPost.getCompany().getLatitude(),
+                    jobPost.getCompany().getLongitude()
+                );
+
+                MatchingResult matchingResult = new MatchingResult(student, jobPost, totalScore, experienceStatus, distance);
+                System.out.println(matchingResult);
+                matchResults.add(matchingResult);
+                
+            }
+            
         }
-
-    
-    public double calculateScore(int proficiency, int importance){
-        double skillAssess = (proficiency * importance);
-        return (skillAssess / 25)* 80;
-        
+         listScoresForStudent(matchResults);
     }
-    
-    public MatchingResult.ExperienceCheck checkExperience(Student student, JobPosting jobPost) {
-       // Compare student's years of experience with the job's required experience
-       int studentExperience = student.getYearsOfExperience();  
-       int jobExperience = jobPost.getRequiredExperience();      
 
-       // Experience match status logic
-       if (studentExperience < jobExperience) {
-           return ExperienceCheck.Not_Experienced;  // Not suitable for the job
-       } else if (studentExperience == jobExperience) {
-           return ExperienceCheck.Qualified;        // Exactly matches the job's requirement
-       } else {
-           return ExperienceCheck.Very_Experienced; // Exceeds the job's requirement
-       }
-   }
-    
-    public double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
- 
-        // Radius of the Earth in kilometers
-        final int R = 6371;
+    public double calculateScore(int proficiency, int importance) {
+        double skillAssess = (proficiency * importance);
+        return (skillAssess / 25) * 80;
+    }
 
-        // Convert degrees to radians
+    public static MatchingResult.ExperienceCheck checkExperience(Student student, JobPosting jobPost) {
+        int studentExperience = student.getYearsOfExperience();
+        int jobExperience = jobPost.getRequiredExperience();
+
+        if (studentExperience < jobExperience) {
+            return MatchingResult.ExperienceCheck.Not_Experienced;
+        } else if (studentExperience == jobExperience) {
+            return MatchingResult.ExperienceCheck.Qualified;
+        } else {
+            return MatchingResult.ExperienceCheck.Very_Experienced;
+        }
+    }
+
+    public static double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+        final int R = 6371; // Radius of Earth in km
         double lat1Rad = Math.toRadians(lat1);
         double lon1Rad = Math.toRadians(lon1);
         double lat2Rad = Math.toRadians(lat2);
         double lon2Rad = Math.toRadians(lon2);
 
-        // Differences in latitudes and longitudes
         double deltaLat = lat2Rad - lat1Rad;
         double deltaLon = lon2Rad - lon1Rad;
 
-        // Haversine formula
-        double a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-                   Math.cos(lat1Rad) * Math.cos(lat2Rad) *
-                   Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2)
+                + Math.cos(lat1Rad) * Math.cos(lat2Rad)
+                * Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
 
-        // Distance in kilometers
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
     }
+
+
+
     
     
     
-    
-    public void listScoresForStudent(Student student) {
-        if (!matchResults.isEmpty()) {
+    public void listScoresForStudent(ListInterface<MatchingResult> matchResults) {
+        if (!matchResults.isEmpty()) { 
  
-                   System.out.println("============================================================================================================");
-                   System.out.println("Match Scores for Student: " + student.getName() + " (" + student.getId() + ")" );
-                   System.out.println("============================================================================================================");
+                   System.out.println("=========================================================================================================================================");
+                   System.out.println("Match Scores for Student: " + matchResults.getData(1).getStudent().getName()+ " (" + matchResults.getData(1).getStudent().getId() + ")" );
+                   System.out.println("=========================================================================================================================================");
                    System.out.printf("%-20s %-50s %-10s %-20s %-15s%n", "Job Post ID", "Job Title", "Score", "Experience Status", "Distance (km)");
                    System.out.println("------------------------------------------------------------------------------------------------------------");
             for(int i = 1; i <= matchResults.size(); i++){
-               if(matchResults.getData(i).getStudent().getId().equals(student.getId())){
+//               if(matchResults.getData(i).getStudent().getId().equals(matchResults.getData(i).getStudent().getStudent().getId())){
                   
 
          
@@ -158,19 +160,19 @@ public class MatchingEngineControl {
                                                 result.getScore(), 
                                                 experienceStatus,
                                                 distance); // Print the distance
-               }
+//               }
            }
         }
         else{
-            System.out.println("No match results found for student " + student.getName() + " (" + student.getId() + ").");
+            System.out.println("No match results found for student " + matchResults.getData(1).getStudent().getName()+ " (" + matchResults.getData(1).getStudent().getId()+ ").");
             
         }
-         
+         System.out.println("============================================================================================================");
         
     }
     
      public void SummaryMatching() {
-
+        matchResults.clear();
         for (int i = 1; i <= studentList.size(); i++) { 
             Student student = studentList.getData(i); 
 
@@ -231,6 +233,7 @@ public class MatchingEngineControl {
                 }
             }
         }
+        displayAllMatchingResults();
      }
            
      public void displayAllMatchingResults() {
@@ -275,8 +278,8 @@ public class MatchingEngineControl {
         int choice = 0;
             
             do {
-//                choice = matchingUI.MatchingMenu(student);
-                choice = matchingUI.AdminReport();
+                choice = matchingUI.MatchingMenu(student);
+//                choice = matchingUI.AdminReport();
                 switch (choice) {
                     case 1:
                         // choice = matchingUI.Search();

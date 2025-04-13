@@ -21,8 +21,13 @@ public class StudentPortalControl {
     private ListInterface<StudentSkill> studentSkillList;
     private ListInterface<Skill> skillList;
     private ListInterface<Job> jobList;
+    private ListInterface<JobPosting> jobPostList;
+    private ListInterface<JobRequiredSkill> requiredSkill;
     private StudentPortalUI studentPortalUI;
     private StudentControl studentControl;
+    private MatchingEngineControl matchControl;
+    
+    
     
     protected Student loginStudent;
     
@@ -30,13 +35,16 @@ public class StudentPortalControl {
     public StudentPortalControl() { 
     }
     
-    public StudentPortalControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList) {
+    public StudentPortalControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList, ListInterface<JobPosting> jobPostList, ListInterface<JobRequiredSkill> requiredSkill){;
         this.studentList        = studentList;
         this.studentSkillList   = studentSkillList;
         this.skillList          = skillList;
         this.jobList            = jobList;
+        this.jobPostList        = jobPostList;
+        this.requiredSkill      = requiredSkill;
         this.studentPortalUI    = new StudentPortalUI(this);
         this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList, this);
+        this.matchControl       = new MatchingEngineControl(studentSkillList, requiredSkill, studentList, jobPostList );
         runStudentPortalManagement();
     }
     
@@ -69,6 +77,7 @@ public class StudentPortalControl {
         int option = 0;
 
         do {
+
             option = studentPortalUI.studentStudentMenu();
             switch (option) {
                 case 0:
@@ -79,6 +88,9 @@ public class StudentPortalControl {
                     break;
                 case 2:
                     studentControl.updateOwnStudent();
+                    break;
+                case 3:
+                    matchControl.MatchingRunner(loginStudent);
                     break;
                 default:
                     System.out.println("This is an invalid option!!!");

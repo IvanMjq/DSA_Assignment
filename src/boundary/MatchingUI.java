@@ -6,6 +6,7 @@ package boundary;
 
 import adt.ListInterface;
 import control.MatchingEngineControl;
+import control.StudentPortalControl;
 import entity.Student;
 import java.util.Scanner;
 
@@ -15,11 +16,10 @@ import java.util.Scanner;
  */
 public class MatchingUI {
        
+        
         private MatchingEngineControl matchControl;
-        private ListInterface<Student> studentList;
-        
 
-        
+
         public MatchingUI(MatchingEngineControl matchControl){
             this.matchControl = matchControl;
         }
@@ -28,8 +28,6 @@ public class MatchingUI {
             Scanner scanner = new Scanner(System.in);
             System.out.println("These are the job that match with you");
             matchControl.matchStudentsToJobs(student);
-            matchControl.listScoresForStudent(student);
-            System.out.println("============================================================================================================");
             System.out.println("| 1 - Search");
             System.out.println("| 2 - Sort");
             System.out.println("Press 0 to exit....");
@@ -43,7 +41,8 @@ public class MatchingUI {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Welcome to Summary Report of MatchingEngine");
             matchControl.SummaryMatching();
-            matchControl.displayAllMatchingResults();
+            System.out.println("| 1 - Search");
+            System.out.println("| 2 - Sort");
             System.out.println("Press 0 to exit....");
             int choice = scanner.nextInt();
             scanner.nextLine();
