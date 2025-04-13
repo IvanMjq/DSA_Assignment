@@ -799,6 +799,7 @@ public class AllDataInitialize {
                 skillList.getData(9),
                 4
         ));
+
     }
     
      public void initializeInterview(){
