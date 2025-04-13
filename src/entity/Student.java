@@ -27,7 +27,8 @@ public class Student implements Serializable {
     private String education;
     private int yearsOfExperience;
     private String[] desiredJobTypes;
-
+    
+    
     public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, String... desiredJobTypes) {
         this.id = id;
         this.name = name;
@@ -174,5 +175,9 @@ public class Student implements Serializable {
         return "Student{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", age=" + age + ", address='" + streetAddress + ", " + area + ", " + state + '\'' +
            ", email='" + email + '\'' + ", education='" + education + '\'' + ", yearsOfExperience=" + yearsOfExperience + ", desiredJobTypes=" +  String.join(", ", desiredJobTypes) +
            '}';
+    }
+
+    public void setDesiredJobType(String[] jobTypes) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

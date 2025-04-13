@@ -125,7 +125,7 @@ public class Company implements Serializable, IdGeneration.Identifiable {
         this.foundedYear = foundedYear;
     }
 
-    public LocalTime getAvailableStartTime() {
+    public LocalTime getInterviewStartTime() {
         return interviewStartTime;
     }
 
