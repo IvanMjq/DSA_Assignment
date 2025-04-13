@@ -630,49 +630,67 @@ public class AllDataInitialize {
     }
 
     private void initializeJobApplication() {
-//        jobApplicationList.add(new JobApplication(
-//                "JA-1",
-//                jobPostingList.getData(2),
-//                studentList.getData(1)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-1", jobPostingList.getData(2),
-//                studentList.getData(1)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-2",
-//                jobPostingList.getData(6),
-//                studentList.getData(2)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-3",
-//                jobPostingList.getData(1),
-//                studentList.getData(4)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-4",
-//                jobPostingList.getData(3),
-//                studentList.getData(6)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-5",
-//                jobPostingList.getData(4),
-//                studentList.getData(5)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-6", jobPostingList.getData(5),
-//                studentList.getData(3)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-7",
-//                jobPostingList.getData(8),
-//                studentList.getData(1)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-8",
-//                jobPostingList.getData(7),
-//                studentList.getData(2)
-//        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-1",
+                jobPostingList.getData(2),
+                studentList.getData(1),
+                LocalDateTime.of(2025, 4, 1, 13, 0),
+                interviewList.getData(1)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-1", jobPostingList.getData(2),
+                studentList.getData(1),
+                LocalDateTime.of(2025, 7, 1, 13, 0),
+                interviewList.getData(1)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-2",
+                jobPostingList.getData(6),
+                studentList.getData(2),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(1)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-3",
+                jobPostingList.getData(1),
+                studentList.getData(4),
+                LocalDateTime.of(2024, 6, 1, 13, 0),
+                interviewList.getData(5)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-4",
+                jobPostingList.getData(3),
+                studentList.getData(6),
+                LocalDateTime.of(2024, 7, 1, 19, 0),
+                interviewList.getData(4)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-5",
+                jobPostingList.getData(4),
+                studentList.getData(5),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(8)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-6", jobPostingList.getData(5),
+                studentList.getData(3),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(6)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-7",
+                jobPostingList.getData(8),
+                studentList.getData(1),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(3)
+        ));
+        jobApplicationList.add(new JobApplication(
+                "JA-8",
+                jobPostingList.getData(7),
+                studentList.getData(2),
+                LocalDateTime.of(2024, 7, 1, 13, 0),
+                interviewList.getData(4)
+        ));
     }
 
     private void initializeStudentSkillList() {
@@ -783,6 +801,22 @@ public class AllDataInitialize {
                 skillList.getData(9),
                 4
         ));
+
+    }
+    
+     public void initializeInterview(){
+        
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 1, 13, 0), InterviewStatus.INTERVIEWED, 78));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 2, 14, 0), InterviewStatus.OFFERED, 80));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 3, 9, 0), InterviewStatus.REJECTED, 45));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 5, 10, 0), InterviewStatus.ACCEPTED, 92));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 7, 15, 0), InterviewStatus.INTERVIEW_SCHEDULED, 56));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 8, 16, 0), InterviewStatus.DECLINED, 63));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 9, 13, 0), InterviewStatus.OFFERED, 89));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.INTERVIEWED, 77));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
+        interviewList.add(new Interview(LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.ACCEPTED, 95));
+        
     }
     
     public void initializeInterview(){
