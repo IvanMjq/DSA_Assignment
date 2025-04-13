@@ -7,7 +7,7 @@ package utility;
 import adt.ListInterface;
 import entity.Company;
 import java.time.LocalTime;
-
+import java.util.Scanner;
 /**
  *
  * @author Ivanmjq
@@ -134,7 +134,7 @@ public class CompanyValidateFunction {
 
         return true;
     }
-
+    
     public static Company isValidCompanyId(String id, ListInterface<Company> companyList) {
         String prefixPattern = "C-\\d+";
 
