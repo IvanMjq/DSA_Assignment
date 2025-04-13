@@ -17,16 +17,16 @@ import java.time.LocalDateTime;
  */
 public class AllDataInitialize {
 
-    private ListInterface<Company> companyList = new DoublyLinkedList<>();
-    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
-    private ListInterface<Job> jobList = new DoublyLinkedList<>();
-    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
-    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
-    private ListInterface<Student> studentList = new DoublyLinkedList<>();
-    private ListInterface<Skill> skillList = new DoublyLinkedList<>();
-    private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
-    private ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
-    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
+    private ListInterface<Company> companyList                      = new DoublyLinkedList<>();
+    private ListInterface<CompanyJob> companyJobList                = new DoublyLinkedList<>();
+    private ListInterface<Job> jobList                              = new DoublyLinkedList<>();
+    private ListInterface<JobPosting> jobPostingList                = new DoublyLinkedList<>();
+    private ListInterface<JobApplication> jobApplicationList        = new DoublyLinkedList<>();
+    private ListInterface<Student> studentList                      = new DoublyLinkedList<>();
+    private ListInterface<Skill> skillList                          = new DoublyLinkedList<>();
+    private ListInterface<StudentSkill> studentSkillList            = new DoublyLinkedList<>();
+    private ListInterface<JobRequiredSkill> jobRequiredSkillList    = new DoublyLinkedList<>();
+    private ListInterface<Interview> interviewList                  = new DoublyLinkedList<>();
 
     public AllDataInitialize() {
 

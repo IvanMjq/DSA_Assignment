@@ -136,7 +136,6 @@ public class DSA_Assignment {
                     break;
                 case 3:
                     new MatchingEngineControl(dataInitialized.getStudentSkillList(), dataInitialized.getJobRequiredSkillList(), dataInitialized.getStudentList(),dataInitialized.getJobPostingList());
-//                    new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList());
                     break;
                 case 4:
 //                    System.out.println(student);
