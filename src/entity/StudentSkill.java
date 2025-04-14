@@ -11,20 +11,14 @@ import java.io.Serializable;
  * @author WEI ZHENG
  */
 public class StudentSkill implements Serializable {
-    private String id;
     private Student student;
     private Skill skill;
     private int proficiencyLevel; // Proficiency level of the student in the skill (1-5)
 
-    public StudentSkill(String id, Student student, Skill skill, int proficiencyLevel) {
-        this.id = id;
+    public StudentSkill(Student student, Skill skill, int proficiencyLevel) {
         this.student = student;
         this.skill = skill;
         this.proficiencyLevel = proficiencyLevel;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public Student getStudent() {
@@ -39,10 +33,6 @@ public class StudentSkill implements Serializable {
         return proficiencyLevel;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public void setStudent(Student student) {
         this.student = student;
     }
@@ -54,6 +44,8 @@ public class StudentSkill implements Serializable {
     public void setProficiencyLevel(int proficiencyLevel) {
         this.proficiencyLevel = proficiencyLevel;
     }
+
+   
 
     @Override
     public String toString() {

@@ -4,6 +4,7 @@
  */
 package entity;
 
+import adt.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -26,10 +27,11 @@ public class Student implements Serializable {
     private String achievement;
     private String education;
     private int yearsOfExperience;
-    private String[] desiredJobTypes;
-    
-    
-    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, String... desiredJobTypes) {
+    private ListInterface<StudentSkill> studentSkillList        = new DoublyLinkedList<>();
+    private ListInterface<JobApplication> jobApplicationList    = new DoublyLinkedList<>();
+    private String[] desiredJobTypes; 
+
+    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, String[] desiredJobTypes) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -44,6 +46,43 @@ public class Student implements Serializable {
         this.education = education;
         this.yearsOfExperience = yearsOfExperience;
         this.desiredJobTypes = desiredJobTypes;
+    }
+    
+    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, ListInterface<StudentSkill> studentSkillList, String... desiredJobTypes) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.age = age;
+        this.streetAddress = streetAddress;
+        this.area = area;
+        this.state = state;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.email = email;
+        this.achievement = achievement;
+        this.education = education;
+        this.yearsOfExperience = yearsOfExperience;
+        this.studentSkillList   = studentSkillList;
+        this.desiredJobTypes    = desiredJobTypes;
+    }
+    
+    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, ListInterface<StudentSkill> studentSkillList, ListInterface<JobApplication> jobApplicationList, String... desiredJobTypes) {
+        this.id                 = id;
+        this.name               = name;
+        this.password           = password;
+        this.age                = age;
+        this.streetAddress      = streetAddress;
+        this.area               = area;
+        this.state              = state;
+        this.latitude           = latitude;
+        this.longitude          = longitude;
+        this.email              = email;
+        this.achievement        = achievement;
+        this.education          = education;
+        this.yearsOfExperience  = yearsOfExperience;
+        this.studentSkillList   = studentSkillList;
+        this.jobApplicationList = jobApplicationList;
+        this.desiredJobTypes    = desiredJobTypes;
     }
 
     public String getId() {
@@ -96,6 +135,14 @@ public class Student implements Serializable {
 
     public int getYearsOfExperience() {
         return yearsOfExperience;
+    }
+
+    public ListInterface<StudentSkill> getStudentSkillList() {
+        return studentSkillList;
+    }
+
+    public ListInterface<JobApplication> getJobApplicationList() {
+        return jobApplicationList;
     }
 
     public String[] getDesiredJobTypes() {
@@ -154,9 +201,17 @@ public class Student implements Serializable {
         this.yearsOfExperience = yearsOfExperience;
     }
 
+    public void setStudentSkillList(ListInterface<StudentSkill> studentSkillList) {
+        this.studentSkillList = studentSkillList;
+    }
+
+    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
+        this.jobApplicationList = jobApplicationList;
+    }
+
     public void setDesiredJobTypes(String[] desiredJobTypes) {
         this.desiredJobTypes = desiredJobTypes;
-    }    
+    }
     
     @Override
     public boolean equals(Object obj) {
@@ -175,9 +230,5 @@ public class Student implements Serializable {
         return "Student{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", age=" + age + ", address='" + streetAddress + ", " + area + ", " + state + '\'' +
            ", email='" + email + '\'' + ", education='" + education + '\'' + ", yearsOfExperience=" + yearsOfExperience + ", desiredJobTypes=" +  String.join(", ", desiredJobTypes) +
            '}';
-    }
-
-    public void setDesiredJobType(String[] jobTypes) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

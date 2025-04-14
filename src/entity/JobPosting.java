@@ -4,9 +4,12 @@
  */
 package entity;
 
+import adt.DoublyLinkedList;
+import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalDate;
+
 
 /**
  *
@@ -22,6 +25,7 @@ public class JobPosting implements Serializable {
     private double maximumSalary;
     private int requiredExperience;
     private LocalDate  datePosted;
+    ListInterface<Skill> skillList = new DoublyLinkedList<>();
 
     public JobPosting(String id, Company company, Job job, String description, double minimumSalary, double maximumSalary, int requiredExperience, LocalDate datePosted) {
         this.id = id;
