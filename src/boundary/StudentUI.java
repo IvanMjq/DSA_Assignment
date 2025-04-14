@@ -333,8 +333,8 @@ public class StudentUI {
         System.out.println("7. Email");
         System.out.println("8. Achievement");
         System.out.println("9. Education");
-        System.out.println("10. Year Of Experience");
-        System.out.println("11. Desire Job Type");
+        System.out.println("10.Year Of Experience");
+        System.out.println("11.Desire Job Type");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
 

@@ -28,7 +28,7 @@ public class StudentPortalControl {
     
     
     
-    protected Student loginStudent;
+    private Student loginStudent;
     
     
     public StudentPortalControl() { 
@@ -43,7 +43,7 @@ public class StudentPortalControl {
         this.requiredSkill      = requiredSkill;
         this.studentPortalUI    = new StudentPortalUI(this);
         this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList, jobPostList, requiredSkill ,this);
-        this.matchControl       = new MatchingEngineControl(studentSkillList, requiredSkill, studentList, jobPostList);
+        this.matchControl       = new MatchingEngineControl(studentList, jobPostList);
         runStudentPortalManagement();
     }
     
@@ -62,9 +62,6 @@ public class StudentPortalControl {
                 case 2:
                     studentLogin();
                     break;
-                case 3:
-                    studentLogout();
-                    break;
                 default:
                     System.out.println("This is an invalid option!!!");
 
@@ -81,6 +78,9 @@ public class StudentPortalControl {
             switch (option) {
                 case 0:
                     System.out.println("Exiting Student Menu...");
+                    if(this.loginStudent != null) {
+                        studentLogout();
+                    }
                     break;
                 case 1:
                     studentControl.studentOwnListing();

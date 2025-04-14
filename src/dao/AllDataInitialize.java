@@ -506,11 +506,8 @@ public class AllDataInitialize {
                 "alan.chopper@example.com",
                 "Dean's List Award",
                 "Bachelor of Computer Science",
-                1,
-         {
-
-        
-        "Engineering", "Healthcare"}
+                1, 
+                "Engineering", "Healthcare"
         ));
 
         studentList.add(new Student(
@@ -897,127 +894,90 @@ public class AllDataInitialize {
     private void initializeJobApplication() {
         jobApplicationList.add(new JobApplication(
                 "JA-1",
-                jobPostingList.getData(2),
                 studentList.getData(1),
-                LocalDateTime.of(2025, 4, 1, 13, 0),
-                interviewList.getData(1)
+                LocalDateTime.of(2025, 4, 1, 13, 0)
         ));
         jobApplicationList.add(new JobApplication(
-                "JA-1", jobPostingList.getData(2),
+                "JA-1", 
                 studentList.getData(1),
-                LocalDateTime.of(2025, 7, 1, 13, 0),
-                interviewList.getData(1)
+                LocalDateTime.of(2025, 7, 1, 13, 0)
         ));
         jobApplicationList.add(new JobApplication(
                 "JA-2",
-                jobPostingList.getData(6),
                 studentList.getData(2),
-                LocalDateTime.of(2024, 7, 1, 13, 0),
-                interviewList.getData(1)
+                LocalDateTime.of(2024, 7, 1, 13, 0)
         ));
         jobApplicationList.add(new JobApplication(
                 "JA-3",
-                jobPostingList.getData(1),
                 studentList.getData(4),
-                LocalDateTime.of(2024, 6, 1, 13, 0),
-                interviewList.getData(5)
+                LocalDateTime.of(2024, 6, 1, 13, 0)
         ));
         jobApplicationList.add(new JobApplication(
                 "JA-4",
-                jobPostingList.getData(3),
                 studentList.getData(6),
-                LocalDateTime.of(2024, 7, 1, 19, 0),
-                interviewList.getData(4)
+                LocalDateTime.of(2024, 7, 1, 19, 0)
         ));
         jobApplicationList.add(new JobApplication(
                 "JA-5",
-                jobPostingList.getData(4),
                 studentList.getData(5),
-                LocalDateTime.of(2024, 7, 1, 13, 0),
-                interviewList.getData(8)
+                LocalDateTime.of(2024, 7, 1, 13, 0)
         ));
         jobApplicationList.add(new JobApplication(
-                "JA-6", jobPostingList.getData(5),
+                "JA-6", 
                 studentList.getData(3),
-                LocalDateTime.of(2024, 7, 1, 13, 0),
-                interviewList.getData(6)
+                LocalDateTime.of(2024, 7, 1, 13, 0)
         ));
         jobApplicationList.add(new JobApplication(
                 "JA-7",
-                jobPostingList.getData(8),
                 studentList.getData(1),
-                LocalDateTime.of(2024, 7, 1, 13, 0),
-                interviewList.getData(3)
+                LocalDateTime.of(2024, 7, 1, 13, 0)
         ));
         jobApplicationList.add(new JobApplication(
                 "JA-8",
-                jobPostingList.getData(7),
                 studentList.getData(2),
-                LocalDateTime.of(2024, 7, 1, 13, 0),
-                interviewList.getData(4)
+                LocalDateTime.of(2024, 7, 1, 13, 0)
         ));
     }
 
     private void initializeStudentSkillList() {
-        studentSkillList.add(new StudentSkill(
-                "SKK-1",
-                studentList.getData(1),
-                skillList.getData(1),
-                1
-        ));
-        studentSkillList.add(new StudentSkill(
-                "SKK-2",
-                studentList.getData(1),
-                skillList.getData(1),
-                2
-        ));
-        studentSkillList.add(new StudentSkill(
-                "SKK-3",
-                studentList.getData(2),
-                skillList.getData(2),
-                3
-        ));
-        studentSkillList.add(new StudentSkill(
-                "SKK-4",
-                studentList.getData(3),
-                skillList.getData(3),
-                4
-        ));
-        studentSkillList.add(new StudentSkill(
-                "SKK-5",
-                studentList.getData(4),
-                skillList.getData(4),
-                5
-        ));
-        studentSkillList.add(new StudentSkill(
-                "SKK-6",
-                studentList.getData(1),
-                skillList.getData(5),
-                1
-        ));
-        studentSkillList.add(new StudentSkill(
-                "SKK-7",
-                studentList.getData(1),
-                skillList.getData(6),
-                2
-        ));
-        studentSkillList.add(new StudentSkill(
-                "SKK-8",
-                studentList.getData(2),
-                skillList.getData(7), 3
-        ));
-        studentSkillList.add(new StudentSkill(
-                "SKK-9",
-                studentList.getData(3),
-                skillList.getData(8),
-                4
-        ));
-        studentSkillList.add(new StudentSkill(
-                "SKK-10",
-                studentList.getData(4),
-                skillList.getData(9),
-                4
-        ));
+        studentList.getData(1).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 3));
+        studentList.getData(1).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 5));
+        studentList.getData(1).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 2));
+
+        studentList.getData(2).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 4));
+        studentList.getData(2).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 2));
+        studentList.getData(2).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 3));
+
+        studentList.getData(3).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 5));
+        studentList.getData(3).getStudentSkillList().add(new StudentSkill(skillList.getData(9), 2));
+
+        studentList.getData(4).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 4));
+        studentList.getData(4).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 3));
+        studentList.getData(4).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 2));
+
+        studentList.getData(5).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 5));
+        studentList.getData(5).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 2));
+        studentList.getData(5).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 1));
+
+        studentList.getData(6).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 4));
+        studentList.getData(6).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 3));
+        studentList.getData(6).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 2));
+
+        studentList.getData(7).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 3));
+        studentList.getData(7).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 4));
+        studentList.getData(7).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 2));
+
+        studentList.getData(8).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 1));
+        studentList.getData(8).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 5));
+        studentList.getData(8).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 2));
+
+        studentList.getData(9).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 3));
+        studentList.getData(9).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 1));
+        studentList.getData(9).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 4));
+
+        studentList.getData(10).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 2));
+        studentList.getData(10).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 3));
+        studentList.getData(10).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 5));
     }
 
     private void initializeJobRequiredSkill() {

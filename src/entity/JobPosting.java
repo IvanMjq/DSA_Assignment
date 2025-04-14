@@ -35,6 +35,7 @@ public class JobPosting implements Serializable {
         this.maximumSalary = maximumSalary;
         this.requiredExperience = requiredExperience;
         this.datePosted = datePosted;
+        this.jobRequiredSkillList = jobRequiredSkillList;
     }
 
     public Company getCompany() {
