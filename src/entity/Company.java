@@ -146,6 +146,22 @@ public class Company implements Serializable, IdGeneration.Identifiable, Compara
         this.interviewEndTime = interviewEndTime;
     }
 
+    public ListInterface<CompanyJob> getCompanyJobList() {
+        return companyJobList;
+    }
+
+    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
+        this.companyJobList = companyJobList;
+    }
+
+    public ListInterface<JobPosting> getJobPostingList() {
+        return jobPostingList;
+    }
+
+    public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
+        this.jobPostingList = jobPostingList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 1;

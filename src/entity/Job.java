@@ -18,13 +18,16 @@ public class Job implements Serializable {
     private String title;
     private String type;
     private String desc;
+    
+    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
+    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
 
     public Job(String id, String title, String type, String desc) {
         this.id = id;
         this.title = title;
         this.type = type;
         this.desc = desc;
-    }
+    } 
 
     public String getId() {
         return id;
@@ -57,7 +60,23 @@ public class Job implements Serializable {
     public void setDesc(String desc) {
         this.desc = desc;
     }
-    
+
+    public ListInterface<CompanyJob> getCompanyJobList() {
+        return companyJobList;
+    }
+
+    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
+        this.companyJobList = companyJobList;
+    }
+
+    public ListInterface<JobPosting> getJobPostingList() {
+        return jobPostingList;
+    }
+
+    public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
+        this.jobPostingList = jobPostingList;
+    }
+      
     @Override
     public int hashCode() {
         int hash = 1;
