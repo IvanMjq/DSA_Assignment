@@ -8,18 +8,18 @@ import adt.DoublyLinkedList;
 import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
+import utility.IdGeneration;
 
 /**
  *
  * @author ivanmjq
  */
-public class Job implements Serializable {
+public class Job implements Serializable, IdGeneration.Identifiable {
     private String id;
     private String title;
     private String type;
     private String desc;
     
-//    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
     private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
 
     public Job(String id, String title, String type, String desc) {
@@ -29,6 +29,7 @@ public class Job implements Serializable {
         this.desc = desc;
     } 
 
+    @Override
     public String getId() {
         return id;
     }
@@ -60,14 +61,6 @@ public class Job implements Serializable {
     public void setDesc(String desc) {
         this.desc = desc;
     }
-
-//    public ListInterface<CompanyJob> getCompanyJobList() {
-//        return companyJobList;
-//    }
-
-//    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
-//        this.companyJobList = companyJobList;
-//    }
 
     public ListInterface<JobPosting> getJobPostingList() {
         return jobPostingList;

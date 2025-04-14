@@ -4,6 +4,8 @@
  */
 package boundary;
 
+import adt.DoublyLinkedList;
+import adt.ListInterface;
 import control.*;
 import entity.*;
 import java.util.Scanner;
@@ -45,8 +47,8 @@ public class StudentUI {
     public void studentListingUI() {
         System.out.println("--------------------------------------");
         System.out.println("Student Listing");
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15s | %-15s | %-30s | %-30s | %-40s | %-20s | %-70s |\n",
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15s | %-15s | %-30s | %-30s | %-40s | %-20s | %-200s | %-70s |\n",
                     "ID",
                     "Name",
                     "Password",
@@ -60,6 +62,7 @@ public class StudentUI {
                     "Achievement",
                     "Education",
                     "Year Of Experience",
+                    "Skill",
                     "Desired Job Types"
                 );
         
@@ -170,6 +173,46 @@ public class StudentUI {
         
         boolean loop = true;
         int i = 0;
+        ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
+        while(loop) {
+            if(i == 3)
+                break;
+            
+            studentControl.skillList();
+            System.out.print("Choose min 1 to 3 Skill.");
+            System.out.print("Enter Skill ID, Q=Done: ");
+            String skillInput = scanner.nextLine().trim();
+            
+            if (skillInput.equalsIgnoreCase("Q")) {
+                if (i == 0) 
+                    System.out.println("You must select at least one Skill.");
+                else
+                    break;
+            } 
+            
+            if(!skillInput.equalsIgnoreCase("Q")) {
+                
+                System.out.print("Enter Proficiency Level: ");
+                String proficiencyLevelInput = scanner.nextLine().trim();
+                
+                if(digitValidation(proficiencyLevelInput)){
+                    int intProficiencyLevelInput = Integer.parseInt(proficiencyLevelInput);
+                    Skill tempSkill = studentControl.selectedSkill(skillInput);
+                    if(tempSkill != null){
+                        if(studentControl.noDuplicateSkillSelection(studentSkillList, tempSkill)) {
+                            studentSkillList.add(new StudentSkill(tempSkill, intProficiencyLevelInput));
+                            i++;
+                        }
+                    }
+                } else {
+                    System.out.println("You must select existed ID only.");
+                }
+
+            }
+        }
+        
+        loop = true;
+        i = 0;
         String[] jobTypes = new String[3];
         while(loop) {
             if(i == 3)
@@ -183,7 +226,8 @@ public class StudentUI {
             if (input.equalsIgnoreCase("Q")) {
                 if (i == 0) 
                     System.out.println("You must select at least one job type.");
-                break;
+                else
+                    break;
             } 
             
             if(digitValidation(input)){
@@ -203,11 +247,14 @@ public class StudentUI {
         
         Student newStudent = new Student(studentControl.generateStudentID(), name, password, age, address, area, state,3.1390, 101.6869, email, achievement, education, yearsOfExperience, jobTypes);
         
+        for(int z = 1; z <= studentSkillList.size(); z++) {
+            Skill skill = studentSkillList.getData(z).getSkill();
+            int level = studentSkillList.getData(z).getProficiencyLevel();
+            newStudent.getStudentSkillList().add(new StudentSkill(skill, level));
+        }
+        
         return newStudent;
     }
-    
-
-    
     
     
     public boolean nameValidation(String input) {
@@ -336,7 +383,8 @@ public class StudentUI {
         System.out.println("8. Achievement");
         System.out.println("9. Education");
         System.out.println("10.Year Of Experience");
-        System.out.println("11.Desire Job Type");
+        System.out.println("11.Skill");
+        System.out.println("12.Desire Job Type");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
 

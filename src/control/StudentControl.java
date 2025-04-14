@@ -4,6 +4,7 @@
  */
 package control;
 
+import adt.DoublyLinkedList;
 import adt.ListInterface;
 import boundary.*;
 import entity.*;
@@ -86,8 +87,8 @@ public class StudentControl {
     public void studentOwnListing() {
 
         studentUI.studentListingUI();
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-70s |\n",
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-200s | %-70s |\n",
                 studentPortalControl.getLoginStudent().getId(),
                 studentPortalControl.getLoginStudent().getName(),
                 studentPortalControl.getLoginStudent().getPassword(),
@@ -101,9 +102,10 @@ public class StudentControl {
                 studentPortalControl.getLoginStudent().getAchievement(),
                 studentPortalControl.getLoginStudent().getEducation(),
                 studentPortalControl.getLoginStudent().getYearsOfExperience(),
+                convertSkillListToString(studentPortalControl.getLoginStudent().getStudentSkillList()),
                 convertArrayToString(studentPortalControl.getLoginStudent().getDesiredJobTypes())
         );
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
     public void studentListing() {
@@ -111,8 +113,8 @@ public class StudentControl {
         if (studentList.size() > 0) {
 
             for (Student student : studentList) {
-                System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-                System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-70s |\n",
+                System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-200s | %-70s |\n",
                         student.getId(),
                         student.getName(),
                         student.getPassword(),
@@ -130,23 +132,23 @@ public class StudentControl {
                         convertArrayToString(student.getDesiredJobTypes())
                 );
             }
-            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
     
-    private String convertSkillListToString(ListInterface<StudentSkill> skills) {
-       StringBuilder sb = new StringBuilder();
+    public String convertSkillListToString(ListInterface<StudentSkill> skills) {
+        StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= skills.size(); i++) {
             StudentSkill ss = skills.getData(i);
-            sb.append("[").append("Name: ").append(ss.getSkill().getName())
-            .append(" Proficiency Level: (").append(ss.getProficiencyLevel()).append(")]");
+            sb.append("Name: ").append(ss.getSkill().getName()).append(",")
+            .append(" Proficiency Level: ").append(ss.getProficiencyLevel());
             if (i < skills.size()) {
-                sb.append("\n");
+                sb.append("| ");
             }
         }
         return sb.toString();
     }
-
+    
     public String convertArrayToString(String[] array) {
         String result = "";
         if (array != null) {
@@ -162,6 +164,39 @@ public class StudentControl {
 
         return result;
     }
+    
+//private String convertJobApplicationListToString(ListInterface<JobApplication> jobApplications) {
+//    StringBuilder sb = new StringBuilder();
+//    for (int i = 1; i <= jobApplications.size(); i++) {
+//        JobApplication ja = jobApplications.getData(i);
+//        String companyName = ja.getJobPosting().getCompany().getName();
+//        String jobTitle = ja.getJobPosting().getJob().getTitle();
+//
+//        String interviewStatus = "N/A";
+//        Interview interview = ja.getInterviewList();
+//        if (interview != null && interview.getInterviewStatus() != null) {
+//            interviewStatus = interview.getInterviewStatus().toString();
+//            
+//          sb.append("Company Name: ").append(companyName)
+//          .append(" , Job Title: ").append(jobTitle)
+//          .append(" , Interview Status: ").append(interviewStatus);
+//        }else {
+//          sb.append("Company Name: ").append(companyName)
+//          .append(" , Job Title: ").append(jobTitle)
+//          .append(" , Interview Status: ").append("null");
+//        }
+//
+//        
+//
+//        if (i < jobApplications.size()) {
+//            sb.append("\n");
+//        }
+//    }
+//    return sb.toString();
+//}
+
+
+
 
     public void addStudent() {
         studentUI.addStudentUI();
@@ -176,24 +211,34 @@ public class StudentControl {
             System.out.println("Failed to add job posting.");
         }
     }
+    
+    public void skillList() {
+        System.out.println("====================================================================================================");
+        System.out.printf("| %-10s | %-40s  |\n", "ID", "Name");
+        for (Skill skill : skillList) {
+            System.out.printf("| %-10s | %-40s  |\n", skill.getId(), skill.getName());
+        }
 
-    public Job isJobExist(String info) {
-        Job job = null;
-
-        for (int i = 1; i <= jobList.size(); i++) {
-            if (info.equalsIgnoreCase(jobList.getData(i).getId())) {
-                job = jobList.getData(i);
-                break;
-            }
-
-            if (info.equalsIgnoreCase(jobList.getData(i).getTitle())) {
-                job = jobList.getData(i);
-                break;
+        System.out.println("====================================================================================================");
+    }
+    
+    public Skill selectedSkill(String input) {
+         for (Skill skill : skillList) {
+            if(input.equals(skill.getId())){
+                return skill;
             }
         }
-        return job;
+        return null;
     }
-
+    
+    public boolean noDuplicateSkillSelection(ListInterface<StudentSkill> selectedSkillList, Skill input) {
+        for(int i = 1; i < selectedSkillList.size(); i++) {
+            if(selectedSkillList.getData(i).getSkill().getId().equals(input.getId()))
+                return true;
+        }
+        return false;
+    }
+    
     public int[] jobTypeList() {
         int count = 0;
         String[] typeListed = new String[5];
@@ -230,7 +275,7 @@ public class StudentControl {
 
         return option;
     }
-
+    
     public String getJobType(int input) {
         return jobList.getData(input).getType();
     }
@@ -345,6 +390,9 @@ public class StudentControl {
                     updateYearOfExp(ori);
                     break;
                 case 11:
+                    updateSkill(ori);
+                    break;
+                case 12:
                     updateDesireJobType(ori);
                     break;
                 default:
@@ -548,6 +596,62 @@ public class StudentControl {
             }
         }
     }
+    
+    public void updateSkill (Student ori) {
+        boolean loop = true;
+        int i = 0;
+        ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
+        while (loop) {
+            if(i == 3)
+                break;
+            
+            skillList();
+            System.out.print("Choose min 1 to 3 Skill.");
+            System.out.print("Enter Skill ID, Q=Done: ");
+            String skillInput = scanner.nextLine().trim();
+            
+            if (skillInput.equalsIgnoreCase("Q")) {
+                if (i == 0) 
+                    System.out.println("You must select at least one Skill.");
+                else
+                    break;
+            } 
+
+            if(!skillInput.equalsIgnoreCase("Q")) {
+                
+                System.out.print("Enter Proficiency Level: ");
+                String proficiencyLevelInput = scanner.nextLine().trim();
+                
+                if(studentUI.digitValidation(proficiencyLevelInput)){
+                    int intProficiencyLevelInput = Integer.parseInt(proficiencyLevelInput);
+                    Skill tempSkill = selectedSkill(skillInput);
+                    if(tempSkill != null){
+                        if(noDuplicateSkillSelection(studentSkillList, tempSkill)) {
+                            studentSkillList.add(new StudentSkill(tempSkill, intProficiencyLevelInput));
+                            i++;
+                        }
+                    }
+                } else {
+                    System.out.println("You must select existed ID only.");
+                }
+            }
+            
+            if (!studentSkillList.isEmpty()) {
+                boolean isConfirm = studentUI.confirmation("Confirm update " + convertSkillListToString(ori.getStudentSkillList()) + " as " + convertSkillListToString(studentSkillList) + "?");
+
+                if (isConfirm) {
+                    for(int z = 1; z <= studentSkillList.size(); z++) {
+                        Skill skill = studentSkillList.getData(z).getSkill();
+                        int level = studentSkillList.getData(z).getProficiencyLevel();
+                        ori.getStudentSkillList().add(new StudentSkill(skill, level));
+                    }
+                    System.out.println("Student Desire Job Type update successfully!");
+                }else {
+                    System.out.println("Failed to update.");
+                }
+            }
+        }
+    }
 
     public void updateDesireJobType(Student ori) {
         boolean loop = true;
@@ -577,6 +681,8 @@ public class StudentControl {
                         jobTypes[i] = getJobType(option[intInput - 1]);
                         i++;
                     }
+                } else {
+                    System.out.println("You must select existed number only.");
                 }
             }
 
@@ -601,6 +707,23 @@ public class StudentControl {
             }
         }
         return input.length;
+    }
+    
+    public Job isJobExist(String info) {
+        Job job = null;
+
+        for (int i = 1; i <= jobList.size(); i++) {
+            if (info.equalsIgnoreCase(jobList.getData(i).getId())) {
+                job = jobList.getData(i);
+                break;
+            }
+
+            if (info.equalsIgnoreCase(jobList.getData(i).getTitle())) {
+                job = jobList.getData(i);
+                break;
+            }
+        }
+        return job;
     }
 
     public void removeStudent() {
