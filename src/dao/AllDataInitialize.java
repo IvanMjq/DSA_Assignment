@@ -1086,7 +1086,6 @@ public class AllDataInitialize {
         return interviewList;
     }
     
-
     // -----------------
     // Display for testing
     public static void main(String[] args) {
