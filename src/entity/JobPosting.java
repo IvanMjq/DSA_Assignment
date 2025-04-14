@@ -25,7 +25,9 @@ public class JobPosting implements Serializable {
     private double maximumSalary;
     private int requiredExperience;
     private LocalDate  datePosted;
-    ListInterface<Skill> skillList = new DoublyLinkedList<>();
+    
+    ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
+    ListInterface<JobRequiredSkill> jobRequiredSkills = new DoublyLinkedList<>();
 
     public JobPosting(String id, Company company, Job job, String description, double minimumSalary, double maximumSalary, int requiredExperience, LocalDate datePosted) {
         this.id = id;
@@ -100,6 +102,22 @@ public class JobPosting implements Serializable {
 
     public void setDatePosted(LocalDate datePosted) {
         this.datePosted = datePosted;
+    }
+
+    public ListInterface<JobApplication> getJobApplicationList() {
+        return jobApplicationList;
+    }
+
+    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
+        this.jobApplicationList = jobApplicationList;
+    }
+
+    public ListInterface<JobRequiredSkill> getJobRequiredSkills() {
+        return jobRequiredSkills;
+    }
+
+    public void setJobRequiredSkills(ListInterface<JobRequiredSkill> jobRequiredSkills) {
+        this.jobRequiredSkills = jobRequiredSkills;
     }
     
     @Override
