@@ -395,18 +395,18 @@ public class CompanyControl {
 
     }
 
-    // Just for testing purpose
-    public static void main(String[] args) {
-        AllDataInitialize dataInitialize = new AllDataInitialize();
-
-        ListInterface<Company> companyList = dataInitialize.getCompanyList();
-        ListInterface<CompanyJob> companyJobList = dataInitialize.getCompanyJobList();
-        ListInterface<JobPosting> jobPostingList = dataInitialize.getJobPostingList();
-        ListInterface<JobRequiredSkill> jobRequiredSkillList = dataInitialize.getJobRequiredSkillList();
-
-        CompanyControl companyControl = new CompanyControl(companyList, companyJobList, jobPostingList, jobRequiredSkillList);
-
-        companyControl.startCompanyManagement();
-    }
+//    // Just for testing purpose
+//    public static void main(String[] args) {
+//        AllDataInitialize dataInitialize = new AllDataInitialize();
+//
+//        ListInterface<Company> companyList = dataInitialize.getCompanyList();
+//        ListInterface<CompanyJob> companyJobList = dataInitialize.getCompanyJobList();
+//        ListInterface<JobPosting> jobPostingList = dataInitialize.getJobPostingList();
+//        ListInterface<JobRequiredSkill> jobRequiredSkillList = dataInitialize.getJobRequiredSkillList();
+//
+//        CompanyControl companyControl = new CompanyControl(companyList, companyJobList, jobPostingList, jobRequiredSkillList);
+//
+//        companyControl.startCompanyManagement();
+//    }
 
 }
