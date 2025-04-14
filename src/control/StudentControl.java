@@ -17,12 +17,11 @@ public class StudentControl {
 
     Scanner scanner = new Scanner(System.in);
 
+    private ListInterface<Company> companyList;
     private ListInterface<Student> studentList;
-    private ListInterface<StudentSkill> studentSkillList;
     private ListInterface<Skill> skillList;
     private ListInterface<Job> jobList;
-    private ListInterface<JobPosting> jobPostList;
-    private ListInterface<JobRequiredSkill> requiredSkill;
+    private ListInterface<Interview> interviewList;
     private StudentUI studentUI;
     private MatchingEngineControl matchControl;
     private StudentPortalControl studentPortalControl;
@@ -30,27 +29,25 @@ public class StudentControl {
     public StudentControl() {
     }
 
-    public StudentControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList,ListInterface<JobPosting> jobPostList, ListInterface<JobRequiredSkill> requiredSkill) {
+    public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList) {
+        this.companyList = companyList;
         this.studentList = studentList;
-        this.studentSkillList = studentSkillList;
         this.skillList = skillList;
         this.jobList = jobList;
-        this.jobPostList = jobPostList;
-        this.requiredSkill = requiredSkill;
+        this.interviewList = interviewList;
         this.studentUI = new StudentUI(this);
-        this.matchControl = new MatchingEngineControl(studentList, jobPostList);
+//        this.matchControl = new MatchingEngineControl(studentList, jobPostList);
         
     }
 
-    public StudentControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList,ListInterface<JobPosting> jobPostList, ListInterface<JobRequiredSkill> requiredSkill, StudentPortalControl studentPortalControl) {
+    public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList, StudentPortalControl studentPortalControl) {
+        this.companyList = companyList;
         this.studentList = studentList;
-        this.studentSkillList = studentSkillList;
         this.skillList = skillList;
         this.jobList = jobList;
-        this.jobPostList = jobPostList;
-        this.requiredSkill = requiredSkill;
+        this.interviewList = interviewList;
         this.studentUI = new StudentUI(this);
-        this.matchControl = new MatchingEngineControl(studentList, jobPostList);
+//        this.matchControl = new MatchingEngineControl(studentList, jobPostList);
         this.studentPortalControl = studentPortalControl;
     }
 
@@ -76,7 +73,7 @@ public class StudentControl {
                     updateStudent();
                     break;
                 case 6:
-                    matchControl.AdminMatchingRunner();
+//                    matchControl.AdminMatchingRunner();
 
                 default:
                     System.out.println("This is an invalid option!!!");
