@@ -13,26 +13,13 @@ import java.time.*;
  * @author ivanmjq
  */
 public class JobApplication implements Serializable {
-    private String id; 
-    private JobPosting jobPost;
     private Student student;
     private LocalDateTime appliedDateTime;
-    private Interview interview;
 
-    public JobApplication(String id, JobPosting jobPost, Student student, LocalDateTime appliedDateTime, Interview interview) {
-        this.id                 = id;
-        this.jobPost            = jobPost;
-        this.student            = student;
-        this.appliedDateTime    = appliedDateTime;
-        this.interview          = interview;
-    }
+    public JobApplication(Student student, LocalDateTime appliedDateTime) {
 
-    public String getId() {
-        return id;
-    }
-
-    public JobPosting getJobPost() {
-        return jobPost;
+        this.student = student;
+        this.appliedDateTime = appliedDateTime;
     }
 
     public Student getStudent() {
@@ -43,18 +30,6 @@ public class JobApplication implements Serializable {
         return appliedDateTime;
     }
 
-    public Interview getInterview() {
-        return interview;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setJobPost(JobPosting jobPost) {
-        this.jobPost = jobPost;
-    }
-
     public void setStudent(Student student) {
         this.student = student;
     }
@@ -63,9 +38,7 @@ public class JobApplication implements Serializable {
         this.appliedDateTime = appliedDateTime;
     }
 
-    public void setInterview(Interview interview) {
-        this.interview = interview;
-    }
+  
 
     @Override
     public int hashCode() {
@@ -82,14 +55,16 @@ public class JobApplication implements Serializable {
             return false;
         }
         final JobApplication other = (JobApplication) obj;
-        return Objects.equals(this.id, other.id); 
+        return Objects.equals(this.student, other.student); 
         // Check if the id are same
     }
 
     @Override
     public String toString() {
-        return "JobApplication{" + "id='" + id + '\'' + ", jobPost=" + jobPost +
-           ", student=" + student + ", appliedDateTime=" + appliedDateTime + '}';
+        return "JobApplication{" +
+                "studentId='" + student.getId() + '\'' +
+                ", applicationDate=" + appliedDateTime +
+                '}';
     }
 
 }

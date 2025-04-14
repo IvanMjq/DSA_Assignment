@@ -12,7 +12,6 @@ import java.util.Objects;
  * @author Teh Yi Shan
  */
 public class Skill implements Serializable {
-
     private String id;
     private String name;
 
