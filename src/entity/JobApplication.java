@@ -70,7 +70,7 @@ public class JobApplication implements Serializable {
 
     @Override
     public String toString() {
-        return "JobApplication{" + "id='" + id + '\'' + ", jobPost=" + jobPost +
+        return "JobApplication{" + "id='" + id + '\'' + ", jobPost="  +
            ", student=" + student + ", appliedDateTime=" + appliedDateTime + '}';
     }
 
