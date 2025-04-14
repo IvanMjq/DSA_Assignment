@@ -13,18 +13,13 @@ import java.time.*;
  * @author ivanmjq
  */
 public class JobApplication implements Serializable {
-    private String id; 
     private Student student;
     private LocalDateTime appliedDateTime;
 
-    public JobApplication(String id, Student student, LocalDateTime appliedDateTime) {
-        this.id = id;
+    public JobApplication(Student student, LocalDateTime appliedDateTime) {
+
         this.student = student;
         this.appliedDateTime = appliedDateTime;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public Student getStudent() {
@@ -33,10 +28,6 @@ public class JobApplication implements Serializable {
 
     public LocalDateTime getAppliedDateTime() {
         return appliedDateTime;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setStudent(Student student) {
@@ -64,14 +55,16 @@ public class JobApplication implements Serializable {
             return false;
         }
         final JobApplication other = (JobApplication) obj;
-        return Objects.equals(this.id, other.id); 
+        return Objects.equals(this.student, other.student); 
         // Check if the id are same
     }
 
     @Override
     public String toString() {
-        return "JobApplication{" + "id='" + id + '\'' + ", jobPost="  +
-           ", student=" + student + ", appliedDateTime=" + appliedDateTime + '}';
+        return "JobApplication{" +
+                "studentId='" + student.getId() + '\'' +
+                ", applicationDate=" + appliedDateTime +
+                '}';
     }
 
 }
