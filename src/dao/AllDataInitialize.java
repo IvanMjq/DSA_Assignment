@@ -20,11 +20,8 @@ public class AllDataInitialize {
     private ListInterface<Skill> skillList = new DoublyLinkedList<>();
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
-    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
     private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
     private ListInterface<Student> studentList = new DoublyLinkedList<>();
-    private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
-    private ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
     private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
 
     public AllDataInitialize() {
@@ -33,12 +30,12 @@ public class AllDataInitialize {
 
         initializeCompanyList();
 
-        initilizeJob();
+        initializeJob();
 
         initializeCompanyJob();
 
-        //intializeStudent();
-        
+        intializeStudent();
+
         initializeJobPosting();
 
         initializeJobApplication();
@@ -206,7 +203,7 @@ public class AllDataInitialize {
 
     }
 
-    private void initilizeJob() {
+    private void initializeJob() {
         jobList.add(new Job(
                 "J-1",
                 "Software Engineer",
@@ -268,7 +265,7 @@ public class AllDataInitialize {
                 "Develop complete web applications, working on both frontend and backend. Familiarity with React, Node.js, databases, and APIs is essential."
         ));
         jobList.add(new Job(
-                "J-16",
+                "J-11",
                 "Credit Risk Analyst",
                 "Finance & Banking",
                 "Evaluate credit data and financial statements to assess the risk in lending. Experience with credit scoring models and risk analysis is preferred."
@@ -350,7 +347,7 @@ public class AllDataInitialize {
 
     private void initializeCompanyJob() {
         CompanyJob companyJob;
-        
+
         // Company 1
         companyJob = new CompanyJob(
                 companyList.getData(1),
@@ -365,7 +362,6 @@ public class AllDataInitialize {
         );
         companyList.getData(1).getCompanyJobList().add(companyJob);
         jobList.getData(2).getCompanyJobList().add(companyJob);
-        
 
         // Company 2 
         companyJob = new CompanyJob(
@@ -374,7 +370,7 @@ public class AllDataInitialize {
         );
         companyList.getData(2).getCompanyJobList().add(companyJob);
         jobList.getData(3).getCompanyJobList().add(companyJob);
-        
+
         companyJob = new CompanyJob(
                 companyList.getData(2),
                 jobList.getData(4)
@@ -382,7 +378,6 @@ public class AllDataInitialize {
         companyList.getData(2).getCompanyJobList().add(companyJob);
         jobList.getData(4).getCompanyJobList().add(companyJob);
 
-        
         // Company 3
         companyJob = new CompanyJob(
                 companyList.getData(3),
@@ -390,7 +385,7 @@ public class AllDataInitialize {
         );
         companyList.getData(3).getCompanyJobList().add(companyJob);
         jobList.getData(5).getCompanyJobList().add(companyJob);
-        
+
         companyJob = new CompanyJob(
                 companyList.getData(3),
                 jobList.getData(1)
@@ -398,7 +393,6 @@ public class AllDataInitialize {
         companyList.getData(3).getCompanyJobList().add(companyJob);
         jobList.getData(1).getCompanyJobList().add(companyJob);
 
-        
         // Company 4
         companyJob = new CompanyJob(
                 companyList.getData(4),
@@ -413,7 +407,6 @@ public class AllDataInitialize {
         companyList.getData(4).getCompanyJobList().add(companyJob);
         jobList.getData(7).getCompanyJobList().add(companyJob);
 
-        
         // Company 5
         companyJob = new CompanyJob(
                 companyList.getData(5),
@@ -428,7 +421,6 @@ public class AllDataInitialize {
         companyList.getData(5).getCompanyJobList().add(companyJob);
         jobList.getData(5).getCompanyJobList().add(companyJob);
 
-        
         // Company 6
         companyJob = new CompanyJob(
                 companyList.getData(6),
@@ -443,7 +435,6 @@ public class AllDataInitialize {
         companyList.getData(6).getCompanyJobList().add(companyJob);
         jobList.getData(6).getCompanyJobList().add(companyJob);
 
-        
         // Company 7
         companyJob = new CompanyJob(
                 companyList.getData(7),
@@ -458,7 +449,6 @@ public class AllDataInitialize {
         companyList.getData(7).getCompanyJobList().add(companyJob);
         jobList.getData(3).getCompanyJobList().add(companyJob);
 
-        
         // Company 8
         companyJob = new CompanyJob(
                 companyList.getData(8),
@@ -469,10 +459,10 @@ public class AllDataInitialize {
         companyJob = new CompanyJob(
                 companyList.getData(8),
                 jobList.getData(10)
-        );companyList.getData(8).getCompanyJobList().add(companyJob);
+        );
+        companyList.getData(8).getCompanyJobList().add(companyJob);
         jobList.getData(10).getCompanyJobList().add(companyJob);
 
-        
         // Company 9
         companyJob = new CompanyJob(
                 companyList.getData(9),
@@ -487,7 +477,6 @@ public class AllDataInitialize {
         companyList.getData(9).getCompanyJobList().add(companyJob);
         jobList.getData(1).getCompanyJobList().add(companyJob);
 
-        
         // Company 10
         companyJob = new CompanyJob(
                 companyList.getData(10),
@@ -517,8 +506,11 @@ public class AllDataInitialize {
                 "alan.chopper@example.com",
                 "Dean's List Award",
                 "Bachelor of Computer Science",
-                1, 
-                {"Engineering", "Healthcare"}
+                1,
+         {
+
+        
+        "Engineering", "Healthcare"}
         ));
 
         studentList.add(new Student(
@@ -656,10 +648,11 @@ public class AllDataInitialize {
                 "Bachelor of AI",
                 2, "Engineering"));
     }
-    
+
     private void initializeJobPosting() {
-        jobPostingList.add(new JobPosting(
-                "JP-1",
+        JobPosting jp;
+
+        jp = new JobPosting(
                 companyList.getData(1),
                 jobList.getData(1),
                 "Analyze complex datasets and present insights for business decisions.",
@@ -667,29 +660,59 @@ public class AllDataInitialize {
                 5000.00,
                 1,
                 LocalDate.of(2024, 3, 12)
-        ));
-        jobPostingList.add(new JobPosting(
-                "JP-2",
+        );
+        companyList.getData(1).getJobPostingList().add(jp);
+        jobList.getData(1).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
                 companyList.getData(1),
-                jobList.getData(1),
-                "Analyze complex datasets and present insights for business decisions.",
-                3500.00,
-                5000.00,
-                2,
-                LocalDate.of(2024, 3, 12)
-        ));
-        jobPostingList.add(new JobPosting(
-                "JP-3",
-                companyList.getData(4),
-                jobList.getData(4),
-                "Develop enterprise applications with modern backend frameworks.",
+                jobList.getData(2),
+                "Create and manage data visualizations using tools like Tableau and Power BI.",
                 4000.00,
                 6000.00,
+                2,
+                LocalDate.of(2024, 4, 15)
+        );
+        companyList.getData(1).getJobPostingList().add(jp);
+        jobList.getData(2).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(1),
+                jobList.getData(1),
+                "Support data-driven decision-making with advanced analytics.",
+                3700.00,
+                5200.00,
+                2,
+                LocalDate.of(2024, 4, 2)
+        );
+        companyList.getData(1).getJobPostingList().add(jp);
+        jobList.getData(1).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(2),
+                jobList.getData(2),
+                "Develop and maintain scalable backend services using Java and Spring Boot.",
+                5000.00,
+                7500.00,
                 3,
-                LocalDate.of(2024, 5, 5)
-        ));
-        jobPostingList.add(new JobPosting(
-                "JP-4",
+                LocalDate.of(2024, 6, 1)
+        );
+        companyList.getData(2).getJobPostingList().add(jp);
+        jobList.getData(2).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(2),
+                jobList.getData(3),
+                "Manage large-scale projects and lead development teams using Agile methodology.",
+                5500.00,
+                8000.00,
+                3,
+                LocalDate.of(2024, 5, 10)
+        );
+        companyList.getData(2).getJobPostingList().add(jp);
+        jobList.getData(3).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
                 companyList.getData(3),
                 jobList.getData(3),
                 "Work with AI pipelines to optimize ML model deployment.",
@@ -697,9 +720,47 @@ public class AllDataInitialize {
                 7200.00,
                 2,
                 LocalDate.of(2024, 1, 20)
-        ));
-        jobPostingList.add(new JobPosting(
-                "JP-5",
+        );
+        companyList.getData(3).getJobPostingList().add(jp);
+        jobList.getData(3).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(3),
+                jobList.getData(4),
+                "Create machine learning models for predictive analysis and forecasting.",
+                4800.00,
+                7500.00,
+                1,
+                LocalDate.of(2024, 5, 22)
+        );
+        companyList.getData(3).getJobPostingList().add(jp);
+        jobList.getData(4).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(4),
+                jobList.getData(4),
+                "Develop enterprise applications with modern backend frameworks.",
+                4000.00,
+                6000.00,
+                3,
+                LocalDate.of(2024, 5, 5)
+        );
+        companyList.getData(4).getJobPostingList().add(jp);
+        jobList.getData(4).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(4),
+                jobList.getData(5),
+                "Lead design and development of mobile applications for iOS and Android.",
+                5000.00,
+                7000.00,
+                1,
+                LocalDate.of(2024, 6, 18)
+        );
+        companyList.getData(4).getJobPostingList().add(jp);
+        jobList.getData(5).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
                 companyList.getData(5),
                 jobList.getData(5),
                 "Design and develop cross-platform mobile applications using Flutter and Kotlin.",
@@ -707,19 +768,47 @@ public class AllDataInitialize {
                 6000.00,
                 2,
                 LocalDate.of(2024, 4, 10)
-        ));
-        jobPostingList.add(new JobPosting(
-                "JP-6",
+        );
+        companyList.getData(5).getJobPostingList().add(jp);
+        jobList.getData(5).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(5),
+                jobList.getData(6),
+                "Develop software to prevent cyberattacks and enhance organizational security.",
+                5200.00,
+                7500.00,
+                2,
+                LocalDate.of(2024, 6, 5)
+        );
+        companyList.getData(5).getJobPostingList().add(jp);
+        jobList.getData(6).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
                 companyList.getData(6),
-                jobList.getData(2),
+                jobList.getData(6),
                 "Implement and monitor cybersecurity protocols to safeguard company data.",
                 5000.00,
                 7500.00,
                 1,
                 LocalDate.of(2024, 2, 22)
-        ));
-        jobPostingList.add(new JobPosting(
-                "JP-7",
+        );
+        companyList.getData(6).getJobPostingList().add(jp);
+        jobList.getData(6).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(6),
+                jobList.getData(7),
+                "Oversee encryption technologies to ensure safe data storage and transmission.",
+                5300.00,
+                7800.00,
+                1,
+                LocalDate.of(2024, 4, 10)
+        );
+        companyList.getData(6).getJobPostingList().add(jp);
+        jobList.getData(7).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
                 companyList.getData(7),
                 jobList.getData(7),
                 "Maintain and optimize large-scale SQL databases for high performance.",
@@ -727,27 +816,81 @@ public class AllDataInitialize {
                 6500.00,
                 2,
                 LocalDate.of(2024, 5, 1)
-        ));
-        jobPostingList.add(new JobPosting(
-                "JP-8",
+        );
+        companyList.getData(7).getJobPostingList().add(jp);
+        jobList.getData(7).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(7),
+                jobList.getData(8),
+                "Lead migration of cloud-based systems and oversee architecture optimization.",
+                5800.00,
+                8200.00,
+                3,
+                LocalDate.of(2024, 5, 30)
+        );
+        companyList.getData(7).getJobPostingList().add(jp);
+        jobList.getData(8).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
                 companyList.getData(8),
-                jobList.getData(9),
+                jobList.getData(8),
                 "Develop full-stack web applications with seamless integration of frontend and backend.",
                 4800.00,
                 7000.00,
                 1,
                 LocalDate.of(2024, 3, 15)
-        ));
-        jobPostingList.add(new JobPosting(
-                "JP-9",
+        );
+        companyList.getData(8).getJobPostingList().add(jp);
+        jobList.getData(8).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(8),
+                jobList.getData(9),
+                "Collaborate with teams to deliver full-stack web applications on time.",
+                4800.00,
+                7000.00,
+                2,
+                LocalDate.of(2024, 6, 1)
+        );
+        companyList.getData(8).getJobPostingList().add(jp);
+        jobList.getData(9).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
                 companyList.getData(9),
-                jobList.getData(8),
+                jobList.getData(9),
                 "Assist in AI model training and evaluation for real-world research projects.",
                 3000.00,
                 4000.00,
                 1,
                 LocalDate.of(2024, 1, 5)
-        ));
+        );
+        companyList.getData(9).getJobPostingList().add(jp);
+        jobList.getData(9).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(9),
+                jobList.getData(10),
+                "Conduct research and create innovative AI solutions for clients.",
+                6000.00,
+                8500.00,
+                1,
+                LocalDate.of(2024, 7, 12)
+        );
+        companyList.getData(9).getJobPostingList().add(jp);
+        jobList.getData(10).getJobPostingList().add(jp);
+
+        jp = new JobPosting(
+                companyList.getData(10),
+                jobList.getData(10),
+                "Lead the development of innovative solutions in the field of AI and machine learning.",
+                6000.00,
+                9000.00,
+                3,
+                LocalDate.of(2024, 7, 1)
+        );
+        companyList.getData(10).getJobPostingList().add(jp);
+        jobList.getData(10).getJobPostingList().add(jp);
 
     }
 
@@ -878,51 +1021,68 @@ public class AllDataInitialize {
     }
 
     private void initializeJobRequiredSkill() {
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(1),
-                skillList.getData(1),
-                1
-        ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(2),
-                skillList.getData(2),
-                2
-        ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(3),
-                skillList.getData(3),
-                3
-        ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(4),
-                skillList.getData(4),
-                4
-        ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(5),
-                skillList.getData(5),
-                5
-        ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(6),
-                skillList.getData(6),
-                1
-        ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(7),
-                skillList.getData(7),
-                2
-        ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(8),
-                skillList.getData(8),
-                3
-        ));
-        jobRequiredSkillList.add(new JobRequiredSkill(
-                jobPostingList.getData(9),
-                skillList.getData(9),
-                4
-        ));
+        JobRequiredSkill jrs;
+
+        jrs = new JobRequiredSkill(skillList.getData(1), 2);
+        companyList.getData(1).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(5), 1);
+        companyList.getData(1).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(3), 3);
+        companyList.getData(1).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+
+        jrs = new JobRequiredSkill(skillList.getData(2), 1);
+        companyList.getData(1).getJobPostingList().getData(2).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(5), 2);
+        companyList.getData(1).getJobPostingList().getData(2).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(4), 4);
+        companyList.getData(1).getJobPostingList().getData(2).getJobRequiredSkillList().add(jrs);
+
+        jrs = new JobRequiredSkill(skillList.getData(3), 2);
+        companyList.getData(4).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(9), 5);
+        companyList.getData(4).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(7), 3);
+        companyList.getData(4).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+
+        jrs = new JobRequiredSkill(skillList.getData(1), 2);
+        companyList.getData(3).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(6), 4);
+        companyList.getData(3).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(8), 1);
+        companyList.getData(3).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+
+        jrs = new JobRequiredSkill(skillList.getData(5), 2);
+        companyList.getData(5).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(10), 1);
+        companyList.getData(5).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(4), 3);
+        companyList.getData(5).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+
+        jrs = new JobRequiredSkill(skillList.getData(2), 1);
+        companyList.getData(6).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(7), 5);
+        companyList.getData(6).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(9), 2);
+        companyList.getData(6).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+
+        jrs = new JobRequiredSkill(skillList.getData(3), 4);
+        companyList.getData(7).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(6), 3);
+        companyList.getData(7).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+
+        jrs = new JobRequiredSkill(skillList.getData(8), 2);
+        companyList.getData(8).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(10), 1);
+        companyList.getData(8).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(1), 3);
+        companyList.getData(8).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+
+        jrs = new JobRequiredSkill(skillList.getData(4), 2);
+        companyList.getData(9).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(6), 3);
+        companyList.getData(9).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
+        jrs = new JobRequiredSkill(skillList.getData(7), 5);
+        companyList.getData(9).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
 
     }
 
@@ -950,10 +1110,6 @@ public class AllDataInitialize {
         return jobList;
     }
 
-    public ListInterface<JobPosting> getJobPostingList() {
-        return jobPostingList;
-    }
-
     public ListInterface<JobApplication> getJobApplicationList() {
         return jobApplicationList;
     }
@@ -964,14 +1120,6 @@ public class AllDataInitialize {
 
     public ListInterface<Skill> getSkillList() {
         return skillList;
-    }
-
-    public ListInterface<StudentSkill> getStudentSkillList() {
-        return studentSkillList;
-    }
-
-    public ListInterface<JobRequiredSkill> getJobRequiredSkillList() {
-        return jobRequiredSkillList;
     }
 
     // -----------------

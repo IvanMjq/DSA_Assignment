@@ -5,6 +5,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -12,18 +13,12 @@ import java.io.Serializable;
  */
 public class JobRequiredSkill implements Serializable {
     
-    private JobPosting jobPost;
     private Skill skill;
     private int importance; // 1 to 5, how critical the skill is
 
-    public JobRequiredSkill(JobPosting jobPost, Skill skill, int importance) {
-        this.jobPost = jobPost;
+    public JobRequiredSkill(Skill skill, int importance) {
         this.skill = skill;
         this.importance = importance;
-    }
-
-    public JobPosting getJobPost() {
-        return jobPost;
     }
 
     public Skill getSkill() {
@@ -32,10 +27,6 @@ public class JobRequiredSkill implements Serializable {
     
     public int getImportance() {
         return importance;
-    }
-
-    public void setJobPost(JobPosting jobPost) {
-        this.jobPost = jobPost;
     }
 
     public void setSkill(Skill skill) {
@@ -48,7 +39,9 @@ public class JobRequiredSkill implements Serializable {
 
     @Override
     public String toString() {
-        return "JobRequiredSkill{" + "jobPost=" + jobPost + ", skill=" + skill + ", importance=" + importance + '}';
+        return "JobRequiredSkill{" + "skill=" + skill + ", importance=" + importance + '}';
     }
+
+    
 
 }
