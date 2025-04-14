@@ -7,7 +7,6 @@ package utility;
 import adt.ListInterface;
 import entity.Company;
 import java.time.LocalTime;
-import java.util.Scanner;
 /**
  *
  * @author Ivanmjq

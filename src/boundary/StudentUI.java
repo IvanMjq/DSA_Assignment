@@ -28,6 +28,7 @@ public class StudentUI {
         System.out.println("3. Remove");
         System.out.println("4. Update");
         System.out.println("5. Filter");
+        System.out.println("6. Matching Report");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
 

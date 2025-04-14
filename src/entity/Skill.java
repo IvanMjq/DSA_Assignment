@@ -5,18 +5,20 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
  * @author Teh Yi Shan
  */
 public class Skill implements Serializable {
+
     private String id;
     private String name;
 
     public Skill(String id, String name) {
-        this.id     = id;
-        this.name   = name;
+        this.id = id;
+        this.name = name;
     }
 
     public String getId() {
@@ -26,7 +28,7 @@ public class Skill implements Serializable {
     public String getName() {
         return name;
     }
-    
+
     public void setId(String id) {
         this.id = id;
     }
@@ -36,8 +38,26 @@ public class Skill implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 1;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Skill other = (Skill) obj;
+        return Objects.equals(this.id, other.id);
+    }
+
+    @Override
     public String toString() {
         return "Skill{" + "id=" + id + ", name=" + name + '}';
     }
- 
+
 }

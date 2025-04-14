@@ -172,6 +172,22 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
 
         return -1; // Return -1 if the data is not found in the list
     }
+    
+//    @Override
+//    public ListInterface<T> insertionSort() {
+//        DoublyLinkedList<T> sortedList = new DoublyLinkedList<>();
+//        
+//        for (T currentData : this) {
+//            Node newNode = new Node(currentData);
+//            
+//            // Case 1 : empty list
+//            if (sortedList.isEmpty()) {
+//                sortedList.head = sortedList.tail = newNode;
+//            }
+//        }
+//        
+//        return sortedList;
+//    }
 
     @Override
     public Iterator<T> iterator() {

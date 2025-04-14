@@ -16,7 +16,6 @@ import java.util.Scanner;
 public class StudentPortalControl {
     Scanner scanner = new Scanner(System.in);
     
-    
     private ListInterface<Student> studentList;
     private ListInterface<StudentSkill> studentSkillList;
     private ListInterface<Skill> skillList;
@@ -35,7 +34,7 @@ public class StudentPortalControl {
     public StudentPortalControl() { 
     }
     
-    public StudentPortalControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList, ListInterface<JobPosting> jobPostList, ListInterface<JobRequiredSkill> requiredSkill){;
+    public StudentPortalControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList, ListInterface<JobPosting> jobPostList, ListInterface<JobRequiredSkill> requiredSkill){
         this.studentList        = studentList;
         this.studentSkillList   = studentSkillList;
         this.skillList          = skillList;
@@ -43,8 +42,8 @@ public class StudentPortalControl {
         this.jobPostList        = jobPostList;
         this.requiredSkill      = requiredSkill;
         this.studentPortalUI    = new StudentPortalUI(this);
-        this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList, this);
-        this.matchControl       = new MatchingEngineControl(studentSkillList, requiredSkill, studentList, jobPostList );
+        this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList, jobPostList, requiredSkill ,this);
+        this.matchControl       = new MatchingEngineControl(studentList, jobPostList);
         runStudentPortalManagement();
     }
     

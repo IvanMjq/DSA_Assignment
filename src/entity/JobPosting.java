@@ -4,9 +4,12 @@
  */
 package entity;
 
+import adt.DoublyLinkedList;
+import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalDate;
+
 
 /**
  *
@@ -22,8 +25,11 @@ public class JobPosting implements Serializable {
     private double maximumSalary;
     private int requiredExperience;
     private LocalDate  datePosted;
+    
+    ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
+    ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
 
-    public JobPosting(String id, Company company, Job job, String description, double minimumSalary, double maximumSalary, int requiredExperience, LocalDate datePosted) {
+    public JobPosting(String id, Company company, Job job, String description, double minimumSalary, double maximumSalary, int requiredExperience, LocalDate datePosted,ListInterface<JobRequiredSkill> jobRequiredSkillList) {
         this.id = id;
         this.company = company;
         this.job = job;
@@ -32,6 +38,7 @@ public class JobPosting implements Serializable {
         this.maximumSalary = maximumSalary;
         this.requiredExperience = requiredExperience;
         this.datePosted = datePosted;
+        this.jobRequiredSkillList = jobRequiredSkillList;
     }
 
     public String getId() {
@@ -96,6 +103,22 @@ public class JobPosting implements Serializable {
 
     public void setDatePosted(LocalDate datePosted) {
         this.datePosted = datePosted;
+    }
+
+    public ListInterface<JobApplication> getJobApplicationList() {
+        return jobApplicationList;
+    }
+
+    public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
+        this.jobApplicationList = jobApplicationList;
+    }
+
+    public ListInterface<JobRequiredSkill> getJobRequiredSkills() {
+        return jobRequiredSkillList;
+    }
+
+    public void setJobRequiredSkills(ListInterface<JobRequiredSkill> jobRequiredSkillList) {
+        this.jobRequiredSkillList = jobRequiredSkillList;
     }
     
     @Override

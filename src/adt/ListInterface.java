@@ -4,11 +4,10 @@
  */
 package adt;
 
-import entity.Student;
-
 /**
  *
  * @author ivanmjq
+ * @param <T>
  */
 public interface ListInterface<T> extends Iterable<T>{
     
@@ -33,4 +32,6 @@ public interface ListInterface<T> extends Iterable<T>{
     public String displayBackward();   
 
     public int indexOf(T data);
+    
+    //public ListInterface<T> insertionSort();
 }

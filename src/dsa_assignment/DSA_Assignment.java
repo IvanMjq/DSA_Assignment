@@ -129,7 +129,7 @@ public class DSA_Assignment {
                     exit = true;
                     break;
                 case 1:
-                    new AdminPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList());
+                    new AdminPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList(), dataInitialized.getJobPostingList(), dataInitialized.getJobRequiredSkillList());
                     break;
                 case 2:
                     new StudentPortalControl(dataInitialized.getStudentList(), dataInitialized.getSkillList(), dataInitialized.getStudentSkillList(), dataInitialized.getJobList(), dataInitialized.getJobPostingList(), dataInitialized.getJobRequiredSkillList());
