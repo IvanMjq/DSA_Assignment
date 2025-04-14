@@ -11,6 +11,8 @@ import dao.AllDataInitialize;
 import entity.Company;
 import entity.Job;
 import entity.Student;
+import utility.IdGeneration;
+import utility.JobValidateFunction;
 
 /**
  *
@@ -44,7 +46,7 @@ public class JobControl {
                     viewJob();
                     break;
                 case 3:
-                    editCompany();
+                    editJob();
                     break;
                 case 4:
                     deleteJob();
@@ -59,34 +61,53 @@ public class JobControl {
 
         } while (option != 0);
     }
-    
+
     public void addJob() {
+        String id;
+        String title;
+        String type;
+        String desc;
+        
+        String addConfirmation;
+        
+        id = IdGeneration.generateID(jobList, "J");
+
+        System.out.println("\n--------------------");
+        System.out.println(" Add Job ");
+        System.out.println("--------------------");
+
+        do {
+            title = jobManagementUI.getStringInput("Enter Job Title : ");
+        } while (!JobValidateFunction.isValidTitle(title));
+        
+        do {
+            type = jobManagementUI.getStringInput("Enter Job Type : ");
+        } while (!JobValidateFunction.isValidType(type));
         
     }
-    
+
     public void viewJob() {
-        
+
     }
-    
-    public void editCompany() {
-        
+
+    public void editJob() {
+
     }
-    
+
     public void deleteJob() {
-        
+
     }
-    
-    
+
     // Just for testing purpose 
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
-        
+
         ListInterface<Company> companyList = dataInitialize.getCompanyList();
         ListInterface<Job> jobList = dataInitialize.getJobList();
         ListInterface<Student> studentList = dataInitialize.getStudentList();
-        
+
         JobControl jobControl = new JobControl(companyList, jobList, studentList);
-        
+
         jobControl.startJobManagement();
     }
 
