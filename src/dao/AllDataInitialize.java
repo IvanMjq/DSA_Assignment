@@ -510,140 +510,140 @@ public class AllDataInitialize {
                 "Engineering", "Healthcare"
         ));
 
-        studentList.add(new Student(
-                "STU-2",
-                "Brenda Lee",
-                "abc12345",
-                24,
-                "33 Jalan Tun Razak",
-                "Kuala Lumpur",
-                "Wilayah Persekutuan",
-                0.0,
-                0.0,
-                "brenda.lee@example.com",
-                "Hackathon Winner",
-                "Bachelor of Software Engineering",
-                2, "Healthcare"));
-
-        studentList.add(new Student(
-                "STU-3",
-                "Charles Tan",
-                "abc12345",
-                21,
-                "21 Jalan Dato Onn",
-                "Johor Bahru",
-                "Johor",
-                0.0,
-                0.0,
-                "charles.tan@example.com",
-                "Top GPA",
-                "Diploma in Information Technology",
-                1, "Healthcare"));
-
-        studentList.add(new Student(
-                "STU-4",
-                "Diana Wong",
-                "abc12345",
-                23,
-                "18 Jalan Gurney",
-                "Georgetown",
-                "Penang",
-                0.0,
-                0.0,
-                "diana.wong@example.com",
-                "Intern of the Year",
-                "Bachelor of Computer Science",
-                2, "Healthcare"));
-
-        studentList.add(new Student(
-                "STU-5",
-                "Ethan Lim",
-                "abc12345",
-                25,
-                "25 Persiaran Gurney",
-                "Ipoh",
-                "Perak",
-                0.0,
-                0.0,
-                "ethan.lim@example.com",
-                "Research Assistant",
-                "Master of Data Science",
-                3, "Healthcare"));
-
-        studentList.add(new Student(
-                "STU-6",
-                "Fiona Teh",
-                "abc12345",
-                20,
-                "88 Jalan Tokong",
-                "Melaka City",
-                "Melaka",
-                0.0,
-                0.0,
-                "fiona.teh@example.com",
-                "Coding Bootcamp Grad",
-                "Diploma in Computer Science",
-                1, "Engineering"));
-
-        studentList.add(new Student(
-                "STU-7",
-                "George Ng",
-                "abc12345",
-                22,
-                "50 Jalan Song",
-                "Kuching",
-                "Sarawak",
-                0.0,
-                0.0,
-                "george.ng@example.com",
-                "Volunteer Mentor",
-                "Bachelor of Software Engineering",
-                1, "Engineering"));
-
-        studentList.add(new Student(
-                "STU-8",
-                "Hannah Yap",
-                "abc12345",
-                23,
-                "60 Jalan Sultan",
-                "Seremban",
-                "Negeri Sembilan",
-                0.0,
-                0.0,
-                "hannah.yap@example.com",
-                "Scholarship Recipient",
-                "Bachelor of IT",
-                2, "Engineering"));
-
-        studentList.add(new Student(
-                "STU-9",
-                "Ivan Raj",
-                "abc12345",
-                24,
-                "12 Jalan Lintas",
-                "Kota Kinabalu",
-                "Sabah",
-                0.0,
-                0.0,
-                "ivan.raj@example.com",
-                "Startup Founder",
-                "Bachelor of Computer Science",
-                3, "Engineering"));
-
-        studentList.add(new Student(
-                "STU-10",
-                "Jasmine Koh",
-                "abc12345",
-                21,
-                "77 Jalan Sultan Ismail",
-                "Kuala Lumpur",
-                "Wilayah Persekutuan",
-                0.0,
-                0.0,
-                "jasmine.koh@example.com",
-                "Exchange Program Alumni",
-                "Bachelor of AI",
-                2, "Engineering"));
+//        studentList.add(new Student(
+//                "STU-2",
+//                "Brenda Lee",
+//                "abc12345",
+//                24,
+//                "33 Jalan Tun Razak",
+//                "Kuala Lumpur",
+//                "Wilayah Persekutuan",
+//                0.0,
+//                0.0,
+//                "brenda.lee@example.com",
+//                "Hackathon Winner",
+//                "Bachelor of Software Engineering",
+//                2, "Healthcare"));
+//
+//        studentList.add(new Student(
+//                "STU-3",
+//                "Charles Tan",
+//                "abc12345",
+//                21,
+//                "21 Jalan Dato Onn",
+//                "Johor Bahru",
+//                "Johor",
+//                0.0,
+//                0.0,
+//                "charles.tan@example.com",
+//                "Top GPA",
+//                "Diploma in Information Technology",
+//                1, "Healthcare"));
+//
+//        studentList.add(new Student(
+//                "STU-4",
+//                "Diana Wong",
+//                "abc12345",
+//                23,
+//                "18 Jalan Gurney",
+//                "Georgetown",
+//                "Penang",
+//                0.0,
+//                0.0,
+//                "diana.wong@example.com",
+//                "Intern of the Year",
+//                "Bachelor of Computer Science",
+//                2, "Healthcare"));
+//
+//        studentList.add(new Student(
+//                "STU-5",
+//                "Ethan Lim",
+//                "abc12345",
+//                25,
+//                "25 Persiaran Gurney",
+//                "Ipoh",
+//                "Perak",
+//                0.0,
+//                0.0,
+//                "ethan.lim@example.com",
+//                "Research Assistant",
+//                "Master of Data Science",
+//                3, "Healthcare"));
+//
+//        studentList.add(new Student(
+//                "STU-6",
+//                "Fiona Teh",
+//                "abc12345",
+//                20,
+//                "88 Jalan Tokong",
+//                "Melaka City",
+//                "Melaka",
+//                0.0,
+//                0.0,
+//                "fiona.teh@example.com",
+//                "Coding Bootcamp Grad",
+//                "Diploma in Computer Science",
+//                1, "Engineering"));
+//
+//        studentList.add(new Student(
+//                "STU-7",
+//                "George Ng",
+//                "abc12345",
+//                22,
+//                "50 Jalan Song",
+//                "Kuching",
+//                "Sarawak",
+//                0.0,
+//                0.0,
+//                "george.ng@example.com",
+//                "Volunteer Mentor",
+//                "Bachelor of Software Engineering",
+//                1, "Engineering"));
+//
+//        studentList.add(new Student(
+//                "STU-8",
+//                "Hannah Yap",
+//                "abc12345",
+//                23,
+//                "60 Jalan Sultan",
+//                "Seremban",
+//                "Negeri Sembilan",
+//                0.0,
+//                0.0,
+//                "hannah.yap@example.com",
+//                "Scholarship Recipient",
+//                "Bachelor of IT",
+//                2, "Engineering"));
+//
+//        studentList.add(new Student(
+//                "STU-9",
+//                "Ivan Raj",
+//                "abc12345",
+//                24,
+//                "12 Jalan Lintas",
+//                "Kota Kinabalu",
+//                "Sabah",
+//                0.0,
+//                0.0,
+//                "ivan.raj@example.com",
+//                "Startup Founder",
+//                "Bachelor of Computer Science",
+//                3, "Engineering"));
+//
+//        studentList.add(new Student(
+//                "STU-10",
+//                "Jasmine Koh",
+//                "abc12345",
+//                21,
+//                "77 Jalan Sultan Ismail",
+//                "Kuala Lumpur",
+//                "Wilayah Persekutuan",
+//                0.0,
+//                0.0,
+//                "jasmine.koh@example.com",
+//                "Exchange Program Alumni",
+//                "Bachelor of AI",
+//                2, "Engineering"));
     }
 
     private void initializeJobPosting() {
@@ -892,51 +892,52 @@ public class AllDataInitialize {
     }
 
     private void initializeJobApplication() {
-        jobApplicationList.add(new JobApplication(
-                "JA-1",
-                studentList.getData(1),
-                LocalDateTime.of(2025, 4, 1, 13, 0)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-1", 
-                studentList.getData(1),
-                LocalDateTime.of(2025, 7, 1, 13, 0)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-2",
-                studentList.getData(2),
-                LocalDateTime.of(2024, 7, 1, 13, 0)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-3",
-                studentList.getData(4),
-                LocalDateTime.of(2024, 6, 1, 13, 0)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-4",
-                studentList.getData(6),
-                LocalDateTime.of(2024, 7, 1, 19, 0)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-5",
-                studentList.getData(5),
-                LocalDateTime.of(2024, 7, 1, 13, 0)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-6", 
-                studentList.getData(3),
-                LocalDateTime.of(2024, 7, 1, 13, 0)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-7",
-                studentList.getData(1),
-                LocalDateTime.of(2024, 7, 1, 13, 0)
-        ));
-        jobApplicationList.add(new JobApplication(
-                "JA-8",
-                studentList.getData(2),
-                LocalDateTime.of(2024, 7, 1, 13, 0)
-        ));
+//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
+//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 7, 1, 13, 0)));
+//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
+//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
+//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
+        
+//        jobApplicationList.add(new JobApplication(
+//                "JA-1", 
+//                studentList.getData(1),
+//                LocalDateTime.of(2025, 7, 1, 13, 0)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-2",
+//                studentList.getData(2),
+//                LocalDateTime.of(2024, 7, 1, 13, 0)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-3",
+//                studentList.getData(4),
+//                LocalDateTime.of(2024, 6, 1, 13, 0)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-4",
+//                studentList.getData(6),
+//                LocalDateTime.of(2024, 7, 1, 19, 0)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-5",
+//                studentList.getData(5),
+//                LocalDateTime.of(2024, 7, 1, 13, 0)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-6", 
+//                studentList.getData(3),
+//                LocalDateTime.of(2024, 7, 1, 13, 0)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-7",
+//                studentList.getData(1),
+//                LocalDateTime.of(2024, 7, 1, 13, 0)
+//        ));
+//        jobApplicationList.add(new JobApplication(
+//                "JA-8",
+//                studentList.getData(2),
+//                LocalDateTime.of(2024, 7, 1, 13, 0)
+//        ));
     }
 
     private void initializeStudentSkillList() {
@@ -944,40 +945,40 @@ public class AllDataInitialize {
         studentList.getData(1).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 5));
         studentList.getData(1).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 2));
 
-        studentList.getData(2).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 4));
-        studentList.getData(2).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 2));
-        studentList.getData(2).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 3));
-
-        studentList.getData(3).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 5));
-        studentList.getData(3).getStudentSkillList().add(new StudentSkill(skillList.getData(9), 2));
-
-        studentList.getData(4).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 4));
-        studentList.getData(4).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 3));
-        studentList.getData(4).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 2));
-
-        studentList.getData(5).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 5));
-        studentList.getData(5).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 2));
-        studentList.getData(5).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 1));
-
-        studentList.getData(6).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 4));
-        studentList.getData(6).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 3));
-        studentList.getData(6).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 2));
-
-        studentList.getData(7).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 3));
-        studentList.getData(7).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 4));
-        studentList.getData(7).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 2));
-
-        studentList.getData(8).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 1));
-        studentList.getData(8).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 5));
-        studentList.getData(8).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 2));
-
-        studentList.getData(9).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 3));
-        studentList.getData(9).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 1));
-        studentList.getData(9).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 4));
-
-        studentList.getData(10).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 2));
-        studentList.getData(10).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 3));
-        studentList.getData(10).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 5));
+//        studentList.getData(2).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 4));
+//        studentList.getData(2).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 2));
+//        studentList.getData(2).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 3));
+//
+//        studentList.getData(3).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 5));
+//        studentList.getData(3).getStudentSkillList().add(new StudentSkill(skillList.getData(9), 2));
+//
+//        studentList.getData(4).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 4));
+//        studentList.getData(4).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 3));
+//        studentList.getData(4).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 2));
+//
+//        studentList.getData(5).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 5));
+//        studentList.getData(5).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 2));
+//        studentList.getData(5).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 1));
+//
+//        studentList.getData(6).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 4));
+//        studentList.getData(6).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 3));
+//        studentList.getData(6).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 2));
+//
+//        studentList.getData(7).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 3));
+//        studentList.getData(7).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 4));
+//        studentList.getData(7).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 2));
+//
+//        studentList.getData(8).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 1));
+//        studentList.getData(8).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 5));
+//        studentList.getData(8).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 2));
+//
+//        studentList.getData(9).getStudentSkillList().add(new StudentSkill(skillList.getData(5), 3));
+//        studentList.getData(9).getStudentSkillList().add(new StudentSkill(skillList.getData(2), 1));
+//        studentList.getData(9).getStudentSkillList().add(new StudentSkill(skillList.getData(6), 4));
+//
+//        studentList.getData(10).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 2));
+//        studentList.getData(10).getStudentSkillList().add(new StudentSkill(skillList.getData(4), 3));
+//        studentList.getData(10).getStudentSkillList().add(new StudentSkill(skillList.getData(3), 5));
     }
 
     private void initializeJobRequiredSkill() {
@@ -1091,8 +1092,9 @@ public class AllDataInitialize {
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
 
-        for (Company a : dataInitialize.getCompanyList()) {
+        for (Student a : dataInitialize.getStudentList()) {
             System.out.println(a);
         }
     }
+    
 }

@@ -196,8 +196,27 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", age=" + age + ", address='" + streetAddress + ", " + area + ", " + state + '\''
-                + ", email='" + email + '\'' + ", education='" + education + '\'' + ", yearsOfExperience=" + yearsOfExperience + ", desiredJobTypes=" + String.join(", ", desiredJobTypes)
-                + '}';
+        StringBuilder skillListStr = new StringBuilder();
+        for (int i = 1; i <= studentSkillList.size(); i++) {
+            skillListStr.append("\n    - ").append(studentSkillList.getData(i));
+        }
+
+        StringBuilder jobAppListStr = new StringBuilder();
+        for (int i = 1; i <= jobApplicationList.size(); i++) {
+            jobAppListStr.append("\n    - ").append(jobApplicationList.getData(i));
+        }
+
+        return "Student{" +
+            "\n  ID='" + id + '\'' +
+            ",\n  Name='" + name + '\'' +
+            ",\n  Age=" + age +
+            ",\n  Address='" + streetAddress + ", " + area + ", " + state + '\'' +
+            ",\n  Email='" + email + '\'' +
+            ",\n  Education='" + education + '\'' +
+            ",\n  Years of Experience=" + yearsOfExperience +
+            ",\n  Desired Job Types=" + (desiredJobTypes != null ? String.join(", ", desiredJobTypes) : "None") +
+            ",\n  Student Skills=" + (studentSkillList.size() > 0 ? skillListStr : " None") +
+            ",\n  Job Applications=" + (jobApplicationList.size() > 0 ? jobAppListStr : " None") +
+            "\n}";
     }
 }

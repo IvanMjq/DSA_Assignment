@@ -34,10 +34,12 @@ public class StudentSkill implements Serializable {
     public void setProficiencyLevel(int proficiencyLevel) {
         this.proficiencyLevel = proficiencyLevel;
     }   
-
     @Override
     public String toString() {
-        return "StudentSkill{" + ", skill=" + skill + ", proficiencyLevel=" + proficiencyLevel + '}';
+        return "StudentSkill{" +
+            "skill=" + skill.getName() +
+            ", proficiency=" + proficiencyLevel +
+            '}';
     }
 
 }
