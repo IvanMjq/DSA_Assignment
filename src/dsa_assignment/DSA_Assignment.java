@@ -21,11 +21,6 @@ public class DSA_Assignment {
      * @param args the command line arguments
      */
     private AllDataInitialize dataInitialized = new AllDataInitialize();
-//    private JobPostingControl jobPostingControl = new JobPostingControl(dataInitialized.getJobList(), dataInitialized.getCompanyList(), dataInitialized.getJobApplicationList(), dataInitialized.getJobPostingList(), dataInitialized.getJobRequiredSkillList());
-//    private GeoUtilControl geo = new GeoUtilControl(dataInitialized.getStudentList(), dataInitialized.getJobPostingList());
-    private ListInterface<StudentSkill> studentSkill = dataInitialized.getStudentSkillList();
-    private ListInterface<JobRequiredSkill> requiredSkill = dataInitialized.getJobRequiredSkillList();
-    private ListInterface<JobPosting> jobPost = dataInitialized.getJobPostingList();
     private ListInterface<Student> studentList = dataInitialized.getStudentList();
 
 //    private MatchingEngineControl matchControl = new MatchingEngineControl(studentSkill, requiredSkill, studentList, jobPost);
