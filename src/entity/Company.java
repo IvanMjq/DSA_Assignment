@@ -31,7 +31,7 @@ public class Company implements Serializable, IdGeneration.Identifiable, Compara
     private LocalTime interviewStartTime;
     private LocalTime interviewEndTime;
     
-    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
+//    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
     private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
 
     public Company(String id, String name, String phone, String email, String streetAddress, String area, String state, double latitude, double longitude, int foundedYear, LocalTime interviewStartTime, LocalTime interviewEndTime) {
@@ -146,13 +146,13 @@ public class Company implements Serializable, IdGeneration.Identifiable, Compara
         this.interviewEndTime = interviewEndTime;
     }
 
-    public ListInterface<CompanyJob> getCompanyJobList() {
-        return companyJobList;
-    }
-
-    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
-        this.companyJobList = companyJobList;
-    }
+//    public ListInterface<CompanyJob> getCompanyJobList() {
+//        return companyJobList;
+//    }
+//
+//    public void setCompanyJobList(ListInterface<CompanyJob> companyJobList) {
+//        this.companyJobList = companyJobList;
+//    }
 
     public ListInterface<JobPosting> getJobPostingList() {
         return jobPostingList;

@@ -32,7 +32,7 @@ public class AllDataInitialize {
 
         initializeJob();
 
-        initializeCompanyJob();
+//        initializeCompanyJob();
 
         intializeStudent();
 
@@ -347,152 +347,152 @@ public class AllDataInitialize {
         ));
     }
 
-    private void initializeCompanyJob() {
-        CompanyJob companyJob;
-
-        // Company 1
-        companyJob = new CompanyJob(
-                companyList.getData(1),
-                jobList.getData(1)
-        );
-        companyList.getData(1).getCompanyJobList().add(companyJob);
-        jobList.getData(1).getCompanyJobList().add(companyJob);
-
-        companyJob = new CompanyJob(
-                companyList.getData(1),
-                jobList.getData(2)
-        );
-        companyList.getData(1).getCompanyJobList().add(companyJob);
-        jobList.getData(2).getCompanyJobList().add(companyJob);
-
-        // Company 2 
-        companyJob = new CompanyJob(
-                companyList.getData(2),
-                jobList.getData(3)
-        );
-        companyList.getData(2).getCompanyJobList().add(companyJob);
-        jobList.getData(3).getCompanyJobList().add(companyJob);
-
-        companyJob = new CompanyJob(
-                companyList.getData(2),
-                jobList.getData(4)
-        );
-        companyList.getData(2).getCompanyJobList().add(companyJob);
-        jobList.getData(4).getCompanyJobList().add(companyJob);
-
-        // Company 3
-        companyJob = new CompanyJob(
-                companyList.getData(3),
-                jobList.getData(5)
-        );
-        companyList.getData(3).getCompanyJobList().add(companyJob);
-        jobList.getData(5).getCompanyJobList().add(companyJob);
-
-        companyJob = new CompanyJob(
-                companyList.getData(3),
-                jobList.getData(1)
-        );
-        companyList.getData(3).getCompanyJobList().add(companyJob);
-        jobList.getData(1).getCompanyJobList().add(companyJob);
-
-        // Company 4
-        companyJob = new CompanyJob(
-                companyList.getData(4),
-                jobList.getData(6)
-        );
-        companyList.getData(4).getCompanyJobList().add(companyJob);
-        jobList.getData(6).getCompanyJobList().add(companyJob);
-        companyJob = new CompanyJob(
-                companyList.getData(4),
-                jobList.getData(7)
-        );
-        companyList.getData(4).getCompanyJobList().add(companyJob);
-        jobList.getData(7).getCompanyJobList().add(companyJob);
-
-        // Company 5
-        companyJob = new CompanyJob(
-                companyList.getData(5),
-                jobList.getData(8)
-        );
-        companyList.getData(5).getCompanyJobList().add(companyJob);
-        jobList.getData(8).getCompanyJobList().add(companyJob);
-        companyJob = new CompanyJob(
-                companyList.getData(5),
-                jobList.getData(5)
-        );
-        companyList.getData(5).getCompanyJobList().add(companyJob);
-        jobList.getData(5).getCompanyJobList().add(companyJob);
-
-        // Company 6
-        companyJob = new CompanyJob(
-                companyList.getData(6),
-                jobList.getData(9)
-        );
-        companyList.getData(6).getCompanyJobList().add(companyJob);
-        jobList.getData(9).getCompanyJobList().add(companyJob);
-        companyJob = new CompanyJob(
-                companyList.getData(6),
-                jobList.getData(6)
-        );
-        companyList.getData(6).getCompanyJobList().add(companyJob);
-        jobList.getData(6).getCompanyJobList().add(companyJob);
-
-        // Company 7
-        companyJob = new CompanyJob(
-                companyList.getData(7),
-                jobList.getData(10)
-        );
-        companyList.getData(7).getCompanyJobList().add(companyJob);
-        jobList.getData(10).getCompanyJobList().add(companyJob);
-        companyJob = new CompanyJob(
-                companyList.getData(7),
-                jobList.getData(3)
-        );
-        companyList.getData(7).getCompanyJobList().add(companyJob);
-        jobList.getData(3).getCompanyJobList().add(companyJob);
-
-        // Company 8
-        companyJob = new CompanyJob(
-                companyList.getData(8),
-                jobList.getData(2)
-        );
-        companyList.getData(8).getCompanyJobList().add(companyJob);
-        jobList.getData(2).getCompanyJobList().add(companyJob);
-        companyJob = new CompanyJob(
-                companyList.getData(8),
-                jobList.getData(10)
-        );
-        companyList.getData(8).getCompanyJobList().add(companyJob);
-        jobList.getData(10).getCompanyJobList().add(companyJob);
-
-        // Company 9
-        companyJob = new CompanyJob(
-                companyList.getData(9),
-                jobList.getData(7)
-        );
-        companyList.getData(9).getCompanyJobList().add(companyJob);
-        jobList.getData(7).getCompanyJobList().add(companyJob);
-        companyJob = new CompanyJob(
-                companyList.getData(9),
-                jobList.getData(1)
-        );
-        companyList.getData(9).getCompanyJobList().add(companyJob);
-        jobList.getData(1).getCompanyJobList().add(companyJob);
-
-        // Company 10
-        companyJob = new CompanyJob(
-                companyList.getData(10),
-                jobList.getData(8)
-        );
-        companyList.getData(10).getCompanyJobList().add(companyJob);
-        jobList.getData(8).getCompanyJobList().add(companyJob);
-        companyJob = new CompanyJob(
-                companyList.getData(10),
-                jobList.getData(4)
-        );
-        companyList.getData(10).getCompanyJobList().add(companyJob);
-        jobList.getData(4).getCompanyJobList().add(companyJob);
-    }
+//    private void initializeCompanyJob() {
+//        CompanyJob companyJob;
+//
+//        // Company 1
+//        companyJob = new CompanyJob(
+//                companyList.getData(1),
+//                jobList.getData(1)
+//        );
+//        companyList.getData(1).getCompanyJobList().add(companyJob);
+//        jobList.getData(1).getCompanyJobList().add(companyJob);
+//
+//        companyJob = new CompanyJob(
+//                companyList.getData(1),
+//                jobList.getData(2)
+//        );
+//        companyList.getData(1).getCompanyJobList().add(companyJob);
+//        jobList.getData(2).getCompanyJobList().add(companyJob);
+//
+//        // Company 2 
+//        companyJob = new CompanyJob(
+//                companyList.getData(2),
+//                jobList.getData(3)
+//        );
+//        companyList.getData(2).getCompanyJobList().add(companyJob);
+//        jobList.getData(3).getCompanyJobList().add(companyJob);
+//
+//        companyJob = new CompanyJob(
+//                companyList.getData(2),
+//                jobList.getData(4)
+//        );
+//        companyList.getData(2).getCompanyJobList().add(companyJob);
+//        jobList.getData(4).getCompanyJobList().add(companyJob);
+//
+//        // Company 3
+//        companyJob = new CompanyJob(
+//                companyList.getData(3),
+//                jobList.getData(5)
+//        );
+//        companyList.getData(3).getCompanyJobList().add(companyJob);
+//        jobList.getData(5).getCompanyJobList().add(companyJob);
+//
+//        companyJob = new CompanyJob(
+//                companyList.getData(3),
+//                jobList.getData(1)
+//        );
+//        companyList.getData(3).getCompanyJobList().add(companyJob);
+//        jobList.getData(1).getCompanyJobList().add(companyJob);
+//
+//        // Company 4
+//        companyJob = new CompanyJob(
+//                companyList.getData(4),
+//                jobList.getData(6)
+//        );
+//        companyList.getData(4).getCompanyJobList().add(companyJob);
+//        jobList.getData(6).getCompanyJobList().add(companyJob);
+//        companyJob = new CompanyJob(
+//                companyList.getData(4),
+//                jobList.getData(7)
+//        );
+//        companyList.getData(4).getCompanyJobList().add(companyJob);
+//        jobList.getData(7).getCompanyJobList().add(companyJob);
+//
+//        // Company 5
+//        companyJob = new CompanyJob(
+//                companyList.getData(5),
+//                jobList.getData(8)
+//        );
+//        companyList.getData(5).getCompanyJobList().add(companyJob);
+//        jobList.getData(8).getCompanyJobList().add(companyJob);
+//        companyJob = new CompanyJob(
+//                companyList.getData(5),
+//                jobList.getData(5)
+//        );
+//        companyList.getData(5).getCompanyJobList().add(companyJob);
+//        jobList.getData(5).getCompanyJobList().add(companyJob);
+//
+//        // Company 6
+//        companyJob = new CompanyJob(
+//                companyList.getData(6),
+//                jobList.getData(9)
+//        );
+//        companyList.getData(6).getCompanyJobList().add(companyJob);
+//        jobList.getData(9).getCompanyJobList().add(companyJob);
+//        companyJob = new CompanyJob(
+//                companyList.getData(6),
+//                jobList.getData(6)
+//        );
+//        companyList.getData(6).getCompanyJobList().add(companyJob);
+//        jobList.getData(6).getCompanyJobList().add(companyJob);
+//
+//        // Company 7
+//        companyJob = new CompanyJob(
+//                companyList.getData(7),
+//                jobList.getData(10)
+//        );
+//        companyList.getData(7).getCompanyJobList().add(companyJob);
+//        jobList.getData(10).getCompanyJobList().add(companyJob);
+//        companyJob = new CompanyJob(
+//                companyList.getData(7),
+//                jobList.getData(3)
+//        );
+//        companyList.getData(7).getCompanyJobList().add(companyJob);
+//        jobList.getData(3).getCompanyJobList().add(companyJob);
+//
+//        // Company 8
+//        companyJob = new CompanyJob(
+//                companyList.getData(8),
+//                jobList.getData(2)
+//        );
+//        companyList.getData(8).getCompanyJobList().add(companyJob);
+//        jobList.getData(2).getCompanyJobList().add(companyJob);
+//        companyJob = new CompanyJob(
+//                companyList.getData(8),
+//                jobList.getData(10)
+//        );
+//        companyList.getData(8).getCompanyJobList().add(companyJob);
+//        jobList.getData(10).getCompanyJobList().add(companyJob);
+//
+//        // Company 9
+//        companyJob = new CompanyJob(
+//                companyList.getData(9),
+//                jobList.getData(7)
+//        );
+//        companyList.getData(9).getCompanyJobList().add(companyJob);
+//        jobList.getData(7).getCompanyJobList().add(companyJob);
+//        companyJob = new CompanyJob(
+//                companyList.getData(9),
+//                jobList.getData(1)
+//        );
+//        companyList.getData(9).getCompanyJobList().add(companyJob);
+//        jobList.getData(1).getCompanyJobList().add(companyJob);
+//
+//        // Company 10
+//        companyJob = new CompanyJob(
+//                companyList.getData(10),
+//                jobList.getData(8)
+//        );
+//        companyList.getData(10).getCompanyJobList().add(companyJob);
+//        jobList.getData(8).getCompanyJobList().add(companyJob);
+//        companyJob = new CompanyJob(
+//                companyList.getData(10),
+//                jobList.getData(4)
+//        );
+//        companyList.getData(10).getCompanyJobList().add(companyJob);
+//        jobList.getData(4).getCompanyJobList().add(companyJob);
+//    }
 
     private void intializeStudent() {
         studentList.add(new Student(
