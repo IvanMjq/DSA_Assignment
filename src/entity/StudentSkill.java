@@ -11,18 +11,12 @@ import java.io.Serializable;
  * @author WEI ZHENG
  */
 public class StudentSkill implements Serializable {
-    private Student student;
     private Skill skill;
     private int proficiencyLevel; // Proficiency level of the student in the skill (1-5)
 
-    public StudentSkill(Student student, Skill skill, int proficiencyLevel) {
-        this.student = student;
-        this.skill = skill;
-        this.proficiencyLevel = proficiencyLevel;
-    }
-
-    public Student getStudent() {
-        return student;
+    public StudentSkill( Skill skill, int proficiencyLevel) {
+        this.skill              = skill;
+        this.proficiencyLevel   = proficiencyLevel;
     }
 
     public Skill getSkill() {
@@ -33,23 +27,17 @@ public class StudentSkill implements Serializable {
         return proficiencyLevel;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
     public void setSkill(Skill skill) {
         this.skill = skill;
     }
 
     public void setProficiencyLevel(int proficiencyLevel) {
         this.proficiencyLevel = proficiencyLevel;
-    }
-
-   
+    }   
 
     @Override
     public String toString() {
-        return "StudentSkill{" + "student=" + student + ", skill=" + skill + ", proficiencyLevel=" + proficiencyLevel + '}';
+        return "StudentSkill{" + ", skill=" + skill + ", proficiencyLevel=" + proficiencyLevel + '}';
     }
 
 }

@@ -27,12 +27,11 @@ public class Student implements Serializable {
     private String achievement;
     private String education;
     private int yearsOfExperience;
-    private String[] desiredJobTypes;
-
     private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
     private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
+    private String[] desiredJobTypes;
 
-    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, String[] desiredJobTypes) {
+    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, String... desiredJobTypes) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -46,43 +45,6 @@ public class Student implements Serializable {
         this.achievement = achievement;
         this.education = education;
         this.yearsOfExperience = yearsOfExperience;
-        this.desiredJobTypes = desiredJobTypes;
-    }
-
-    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, ListInterface<StudentSkill> studentSkillList, String... desiredJobTypes) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.age = age;
-        this.streetAddress = streetAddress;
-        this.area = area;
-        this.state = state;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.email = email;
-        this.achievement = achievement;
-        this.education = education;
-        this.yearsOfExperience = yearsOfExperience;
-        this.studentSkillList = studentSkillList;
-        this.desiredJobTypes = desiredJobTypes;
-    }
-
-    public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, ListInterface<StudentSkill> studentSkillList, ListInterface<JobApplication> jobApplicationList, String... desiredJobTypes) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.age = age;
-        this.streetAddress = streetAddress;
-        this.area = area;
-        this.state = state;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.email = email;
-        this.achievement = achievement;
-        this.education = education;
-        this.yearsOfExperience = yearsOfExperience;
-        this.studentSkillList = studentSkillList;
-        this.jobApplicationList = jobApplicationList;
         this.desiredJobTypes = desiredJobTypes;
     }
 

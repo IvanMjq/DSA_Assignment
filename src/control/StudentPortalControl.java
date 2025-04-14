@@ -28,7 +28,7 @@ public class StudentPortalControl {
     
     
     
-    protected Student loginStudent;
+    private Student loginStudent;
     
     
     public StudentPortalControl() { 
@@ -62,9 +62,6 @@ public class StudentPortalControl {
                 case 2:
                     studentLogin();
                     break;
-                case 3:
-                    studentLogout();
-                    break;
                 default:
                     System.out.println("This is an invalid option!!!");
 
@@ -81,6 +78,9 @@ public class StudentPortalControl {
             switch (option) {
                 case 0:
                     System.out.println("Exiting Student Menu...");
+                    if(this.loginStudent != null) {
+                        studentLogout();
+                    }
                     break;
                 case 1:
                     studentControl.studentOwnListing();

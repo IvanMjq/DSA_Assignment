@@ -352,8 +352,13 @@ public class StudentControl {
                 boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getName() + " as " + input + "?");
                 if (isConfirm) {
                     ori.setName(input);
+<<<<<<< Updated upstream
                     System.out.println("Student update successfully!");
                 } else {
+=======
+                    System.out.println("Student Name update successfully!");
+                }else {
+>>>>>>> Stashed changes
                     System.out.println("Failed to update.");
                 }
                 loop = false;
@@ -371,8 +376,13 @@ public class StudentControl {
                 boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getPassword() + " as " + input + "?");
                 if (isConfirm) {
                     ori.setPassword(input);
+<<<<<<< Updated upstream
                     System.out.println("Student update successfully!");
                 } else {
+=======
+                    System.out.println("Student Password update successfully!");
+                }else {
+>>>>>>> Stashed changes
                     System.out.println("Failed to update.");
                 }
                 loop = false;
@@ -382,16 +392,26 @@ public class StudentControl {
 
     public void updateAge(Student ori) {
         boolean loop = true;
+<<<<<<< Updated upstream
         while (loop) {
             System.out.print("Enter Password: ");
+=======
+        while(loop) {
+            System.out.print("Enter Age: ");
+>>>>>>> Stashed changes
             String input = scanner.nextLine().trim();
 
             if (studentUI.ageValidation(input)) {
                 boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getAge() + " as " + input + "?");
                 if (isConfirm) {
                     ori.setAge(Integer.parseInt(input));
+<<<<<<< Updated upstream
                     System.out.println("Student update successfully!");
                 } else {
+=======
+                    System.out.println("Student Age update successfully!");
+                }else {
+>>>>>>> Stashed changes
                     System.out.println("Failed to update.");
                 }
                 loop = false;
@@ -406,8 +426,13 @@ public class StudentControl {
         boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getStreetAddress() + " as " + input + "?");
         if (isConfirm) {
             ori.setStreetAddress(input);
+<<<<<<< Updated upstream
             System.out.println("Student update successfully!");
         } else {
+=======
+            System.out.println("Student Street Address update successfully!");
+        }else {
+>>>>>>> Stashed changes
             System.out.println("Failed to update.");
         }
     }
@@ -423,8 +448,13 @@ public class StudentControl {
 
                 if (isConfirm) {
                     ori.setArea(input);
+<<<<<<< Updated upstream
                     System.out.println("Student update successfully!");
                 } else {
+=======
+                    System.out.println("Student Area update successfully!");
+                }else {
+>>>>>>> Stashed changes
                     System.out.println("Failed to update.");
                 }
                 loop = false;
@@ -443,8 +473,13 @@ public class StudentControl {
 
                 if (isConfirm) {
                     ori.setState(input);
+<<<<<<< Updated upstream
                     System.out.println("Student update successfully!");
                 } else {
+=======
+                    System.out.println("Student State update successfully!");
+                }else {
+>>>>>>> Stashed changes
                     System.out.println("Failed to update.");
                 }
                 loop = false;
@@ -462,8 +497,13 @@ public class StudentControl {
                 boolean isConfirm = studentUI.confirmation("Confirm update " + ori.getEmail() + " as " + input + "?");
                 if (isConfirm) {
                     ori.setEmail(input);
+<<<<<<< Updated upstream
                     System.out.println("Student update successfully!");
                 } else {
+=======
+                    System.out.println("Student Email update successfully!");
+                }else {
+>>>>>>> Stashed changes
                     System.out.println("Failed to update.");
                 }
                 loop = false;
@@ -482,8 +522,13 @@ public class StudentControl {
 
                 if (isConfirm) {
                     ori.setAchievement(input);
+<<<<<<< Updated upstream
                     System.out.println("Student update successfully!");
                 } else {
+=======
+                    System.out.println("Student Achievement update successfully!");
+                }else {
+>>>>>>> Stashed changes
                     System.out.println("Failed to update.");
                 }
                 loop = false;
@@ -502,8 +547,13 @@ public class StudentControl {
 
                 if (isConfirm) {
                     ori.setEducation(input);
+<<<<<<< Updated upstream
                     System.out.println("Student update successfully!");
                 } else {
+=======
+                    System.out.println("Student Education update successfully!");
+                }else {
+>>>>>>> Stashed changes
                     System.out.println("Failed to update.");
                 }
                 loop = false;
@@ -522,8 +572,13 @@ public class StudentControl {
 
                 if (isConfirm) {
                     ori.setYearsOfExperience(Integer.parseInt(input));
+<<<<<<< Updated upstream
                     System.out.println("Student update successfully!");
                 } else {
+=======
+                    System.out.println("Student Experience update successfully!");
+                }else {
+>>>>>>> Stashed changes
                     System.out.println("Failed to update.");
                 }
                 loop = false;
@@ -570,8 +625,13 @@ public class StudentControl {
 
             if (isConfirm) {
                 ori.setDesiredJobTypes(jobTypes);
+<<<<<<< Updated upstream
                 System.out.println("Student update successfully!");
             } else {
+=======
+                System.out.println("Student Desire Job Type update successfully!");
+            }else {
+>>>>>>> Stashed changes
                 System.out.println("Failed to update.");
             }
         }

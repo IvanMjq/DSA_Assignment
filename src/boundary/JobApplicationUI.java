@@ -81,17 +81,17 @@ public class JobApplicationUI {
 //        }
 //    }
     
-    public void compannyList() {
-        System.out.println("==========================================================================================================================================================================");
-        System.out.printf("| %-5s | %-40s | %-20s | %-35s | %-40s | %-10s |\n",
-                        "ID", "Name", "Contact", "Phone", "Email", "Address", "Founded Year");
-        jobApplicationControl.companyList();
-        System.out.println("==========================================================================================================================================================================");
-    }
-    
-    public boolean confirmation(String message) {
-        System.out.print(message + " (Y/N): ");
-        char confirmation = scanner.nextLine().toUpperCase().charAt(0);
-        return confirmation == 'Y';
-    }
+//    public void compannyList() {
+//        System.out.println("==========================================================================================================================================================================");
+//        System.out.printf("| %-5s | %-40s | %-20s | %-35s | %-40s | %-10s |\n",
+//                        "ID", "Name", "Contact", "Phone", "Email", "Address", "Founded Year");
+//        jobApplicationControl.companyList();
+//        System.out.println("==========================================================================================================================================================================");
+//    }
+//    
+//    public boolean confirmation(String message) {
+//        System.out.print(message + " (Y/N): ");
+//        char confirmation = scanner.nextLine().toUpperCase().charAt(0);
+//        return confirmation == 'Y';
+//    }
 }
