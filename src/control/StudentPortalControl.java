@@ -16,7 +16,6 @@ import java.util.Scanner;
 public class StudentPortalControl {
     Scanner scanner = new Scanner(System.in);
     
-    
     private ListInterface<Student> studentList;
     private ListInterface<StudentSkill> studentSkillList;
     private ListInterface<Skill> skillList;
