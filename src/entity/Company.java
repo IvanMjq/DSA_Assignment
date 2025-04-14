@@ -4,6 +4,8 @@
  */
 package entity;
 
+import adt.DoublyLinkedList;
+import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalTime;
@@ -13,7 +15,7 @@ import utility.IdGeneration;
  *
  * @author ivanmjq
  */
-public class Company implements Serializable, IdGeneration.Identifiable {
+public class Company implements Serializable, IdGeneration.Identifiable, Comparable<Company> {
 
     private String id;
     private String name;
@@ -28,6 +30,9 @@ public class Company implements Serializable, IdGeneration.Identifiable {
 
     private LocalTime interviewStartTime;
     private LocalTime interviewEndTime;
+    
+    private ListInterface<CompanyJob> companyJobList = new DoublyLinkedList<>();
+    private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
 
     public Company(String id, String name, String phone, String email, String streetAddress, String area, String state, double latitude, double longitude, int foundedYear, LocalTime interviewStartTime, LocalTime interviewEndTime) {
         this.id = id;
@@ -179,6 +184,11 @@ public class Company implements Serializable, IdGeneration.Identifiable {
                 + String.format("| %-20s : %-50s |\n", "Interview Start", interviewStartTime.toString())
                 + String.format("| %-20s : %-50s |\n", "Interview End", interviewEndTime.toString())
                 + line;
+    }
+    
+    @Override
+    public int compareTo(Company other) {
+        return 0;
     }
 
 }
