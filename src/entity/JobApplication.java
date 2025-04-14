@@ -14,16 +14,27 @@ import java.time.*;
  */
 public class JobApplication implements Serializable {
     private Student student;
+    private JobPosting jobPosting;
+    private Interview interviewList;
     private LocalDateTime appliedDateTime;
 
-    public JobApplication(Student student, LocalDateTime appliedDateTime) {
-
+    public JobApplication(Student student, JobPosting jobPosting, Interview interviewList, LocalDateTime appliedDateTime) {
         this.student = student;
+        this.jobPosting = jobPosting;
+        this.interviewList = interviewList;
         this.appliedDateTime = appliedDateTime;
     }
 
     public Student getStudent() {
         return student;
+    }
+
+    public JobPosting getJobPosting() {
+        return jobPosting;
+    }
+
+    public Interview getInterviewList() {
+        return interviewList;
     }
 
     public LocalDateTime getAppliedDateTime() {
@@ -34,11 +45,17 @@ public class JobApplication implements Serializable {
         this.student = student;
     }
 
-    public void setAppliedDateTime(LocalDateTime appliedDateTime) {
-        this.appliedDateTime = appliedDateTime;
+    public void setJobPosting(JobPosting jobPosting) {
+        this.jobPosting = jobPosting;
     }
 
-  
+    public void setInterviewList(Interview interviewList) {
+        this.interviewList = interviewList;
+    }
+
+    public void setAppliedDateTime(LocalDateTime appliedDateTime) {
+        this.appliedDateTime = appliedDateTime;
+    }  
 
     @Override
     public int hashCode() {
