@@ -17,12 +17,12 @@ import java.time.LocalDateTime;
  */
 public class AllDataInitialize {
 
-    private ListInterface<Skill> skillList = new DoublyLinkedList<>();
-    private ListInterface<Company> companyList = new DoublyLinkedList<>();
-    private ListInterface<Job> jobList = new DoublyLinkedList<>();
-    private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
-    private ListInterface<Student> studentList = new DoublyLinkedList<>();
-    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
+    private final ListInterface<Skill> skillList = new DoublyLinkedList<>();
+    private final ListInterface<Company> companyList = new DoublyLinkedList<>();
+    private final ListInterface<Job> jobList = new DoublyLinkedList<>();
+    private final ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
+    private final ListInterface<Student> studentList = new DoublyLinkedList<>();
+    private final ListInterface<Interview> interviewList = new DoublyLinkedList<>();
 
     public AllDataInitialize() {
 
@@ -1063,6 +1063,10 @@ public class AllDataInitialize {
 
     // -----------------
     // Getter and Setter
+    public ListInterface<Skill> getSkillList() {
+        return skillList;
+    }
+
     public ListInterface<Company> getCompanyList() {
         return companyList;
     }
@@ -1079,9 +1083,10 @@ public class AllDataInitialize {
         return studentList;
     }
 
-    public ListInterface<Skill> getSkillList() {
-        return skillList;
+    public ListInterface<Interview> getInterviewList() {
+        return interviewList;
     }
+    
 
     // -----------------
     // Display for testing
