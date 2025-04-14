@@ -36,6 +36,25 @@ public class JobRequiredSkill implements Serializable {
     public void setImportance(int importance) {
         this.importance = importance;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final JobRequiredSkill other = (JobRequiredSkill) obj;
+        return Objects.equals(this.getSkill().getId(), other.getSkill().getId());
+        // Check if the id are same
+    }
 
     @Override
     public String toString() {

@@ -30,26 +30,28 @@ public class CompanyManagementUI {
             System.out.println(line);
             System.out.printf("|  %-30s|\n", "Company Management Menu");
             System.out.println(line);
-            System.out.printf("|  %-30s|\n", "1. AddCompany ");
+            System.out.printf("|  %-30s|\n", "1. Add Company");
             System.out.printf("|  %-30s|\n", "2. View Company");
             System.out.printf("|  %-30s|\n", "3. Edit Company");
             System.out.printf("|  %-30s|\n", "4. Delete Company");
+            System.out.printf("|  %-30s|\n", "5. Report");
             System.out.printf("|  %-30s|\n", "0. Exit to Main Menu");
             System.out.println(line);
 
             // Check if the user input was invalid before
             if (!isFirstInput) {
-                System.out.println("Invalid option. Please choose a number between 0 - 4.");
+                System.err.println("Invalid option. Please choose a number between 0 - 5.");
+                System.err.flush();
             }
 
             // Prompt user input message
-            System.out.print("Please enter your option (0-4) : ");
+            System.out.print("Please enter your option (0-5) : ");
 
             // Validate user input
             if (sc.hasNextInt()) {
                 option = sc.nextInt();
                 sc.nextLine(); // Clear newline character
-                if (option >= 0 && option <= 4) {
+                if (option >= 0 && option <= 5) {
                     validInput = true;
                 }
             } else {
