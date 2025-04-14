@@ -7,30 +7,27 @@ package entity;
 import adt.DoublyLinkedList;
 import adt.ListInterface;
 import java.io.Serializable;
-import java.util.Objects;
 import java.time.LocalDate;
-
+import java.util.Objects;
 
 /**
  *
  * @author ivanmjq
  */
 public class JobPosting implements Serializable {
-    
-    private String id;
+
     private Company company;
     private Job job;
     private String description;
     private double minimumSalary;
     private double maximumSalary;
     private int requiredExperience;
-    private LocalDate  datePosted;
-    
+    private LocalDate datePosted;
+
     ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
     ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
 
-    public JobPosting(String id, Company company, Job job, String description, double minimumSalary, double maximumSalary, int requiredExperience, LocalDate datePosted,ListInterface<JobRequiredSkill> jobRequiredSkillList) {
-        this.id = id;
+    public JobPosting(Company company, Job job, String description, double minimumSalary, double maximumSalary, int requiredExperience, LocalDate datePosted) {
         this.company = company;
         this.job = job;
         this.description = description;
@@ -39,14 +36,6 @@ public class JobPosting implements Serializable {
         this.requiredExperience = requiredExperience;
         this.datePosted = datePosted;
         this.jobRequiredSkillList = jobRequiredSkillList;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Company getCompany() {
@@ -113,20 +102,20 @@ public class JobPosting implements Serializable {
         this.jobApplicationList = jobApplicationList;
     }
 
-    public ListInterface<JobRequiredSkill> getJobRequiredSkills() {
+    public ListInterface<JobRequiredSkill> getJobRequiredSkillList() {
         return jobRequiredSkillList;
     }
 
-    public void setJobRequiredSkills(ListInterface<JobRequiredSkill> jobRequiredSkillList) {
+    public void setJobRequiredSkillList(ListInterface<JobRequiredSkill> jobRequiredSkillList) {
         this.jobRequiredSkillList = jobRequiredSkillList;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 1;
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -136,13 +125,14 @@ public class JobPosting implements Serializable {
             return false;
         }
         final JobPosting other = (JobPosting) obj;
-        return Objects.equals(this.id, other.id); 
+        return Objects.equals(this.company.getId(), other.company.getId())
+                && Objects.equals(this.job.getId(), other.job.getId());
         // Check if the id are same
     }
 
     @Override
     public String toString() {
-        return "JobPosting{" + "id=" + id + ", company=" + company + ", job=" + job + ", description=" + description + ", salaryRange=" + minimumSalary + " - " + maximumSalary + ", requiredExperience=" + requiredExperience + ", datePosted=" + datePosted + '}';
-    }       
-    
+        return "JobPosting{" + "company=" + company + ", job=" + job + ", description=" + description + ", minimumSalary=" + minimumSalary + ", maximumSalary=" + maximumSalary + ", requiredExperience=" + requiredExperience + ", datePosted=" + datePosted + ", jobApplicationList=" + jobApplicationList + ", jobRequiredSkillList=" + jobRequiredSkillList + '}';
+    }
+
 }
