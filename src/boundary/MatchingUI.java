@@ -17,37 +17,37 @@ import java.util.Scanner;
 public class MatchingUI {
        
         
-        private MatchingEngineControl matchControl;
-
-
-        public MatchingUI(MatchingEngineControl matchControl){
-            this.matchControl = matchControl;
-        }
-        
-        public int MatchingMenu(Student student){
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("These are the job that match with you");
-            matchControl.matchStudentsToJobs(student);
-            System.out.println("| 1 - Search");
-            System.out.println("| 2 - Sort");
-            System.out.println("Press 0 to exit....");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-            return choice;
-
-        }
-        
-        public int AdminReport(){
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Welcome to Summary Report of MatchingEngine");
-            matchControl.SummaryMatching();
-            System.out.println("| 1 - Search");
-            System.out.println("| 2 - Sort");
-            System.out.println("Press 0 to exit....");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-            return choice;
-
-        }
+//        private MatchingEngineControl matchControl;
+//
+//
+//        public MatchingUI(MatchingEngineControl matchControl){
+//            this.matchControl = matchControl;
+//        }
+//        
+//        public int MatchingMenu(Student student){
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.println("These are the job that match with you");
+//            matchControl.matchStudentsToJobs(student);
+//            System.out.println("| 1 - Search");
+//            System.out.println("| 2 - Sort");
+//            System.out.println("Press 0 to exit....");
+//            int choice = scanner.nextInt();
+//            scanner.nextLine();
+//            return choice;
+//
+//        }
+//        
+//        public int AdminReport(){
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.println("Welcome to Summary Report of MatchingEngine");
+//            matchControl.SummaryMatching();
+//            System.out.println("| 1 - Search");
+//            System.out.println("| 2 - Sort");
+//            System.out.println("Press 0 to exit....");
+//            int choice = scanner.nextInt();
+//            scanner.nextLine();
+//            return choice;
+//
+//        }
 
 }

@@ -16,12 +16,11 @@ import java.util.Scanner;
 public class StudentPortalControl {
     Scanner scanner = new Scanner(System.in);
     
+    private ListInterface<Company> companyList;
     private ListInterface<Student> studentList;
-    private ListInterface<StudentSkill> studentSkillList;
     private ListInterface<Skill> skillList;
     private ListInterface<Job> jobList;
-    private ListInterface<JobPosting> jobPostList;
-    private ListInterface<JobRequiredSkill> requiredSkill;
+    private ListInterface<Interview> interviewList;
     private StudentPortalUI studentPortalUI;
     private StudentControl studentControl;
     private MatchingEngineControl matchControl;
@@ -34,16 +33,15 @@ public class StudentPortalControl {
     public StudentPortalControl() { 
     }
     
-    public StudentPortalControl(ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<StudentSkill> studentSkillList, ListInterface<Job> jobList, ListInterface<JobPosting> jobPostList, ListInterface<JobRequiredSkill> requiredSkill){
-        this.studentList        = studentList;
-        this.studentSkillList   = studentSkillList;
-        this.skillList          = skillList;
-        this.jobList            = jobList;
-        this.jobPostList        = jobPostList;
-        this.requiredSkill      = requiredSkill;
+    public StudentPortalControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList){
+        this.companyList = companyList;
+        this.studentList = studentList;
+        this.skillList = skillList;
+        this.jobList = jobList;
+        this.interviewList = interviewList;
         this.studentPortalUI    = new StudentPortalUI(this);
-        this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList, jobPostList, requiredSkill ,this);
-        this.matchControl       = new MatchingEngineControl(studentList, jobPostList);
+        this.studentControl     = new StudentControl(companyList, studentList, skillList, jobList, interviewList,this);
+//        this.matchControl       = new MatchingEngineControl(studentList, jobPostList);
         runStudentPortalManagement();
     }
     
@@ -89,7 +87,7 @@ public class StudentPortalControl {
                     studentControl.updateOwnStudent();
                     break;
                 case 3:
-                    matchControl.MatchingRunner(loginStudent);
+//                    matchControl.MatchingRunner(loginStudent);
                     break;
                 default:
                     System.out.println("This is an invalid option!!!");

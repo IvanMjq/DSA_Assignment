@@ -894,7 +894,7 @@ public class AllDataInitialize {
     }
 
     private void initializeJobApplication() {
-//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
+        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1), companyList.getData(1).getJobPostingList().getData(1), interviewList.getData(1), LocalDateTime.of(2025, 4, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 7, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
@@ -1093,11 +1093,11 @@ public class AllDataInitialize {
         interviewList.add(new Interview("itv8", LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.INTERVIEWED, 77));
         interviewList.add(new Interview("itv9", LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
         interviewList.add(new Interview("itv10", LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.ACCEPTED, 95));
-        
+
     }
 
     // -----------------
-    // Getter and Setter
+    // Getter
     public ListInterface<Skill> getSkillList() {
         return skillList;
     }
