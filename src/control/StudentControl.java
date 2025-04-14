@@ -38,7 +38,7 @@ public class StudentControl {
         this.jobPostList = jobPostList;
         this.requiredSkill = requiredSkill;
         this.studentUI = new StudentUI(this);
-        this.matchControl = new MatchingEngineControl(studentSkillList, requiredSkill, studentList, jobPostList);
+        this.matchControl = new MatchingEngineControl(studentList, jobPostList);
         
     }
 
@@ -50,7 +50,7 @@ public class StudentControl {
         this.jobPostList = jobPostList;
         this.requiredSkill = requiredSkill;
         this.studentUI = new StudentUI(this);
-        this.matchControl = new MatchingEngineControl(studentSkillList, requiredSkill, studentList, jobPostList);
+        this.matchControl = new MatchingEngineControl(studentList, jobPostList);
         this.studentPortalControl = studentPortalControl;
     }
 

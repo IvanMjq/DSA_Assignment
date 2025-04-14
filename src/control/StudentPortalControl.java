@@ -43,7 +43,7 @@ public class StudentPortalControl {
         this.requiredSkill      = requiredSkill;
         this.studentPortalUI    = new StudentPortalUI(this);
         this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList, jobPostList, requiredSkill ,this);
-        this.matchControl       = new MatchingEngineControl(studentSkillList, requiredSkill, studentList, jobPostList);
+        this.matchControl       = new MatchingEngineControl(studentList, jobPostList);
         runStudentPortalManagement();
     }
     

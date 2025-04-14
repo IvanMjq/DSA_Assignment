@@ -40,7 +40,7 @@ public class AdminPortalControl {
         this.requiredSkill      = requiredSkill;
         this.adminPortalUI      = new AdminPortalUI(this);
         this.studentControl     = new StudentControl(studentList, skillList, studentSkillList, jobList, jobPostList, requiredSkill);
-        this.matchControl       = new MatchingEngineControl(studentSkillList, requiredSkill, studentList, jobPostList);
+        this.matchControl       = new MatchingEngineControl(studentList, jobPostList);
         runAdminPortalManagement();
     }
     
