@@ -26,6 +26,7 @@ public class StudentControl {
     private StudentUI studentUI;
     private MatchingEngineControl matchControl;
     private StudentPortalControl studentPortalControl;
+    private JobApplicationControl jobApplicationControl;
 
     public StudentControl() {
     }
@@ -37,19 +38,24 @@ public class StudentControl {
         this.jobList = jobList;
         this.interviewList = interviewList;
         this.studentUI = new StudentUI(this);
-        this.matchControl = new MatchingEngineControl(companyList, studentList);
-        
     }
 
+    public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList, StudentPortalControl studentPortalControl, JobApplicationControl jobApplicationControl) {
+        this.companyList = companyList;
+        this.studentList = studentList;
+        this.skillList = skillList;
+        this.jobList = jobList;
+        this.interviewList = interviewList;
+        this.studentPortalControl = studentPortalControl;
+        this.jobApplicationControl = jobApplicationControl;
+    }
+    
     public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList, StudentPortalControl studentPortalControl) {
         this.companyList = companyList;
         this.studentList = studentList;
         this.skillList = skillList;
         this.jobList = jobList;
         this.interviewList = interviewList;
-        this.studentUI = new StudentUI(this);
-        this.matchControl = new MatchingEngineControl(companyList, studentList);
-        this.studentPortalControl = studentPortalControl;
     }
 
     public void adminStudentManagement() {

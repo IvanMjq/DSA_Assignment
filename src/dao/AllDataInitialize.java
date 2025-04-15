@@ -31,19 +31,18 @@ public class AllDataInitialize {
         initializeCompanyList();
 
         initializeJob();
+        
+        initializeInterview();
 
         intializeStudent();
 
         initializeJobPosting();
-
+        
         initializeJobApplication();
 
         initializeStudentSkillList();
 
-        initializeJobRequiredSkill();
-        
-        initializeInterview();
-
+        initializeJobRequiredSkill();        
     }
 
     private void initializeSkillList() {
@@ -746,7 +745,7 @@ public class AllDataInitialize {
 
     private void initializeJobApplication() {
         studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1), companyList.getData(1).getJobPostingList().getData(1), interviewList.getData(1), LocalDateTime.of(2025, 4, 1, 13, 0)));
-        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  companyList.getData(3).getJobPostingList().getData(4), interviewList.getData(3), LocalDateTime.of(2025, 7, 1, 13, 0)));
+        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1), companyList.getData(3).getJobPostingList().getData(2), interviewList.getData(3), LocalDateTime.of(2025, 7, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
