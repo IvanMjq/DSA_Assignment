@@ -24,6 +24,7 @@ public class AdminPortalControl {
     private Student loginStudent;
     private AdminPortalUI adminPortalUI;
     private StudentControl studentControl;
+    private JobApplicationControl jobApplicationControl;
     private MatchingEngineControl matchControl;
     
     
@@ -31,13 +32,14 @@ public class AdminPortalControl {
     }
     
     public AdminPortalControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList, ListInterface<Interview> interviewList) {
-        this.companyList        = companyList;
-        this.studentList        = studentList;
-        this.skillList          = skillList;
-        this.jobList            = jobList;
-        this.interviewList      = interviewList;
-        this.adminPortalUI      = new AdminPortalUI(this);
-        this.studentControl     = new StudentControl(companyList, studentList, skillList, jobList, interviewList);
+        this.companyList                = companyList;
+        this.studentList                = studentList;
+        this.skillList                  = skillList;
+        this.jobList                    = jobList;
+        this.interviewList              = interviewList;
+        this.adminPortalUI              = new AdminPortalUI(this);
+        this.studentControl             = new StudentControl(companyList, studentList, skillList, jobList, interviewList);
+        this.jobApplicationControl      = new JobApplicationControl(companyList, studentList, skillList, jobList, interviewList);
 //        this.matchControl       = new MatchingEngineControl(studentList, jobPostList);
         runAdminPortalManagement();
     }
@@ -58,7 +60,7 @@ public class AdminPortalControl {
                     studentControl.adminStudentManagement();
                     break;
                 case 3:
-//                    studentLogout();
+                    jobApplicationControl.adminJobApplicationManagement();
                     break;
                 default:
                     System.out.println("This is an invalid option!!!");
