@@ -7,7 +7,6 @@ package boundary;
 import adt.*;
 import control.*;
 import entity.*;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -65,10 +64,116 @@ public class JobManagementUI {
 
         return option;
     }
-    
+
+    public String getJobType() {
+        int option = -1;
+        boolean validInput = false;
+        boolean isFirstInput = true;
+
+        String line = "+--------------------------------+";
+
+        while (validInput != true) {
+            System.out.println(line);
+            System.out.printf("|  %-30s|\n", "Job Type");
+            System.out.println(line);
+            System.out.printf("|  %-30s|\n", "1. A");
+            System.out.printf("|  %-30s|\n", "2. B");
+            System.out.printf("|  %-30s|\n", "3. C");
+            System.out.printf("|  %-30s|\n", "4. D");
+            System.out.printf("|  %-30s|\n", "5. E");
+            System.out.println(line);
+
+            // Check if the user input was invalid before
+            if (!isFirstInput) {
+                System.out.println("Invalid option. Please choose a number between 1 - 5.");
+            }
+
+            // Prompt user input message
+            System.out.print("Please enter your option (1-5) : ");
+
+            // Validate user input
+            if (sc.hasNextInt()) {
+                option = sc.nextInt();
+                sc.nextLine(); // Clear newline character
+                if (option >= 1 && option <= 5) {
+                    validInput = true;
+                }
+            } else {
+                sc.nextLine(); // Clear the invalid input
+            }
+            isFirstInput = false;
+
+        }
+
+        switch (option) {
+            case 1:
+                return "aww";
+            case 2:
+                return "1";
+            default:
+                return null;
+        }
+    }
+
+    public int jobEditMenu() {
+        int option = -1;
+        boolean validInput = false;
+        boolean isFirstInput = true;
+
+        String line = "+--------------------------------------+";
+
+        while (validInput != true) {
+            System.out.println("\n\n");
+            System.out.println(line);
+            System.out.printf("|  %-36s|\n", "Job Fields to Edit");
+            System.out.println(line);
+            System.out.printf("|  %-36s|\n", "1. Job Title");
+            System.out.printf("|  %-36s|\n", "2. Job Type");
+            System.out.printf("|  %-36s|\n", "3. Job Description");
+            System.out.printf("|  %-36s|\n", "0. Exit to Job Management Menu");
+            System.out.println(line);
+
+            // Check if the user input was invalid before
+            if (!isFirstInput) {
+                System.out.println("Invalid option. Please choose a number between 0 - 3.");
+            }
+
+            // Prompt user input message
+            System.out.print("Please enter your option (0-3) : ");
+
+            // Validate user input
+            if (sc.hasNextInt()) {
+                option = sc.nextInt();
+                sc.nextLine(); // Clear newline character
+                if (option >= 0 && option <= 3) {
+                    validInput = true;
+                }
+            } else {
+                sc.nextLine(); // Clear the invalid input
+            }
+            isFirstInput = false;
+
+        }
+
+        return option;
+
+    }
+
+    public String trimToLength(String str, int length) {
+        if (str.length() > length) {
+            return str.substring(0, length - 3) + "...";
+        }
+        return String.format("%-" + length + "s", str);
+    }
+
     public String getStringInput(String promptMsg) {
-        System.out.println(promptMsg);
+        System.out.print(promptMsg);
         return sc.nextLine().trim();
+    }
+
+    public String getConfirmationPrompt(String message) {
+        System.out.print(message + " (Y/N): ");
+        return sc.nextLine().toUpperCase().trim();
     }
 
     // Just for testing purpose
