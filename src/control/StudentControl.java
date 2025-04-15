@@ -37,7 +37,7 @@ public class StudentControl {
         this.jobList = jobList;
         this.interviewList = interviewList;
         this.studentUI = new StudentUI(this);
-//        this.matchControl = new MatchingEngineControl(studentList, jobPostList);
+        this.matchControl = new MatchingEngineControl(companyList, studentList);
         
     }
 
@@ -48,7 +48,7 @@ public class StudentControl {
         this.jobList = jobList;
         this.interviewList = interviewList;
         this.studentUI = new StudentUI(this);
-//        this.matchControl = new MatchingEngineControl(studentList, jobPostList);
+        this.matchControl = new MatchingEngineControl(companyList, studentList);
         this.studentPortalControl = studentPortalControl;
     }
 
@@ -74,7 +74,8 @@ public class StudentControl {
                     updateStudent();
                     break;
                 case 6:
-//                    matchControl.AdminMatchingRunner();
+                    matchControl.AdminMatchingRunner();
+                    break;
 
                 default:
                     System.out.println("This is an invalid option!!!");

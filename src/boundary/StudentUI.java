@@ -33,8 +33,10 @@ public class StudentUI {
         System.out.println("6. Matching Report");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
+        
 
         int option = scanner.nextInt();
+        System.out.println("You selected option: " + option);
         scanner.nextLine();
         System.out.println();
         return option;
