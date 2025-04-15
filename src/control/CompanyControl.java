@@ -45,7 +45,7 @@ public class CompanyControl {
                     addCompany();
                     break;
                 case 2:
-                    viewCompany();
+                    viewCompanyList();
                     break;
                 case 3:
                     editCompany();
@@ -153,7 +153,7 @@ public class CompanyControl {
 
     }
 
-    public void viewCompany() {
+    public void viewCompanyList() {
         String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
         System.out.println("\n--------------------");
         System.out.println(" View Company List ");
@@ -200,7 +200,7 @@ public class CompanyControl {
 
         do {
             do {
-                viewCompany();
+                viewCompanyList();
                 System.out.println("Type 0 or X to return to the previous menu.\n");
                 id = companyManagementUI.getStringInput("Enter Company ID : ");
                 id = id.toUpperCase();
@@ -309,7 +309,7 @@ public class CompanyControl {
 
         do {
             do {
-                viewCompany();
+                viewCompanyList();
                 System.out.println("Type 0 or X to return to the previous menu.\n");
                 id = companyManagementUI.getStringInput("Enter Company ID : ");
                 id = id.toUpperCase();
@@ -330,8 +330,8 @@ public class CompanyControl {
         } while (confirmationToDelete.equals("N"));
 
         // Remove JobApplication of the company in the Student and the JobPosting of the company in the Job
-        removeCompanyJobPostingsFromJobs(companyFound);
-        removeCompanyJobApplicationsFromStudents(companyFound);
+        removeJobPostingsFromJobs(companyFound);
+        removeJobApplicationsFromStudents(companyFound);
         
         // Clear the JobPosting list of the company 
         companyFound.getJobPostingList().clear();
@@ -356,7 +356,7 @@ public class CompanyControl {
 
     }
 
-    private void removeCompanyJobPostingsFromJobs(Company company) {
+    private void removeJobPostingsFromJobs(Company company) {
         for (int i = company.getJobPostingList().size(); i > 0; i--) {
             JobPosting cJp = company.getJobPostingList().getData(i);
 
@@ -378,7 +378,7 @@ public class CompanyControl {
         }
     }
 
-    private void removeCompanyJobApplicationsFromStudents(Company company) {
+    private void removeJobApplicationsFromStudents(Company company) {
         for (int i = company.getJobPostingList().size(); i > 0; i--) {
             JobPosting cJp = company.getJobPostingList().getData(i);
             

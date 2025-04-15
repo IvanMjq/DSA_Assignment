@@ -13,15 +13,16 @@ import java.time.*;
  * @author ivanmjq
  */
 public class JobApplication implements Serializable {
+
     private Student student;
     private JobPosting jobPosting;
-    private Interview interviewList;
+    private Interview interview;
     private LocalDateTime appliedDateTime;
 
-    public JobApplication(Student student, JobPosting jobPosting, Interview interviewList, LocalDateTime appliedDateTime) {
+    public JobApplication(Student student, JobPosting jobPosting, Interview interview, LocalDateTime appliedDateTime) {
         this.student = student;
         this.jobPosting = jobPosting;
-        this.interviewList = interviewList;
+        this.interview = interview;
         this.appliedDateTime = appliedDateTime;
     }
 
@@ -34,7 +35,7 @@ public class JobApplication implements Serializable {
     }
 
     public Interview getInterviewList() {
-        return interviewList;
+        return interview;
     }
 
     public LocalDateTime getAppliedDateTime() {
@@ -49,20 +50,20 @@ public class JobApplication implements Serializable {
         this.jobPosting = jobPosting;
     }
 
-    public void setInterviewList(Interview interviewList) {
-        this.interviewList = interviewList;
+    public void setInterviewList(Interview interview) {
+        this.interview = interview;
     }
 
     public void setAppliedDateTime(LocalDateTime appliedDateTime) {
         this.appliedDateTime = appliedDateTime;
-    }  
+    }
 
     @Override
     public int hashCode() {
         int hash = 1;
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -72,16 +73,18 @@ public class JobApplication implements Serializable {
             return false;
         }
         final JobApplication other = (JobApplication) obj;
-        return Objects.equals(this.student, other.student); 
+        return Objects.equals(this.student.getId(), other.student.getId())
+                && Objects.equals(this.jobPosting, other.jobPosting)
+                && Objects.equals(this.interview.getId(), other.interview.getId());
         // Check if the id are same
     }
 
     @Override
     public String toString() {
-        return "JobApplication{" +
-                "studentId='" + student.getId() + '\'' +
-                ", applicationDate=" + appliedDateTime +
-                '}';
+        return "JobApplication{"
+                + "studentId='" + student.getId() + '\''
+                + ", applicationDate=" + appliedDateTime
+                + '}';
     }
 
 }

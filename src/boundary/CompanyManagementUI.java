@@ -22,7 +22,7 @@ public class CompanyManagementUI {
         int option = -1;
         boolean validInput = false;
         boolean isFirstInput = true;
-        
+
         String line = "+--------------------------------+";
 
         while (validInput != true) {
@@ -68,7 +68,7 @@ public class CompanyManagementUI {
         int option = -1;
         boolean validInput = false;
         boolean isFirstInput = true;
-        
+
         String line = "+--------------------------------------+";
 
         while (validInput != true) {
@@ -119,15 +119,19 @@ public class CompanyManagementUI {
     }
 
     public int getIntegerInput(String promptMsg) {
-        System.out.print(promptMsg);
-        while (!sc.hasNextInt()) {
-            System.err.println("Invalid input. Please enter a integer.");
-            sc.nextLine(); // Clear the invalid input
+        int value;
+        while (true) {
             System.out.print(promptMsg);
+            if (sc.hasNextInt()) {
+                value = sc.nextInt();
+                sc.nextLine(); // Clear newline
+                break;
+            } else {
+                System.err.println("Invalid input. Please enter an integer.");
+                sc.nextLine(); // Clear invalid input
+            }
         }
-        int year = sc.nextInt();
-        sc.nextLine(); // Clear the newline character
-        return year;
+        return value;
     }
 
     public LocalTime getInterviewTimePrompt(String message) {
