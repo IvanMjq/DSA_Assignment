@@ -9,9 +9,8 @@ import java.util.Comparator;
 /**
  *
  * @author ivanmjq
- * @param <T>
  */
-public interface ListInterface<T> extends Iterable<T>{
+public interface ListInterface<T> extends Iterable<T>, Comparable<T> {
     
     public void clear();
     
@@ -35,5 +34,5 @@ public interface ListInterface<T> extends Iterable<T>{
 
     public int indexOf(T data);
     
-    public void bubbleSort(Comparator<T> comparator);
+//    public void bubbleSort(Comparator<T> comparator);
 }
