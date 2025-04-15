@@ -268,7 +268,7 @@ public class MatchingEngineControl {
                     MatchingResult matchingResult = new MatchingResult(student, jobPost, totalScore, experienceStatus, distance, statusDistance);
                     matchResults.add(matchingResult);
                 }
-
+     
             }
         }
 
@@ -468,6 +468,16 @@ public class MatchingEngineControl {
         }
 
         System.out.println("======================================================================");
+    }
+    
+    
+    public void AdminReport(){
+        
+    }
+    
+    
+    public void AdminReport(){
+        
     }
 
     public void presentDescendingOrder() {

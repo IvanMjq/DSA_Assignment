@@ -22,8 +22,6 @@ public class MatchingResult implements Comparable<MatchingResult>{
         Very_Far
     };
 
-    private static int counter = 1;
-    private String id;
     private Student student;
     private JobPosting jobPost;
     private double score;
@@ -32,7 +30,7 @@ public class MatchingResult implements Comparable<MatchingResult>{
     private StatusDistance statusDistance;
 
     public MatchingResult(Student student, JobPosting jobPost, double score, ExperienceCheck status, double distance, StatusDistance statusDistance) {
-        this.id = String.format("M%03d", counter++);
+
         this.student = student;
         this.jobPost = jobPost;
         this.score = score;
@@ -53,9 +51,6 @@ public class MatchingResult implements Comparable<MatchingResult>{
         return score;
     }
 
-    public String getId() {
-        return id;
-    }
 
     public ExperienceCheck getExperiencedCheck() {
         return status;
@@ -71,12 +66,12 @@ public class MatchingResult implements Comparable<MatchingResult>{
     
     @Override
     public int compareTo(MatchingResult other) {
-        return Double.compare(other.getScore(), this.score); // descending by score
+        return Double.compare(other.getScore(), this.score); 
     }
+    
     @Override
     public String toString() {
         return "MatchingResult{"
-                + "id='" + id + '\''
                 + ", student=" + student.getName()
                 + ", jobPost=" + jobPost.getJob().getTitle()
                 + ", score=" + score

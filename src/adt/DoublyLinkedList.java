@@ -16,8 +16,8 @@ import java.util.NoSuchElementException;
 
 public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iterable<T> {
 
-    private Node<T> head;
-    private Node<T> tail;
+    private Node head;
+    private Node tail;
     private int numberOfEntries;
 
     public DoublyLinkedList() {
@@ -28,7 +28,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
     @Override
     public final void clear() {
         while (tail != null) {
-            Node<T> prevNode = tail.prev;
+            Node prevNode = tail.prev;
             tail.next = null;
             tail.prev = null;
             tail.data = null;
@@ -41,7 +41,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
     // Add as last node into the list 
     @Override
     public boolean add(T newData) {
-        Node<T> newNode = new Node(newData);
+        Node newNode = new Node(newData);
         if (isEmpty()) {
             head = newNode;
             tail = newNode;
@@ -60,7 +60,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
         boolean isSuccessful = true;
 
         if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            Node<T> current = head;
+            Node current = head;
             for (int i = 0; i < givenPosition - 1; ++i) {
                 current = current.next;
             }
@@ -81,7 +81,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
                 result = head.data;
                 head = head.next;
             } else {
-                Node<T> choosenNode = head;
+                Node choosenNode = head;
                 for (int i = 0; i < givenPosition - 1; ++i) {
                     choosenNode = choosenNode.next;
                 }
@@ -106,7 +106,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
         T result = null;
 
         if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            Node<T> current = head;
+            Node current = head;
             for (int i = 0; i < givenPosition - 1; ++i) {
                 current = current.next;
             }
@@ -136,7 +136,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
     @Override
     public String displayForward() {
         String outputStr = "";
-        Node<T> current = head;
+        Node current = head;
         while (current != null) {
             outputStr += current.data + "\n";
             current = current.next;
@@ -147,7 +147,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
     @Override
     public String displayBackward() {
         String outputStr = "";
-        Node<T> current = tail;
+        Node current = tail;
         while (current != null) {
             outputStr += current.data + "\n";
             current = current.prev;
@@ -155,46 +155,46 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
         return outputStr;
     }
 
-    public ListInterface<T> getSortedList(Comparator<T> comparator) {
-        // Step 1: Clone the current list
-        ListInterface<T> sortedList = new DoublyLinkedList<>();
-        for (T data : this) {
-            sortedList.add(data); // shallow copy; assumes T doesn't need deep clone
-        }
+//    public ListInterface<T> getSortedList(Comparator<T> comparator) {
+//        // Step 1: Clone the current list
+//        ListInterface<T> sortedList = new DoublyLinkedList<>();
+//        for (T data : this) {
+//            sortedList.add(data); // shallow copy; assumes T doesn't need deep clone
+//        }
+//
+//        // Step 2: Sort the cloned list using bubble sort
+//        ((DoublyLinkedList<T>) sortedList).bubbleSort(comparator);
+//
+//        // Step 3: Return the sorted clone
+//        return sortedList;
+//    }
 
-        // Step 2: Sort the cloned list using bubble sort
-        ((DoublyLinkedList<T>) sortedList).bubbleSort(comparator);
-
-        // Step 3: Return the sorted clone
-        return sortedList;
-    }
-
-    @Override
-    public void bubbleSort(Comparator<T> comparator) {
-        boolean swapped;
-        Node<T> end = null;
-
-        do {
-            swapped = false;
-            Node<T> current = head;
-
-            while (current != null && current.next != end) {
-                if (comparator.compare(current.data, current.next.data) > 0) {
-                    T temp = current.data;
-                    current.data = current.next.data;
-                    current.next.data = temp;
-                    swapped = true;
-                }
-                current = current.next;
-            }
-            end = current;
-        } while (swapped);
-    }
+//    @Override
+//    public void bubbleSort(Comparator<T> comparator) {
+//        boolean swapped;
+//        Node end = null;
+//
+//        do {
+//            swapped = false;
+//            Node<T> current = head;
+//
+//            while (current != null && current.next != end) {
+//                if (comparator.compare(current.data, current.next.data) > 0) {
+//                    T temp = current.data;
+//                    current.data = current.next.data;
+//                    current.next.data = temp;
+//                    swapped = true;
+//                }
+//                current = current.next;
+//            }
+//            end = current;
+//        } while (swapped);
+//    }
 
     @Override
     public int indexOf(T data) {
         int index = 1;
-        Node<T> current = head;
+        Node current = head;
 
         // Traverse the list from the head to the tail
         while (current != null) {
@@ -211,7 +211,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            private Node<T> current = head;
+            private Node current = head;
 
             @Override
             public boolean hasNext() {
@@ -230,11 +230,11 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
         };
     }
 
-    private class Node<T> {
+    private class Node {
 
         private T data;
-        private Node<T> next;
-        private Node<T> prev;
+        private Node next;
+        private Node prev;
 
         public Node(T data) {
             this.data = data;
@@ -242,7 +242,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
             this.prev = null;
         }
 
-        public Node(T data, Node<T> prev, Node<T> next) {
+        public Node(T data, Node prev, Node next) {
             this.data = data;
             this.prev = prev;
             this.next = next;
@@ -256,19 +256,19 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iter
             this.data = data;
         }
 
-        public Node<T> getNext() {
+        public Node getNext() {
             return next;
         }
 
-        public void setNext(Node<T> next) {
+        public void setNext(Node next) {
             this.next = next;
         }
 
-        public Node<T> getPrev() {
+        public Node getPrev() {
             return prev;
         }
 
-        public void setPrev(Node<T> prev) {
+        public void setPrev(Node prev) {
             this.prev = prev;
         }
 
