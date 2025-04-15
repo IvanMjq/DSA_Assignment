@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author ivanmjq
  */
-public class Student implements Serializable {
+public class Student implements Serializable, Comparable<Student> {
 
     private String id;
     private String name;
@@ -47,7 +47,6 @@ public class Student implements Serializable {
         this.yearsOfExperience = yearsOfExperience;
         this.desiredJobTypes = desiredJobTypes;
     }
-
 
     public String getId() {
         return id;
@@ -176,7 +175,7 @@ public class Student implements Serializable {
     public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
         this.jobApplicationList = jobApplicationList;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 1;
@@ -207,17 +206,22 @@ public class Student implements Serializable {
             jobAppListStr.append("\n    - ").append(jobApplicationList.getData(i));
         }
 
-        return "Student{" +
-            "\n  ID='" + id + '\'' +
-            ",\n  Name='" + name + '\'' +
-            ",\n  Age=" + age +
-            ",\n  Address='" + streetAddress + ", " + area + ", " + state + '\'' +
-            ",\n  Email='" + email + '\'' +
-            ",\n  Education='" + education + '\'' +
-            ",\n  Years of Experience=" + yearsOfExperience +
-            ",\n  Desired Job Types=" + (desiredJobTypes != null ? String.join(", ", desiredJobTypes) : "None") +
-            ",\n  Student Skills=" + (studentSkillList.size() > 0 ? skillListStr : " None") +
-            ",\n  Job Applications=" + (jobApplicationList.size() > 0 ? jobAppListStr : " None") +
-            "\n}";
+        return "Student{"
+                + "\n  ID='" + id + '\''
+                + ",\n  Name='" + name + '\''
+                + ",\n  Age=" + age
+                + ",\n  Address='" + streetAddress + ", " + area + ", " + state + '\''
+                + ",\n  Email='" + email + '\''
+                + ",\n  Education='" + education + '\''
+                + ",\n  Years of Experience=" + yearsOfExperience
+                + ",\n  Desired Job Types=" + (desiredJobTypes != null ? String.join(", ", desiredJobTypes) : "None")
+                + ",\n  Student Skills=" + (studentSkillList.size() > 0 ? skillListStr : " None")
+                + ",\n  Job Applications=" + (jobApplicationList.size() > 0 ? jobAppListStr : " None")
+                + "\n}";
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return 0;
     }
 }

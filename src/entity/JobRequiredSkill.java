@@ -11,8 +11,8 @@ import java.util.Objects;
  *
  * @author WEI ZHENG
  */
-public class JobRequiredSkill implements Serializable {
-    
+public class JobRequiredSkill implements Serializable, Comparable<JobRequiredSkill> {
+
     private Skill skill;
     private int importance; // 1 to 5, how critical the skill is
 
@@ -24,7 +24,7 @@ public class JobRequiredSkill implements Serializable {
     public Skill getSkill() {
         return skill;
     }
-    
+
     public int getImportance() {
         return importance;
     }
@@ -36,13 +36,13 @@ public class JobRequiredSkill implements Serializable {
     public void setImportance(int importance) {
         this.importance = importance;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 1;
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -61,6 +61,9 @@ public class JobRequiredSkill implements Serializable {
         return "JobRequiredSkill{" + "skill=" + skill + ", importance=" + importance + '}';
     }
 
-    
+    @Override
+    public int compareTo(JobRequiredSkill other) {
+        return 0;
+    }
 
 }

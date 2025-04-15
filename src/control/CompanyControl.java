@@ -9,6 +9,7 @@ import adt.ListInterface;
 import boundary.CompanyManagementUI;
 import dao.AllDataInitialize;
 import entity.Company;
+import entity.Interview;
 import entity.Job;
 import entity.JobApplication;
 import entity.JobPosting;
@@ -25,13 +26,15 @@ public class CompanyControl {
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
     private ListInterface<Student> studentList = new DoublyLinkedList<>();
+    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
 
     CompanyManagementUI companyManagementUI = new CompanyManagementUI();
 
-    public CompanyControl(ListInterface<Company> companyList, ListInterface<Job> jobList, ListInterface<Student> studentList) {
+    public CompanyControl(ListInterface<Company> companyList, ListInterface<Job> jobList, ListInterface<Student> studentList, ListInterface<Interview> interviewList) {
         this.companyList = companyList;
         this.jobList = jobList;
         this.studentList = studentList;
+        this.interviewList = interviewList;
     }
 
     public void startCompanyManagement() {
@@ -332,6 +335,7 @@ public class CompanyControl {
         // Remove JobApplication of the company in the Student and the JobPosting of the company in the Job
         removeJobPostingsFromJobs(companyFound);
         removeJobApplicationsFromStudents(companyFound);
+        removeJobApplicationsFromInterviews(companyFound);
         
         // Clear the JobPosting list of the company 
         companyFound.getJobPostingList().clear();
@@ -402,6 +406,31 @@ public class CompanyControl {
             }
         }
     }
+    
+    private void removeJobApplicationsFromInterviews(Company company) {
+        for (int i = company.getJobPostingList().size(); i > 0; i--) {
+            JobPosting cJp = company.getJobPostingList().getData(i);
+            
+            for (JobApplication cJApp : cJp.getJobApplicationList()) {
+                for (Interview interview : interviewList) {
+                    ListInterface<JobApplication> interviewJobApplicationList = interview.getJobApplicationList();
+                    
+                    for (int j = interviewJobApplicationList.size(); j > 0; j--) {
+                        JobApplication sJApp = interviewJobApplicationList.getData(j);
+                        
+                        if (sJApp.equals(cJApp)) {
+                            JobApplication removedJobApplication = interviewJobApplicationList.remove(j);
+                            if (removedJobApplication != null) {
+                                System.out.println("Successfully removed JobApplication with ID : " + removedJobApplication.getJobPosting().getCompany().getId() + ", " + removedJobApplication.getStudent().getId());
+                            } else {
+                                System.err.println("Failed to remove JobApplication with ID : " + sJApp.getJobPosting().getCompany().getId() + ", " + sJApp.getStudent().getId());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     // Just for testing purpose
     public static void main(String[] args) {
@@ -410,8 +439,9 @@ public class CompanyControl {
         ListInterface<Company> companyList = dataInitialize.getCompanyList();
         ListInterface<Job> jobList = dataInitialize.getJobList();
         ListInterface<Student> studentList = dataInitialize.getStudentList();
+        ListInterface<Interview> interviewList = dataInitialize.getInterviewList();
 
-        CompanyControl companyControl = new CompanyControl(companyList, jobList, studentList);
+        CompanyControl companyControl = new CompanyControl(companyList, jobList, studentList, interviewList);
 
         companyControl.startCompanyManagement();
     }

@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author Lim Zi Qi
  */
-public class Interview implements Serializable {
+public class Interview implements Serializable, Comparable<Interview> {
 
     public enum InterviewStatus {
         APPLIED,
@@ -30,9 +30,9 @@ public class Interview implements Serializable {
     private InterviewStatus interviewStatus;
     private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
     private int interviewMark;
-    
+
     public Interview() {
-    
+
     }
 
     public Interview(String id, LocalDateTime scheduledDateTime, InterviewStatus interviewStatus, int interviewMark) {
@@ -49,7 +49,7 @@ public class Interview implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-    
+
     public LocalDateTime getScheduledDateTime() {
         return scheduledDateTime;
     }
@@ -73,7 +73,7 @@ public class Interview implements Serializable {
     public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
         this.jobApplicationList = jobApplicationList;
     }
-    
+
     public int getInterviewMark() {
         return interviewMark;
     }
@@ -87,7 +87,7 @@ public class Interview implements Serializable {
         int hash = 1;
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -100,10 +100,15 @@ public class Interview implements Serializable {
         return Objects.equals(this.id, other.id);
         // Check if the id are same
     }
-    
+
+    @Override
+    public int compareTo(Interview other) {
+        return 0;
+    }
+
     @Override
     public String toString() {
         return "Interview{" + "id=" + id + ", scheduledDateTime=" + scheduledDateTime + ", interviewStatus=" + interviewStatus + ", jobApplicationList=" + jobApplicationList + ", interviewMark=" + interviewMark + '}';
-    }      
+    }
 
 }

@@ -9,6 +9,7 @@ import adt.ListInterface;
 import boundary.JobManagementUI;
 import dao.AllDataInitialize;
 import entity.Company;
+import entity.Interview;
 import entity.Job;
 import entity.JobApplication;
 import entity.JobPosting;
@@ -25,13 +26,15 @@ public class JobControl {
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
     private ListInterface<Student> studentList = new DoublyLinkedList<>();
+    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
 
     JobManagementUI jobManagementUI = new JobManagementUI();
 
-    public JobControl(ListInterface<Company> companyList, ListInterface<Job> jobList, ListInterface<Student> studentList) {
+    public JobControl(ListInterface<Company> companyList, ListInterface<Job> jobList, ListInterface<Student> studentList, ListInterface<Interview> interviewList) {
         this.companyList = companyList;
         this.jobList = jobList;
         this.studentList = studentList;
+        this.interviewList = interviewList;
     }
 
     public void startJobManagement() {
@@ -238,6 +241,32 @@ public class JobControl {
 
         } while (confirmationToEdit.equals("N"));
 
+        // Remove JobApplication of the job in the Student & Interview and the JobPosting of the job in the company
+        removeJobPostingsFromCompany(jobFound);
+        removeJobApplicationsFromStudents(jobFound);
+        removeJobApplicationsFromInterviews(jobFound);
+
+        // Clear the JobPosting list of the company 
+        jobFound.getJobPostingList().clear();
+
+        // Remove the company
+        int jobIndex = jobList.indexOf(jobFound);
+
+        if (jobIndex != -1) {
+            Job removedJob = jobList.remove(jobIndex);
+
+            if (removedJob != null) {
+                System.out.println("Successfully removed Job with ID : " + removedJob.getId());
+                System.out.println("Remaining Jobs: " + companyList.size());
+            } else {
+                System.err.println("Error. Failed to removed Job with ID : " + jobFound.getId());
+                System.err.flush();
+            }
+        } else {
+            System.err.println("Error. Failed to get Job.");
+            System.err.flush();
+        }
+
     }
 
     private void removeJobPostingsFromCompany(Job job) {
@@ -291,6 +320,31 @@ public class JobControl {
         }
     }
 
+    private void removeJobApplicationsFromInterviews(Job job) {
+        for (int i = job.getJobPostingList().size(); i > 0; i--) {
+            JobPosting jJp = job.getJobPostingList().getData(i);
+
+            for (JobApplication jJApp : jJp.getJobApplicationList()) {
+                for (Interview interview : interviewList) {
+                    ListInterface<JobApplication> interviewJobApplicationList = interview.getJobApplicationList();
+
+                    for (int j = interviewJobApplicationList.size(); j > 0; j--) {
+                        JobApplication iJApp = interviewJobApplicationList.getData(j);
+
+                        if (iJApp.equals(jJApp)) {
+                            JobApplication removedJobApplication = interviewJobApplicationList.remove(j);
+                            if (removedJobApplication != null) {
+                                System.out.println("Successfully removed JobApplication with ID : " + removedJobApplication.getJobPosting().getJob().getId() + ", " + removedJobApplication.getInterview().getId());
+                            } else {
+                                System.err.println("Failed to remove JobApplication with ID : " + iJApp.getJobPosting().getJob().getId() + ", " + iJApp.getInterview().getId());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     // Just for testing purpose 
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
@@ -298,8 +352,9 @@ public class JobControl {
         ListInterface<Company> companyList = dataInitialize.getCompanyList();
         ListInterface<Job> jobList = dataInitialize.getJobList();
         ListInterface<Student> studentList = dataInitialize.getStudentList();
+        ListInterface<Interview> interviewList = dataInitialize.getInterviewList();
 
-        JobControl jobControl = new JobControl(companyList, jobList, studentList);
+        JobControl jobControl = new JobControl(companyList, jobList, studentList, interviewList);
 
         jobControl.startJobManagement();
     }

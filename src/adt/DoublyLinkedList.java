@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class DoublyLinkedList<T> implements ListInterface<T>, Serializable, Iterable<T> {
+public class DoublyLinkedList<T extends Comparable<T>> implements ListInterface<T>, Serializable, Iterable<T> {
     
     private Node head;
     private Node tail;

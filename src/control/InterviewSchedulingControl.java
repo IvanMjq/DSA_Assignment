@@ -80,7 +80,7 @@ public class InterviewSchedulingControl {
                 Interview interviewer = new Interview("itv" + count++, localDateTime, Interview.InterviewStatus.INTERVIEW_SCHEDULED, 0);
 
                 interviewList.add(interviewer);
-                jobApplicant.setInterviewList(interviewer);
+                jobApplicant.setInterview(interviewer);
 
                 boolean isReplaced = jobApplicationList.replace(i, jobApplicant);
 
@@ -100,7 +100,7 @@ public class InterviewSchedulingControl {
 
             if (currentJobApplication.getStudent().getId().equals(jobApplicant.getStudent().getId())) {
 
-                Interview interview = currentJobApplication.getInterviewList();
+                Interview interview = currentJobApplication.getInterview();
 
                 if (interview != null) {
                     
@@ -122,7 +122,7 @@ public class InterviewSchedulingControl {
                     }
 
                     interview.setInterviewMark(result);
-                    currentJobApplication.getInterviewList().setInterviewMark(result);
+                    currentJobApplication.getInterview().setInterviewMark(result);
 
                     boolean isReplaced = jobApplicationList.replace(i, currentJobApplication);
 

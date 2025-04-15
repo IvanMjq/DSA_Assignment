@@ -90,7 +90,7 @@ public class JobApplicationControl {
 
                     Student stu = ja.getStudent();
                     JobPosting jp = ja.getJobPosting();
-                    Interview interview = ja.getInterviewList();
+                    Interview interview = ja.getInterview();
 
                     System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
                     System.out.printf("| %-10s | %-30s | %-30s | %-30s | %-30s | %-30s | %-30s |\n",
@@ -160,7 +160,7 @@ public class JobApplicationControl {
         if (isConfirm) {
             studentList.getData(studentList.indexOf(selectedStudent)).getJobApplicationList().add(newApplication);
             interviewList.add(newInterview);
-            studentList.getData(studentList.indexOf(selectedStudent)).getJobApplicationList().getLastData().setInterviewList(newInterview);
+            studentList.getData(studentList.indexOf(selectedStudent)).getJobApplicationList().getLastData().setInterview(newInterview);
             interviewList.getLastData().getJobApplicationList().add(studentList.getData(studentList.indexOf(selectedStudent)).getJobApplicationList().getLastData());
             addToCompanySide(newApplication, selectedJobPosting);
             System.out.println("Job Apply successfully!");
