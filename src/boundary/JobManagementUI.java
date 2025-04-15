@@ -4,9 +4,6 @@
  */
 package boundary;
 
-import adt.*;
-import control.*;
-import entity.*;
 import java.util.Scanner;
 
 /**
@@ -36,23 +33,22 @@ public class JobManagementUI {
             System.out.printf("|  %-30s|\n", "2. View Job");
             System.out.printf("|  %-30s|\n", "3. Edit Job");
             System.out.printf("|  %-30s|\n", "4. Delete Job");
-            System.out.printf("|  %-30s|\n", "4. Report");
             System.out.printf("|  %-30s|\n", "0. Exit to Main Menu");
             System.out.println(line);
 
             // Check if the user input was invalid before
             if (!isFirstInput) {
-                System.out.println("Invalid option. Please choose a number between 0 - 5.");
+                System.out.println("Invalid option. Please choose a number between 0 - 4.");
             }
 
             // Prompt user input message
-            System.out.print("Please enter your option (0-5) : ");
+            System.out.print("Please enter your option (0-4) : ");
 
             // Validate user input
             if (sc.hasNextInt()) {
                 option = sc.nextInt();
                 sc.nextLine(); // Clear newline character
-                if (option >= 0 && option <= 5) {
+                if (option >= 0 && option <= 4) {
                     validInput = true;
                 }
             } else {

@@ -56,9 +56,6 @@ public class CompanyControl {
                 case 4:
                     deleteCompany();
                     break;
-                case 5:
-                    
-                    break;
                 case 0:
                     System.out.println("Returing to Main Menu ...");
                     break;
@@ -159,7 +156,7 @@ public class CompanyControl {
     public void viewCompanyList() {
         String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
         System.out.println("\n--------------------");
-        System.out.println(" View Company List ");
+        System.out.println(" View Companies List ");
         System.out.println("--------------------");
 
         System.out.println(line);

@@ -56,9 +56,6 @@ public class JobControl {
                 case 4:
                     deleteJob();
                     break;
-                case 5:
-
-                    break;
                 case 0:
                     System.out.println("Returing to Main Menu ...");
                     break;
@@ -90,8 +87,6 @@ public class JobControl {
         do {
             desc = jobManagementUI.getStringInput("Enter Job Description : ");
         } while (!JobValidateFunction.isValidDescription(desc));
-
-        System.out.println(id + "aaaaaa");
 
         do {
             addConfirmation = jobManagementUI.getConfirmationPrompt("Do you want to add this job?");
@@ -126,7 +121,7 @@ public class JobControl {
         System.out.println(line);
 
         if (jobList.isEmpty()) {
-            System.out.println("No companies found.");
+            System.out.println("No Jobs found.");
         } else {
             for (Job j : jobList) {
                 String desc = j.getDesc().length() > 75 ? j.getDesc().substring(0, 82) + "..." : j.getDesc();
