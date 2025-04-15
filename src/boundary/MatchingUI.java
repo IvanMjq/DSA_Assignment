@@ -26,11 +26,11 @@ public class MatchingUI {
 
     public int MatchingMenu(Student student) {
 
-        System.out.println("These are the job that match with you");
-        matchControl.matchStudentsToJobs(student);
-        System.out.println("| 1 - Search");
-        System.out.println("| 2 - Sort");
+        System.out.println("Please select the table to be shown");
+        System.out.println("| 1 - Matching Table");
+        System.out.println("| 2 - Descending Sort by Score");
         System.out.println("| 0 - Exit");
+        System.out.print("Enter your choice (0, 1, or 2): ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         return choice;
@@ -40,10 +40,10 @@ public class MatchingUI {
     public int AdminReport() {
 
         System.out.println("Welcome to Summary Report of MatchingEngine");
-        matchControl.SummaryMatching();
-        System.out.println("| 1 - Distribution Graph for Job Post vs Number of Student");
-        System.out.println("| 2 - Sort");
+        System.out.println("| 1 - View All Table");
+        System.out.println("| 2 - Distribution Graph for Job Post vs Number of Student");
         System.out.println("| 0 - Exit");
+        System.out.print("Enter your choice (0, 1, or 2): ");
         int choice = scanner.nextInt();
         scanner.nextLine();
 
