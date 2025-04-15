@@ -35,5 +35,5 @@ public interface ListInterface<T> extends Iterable<T> {
 
     public int indexOf(T data);
     
-//    public void bubbleSort(Comparator<T> comparator);
+    public void bubbleSort(Comparator<T> comparator);
 }
