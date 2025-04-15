@@ -38,6 +38,7 @@ public class StudentControl {
         this.jobList = jobList;
         this.interviewList = interviewList;
         this.studentUI = new StudentUI(this);
+        this.matchControl = new MatchingEngineControl(companyList, studentList);
     }
 
     public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList, StudentPortalControl studentPortalControl, JobApplicationControl jobApplicationControl) {
@@ -48,6 +49,7 @@ public class StudentControl {
         this.interviewList = interviewList;
         this.studentPortalControl = studentPortalControl;
         this.jobApplicationControl = jobApplicationControl;
+        this.matchControl = new MatchingEngineControl(companyList, studentList);
     }
     
     public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList, StudentPortalControl studentPortalControl) {
@@ -56,7 +58,11 @@ public class StudentControl {
         this.skillList = skillList;
         this.jobList = jobList;
         this.interviewList = interviewList;
+        
     }
+    
+    
+    
 
     public void adminStudentManagement() {
         int option = 0;

@@ -4,6 +4,8 @@
  */
 package adt;
 
+import java.util.Comparator;
+
 /**
  *
  * @author ivanmjq
@@ -33,5 +35,5 @@ public interface ListInterface<T> extends Iterable<T>{
 
     public int indexOf(T data);
     
-    //public ListInterface<T> insertionSort();
+    public void bubbleSort(Comparator<T> comparator);
 }
