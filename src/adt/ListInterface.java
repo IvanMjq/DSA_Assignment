@@ -9,8 +9,9 @@ import java.util.Comparator;
 /**
  *
  * @author ivanmjq
+ * @param <T>
  */
-public interface ListInterface<T> extends Iterable<T>, Comparable<T> {
+public interface ListInterface<T> extends Iterable<T> {
     
     public void clear();
     
