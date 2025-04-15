@@ -12,7 +12,7 @@ import java.time.*;
  *
  * @author ivanmjq
  */
-public class JobApplication implements Serializable {
+public class JobApplication implements Serializable, Comparable<JobApplication> {
 
     private Student student;
     private JobPosting jobPosting;
@@ -34,7 +34,7 @@ public class JobApplication implements Serializable {
         return jobPosting;
     }
 
-    public Interview getInterviewList() {
+    public Interview getInterview() {
         return interview;
     }
 
@@ -50,7 +50,7 @@ public class JobApplication implements Serializable {
         this.jobPosting = jobPosting;
     }
 
-    public void setInterviewList(Interview interview) {
+    public void setInterview(Interview interview) {
         this.interview = interview;
     }
 
@@ -85,6 +85,11 @@ public class JobApplication implements Serializable {
                 + "studentId='" + student.getId() + '\''
                 + ", applicationDate=" + appliedDateTime
                 + '}';
+    }
+
+    @Override
+    public int compareTo(JobApplication other) {
+        return 0;
     }
 
 }

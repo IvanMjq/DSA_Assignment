@@ -10,13 +10,14 @@ import java.io.Serializable;
  *
  * @author WEI ZHENG
  */
-public class StudentSkill implements Serializable {
+public class StudentSkill implements Serializable, Comparable<StudentSkill> {
+
     private Skill skill;
     private int proficiencyLevel; // Proficiency level of the student in the skill (1-5)
 
-    public StudentSkill( Skill skill, int proficiencyLevel) {
-        this.skill              = skill;
-        this.proficiencyLevel   = proficiencyLevel;
+    public StudentSkill(Skill skill, int proficiencyLevel) {
+        this.skill = skill;
+        this.proficiencyLevel = proficiencyLevel;
     }
 
     public Skill getSkill() {
@@ -33,14 +34,19 @@ public class StudentSkill implements Serializable {
 
     public void setProficiencyLevel(int proficiencyLevel) {
         this.proficiencyLevel = proficiencyLevel;
-    }   
-    
+    }
+
     @Override
     public String toString() {
-        return "StudentSkill{" +
-            "skill=" + skill.getName() +
-            ", proficiency=" + proficiencyLevel +
-            '}';
+        return "StudentSkill{"
+                + "skill=" + skill.getName()
+                + ", proficiency=" + proficiencyLevel
+                + '}';
+    }
+
+    @Override
+    public int compareTo(StudentSkill other) {
+        return 0;
     }
 
 }

@@ -11,7 +11,8 @@ import java.util.Objects;
  *
  * @author Teh Yi Shan
  */
-public class Skill implements Serializable {
+public class Skill implements Serializable, Comparable<Skill> {
+
     private String id;
     private String name;
 
@@ -57,6 +58,11 @@ public class Skill implements Serializable {
     @Override
     public String toString() {
         return "Skill{" + "id=" + id + ", name=" + name + '}';
+    }
+
+    @Override
+    public int compareTo(Skill other) {
+        return 0;
     }
 
 }

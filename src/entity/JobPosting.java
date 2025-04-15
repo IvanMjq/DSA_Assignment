@@ -14,7 +14,7 @@ import java.util.Objects;
  *
  * @author ivanmjq
  */
-public class JobPosting implements Serializable {
+public class JobPosting implements Serializable, Comparable<JobPosting> {
 
     private Company company;
     private Job job;
@@ -132,6 +132,11 @@ public class JobPosting implements Serializable {
     @Override
     public String toString() {
         return "JobPosting{" + "company=" + company + ", job=" + job + ", description=" + description + ", minimumSalary=" + minimumSalary + ", maximumSalary=" + maximumSalary + ", requiredExperience=" + requiredExperience + ", datePosted=" + datePosted + ", jobApplicationList=" + jobApplicationList + ", jobRequiredSkillList=" + jobRequiredSkillList + '}';
+    }
+
+    @Override
+    public int compareTo(JobPosting other) {
+        return 0;
     }
 
 }

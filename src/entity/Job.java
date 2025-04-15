@@ -14,12 +14,13 @@ import utility.IdGeneration;
  *
  * @author ivanmjq
  */
-public class Job implements Serializable, IdGeneration.Identifiable {
+public class Job implements Serializable, IdGeneration.Identifiable, Comparable<Job> {
+
     private String id;
     private String title;
     private String type;
     private String desc;
-    
+
     private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
 
     public Job(String id, String title, String type, String desc) {
@@ -27,7 +28,7 @@ public class Job implements Serializable, IdGeneration.Identifiable {
         this.title = title;
         this.type = type;
         this.desc = desc;
-    } 
+    }
 
     @Override
     public String getId() {
@@ -69,13 +70,13 @@ public class Job implements Serializable, IdGeneration.Identifiable {
     public void setJobPostingList(ListInterface<JobPosting> jobPostingList) {
         this.jobPostingList = jobPostingList;
     }
-      
+
     @Override
     public int hashCode() {
         int hash = 1;
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -85,13 +86,18 @@ public class Job implements Serializable, IdGeneration.Identifiable {
             return false;
         }
         final Job other = (Job) obj;
-        return Objects.equals(this.id, other.id); 
+        return Objects.equals(this.id, other.id);
         //check if the id are same
     }
 
     @Override
     public String toString() {
         return "Job{" + "id=" + id + ", title=" + title + ", type=" + type + ", desc=" + desc + '}';
+    }
+
+    @Override
+    public int compareTo(Job other) {
+        return 0;
     }
 
 }
