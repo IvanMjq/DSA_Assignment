@@ -375,7 +375,7 @@ public class AllDataInitialize {
                 "brenda.lee@example.com",
                 "Hackathon Winner",
                 "Bachelor of Software Engineering",
-                2, "Healthcare"));
+                2, "Healthcare", "Computer & Technology"));
 
         studentList.add(new Student(
                 "STU-3",

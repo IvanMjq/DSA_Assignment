@@ -73,6 +73,9 @@ public class StudentControl {
                 case 4:
                     updateStudent();
                     break;
+                case 5:
+//                    filterByJobDesired();
+                    break;
                 case 6:
                     matchControl.AdminMatchingRunner();
                     break;
@@ -286,6 +289,11 @@ public class StudentControl {
             Student oriData = studentList.getData(studentPosition);
             updateStudentDetails(oriData);
             System.out.println(oriData);
+            double[] tude = GeoUtilControl.getLatLong(oriData.getArea(), oriData.getState());
+            double latitude = tude[0];
+            double longitude = tude[1];
+            oriData.setLatitude(latitude);
+            oriData.setLongitude(longitude);
             Student updatedData = studentList.getData(studentPosition);
             System.out.println(updatedData);
         }
@@ -314,6 +322,11 @@ public class StudentControl {
             Student oriData = studentList.getData(studentPosition);
             updateStudentDetails(oriData);
             System.out.println(oriData);
+            double[] tude = GeoUtilControl.getLatLong(oriData.getArea(), oriData.getState());
+            double latitude = tude[0];
+            double longitude = tude[1];
+            oriData.setLatitude(latitude);
+            oriData.setLongitude(longitude);
             Student updatedData = studentList.getData(studentPosition);
             System.out.println(updatedData);
         }
@@ -808,5 +821,6 @@ public class StudentControl {
             return "STU-" + 1;
         }
     }
-
+    
+    
 }

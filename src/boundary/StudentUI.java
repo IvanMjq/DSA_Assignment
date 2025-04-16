@@ -256,7 +256,11 @@ public class StudentUI {
            
         }
         
-        Student newStudent = new Student(studentControl.generateStudentID(), name, password, age, address, area, state,3.1390, 101.6869, email, achievement, education, yearsOfExperience, jobTypes);
+        double[] tude = GeoUtilControl.getLatLong(area, state);
+        double latitude = tude[0];
+        double longitude = tude[1];
+        
+        Student newStudent = new Student(studentControl.generateStudentID(), name, password, age, address, area, state,latitude, longitude, email, achievement, education, yearsOfExperience, jobTypes);
         
         for(int z = 1; z <= studentSkillList.size(); z++) {
             Skill skill = studentSkillList.getData(z).getSkill();

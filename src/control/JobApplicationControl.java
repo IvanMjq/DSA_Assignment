@@ -162,18 +162,18 @@ public class JobApplicationControl {
         
         JobPosting selectedJobPosting  = null;
         while(selectedJobPosting == null){
-            System.out.print("Enter of Company ID, (X=Show list), , (M=Match): ");
+            System.out.print("Enter of Company ID, (X=Show list), , (F=Filter By Desire Job): ");
             String companyInput = scanner.nextLine().trim();
             
             if (companyInput.equalsIgnoreCase("X")) {
                 jobPostingListing();
             } 
             
-            //            if (input.equalsIgnoreCase("M")) {
-//                studentControl.displayAllMatchingResults();
-//            } 
+            if (companyInput.equalsIgnoreCase("F")) {
+                filterByJobDesired(selectedStudent);
+            } 
             
-            if(!companyInput.equalsIgnoreCase("X") && !companyInput.equalsIgnoreCase("M") ) {
+            if(!companyInput.equalsIgnoreCase("X") && !companyInput.equalsIgnoreCase("F") ) {
                 System.out.print("Enter of Job ID: ");
                 String jobInput = scanner.nextLine().trim();
             
@@ -278,18 +278,18 @@ public class JobApplicationControl {
         
         JobPosting selectedJobPosting  = null;
         while(selectedJobPosting == null){
-            System.out.print("Enter of Company ID, (X=Show list), , (M=Match): ");
+            System.out.print("Enter of Company ID, (X=Show list), , (F=Filter): ");
             String companyInput = scanner.nextLine().trim();
             
             if (companyInput.equalsIgnoreCase("X")) {
                 jobPostingListing();
             } 
             
-            //            if (input.equalsIgnoreCase("M")) {
-//                studentControl.displayAllMatchingResults();
-//            } 
+            if (companyInput.equalsIgnoreCase("F")) {
+                filterByJobDesired(studentPortalControl.getLoginStudent());
+            } 
             
-            if(!companyInput.equalsIgnoreCase("X") && !companyInput.equalsIgnoreCase("M") ) {
+            if(!companyInput.equalsIgnoreCase("X") && !companyInput.equalsIgnoreCase("F") ) {
                 System.out.print("Enter of Job ID: ");
                 String jobInput = scanner.nextLine().trim();
             
@@ -544,7 +544,7 @@ public class JobApplicationControl {
         }
     }
     
-        public void removeCompanySide(Student input) {
+    public void removeCompanySide(Student input) {
         if (input == null || input.getJobApplicationList() == null) {
             System.out.println("Input student or their job application list is null.");
             return;
@@ -568,8 +568,6 @@ public class JobApplicationControl {
         }
     }
 
-
-    
     public void removeInterviewSide(Student input) {
         for (int i = 1; i <= interviewList.size(); i++) {
             Interview interview = interviewList.getData(i);
@@ -583,5 +581,40 @@ public class JobApplicationControl {
                 }
             }
         }
+    }
+    
+    public void filterByJobDesired(Student selectedStudent) {
+        String[] desiredJob = selectedStudent.getDesiredJobTypes();
+        System.out.println(desiredJob[0]);
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-15s | %-30s | %-15s | %-30s | %-30s | %-100s | %-15s | %-15s | %-15s | %-15s |\n","Company ID", "Company Name", "Job ID", "Job Title", "Job Type","Description", "Max Salary", "Min Salary", "Experience", "Date Posted");
+        for(int i = 0; i < desiredJob.length; i++) {
+            for(int j = 1; j <= companyList.size(); j++) {
+                Company c = companyList.getData(j);
+                for(int k = 1; k <= c.getJobPostingList().size(); k++) {
+                    JobPosting jp = c.getJobPostingList().getData(k);
+//                    System.out.println(jp);
+                    if (jp == null || jp.getJob() == null) continue;
+                    
+                    String jobType = jp.getJob().getType();
+                    if (jobType != null && desiredJob[i] != null && jobType.trim().equalsIgnoreCase(desiredJob[i].trim())) {
+                        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                        System.out.printf("| %-15s | %-30s | %-15s | %-30s | %-30s | %-100s | %-15.2f | %-15.2f | %-15d | %-15s |\n",
+                            jp.getCompany().getId(),
+                            jp.getCompany().getName(),
+                            jp.getJob().getId(),
+                            jp.getJob().getTitle(),
+                            jp.getJob().getType(),
+                            jp.getDescription(),
+                            jp.getMaximumSalary(),
+                            jp.getMaximumSalary(),
+                            jp.getRequiredExperience(),
+                            jp.getDatePosted()
+                            );
+                    }
+                }
+            }
+        }
+         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 }
