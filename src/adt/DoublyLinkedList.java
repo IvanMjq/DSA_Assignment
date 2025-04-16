@@ -9,6 +9,8 @@ package adt;
  * @author ivanmjq
  * @author WEI ZHENG
  */
+import entity.JobPosting;
+import entity.MatchingResult;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -155,19 +157,6 @@ public class DoublyLinkedList<T extends Comparable<T>> implements ListInterface<
         return outputStr;
     }
 
-//    public ListInterface<T> getSortedList(Comparator<T> comparator) {
-//        // Step 1: Clone the current list
-//        ListInterface<T> sortedList = new DoublyLinkedList<>();
-//        for (T data : this) {
-//            sortedList.add(data); // shallow copy; assumes T doesn't need deep clone
-//        }
-//
-//        // Step 2: Sort the cloned list using bubble sort
-//        ((DoublyLinkedList<T>) sortedList).bubbleSort(comparator);
-//
-//        // Step 3: Return the sorted clone
-//        return sortedList;
-//    }
     @Override
     public void bubbleSort(Comparator<T> comparator) {
         boolean swapped;

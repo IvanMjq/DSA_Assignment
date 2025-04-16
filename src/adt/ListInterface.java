@@ -4,6 +4,7 @@
  */
 package adt;
 
+import entity.MatchingResult;
 import java.util.Comparator;
 
 /**
@@ -36,4 +37,6 @@ public interface ListInterface<T> extends Iterable<T> {
     public int indexOf(T data);
     
     public void bubbleSort(Comparator<T> comparator);
+    
+//    public ListInterface<MatchingResult> linearSearch(String target);
 }
