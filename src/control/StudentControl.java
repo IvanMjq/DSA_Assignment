@@ -28,6 +28,11 @@ public class StudentControl {
     private StudentPortalControl studentPortalControl;
     private JobApplicationControl jobApplicationControl;
     private AdminPortalControl adminPortalControl;
+    
+    
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLACK = "\u001B[30m";
 
 //    public StudentControl() {
 //    }
@@ -74,7 +79,7 @@ public class StudentControl {
                     updateStudent();
                     break;
                 case 5:
-//                    filterByJobDesired();
+                    generateReport();
                     break;
                 case 6:
                     matchControl.AdminMatchingRunner();
@@ -112,9 +117,33 @@ public class StudentControl {
     }
 
     public void studentListing() {
+        int option = 0;
+
+        do {
+            option = studentUI.studentListingOption();
+            switch (option) {
+                case 0:
+                    System.out.println("Exiting Student Menu...");
+                    break;
+                case 1:
+                    normalStudentListing();
+                    break;
+                case 2:
+                    sortedByNameStudentListing();
+                    break;
+                default:
+                    System.out.println("This is an invalid option!!!");
+
+            }
+        } while (option != 0);
+        
+    }
+    
+    public void normalStudentListing() {
         studentUI.studentListingUI();
         if (studentList.size() > 0) {
-
+            bubbleSortById(studentList);
+            
             for (Student student : studentList) {
                 System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
                 System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-200s | %-70s |\n",
@@ -136,6 +165,77 @@ public class StudentControl {
                 );
             }
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        }
+    }
+    
+    public void sortedByNameStudentListing() {
+        studentUI.studentListingUI();
+
+        if (studentList.size() > 0) {
+            bubbleSortStudentListByName(studentList);  // Call sorting method
+
+            for (int i = 1; i <= studentList.size(); i++) {
+                Student student = studentList.getData(i);
+                System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.printf("| %-7s | %-30s | %-30s | %-5s | %-30s | %-30s | %-30s | %-15f | %-15f | %-30s | %-30s | %-40s | %-20s | %-200s | %-70s |\n",
+                        student.getId(),
+                        student.getName(),
+                        student.getPassword(),
+                        student.getAge(),
+                        student.getStreetAddress(),
+                        student.getArea(),
+                        student.getState(),
+                        student.getLatitude(),
+                        student.getLongitude(),
+                        student.getEmail(),
+                        student.getAchievement(),
+                        student.getEducation(),
+                        student.getYearsOfExperience(),
+                        convertSkillListToString(student.getStudentSkillList()),
+                        convertArrayToString(student.getDesiredJobTypes())
+                );
+            }
+
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        }
+    }
+    
+    public void bubbleSortById(ListInterface<Student> list) {
+        for (int i = 1; i <= list.size(); i++) {
+            for (int j = 1; j <= list.size() - i; j++) {
+                Student s1 = list.getData(j);
+                Student s2 = list.getData(j + 1);
+
+                int id1 = extractIdNumber(s1.getId());
+                int id2 = extractIdNumber(s2.getId());
+
+                if (id1 > id2) {
+                    list.replace(j, s2);
+                    list.replace(j + 1, s1);
+                }
+            }
+        }
+    }
+    
+    private int extractIdNumber(String id) {
+        try {
+            return Integer.parseInt(id.replaceAll("[^0-9]", ""));
+        } catch (NumberFormatException e) {
+            return Integer.MAX_VALUE; 
+        }
+    }
+    
+    public void bubbleSortStudentListByName(ListInterface<Student> list) {
+        for (int i = 1; i <= list.size(); i++) {
+            for (int j = 1; j <= list.size() - i; j++) {
+                Student s1 = list.getData(j);
+                Student s2 = list.getData(j + 1);
+                if (s1.getName().compareToIgnoreCase(s2.getName()) > 0) {
+                    // Swap
+                    list.replace(j, s2);
+                    list.replace(j + 1, s1);
+                }
+            }
         }
     }
     
@@ -822,5 +922,159 @@ public class StudentControl {
         }
     }
     
+    
+    public void generateReport() {
+        String[] jobTypeExisted = jobTypeExist();
+        int[] numberOfJobTypeExisted = new int[jobTypeExisted.length];
+        String[] studentInEachType = new String[jobTypeExisted.length];
+        int[] numberSuccessInterview = new int[jobTypeExisted.length];
+        
+        for (int i = 0; i < numberOfJobTypeExisted.length; i++) {
+            studentInEachType[i] = "";
+            numberOfJobTypeExisted[i] = 0;
+            numberSuccessInterview[i] = 0;
+        }
+        
+        for (int i = 1; i <= studentList.size(); i++) {
+            Student s = studentList.getData(i);
+            for (int j = 1; j <= s.getJobApplicationList().size(); j++) {
+                JobApplication ja = s.getJobApplicationList().getData(j);
+                if (ja == null) continue;
+
+                String appJobType = ja.getJobPosting().getJob().getType();
+
+                // find index of job type in jobTypeExisted[]
+                for (int t = 0; t < jobTypeExisted.length; t++) {
+                    if (jobTypeExisted[t] != null && appJobType.equalsIgnoreCase(jobTypeExisted[t])) {
+                        numberOfJobTypeExisted[t]++;
+
+                        // append student name if not already in
+                        if (!studentInEachType[t].contains(s.getName())) {
+                            if (!studentInEachType[t].isEmpty()) studentInEachType[t] += ", ";
+                            studentInEachType[t] += s.getName();
+                        }
+
+                        if (ja.getInterview() != null && ja.getInterview().getInterviewStatus() == Interview.InterviewStatus.OFFERED) {
+                            numberSuccessInterview[t]++;
+                        }
+                    }
+                }
+            }
+        }
+        
+
+    // Display Report
+        System.out.println("Report");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-30s | %-200s | %-10s | %-25s |\n", "Job Type", "Student Applied", "Total", "Total Applied Success");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        for (int i = 0; i < jobTypeExisted.length; i++) {
+            System.out.printf("| %-30s | %-200s | %-10d | %-25d |\n", 
+                jobTypeExisted[i], 
+                studentInEachType[i], 
+                numberOfJobTypeExisted[i], 
+                numberSuccessInterview[i]
+            );
+        }
+
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+
+        generateAsciiChart(jobTypeExisted, numberOfJobTypeExisted, numberSuccessInterview);
+    }
+    
+    private void generateAsciiChart(String[] jobTypes, int[] totalApps, int[] successApps) {
+        int maxHeight = Math.max(getMax(totalApps), getMax(successApps));
+        int colWidth = 5;
+
+        for (int level = maxHeight; level >= 1; level--) {
+            System.out.printf("%2d |", level);
+            for (int i = 0; i < jobTypes.length; i++) {
+                boolean isTotal = totalApps[i] >= level;
+                boolean isSuccess = successApps[i] >= level;
+
+                String symbol = " ".repeat(Math.max(colWidth, 0));
+                if (isSuccess) {
+                    symbol = center(ANSI_RED + "*" + ANSI_RESET, colWidth);
+                } else if (isTotal) {
+                    symbol = center(ANSI_BLACK + "*" + ANSI_RESET, colWidth);
+                }
+                System.out.print(symbol);
+            }
+            System.out.println();
+        }
+
+        System.out.print("   +");
+        for (int i = 0; i < jobTypes.length; i++) {
+            System.out.print("-".repeat(colWidth));
+        }
+        System.out.println("+");
+
+        System.out.print("    ");
+        for (int i = 0; i < jobTypes.length; i++) {
+            char label = (char) ('A' + i);
+            System.out.print(center("(" + label + ")", colWidth));
+        }
+        System.out.println();
+
+        System.out.println("\nDescription:");
+        for (int i = 0; i < jobTypes.length; i++) {
+            char label = (char) ('A' + i);
+            System.out.println("(" + label + ") = " + jobTypes[i]);
+        }
+        System.out.println("\n" + ANSI_BLACK + "*" + ANSI_RESET + " = Total Applications");
+        System.out.println(ANSI_RED + "*" + ANSI_RESET + " = Successful Interviews");
+        System.out.println("X-axis: Job Type");
+        System.out.println("Y-axis: Number of Applications");
+    }
+
+    private int getMax(int[] arr) {
+        int max = 0;
+        for (int val : arr) {
+            if (val > max) max = val;
+        }
+        return max;
+    }
+
+    private String center(String text, int width) {
+        int textLen = text.replaceAll("\\u001B\\[[;\\d]*m", "").length();
+        int padSize = (width - textLen) / 2;
+        int extra = (width - textLen) % 2;
+        if (padSize < 0) padSize = 0;
+        return " ".repeat(padSize) + text + " ".repeat(padSize + extra);
+    }
+
+    
+    public String[] jobTypeExist() {
+        String[] jobTypeList = new String[5]; 
+        int typeCount = 0;
+
+        for (int i = 1; i <= jobList.size(); i++) {
+            String jobType = jobList.getData(i).getType();
+            boolean exists = false;
+
+            for (int j = 0; j < typeCount; j++) {
+                if (jobTypeList[j] != null && jobTypeList[j].equalsIgnoreCase(jobType)) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (!exists) {
+                if (typeCount >= jobTypeList.length) {
+                    jobTypeList = doubleStringArray(jobTypeList);
+                }
+
+                jobTypeList[typeCount++] = jobType;
+            }
+        }
+
+        String[] trimmed = new String[typeCount];
+        for (int i = 0; i < typeCount; i++) {
+            trimmed[i] = jobTypeList[i];
+        }
+        return trimmed;
+    }
+
     
 }

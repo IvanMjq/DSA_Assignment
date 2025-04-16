@@ -297,7 +297,7 @@ public class AllDataInitialize {
         jobList.add(new Job(
                 "J-14", 
                 "Investment Banker", 
-                "Finance",
+                "Finance & Banking",
                 "Help clients raise capital and offer strategic advice. Strong financial modeling, market knowledge, and analytical skills needed.")
         );
 
@@ -382,7 +382,7 @@ public class AllDataInitialize {
 
         studentList.add(new Student(
                 "STU-2",
-                "Brenda Lee",
+                "Lavenda Lee",
                 "abc12345",
                 24,
                 "33 Jalan Tun Razak",
@@ -772,75 +772,87 @@ public class AllDataInitialize {
         );
         companyList.getData(10).getJobPostingList().add(jp);
         jobList.getData(10).getJobPostingList().add(jp);
+        
+        jp = new JobPosting(
+                companyList.getData(10),
+                jobList.getData(11),
+                "Lead the development of innovative solutions in the field of AI and machine learning.",
+                6000.00,
+                9000.00,
+                3,
+                LocalDate.of(2024, 7, 1)
+        );
+        companyList.getData(10).getJobPostingList().add(jp);
+        jobList.getData(11).getJobPostingList().add(jp);
+
 
     }
 
     private void initializeJobApplication() {
         JobApplication jApp;
 
-        jApp = new JobApplication(
-                studentList.getData(1),
-                companyList.getData(1).getJobPostingList().getData(1),
-                interviewList.getData(1),
-                LocalDate.of(2025, 4, 1)
-        );
+        // STU-1 → Job 1 at Company 1
+        jApp = new JobApplication(studentList.getData(1), companyList.getData(1).getJobPostingList().getData(1), interviewList.getData(1), LocalDate.of(2025, 4, 1));
         studentList.getData(1).getJobApplicationList().add(jApp);
         companyList.getData(1).getJobPostingList().getData(1).getJobApplicationList().add(jApp);
         interviewList.getData(1).getJobApplicationList().add(jApp);
 
-        jApp = new JobApplication(studentList.getData(1),
-                companyList.getData(3).getJobPostingList().getData(2),
-                interviewList.getData(3),
-                LocalDate.of(2025, 7, 1)
-        );
+        // STU-1 → Job 4 at Company 3
+        jApp = new JobApplication(studentList.getData(1), companyList.getData(3).getJobPostingList().getData(2), interviewList.getData(2), LocalDate.of(2025, 7, 1));
         studentList.getData(1).getJobApplicationList().add(jApp);
         companyList.getData(3).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(2).getJobApplicationList().add(jApp);
+
+        // STU-2 → Healthcare (J-16)
+        jApp = new JobApplication(studentList.getData(2), companyList.getData(10).getJobPostingList().getData(1), interviewList.getData(3), LocalDate.of(2025, 4, 2));
+        studentList.getData(2).getJobApplicationList().add(jApp);
+        companyList.getData(10).getJobPostingList().getData(1).getJobApplicationList().add(jApp);
         interviewList.getData(3).getJobApplicationList().add(jApp);
 
-//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
-//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
-//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-1", 
-//                studentList.getData(1),
-//                LocalDateTime.of(2025, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-2",
-//                studentList.getData(2),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-3",
-//                studentList.getData(4),
-//                LocalDateTime.of(2024, 6, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-4",
-//                studentList.getData(6),
-//                LocalDateTime.of(2024, 7, 1, 19, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-5",
-//                studentList.getData(5),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-6", 
-//                studentList.getData(3),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-7",
-//                studentList.getData(1),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-8",
-//                studentList.getData(2),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
+        // STU-3 → Job 3 at Company 2
+        jApp = new JobApplication(studentList.getData(3), companyList.getData(2).getJobPostingList().getData(2), interviewList.getData(4), LocalDate.of(2025, 6, 15));
+        studentList.getData(3).getJobApplicationList().add(jApp);
+        companyList.getData(2).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(4).getJobApplicationList().add(jApp);
+
+        // STU-3 → Registered Nurse (J-23)
+        jApp = new JobApplication(studentList.getData(3), companyList.getData(10).getJobPostingList().getData(2), interviewList.getData(5), LocalDate.of(2025, 6, 20));
+        studentList.getData(3).getJobApplicationList().add(jApp);
+        companyList.getData(10).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(5).getJobApplicationList().add(jApp);
+
+        // STU-4 → Cybersecurity Job at Company 6
+        jApp = new JobApplication(studentList.getData(4), companyList.getData(6).getJobPostingList().getData(2), interviewList.getData(6), LocalDate.of(2025, 9, 17));
+        studentList.getData(4).getJobApplicationList().add(jApp);
+        companyList.getData(6).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(6).getJobApplicationList().add(jApp);
+
+        // STU-5 → Healthcare: Medical Lab Tech (J-16)
+        jApp = new JobApplication(studentList.getData(5), companyList.getData(10).getJobPostingList().getData(1), interviewList.getData(7), LocalDate.of(2025, 7, 10));
+        studentList.getData(5).getJobApplicationList().add(jApp);
+        companyList.getData(10).getJobPostingList().getData(1).getJobApplicationList().add(jApp);
+        interviewList.getData(7).getJobApplicationList().add(jApp);
+
+        // STU-6 → Cybersecurity at Company 5
+        jApp = new JobApplication(studentList.getData(6), companyList.getData(5).getJobPostingList().getData(2), interviewList.getData(8), LocalDate.of(2025, 11, 1));
+        studentList.getData(6).getJobApplicationList().add(jApp);
+        companyList.getData(5).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(8).getJobApplicationList().add(jApp);
+
+        // STU-7 → Full-Stack at Company 9
+        jApp = new JobApplication(studentList.getData(7), companyList.getData(9).getJobPostingList().getData(2), interviewList.getData(9), LocalDate.of(2025, 12, 1));
+        studentList.getData(7).getJobApplicationList().add(jApp);
+        companyList.getData(9).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(9).getJobApplicationList().add(jApp);
+
+        // STU-8 → AI Intern at Company 10
+        jApp = new JobApplication(studentList.getData(8), companyList.getData(10).getJobPostingList().getData(1), interviewList.getData(10), LocalDate.of(2025, 8, 30));
+        studentList.getData(8).getJobApplicationList().add(jApp);
+        companyList.getData(10).getJobPostingList().getData(1).getJobApplicationList().add(jApp);
+        interviewList.getData(10).getJobApplicationList().add(jApp);
     }
+
+
 
     private void initializeStudentSkillList() {
         studentList.getData(1).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 3));
