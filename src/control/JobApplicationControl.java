@@ -4,6 +4,7 @@
  */
 package control;
 
+import adt.DoublyLinkedList;
 import adt.ListInterface;
 import boundary.*;
 import entity.*;
@@ -20,33 +21,52 @@ import java.util.Scanner;
 public class JobApplicationControl {
     Scanner scanner = new Scanner(System.in);
     
-    private ListInterface<Company> companyList;
-    private ListInterface<Student> studentList;
-    private ListInterface<Skill> skillList;
-    private ListInterface<Job> jobList;
-    private ListInterface<Interview> interviewList;
+    private ListInterface<Company> companyList = new DoublyLinkedList<>();;
+    private ListInterface<Student> studentList = new DoublyLinkedList<>();;
+    private ListInterface<Skill> skillList = new DoublyLinkedList<>();;
+    private ListInterface<Job> jobList = new DoublyLinkedList<>();;
+    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();;
     private JobApplicationUI jobApplicationUI;
     private StudentPortalControl studentPortalControl;
     private StudentControl studentControl;
+    private AdminPortalControl adminPortalControl;
     
     
-    public JobApplicationControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList, ListInterface<Interview> interviewList ) {
-        this.companyList                = companyList;
-        this.studentList                = studentList;
-        this.skillList                  = skillList;
-        this.jobList                    = jobList;
-        this.interviewList              = interviewList;
-    }
+public JobApplicationControl(ListInterface<Company> companyList,
+                             ListInterface<Student> studentList,
+                             ListInterface<Skill> skillList,
+                             ListInterface<Job> jobList,
+                             ListInterface<Interview> interviewList,
+                             AdminPortalControl adminPortalControl
+                   ) {
+            this.companyList = companyList;
+        this.studentList = studentList;
+        this.skillList = skillList;
+        this.jobList = jobList;
+        this.interviewList = interviewList;
+    this.adminPortalControl = adminPortalControl;
+    this.jobApplicationUI = new JobApplicationUI(this);
     
-    public JobApplicationControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList, ListInterface<Interview> interviewList , StudentPortalControl studentPortalControl, StudentControl studentControl) { 
-        this.companyList                = companyList;
-        this.studentList                = studentList;
-        this.skillList                  = skillList;
-        this.jobList                    = jobList;
-        this.interviewList              = interviewList;
-        this.studentPortalControl       = studentPortalControl;
-        this.studentControl             = studentControl;
-    }
+}
+
+public JobApplicationControl(ListInterface<Company> companyList,
+                             ListInterface<Student> studentList,
+                             ListInterface<Skill> skillList,
+                             ListInterface<Job> jobList,
+                             ListInterface<Interview> interviewList,
+                             AdminPortalControl adminPortalControl,
+                             StudentControl studentControl) {
+            this.companyList = companyList;
+        this.studentList = studentList;
+        this.skillList = skillList;
+        this.jobList = jobList;
+        this.interviewList = interviewList;
+    this.adminPortalControl = adminPortalControl;
+    this.studentControl = studentControl; 
+    
+}
+
+
 
      public void adminJobApplicationManagement() {
         int option = 0;
@@ -55,7 +75,7 @@ public class JobApplicationControl {
             option = jobApplicationUI.adminStudentMenu();
             switch (option) {
                 case 0:
-                    System.out.println("Exiting Student Menu...");
+                    System.out.println("Exiting Job Menu...");
                     break;
                 case 1:
                     jobApplicationListing();
@@ -234,4 +254,5 @@ public class JobApplicationControl {
 
         return null; 
     }
+
 }

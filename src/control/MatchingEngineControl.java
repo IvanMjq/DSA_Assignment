@@ -346,7 +346,7 @@ public class MatchingEngineControl {
                     
                     break;
                 case 2:
-                    presentDescendingOrder();
+//                    presentDescendingOrder();
                     break;
                 default:
 
@@ -476,43 +476,43 @@ public class MatchingEngineControl {
     }
     
     
-    public void AdminReport(){
-        
-    }
+//    public void AdminReport(){
+//        
+//    }
 
-    public void presentDescendingOrder() {
-        // Sort the list using the score comparator in descending order
-        DoublyLinkedList<MatchingResult> sortedResults
-                = (DoublyLinkedList<MatchingResult>) ((DoublyLinkedList<MatchingResult>) matchResults).getSortedList(scoreComparator);
-
-    
-        if (!matchResults.isEmpty()) {
-
-            System.out.println("Match Scores for Student: " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ")");
-            System.out.println("================================================================================================================================================================================");
-            System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8s |\n", "CompanyId", "Company", "JobId", "Job Title", "Date Posted", "Status Of Distance", "Experience Status", "Score");
-            System.out.println("================================================================================================================================================================================");
-            for (int i = 1; i <= sortedResults.size(); i++) {
-
-                MatchingResult result = sortedResults.getData(i);
-                JobPosting jobPost = result.getJobPosting();
-                ExperienceCheck experienceStatus = result.getExperiencedCheck(); // Get experience status
-                MatchingResult.StatusDistance statusDistance = result.getStatusDistance();
-                System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8.2f |\n",
-                        jobPost.getCompany().getId(),
-                        jobPost.getCompany().getName(),
-                        jobPost.getJob().getId(),
-                        jobPost.getJob().getTitle(),
-                        jobPost.getDatePosted(),
-                        statusDistance,
-                        experienceStatus,
-                        result.getScore());
-
-            }
-        } else {
-            System.out.println("No match results found for student " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ").");
-
-        }
-        System.out.println("================================================================================================================================================================================");
-    }
+//    public void presentDescendingOrder() {
+//        // Sort the list using the score comparator in descending order
+//        DoublyLinkedList<MatchingResult> sortedResults
+//                = (DoublyLinkedList<MatchingResult>) ((DoublyLinkedList<MatchingResult>) matchResults).getSortedList(scoreComparator);
+//
+//    
+//        if (!matchResults.isEmpty()) {
+//
+//            System.out.println("Match Scores for Student: " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ")");
+//            System.out.println("================================================================================================================================================================================");
+//            System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8s |\n", "CompanyId", "Company", "JobId", "Job Title", "Date Posted", "Status Of Distance", "Experience Status", "Score");
+//            System.out.println("================================================================================================================================================================================");
+//            for (int i = 1; i <= sortedResults.size(); i++) {
+//
+//                MatchingResult result = sortedResults.getData(i);
+//                JobPosting jobPost = result.getJobPosting();
+//                ExperienceCheck experienceStatus = result.getExperiencedCheck(); // Get experience status
+//                MatchingResult.StatusDistance statusDistance = result.getStatusDistance();
+//                System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8.2f |\n",
+//                        jobPost.getCompany().getId(),
+//                        jobPost.getCompany().getName(),
+//                        jobPost.getJob().getId(),
+//                        jobPost.getJob().getTitle(),
+//                        jobPost.getDatePosted(),
+//                        statusDistance,
+//                        experienceStatus,
+//                        result.getScore());
+//
+//            }
+//        } else {
+//            System.out.println("No match results found for student " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ").");
+//
+//        }
+//        System.out.println("================================================================================================================================================================================");
+//    }
 }

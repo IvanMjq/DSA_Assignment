@@ -16,11 +16,11 @@ import java.util.Scanner;
 public class StudentPortalControl {
     Scanner scanner = new Scanner(System.in);
     
-    private ListInterface<Company> companyList;
-    private ListInterface<Student> studentList;
-    private ListInterface<Skill> skillList;
-    private ListInterface<Job> jobList;
-    private ListInterface<Interview> interviewList;
+    private ListInterface<Company> companyList = new DoublyLinkedList<>();;
+    private ListInterface<Student> studentList = new DoublyLinkedList<>();;
+    private ListInterface<Skill> skillList = new DoublyLinkedList<>();;
+    private ListInterface<Job> jobList = new DoublyLinkedList<>();;
+    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();;
     private StudentPortalUI studentPortalUI;
     private StudentControl studentControl;
     private MatchingEngineControl matchControl;
@@ -34,11 +34,11 @@ public class StudentPortalControl {
     }
     
     public StudentPortalControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList){
-        this.companyList = companyList;
-        this.studentList = studentList;
-        this.skillList = skillList;
-        this.jobList = jobList;
-        this.interviewList = interviewList;
+        this.companyList        = companyList;
+        this.studentList        = studentList;
+        this.skillList          = skillList;
+        this.jobList            = jobList;
+        this.interviewList      = interviewList;
         this.studentPortalUI    = new StudentPortalUI(this);
         this.studentControl     = new StudentControl(companyList, studentList, skillList, jobList, interviewList,this);
         this.matchControl       = new MatchingEngineControl(companyList, studentList);

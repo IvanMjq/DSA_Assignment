@@ -18,51 +18,47 @@ public class StudentControl {
 
     Scanner scanner = new Scanner(System.in);
 
-    private ListInterface<Company> companyList;
-    private ListInterface<Student> studentList;
-    private ListInterface<Skill> skillList;
-    private ListInterface<Job> jobList;
-    private ListInterface<Interview> interviewList;
+    private ListInterface<Company> companyList = new DoublyLinkedList<>();
+    private ListInterface<Student> studentList = new DoublyLinkedList<>();
+    private ListInterface<Skill> skillList = new DoublyLinkedList<>();
+    private ListInterface<Job> jobList = new DoublyLinkedList<>();
+    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
     private StudentUI studentUI;
     private MatchingEngineControl matchControl;
     private StudentPortalControl studentPortalControl;
     private JobApplicationControl jobApplicationControl;
+    private AdminPortalControl adminPortalControl;
 
     public StudentControl() {
     }
 
-    public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList) {
+    public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList,ListInterface<Skill> skillList,ListInterface<Job> jobList, ListInterface<Interview> interviewList) {
         this.companyList = companyList;
         this.studentList = studentList;
         this.skillList = skillList;
         this.jobList = jobList;
         this.interviewList = interviewList;
-        this.studentUI = new StudentUI(this);
-        this.matchControl = new MatchingEngineControl(companyList, studentList);
     }
 
-    public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList, StudentPortalControl studentPortalControl, JobApplicationControl jobApplicationControl) {
+    public StudentControl(ListInterface<Company> companyList,ListInterface<Student> studentList,ListInterface<Skill> skillList, ListInterface<Job> jobList, ListInterface<Interview> interviewList, AdminPortalControl adminPortalControl) {
+        this.companyList = companyList;
+        this.studentList = studentList;
+        this.skillList = skillList;
+        this.jobList = jobList;
+        this.interviewList = interviewList;
+        this.adminPortalControl = adminPortalControl;
+        this.studentUI = new StudentUI(this);
+    }
+
+    public StudentControl(ListInterface<Company> companyList,  ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList, ListInterface<Interview> interviewList, StudentPortalControl studentPortalControl) {
         this.companyList = companyList;
         this.studentList = studentList;
         this.skillList = skillList;
         this.jobList = jobList;
         this.interviewList = interviewList;
         this.studentPortalControl = studentPortalControl;
-        this.jobApplicationControl = jobApplicationControl;
-        this.matchControl = new MatchingEngineControl(companyList, studentList);
-    }
-    
-    public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList, StudentPortalControl studentPortalControl) {
-        this.companyList = companyList;
-        this.studentList = studentList;
-        this.skillList = skillList;
-        this.jobList = jobList;
-        this.interviewList = interviewList;
-        
-    }
-    
-    
-    
+        this.studentUI = new StudentUI(this);
+    }   
 
     public void adminStudentManagement() {
         int option = 0;
@@ -207,9 +203,6 @@ public class StudentControl {
 //    return sb.toString();
 //}
 
-
-
-
     public void addStudent() {
         studentUI.addStudentUI();
         Student newStudent = studentUI.newStudentDetails();
@@ -243,12 +236,14 @@ public class StudentControl {
         return null;
     }
     
-    public boolean noDuplicateSkillSelection(ListInterface<StudentSkill> selectedSkillList, Skill input) {
-        for(int i = 1; i < selectedSkillList.size(); i++) {
-            if(selectedSkillList.getData(i).getSkill().getId().equals(input.getId()))
-                return true;
+    public boolean duplicateSkillSelection(ListInterface<StudentSkill> selectedSkillList, Skill input) {
+        for(int i = 1; i <= selectedSkillList.size(); i++) {
+            Skill existing = selectedSkillList.getData(i).getSkill();
+            if (existing.getId().equals(input.getId())) {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
     
     public int[] jobTypeList() {
@@ -613,12 +608,12 @@ public class StudentControl {
         boolean loop = true;
         int i = 0;
         ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
-        while (loop) {
+        while(loop) {
             if(i == 3)
                 break;
             
             skillList();
-            System.out.print("Choose min 1 to 3 Skill.");
+            System.out.println("Choose min 1 to 3 Skill.");
             System.out.print("Enter Skill ID, Q=Done: ");
             String skillInput = scanner.nextLine().trim();
             
@@ -628,30 +623,44 @@ public class StudentControl {
                 else
                     break;
             } 
-
-            if(!skillInput.equalsIgnoreCase("Q")) {
-                
-                System.out.print("Enter Proficiency Level: ");
-                String proficiencyLevelInput = scanner.nextLine().trim();
-                
-                if(studentUI.digitValidation(proficiencyLevelInput)){
-                    int intProficiencyLevelInput = Integer.parseInt(proficiencyLevelInput);
-                    Skill tempSkill = selectedSkill(skillInput);
-                    if(tempSkill != null){
-                        if(noDuplicateSkillSelection(studentSkillList, tempSkill)) {
-                            studentSkillList.add(new StudentSkill(tempSkill, intProficiencyLevelInput));
-                            i++;
-                        }
-                    }
-                } else {
-                    System.out.println("You must select existed ID only.");
-                }
-            }
             
-            if (!studentSkillList.isEmpty()) {
-                boolean isConfirm = studentUI.confirmation("Confirm update " + convertSkillListToString(ori.getStudentSkillList()) + " as " + convertSkillListToString(studentSkillList) + "?");
+            if(!skillInput.equalsIgnoreCase("Q")) {
+                int intProficiencyLevelInput = 0;
+                while(intProficiencyLevelInput == 0){
+                    System.out.print("Enter Proficiency Level (1-5): ");
+                    String proficiencyLevelInput = scanner.nextLine().trim();
+                    
+                    if(studentUI.digitValidation(proficiencyLevelInput)){
+                        int intInput = Integer.parseInt(proficiencyLevelInput);
+                        if((intInput >= 1) && (intInput <= 5)) {
+                            intProficiencyLevelInput = intInput;
+                        }else {
+                            System.out.println("Invalid input, Enter Proficiency within 1-5 ");
+                        }
+                    } 
+                }
+               
+                
+                Skill tempSkill = selectedSkill(skillInput);
+                if(tempSkill != null){
+                    if(duplicateSkillSelection(studentSkillList, tempSkill)) {
+                        studentSkillList.add(new StudentSkill(tempSkill, intProficiencyLevelInput));
+                        i++;
+                    }else{
+                        System.out.println("Duplicate Selection.");
+                    }
+                }else {
+                    System.out.println("You must select existed ID only.");
+                } 
+
+            }
+        }
+        
+        if (!studentSkillList.isEmpty()) {
+                boolean isConfirm = studentUI.confirmation("Confirm update Skill?");
 
                 if (isConfirm) {
+                    ori.getStudentSkillList().clear();
                     for(int z = 1; z <= studentSkillList.size(); z++) {
                         Skill skill = studentSkillList.getData(z).getSkill();
                         int level = studentSkillList.getData(z).getProficiencyLevel();
@@ -662,7 +671,6 @@ public class StudentControl {
                     System.out.println("Failed to update.");
                 }
             }
-        }
     }
 
     public void updateDesireJobType(Student ori) {
@@ -763,11 +771,40 @@ public class StudentControl {
             boolean isConfirm = studentUI.confirmation("Confirm " + oriData.getId() + " as remove Student?");
 
             if (isConfirm) {
+                removeCompanySide(oriData);
+                removeInterviewSide(oriData);
                 studentList.remove(studentPosition);
                 studentListing();
                 System.out.println("Student remove successfully!");
             } else {
                 System.out.println("Failed to remove Student.");
+            }
+        }
+    }
+    
+    public void removeCompanySide(Student input) {
+        for(int i = 1; i <= companyList.size(); i ++) {
+            Company c = companyList.getData(i);
+            for(int k = 1; k <= c.getJobPostingList().size(); k++) {
+                JobPosting jp = c.getJobPostingList().getData(k);
+                for(int h = 1; h <= jp.getJobApplicationList().size(); h++) {
+                    JobApplication ja = jp.getJobApplicationList().getData(h);
+                    if(input.getJobApplicationList().indexOf(ja) != -1) {
+                        jp.getJobApplicationList().remove(h);
+                    }
+                }   
+            }
+        }
+    }
+    
+    public void removeInterviewSide(Student input) {
+        for(int i = 1; i <= interviewList.size(); i ++) {
+            Interview in = interviewList.getData(i);
+            for(int k = 1; k <= in.getJobApplicationList().size(); k++) {
+                JobApplication ja = in.getJobApplicationList().getData(k);
+                if(input.getJobApplicationList().indexOf(ja) != -1) {
+                        in.getJobApplicationList().remove(k);
+                }
             }
         }
     }
