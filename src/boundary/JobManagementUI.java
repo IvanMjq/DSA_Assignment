@@ -161,13 +161,6 @@ public class JobManagementUI {
 
     }
 
-    public String trimToLength(String str, int length) {
-        if (str.length() > length) {
-            return str.substring(0, length - 3) + "...";
-        }
-        return String.format("%-" + length + "s", str);
-    }
-
     public String getStringInput(String promptMsg) {
         System.out.print(promptMsg);
         return sc.nextLine().trim();

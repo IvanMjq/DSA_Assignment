@@ -977,7 +977,7 @@ public class AllDataInitialize {
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
 
-        for (Student a : dataInitialize.getStudentList()) {
+        for (JobPosting a : dataInitialize.getCompanyList().getData(1).getJobPostingList()) {
             System.out.println(a);
         }
     }

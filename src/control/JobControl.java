@@ -16,6 +16,7 @@ import entity.Skill;
 import entity.Student;
 import utility.IdGeneration;
 import utility.JobValidateFunction;
+import utility.TrimToLength;
 
 /**
  *
@@ -120,9 +121,9 @@ public class JobControl {
             for (Job j : jobList) {
                 System.out.printf("| %-8s | %-35s | %-25s | %-85s |\n",
                         j.getId(),
-                        jobManagementUI.trimToLength(j.getTitle(), 28),
-                        jobManagementUI.trimToLength(j.getType(), 22),
-                        jobManagementUI.trimToLength(j.getDesc(), 82)
+                        TrimToLength.trimToLength(j.getTitle(), 28),
+                        TrimToLength.trimToLength(j.getType(), 22),
+                        TrimToLength.trimToLength(j.getDesc(), 82)
                 );
             }
         }

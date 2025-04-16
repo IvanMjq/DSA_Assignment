@@ -9,6 +9,7 @@ import adt.ListInterface;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import utility.TrimToLength;
 
 /**
  *
@@ -131,7 +132,20 @@ public class JobPosting implements Serializable, Comparable<JobPosting> {
 
     @Override
     public String toString() {
-        return "JobPosting{" + "company=" + company + ", job=" + job + ", description=" + description + ", minimumSalary=" + minimumSalary + ", maximumSalary=" + maximumSalary + ", requiredExperience=" + requiredExperience + ", datePosted=" + datePosted + ", jobApplicationList=" + jobApplicationList + ", jobRequiredSkillList=" + jobRequiredSkillList + '}';
+        String line = "+-------------------------------------------------------------------------------------+\n";
+
+        // Adjusting the format for the header and content
+        return "\n" + line
+                + String.format("| %-83s |\n", "Job Posting Details")
+                + line
+                + String.format("| %-20s : %-60s |\n", "Company Name", TrimToLength.trimToLength(company.getName(), 60))
+                + String.format("| %-20s : %-60s |\n", "Job Title", TrimToLength.trimToLength(job.getTitle(), 60))
+                + String.format("| %-20s : %-60s |\n", "Description", TrimToLength.trimToLength(description, 60))
+                + String.format("| %-20s : RM %-57.2f |\n", "Minimum Salary", minimumSalary)
+                + String.format("| %-20s : RM %-57.2f |\n", "Maximum Salary", maximumSalary)
+                + String.format("| %-20s : %-60d |\n", "Required Experience", requiredExperience)
+                + String.format("| %-20s : %-60s |\n", "Date Posted", datePosted)
+                + line;
     }
 
     @Override
