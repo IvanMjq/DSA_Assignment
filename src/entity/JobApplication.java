@@ -17,9 +17,9 @@ public class JobApplication implements Serializable, Comparable<JobApplication> 
     private Student student;
     private JobPosting jobPosting;
     private Interview interview;
-    private LocalDateTime appliedDateTime;
+    private LocalDate appliedDateTime;
 
-    public JobApplication(Student student, JobPosting jobPosting, Interview interview, LocalDateTime appliedDateTime) {
+    public JobApplication(Student student, JobPosting jobPosting, Interview interview, LocalDate appliedDateTime) {
         this.student = student;
         this.jobPosting = jobPosting;
         this.interview = interview;
@@ -38,7 +38,7 @@ public class JobApplication implements Serializable, Comparable<JobApplication> 
         return interview;
     }
 
-    public LocalDateTime getAppliedDateTime() {
+    public LocalDate getAppliedDateTime() {
         return appliedDateTime;
     }
 
@@ -54,9 +54,11 @@ public class JobApplication implements Serializable, Comparable<JobApplication> 
         this.interview = interview;
     }
 
-    public void setAppliedDateTime(LocalDateTime appliedDateTime) {
+    public void setAppliedDateTime(LocalDate appliedDateTime) {
         this.appliedDateTime = appliedDateTime;
     }
+
+   
 
     @Override
     public int hashCode() {
@@ -74,8 +76,8 @@ public class JobApplication implements Serializable, Comparable<JobApplication> 
         }
         final JobApplication other = (JobApplication) obj;
         return Objects.equals(this.student.getId(), other.student.getId())
-                && Objects.equals(this.jobPosting, other.jobPosting)
-                && Objects.equals(this.interview.getId(), other.interview.getId());
+                && Objects.equals(this.jobPosting.getJob().getId(), other.jobPosting.getJob().getId())
+                && Objects.equals(this.appliedDateTime, other.appliedDateTime);
         // Check if the id are same
     }
 
