@@ -31,18 +31,18 @@ public class AllDataInitialize {
         initializeCompanyList();
 
         initializeJob();
-        
+
         initializeInterview();
 
         intializeStudent();
 
         initializeJobPosting();
-        
+
         initializeJobApplication();
 
         initializeStudentSkillList();
 
-        initializeJobRequiredSkill();        
+        initializeJobRequiredSkill();
     }
 
     private void initializeSkillList() {
@@ -358,7 +358,7 @@ public class AllDataInitialize {
                 "alan.chopper@example.com",
                 "Dean's List Award",
                 "Bachelor of Computer Science",
-                1, 
+                1,
                 "Engineering", "Healthcare"
         ));
 
@@ -496,6 +496,20 @@ public class AllDataInitialize {
                 "Exchange Program Alumni",
                 "Bachelor of AI",
                 2, "Engineering"));
+    }
+
+    public void initializeInterview() {
+        interviewList.add(new Interview("itv-1", LocalDateTime.of(2025, 4, 1, 13, 0), InterviewStatus.INTERVIEWED, 78));
+        interviewList.add(new Interview("itv-2", LocalDateTime.of(2025, 4, 2, 14, 0), InterviewStatus.OFFERED, 80));
+        interviewList.add(new Interview("itv-3", LocalDateTime.of(2025, 4, 3, 9, 0), InterviewStatus.REJECTED, 45));
+        interviewList.add(new Interview("itv-4", LocalDateTime.of(2025, 4, 5, 10, 0), InterviewStatus.OFFERED, 92));
+        interviewList.add(new Interview("itv-5", LocalDateTime.of(2025, 4, 7, 15, 0), InterviewStatus.REJECTED, 56));
+        interviewList.add(new Interview("itv-6", LocalDateTime.of(2025, 4, 8, 16, 0), InterviewStatus.INTERVIEWED, 63));
+        interviewList.add(new Interview("itv-7", LocalDateTime.of(2025, 4, 9, 13, 0), InterviewStatus.OFFERED, 89));
+        interviewList.add(new Interview("itv-8", LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.REJECTED, 77));
+        interviewList.add(new Interview("itv-9", LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
+        interviewList.add(new Interview("itv-10", LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.OFFERED, 95));
+
     }
 
     private void initializeJobPosting() {
@@ -745,30 +759,29 @@ public class AllDataInitialize {
 
     private void initializeJobApplication() {
         JobApplication jApp;
-        
+
         jApp = new JobApplication(
-                studentList.getData(1), 
-                companyList.getData(1).getJobPostingList().getData(1), 
-                interviewList.getData(1), 
+                studentList.getData(1),
+                companyList.getData(1).getJobPostingList().getData(1),
+                interviewList.getData(1),
                 LocalDate.of(2025, 4, 1)
         );
         studentList.getData(1).getJobApplicationList().add(jApp);
         companyList.getData(1).getJobPostingList().getData(1).getJobApplicationList().add(jApp);
         interviewList.getData(1).getJobApplicationList().add(jApp);
-        
-        jApp = new JobApplication(studentList.getData(1), 
-                companyList.getData(3).getJobPostingList().getData(2), 
-                interviewList.getData(3), 
+
+        jApp = new JobApplication(studentList.getData(1),
+                companyList.getData(3).getJobPostingList().getData(2),
+                interviewList.getData(3),
                 LocalDate.of(2025, 7, 1)
         );
         studentList.getData(1).getJobApplicationList().add(jApp);
         companyList.getData(3).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
         interviewList.getData(3).getJobApplicationList().add(jApp);
-            
+
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
-        
 //        jobApplicationList.add(new JobApplication(
 //                "JA-1", 
 //                studentList.getData(1),
@@ -917,20 +930,6 @@ public class AllDataInitialize {
         companyList.getData(9).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
 
     }
-    
-    public void initializeInterview(){
-        interviewList.add(new Interview("itv-1", LocalDateTime.of(2025, 4, 1, 13, 0), InterviewStatus.INTERVIEWED, 78));
-        interviewList.add(new Interview("itv-2", LocalDateTime.of(2025, 4, 2, 14, 0), InterviewStatus.OFFERED, 80));
-        interviewList.add(new Interview("itv-3", LocalDateTime.of(2025, 4, 3, 9, 0), InterviewStatus.REJECTED, 45));
-        interviewList.add(new Interview("itv-4", LocalDateTime.of(2025, 4, 5, 10, 0), InterviewStatus.OFFERED, 92));
-        interviewList.add(new Interview("itv-5", LocalDateTime.of(2025, 4, 7, 15, 0), InterviewStatus.REJECTED, 56));
-        interviewList.add(new Interview("itv-6", LocalDateTime.of(2025, 4, 8, 16, 0), InterviewStatus.INTERVIEWED, 63));
-        interviewList.add(new Interview("itv-7", LocalDateTime.of(2025, 4, 9, 13, 0), InterviewStatus.OFFERED, 89));
-        interviewList.add(new Interview("itv-8", LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.REJECTED, 77));
-        interviewList.add(new Interview("itv-9", LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
-        interviewList.add(new Interview("itv-10", LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.OFFERED, 95));
-
-    }
 
     // -----------------
     // Getter
@@ -957,7 +956,7 @@ public class AllDataInitialize {
     public ListInterface<Interview> getInterviewList() {
         return interviewList;
     }
-    
+
     // -----------------
     // Display for testing
     public static void main(String[] args) {
@@ -967,5 +966,5 @@ public class AllDataInitialize {
             System.out.println(a);
         }
     }
-    
+
 }
