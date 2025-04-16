@@ -15,14 +15,14 @@ public class JobValidateFunction {
 
     public static boolean isValidTitle(String title) {
         if (title == null || title.trim().isEmpty()) {
+            System.err.flush();
             System.err.println("Job title cannot be null or empty.");
             System.err.flush();
             return false;
         }
 
-        title = title.trim();
-
         if (!title.matches("^[A-Za-z\\s]{3,60}$")) {
+            System.err.flush();
             System.err.println("Invalid Job Title. Must be 3–60 characters and contain only letters and spaces.");
             System.err.flush();
             return false;
@@ -33,6 +33,7 @@ public class JobValidateFunction {
 
     public static boolean isValidDescription(String desc) {
         if (desc == null || desc.trim().isEmpty()) {
+            System.err.flush();
             System.err.println("Description cannot be null or empty.");
             System.err.flush();
             return false;
@@ -40,13 +41,15 @@ public class JobValidateFunction {
 
         int length = desc.length();
         if (length < 10) {
+            System.err.flush();
             System.err.println("Invalid Job Description. Descirption is too short. Minimum 10 characters long.");
             System.err.flush();
             return false;
         }
 
         if (length > 500) {
-            System.err.println("Ivalid Job Descirption. Description is too long. Maximum 500 characters allowed.");
+            System.err.flush();
+            System.err.println("Invalid Job Descirption. Description is too long. Maximum 500 characters allowed.");
             System.err.flush();
             return false;
         }
@@ -56,18 +59,21 @@ public class JobValidateFunction {
 
     public static boolean isValidConfirmation(String confirmation) {
         if (confirmation == null || confirmation.isEmpty()) {
+            System.err.flush();
             System.err.println("Confirmation Input cannot be null or empty.");
             System.err.flush();
             return false;
         }
 
         if (confirmation.length() != 1) {
+            System.err.flush();
             System.err.println("Invalid input. Please enter a single character: 'Y' or 'N'.");
             System.err.flush();
             return false;
         }
 
         if (!(confirmation.equals("Y")) && !confirmation.equals("N")) {
+            System.err.flush();
             System.err.println("Invalid input. Please enter 'Y' for Yes or 'N' for No.");
             System.err.flush();
             return false;
@@ -80,12 +86,14 @@ public class JobValidateFunction {
         String prefixPattern = "J-\\d+";
 
         if (id == null || id.isEmpty()) {
+            System.err.flush();
             System.err.println("ID cannot be null or empty.");
             System.err.flush();
             return null;
         }
 
         if (!id.matches(prefixPattern)) {
+            System.err.flush();
             System.err.println("Invalid ID format. ID should follow the format 'J-<number>' (e.g. J-1, J-2).");
             System.err.flush();
             return null;
@@ -97,6 +105,7 @@ public class JobValidateFunction {
             }
         }
 
+        System.err.flush();
         System.err.println("No Job found with ID: " + id);
         System.err.flush();
         return null;
