@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -338,6 +339,8 @@ public class MatchingEngineControl {
 
         do {
             choice = matchingUI.MatchingMenu(student);
+            matchStudentsToJobs(student);
+            
             switch (choice) {
                 case 1:
                     listScoresForStudent(matchResults);
@@ -347,6 +350,7 @@ public class MatchingEngineControl {
                     break;
                 case 3:
                     presentDescendingOrder();
+                    break;
                 default:
 
                     break;
@@ -358,6 +362,7 @@ public class MatchingEngineControl {
         int choice = 0;
         do {
             choice = matchingUI.AdminReport();
+            SummaryMatching();
             switch (choice) {
                 case 0:
                     System.out.println("Exiting the page...");

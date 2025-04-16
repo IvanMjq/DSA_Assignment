@@ -9,6 +9,8 @@ package adt;
  * @author ivanmjq
  * @author WEI ZHENG
  */
+import entity.JobPosting;
+import entity.MatchingResult;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -155,19 +157,6 @@ public class DoublyLinkedList<T extends Comparable<T>> implements ListInterface<
         return outputStr;
     }
 
-//    public ListInterface<T> getSortedList(Comparator<T> comparator) {
-//        // Step 1: Clone the current list
-//        ListInterface<T> sortedList = new DoublyLinkedList<>();
-//        for (T data : this) {
-//            sortedList.add(data); // shallow copy; assumes T doesn't need deep clone
-//        }
-//
-//        // Step 2: Sort the cloned list using bubble sort
-//        ((DoublyLinkedList<T>) sortedList).bubbleSort(comparator);
-//
-//        // Step 3: Return the sorted clone
-//        return sortedList;
-//    }
     @Override
     public void bubbleSort(Comparator<T> comparator) {
         boolean swapped;
@@ -189,6 +178,27 @@ public class DoublyLinkedList<T extends Comparable<T>> implements ListInterface<
             end = current;
         } while (swapped);
     }
+
+//    @Override
+//    public ListInterface<MatchingResult> linearSearch(String target) {
+//        Node currentNode = head;
+//        ListInterface<MatchingResult> filteredList = new DoublyLinkedList<>();
+//
+//        while (currentNode != null) {
+//            MatchingResult result = (MatchingResult) currentNode.data;
+//            JobPosting jobPost = result.getJobPosting();
+//
+//            String companyName = jobPost.getCompany().getName().toLowerCase();
+//            String jobTitle = jobPost.getJob().getTitle().toLowerCase();
+//
+//            if (companyName.contains(target) || jobTitle.contains(target)) {
+//                filteredList.add((MatchingResult) currentNode.data); // Cast as needed
+//            }
+//            currentNode = currentNode.next;
+//        }
+//
+//        return filteredList;
+//    }
 
     @Override
     public int indexOf(T data) {
