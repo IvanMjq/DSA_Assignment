@@ -66,7 +66,7 @@ public class MatchingResult implements Comparable<MatchingResult>{
     
     @Override
     public int compareTo(MatchingResult other) {
-        return Double.compare(other.getScore(), this.score); 
+        return  Double.valueOf(this.score).compareTo(other.getScore());
     }
     
     @Override

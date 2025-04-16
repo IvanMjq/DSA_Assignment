@@ -123,7 +123,6 @@ public class MatchingEngineControl {
             }
         }
 
-        listScoresForStudent(matchResults);
     }
 
     public double calculateScore(int proficiency, int importance) {
@@ -272,22 +271,21 @@ public class MatchingEngineControl {
             }
         }
 
-        displayAllMatchingResults();
+        
     }
 
     public void displayAllMatchingResults() {
 
         String lastStudentName = null;
-        int count = 0;
         int qualifiedCount = 0;
         int failCount = 0;
-        System.out.println("=============================================================================================================================================================================================");
+        System.out.println("==========================================================================================================================================================================================================================");
         System.out.printf("| %-5s | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10s | %-13s | %-8s |\n",
                 "No.", "Student Name", "Company Id","Company", "Job Id","Job Title", "Status of Distance", "Experience Level", "Score", "Status", "Count");
-        System.out.println("=============================================================================================================================================================================================");
+        System.out.println("==========================================================================================================================================================================================================================");
 
         for (MatchingResult result : matchResults) {
-            count++;
+
 
             String studentName = result.getStudent().getName();
             String jobTitle = result.getJobPosting().getJob().getTitle();
@@ -318,21 +316,21 @@ public class MatchingEngineControl {
             if (!studentName.equals(lastStudentName)) {
                 displayStudent = studentName;
                 System.out.printf("| %-5d | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10.2f | %-13s | %-8d |\n",
-                        count, displayStudent, companyId, company, jobId,jobTitle, statusDistance, expLevel, score, status, accumulateCount);
+                        matchResults.indexOf(result), displayStudent, companyId, company, jobId,jobTitle, statusDistance, expLevel, score, status, accumulateCount);
             } else {
                 System.out.printf("| %-5d | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10.2f | %-13s | %-8s |\n",
-                        count, displayStudent, companyId, company, jobId,jobTitle, statusDistance, expLevel, score, status, "");
+                        matchResults.indexOf(result), displayStudent, companyId, company, jobId,jobTitle, statusDistance, expLevel, score, status, "");
             }
 
             lastStudentName = studentName;
         }
 
-        System.out.println("=============================================================================================================================================================================================");
-        System.out.printf("| %-174s | %-8d |\n", "Total Match Results", count);
-        System.out.printf("| %-174s | %-8d |\n", "Total Qualified Match", qualifiedCount);
-        System.out.printf("| %-174s | %-8d |\n", "Total Fail Match", failCount);
+        System.out.println("==========================================================================================================================================================================================================================");
+        System.out.printf("| %-204s | %-8d |\n", "Total Match Results", matchResults.size());
+        System.out.printf("| %-204s | %-8d |\n", "Total Qualified Match", qualifiedCount);
+        System.out.printf("| %-204s | %-8d |\n", "Total Fail Match", failCount);
 
-        System.out.println("=============================================================================================================================================================================================");
+        System.out.println("==========================================================================================================================================================================================================================");
     }
 
     public void MatchingRunner(Student student) {
@@ -342,12 +340,13 @@ public class MatchingEngineControl {
             choice = matchingUI.MatchingMenu(student);
             switch (choice) {
                 case 1:
-                    matchStudentsToJobs(student);
-                    
+                    listScoresForStudent(matchResults);
                     break;
                 case 2:
-//                    presentDescendingOrder();
+                    presentAscendingOrder();
                     break;
+                case 3:
+                    presentDescendingOrder();
                 default:
 
                     break;
@@ -364,7 +363,7 @@ public class MatchingEngineControl {
                     System.out.println("Exiting the page...");
                     break;
                 case 1:
-                    SummaryMatching();
+                    displayAllMatchingResults();
                     
                     break;
                 case 2:
@@ -383,8 +382,8 @@ public class MatchingEngineControl {
     }
 
     public void DistributionGraph() {
-        DoublyLinkedList<String> jobPosts = new DoublyLinkedList<>();
-        DoublyLinkedList<Integer> qualifiedCounts = new DoublyLinkedList<>();
+        ListInterface<String> jobPosts = new DoublyLinkedList<>();
+        ListInterface<Integer> qualifiedCounts = new DoublyLinkedList<>();
 
         // Count qualified students per job title
         for (int i = 1; i <= matchResults.size(); i++) {
@@ -426,11 +425,6 @@ public class MatchingEngineControl {
         System.out.println("Vertical Distribution of Qualified Students by Job Posting");
         System.out.println("======================================================================");
 
-        // Assign characters (A, B, C...) to job posts
-        char[] labels = new char[jobPosts.size() + 1];
-        for (int i = 1; i <= jobPosts.size(); i++) {
-            labels[i] = (char) ('A' + i - 1);
-        }
 
         System.out.printf("%4s\n", "^");
 
@@ -457,62 +451,84 @@ public class MatchingEngineControl {
         // Print character labels
         System.out.print("     ");
         for (int i = 1; i <= jobPosts.size(); i++) {
-            System.out.printf("   %c   ", labels[i]);
+            System.out.printf("   %d   ", i);
         }
         System.out.println();
 
         // Print legend
         System.out.println("\nLegend:");
         for (int i = 1; i <= jobPosts.size(); i++) {
-            System.out.printf("  %c = %s\n", labels[i], jobPosts.getData(i));
+            System.out.printf("  %d = %s\n", i, jobPosts.getData(i));
         }
 
         System.out.println("======================================================================");
     }
-    
-    
-    public void AdminReport(){
-        
+
+    public void presentDescendingOrder() {
+
+        if (!matchResults.isEmpty()) {
+            matchResults.bubbleSort((a, b) -> Double.compare(b.getScore(), a.getScore())); 
+
+            System.out.println("Match Scores for Student: " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ")");
+            System.out.println("================================================================================================================================================================================");
+            System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8s |\n", "CompanyId", "Company", "JobId", "Job Title", "Date Posted", "Status Of Distance", "Experience Status", "Score");
+            System.out.println("================================================================================================================================================================================");
+            for (int i = 1; i <= matchResults.size(); i++) {
+
+                MatchingResult result = matchResults.getData(i);
+                JobPosting jobPost = result.getJobPosting();
+                ExperienceCheck experienceStatus = result.getExperiencedCheck(); // Get experience status
+                MatchingResult.StatusDistance statusDistance = result.getStatusDistance();
+                System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8.2f |\n",
+                        jobPost.getCompany().getId(),
+                        jobPost.getCompany().getName(),
+                        jobPost.getJob().getId(),
+                        jobPost.getJob().getTitle(),
+                        jobPost.getDatePosted(),
+                        statusDistance,
+                        experienceStatus,
+                        result.getScore());
+
+            }
+        } else {
+            System.out.println("No match results found for student " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ").");
+
+        }
+        System.out.println("================================================================================================================================================================================");
     }
     
     
-//    public void AdminReport(){
-//        
-//    }
+    public void presentAscendingOrder(){
+        
+        if (!matchResults.isEmpty()) {
+            matchResults.bubbleSort((a, b) -> Double.compare(a.getScore(), b.getScore())); 
 
-//    public void presentDescendingOrder() {
-//        // Sort the list using the score comparator in descending order
-//        DoublyLinkedList<MatchingResult> sortedResults
-//                = (DoublyLinkedList<MatchingResult>) ((DoublyLinkedList<MatchingResult>) matchResults).getSortedList(scoreComparator);
-//
-//    
-//        if (!matchResults.isEmpty()) {
-//
-//            System.out.println("Match Scores for Student: " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ")");
-//            System.out.println("================================================================================================================================================================================");
-//            System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8s |\n", "CompanyId", "Company", "JobId", "Job Title", "Date Posted", "Status Of Distance", "Experience Status", "Score");
-//            System.out.println("================================================================================================================================================================================");
-//            for (int i = 1; i <= sortedResults.size(); i++) {
-//
-//                MatchingResult result = sortedResults.getData(i);
-//                JobPosting jobPost = result.getJobPosting();
-//                ExperienceCheck experienceStatus = result.getExperiencedCheck(); // Get experience status
-//                MatchingResult.StatusDistance statusDistance = result.getStatusDistance();
-//                System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8.2f |\n",
-//                        jobPost.getCompany().getId(),
-//                        jobPost.getCompany().getName(),
-//                        jobPost.getJob().getId(),
-//                        jobPost.getJob().getTitle(),
-//                        jobPost.getDatePosted(),
-//                        statusDistance,
-//                        experienceStatus,
-//                        result.getScore());
-//
-//            }
-//        } else {
-//            System.out.println("No match results found for student " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ").");
-//
-//        }
-//        System.out.println("================================================================================================================================================================================");
-//    }
+            System.out.println("Match Scores for Student: " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ")");
+            System.out.println("================================================================================================================================================================================");
+            System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8s |\n", "CompanyId", "Company", "JobId", "Job Title", "Date Posted", "Status Of Distance", "Experience Status", "Score");
+            System.out.println("================================================================================================================================================================================");
+            for (int i = 1; i <= matchResults.size(); i++) {
+
+                MatchingResult result = matchResults.getData(i);
+                JobPosting jobPost = result.getJobPosting();
+                ExperienceCheck experienceStatus = result.getExperiencedCheck(); // Get experience status
+                MatchingResult.StatusDistance statusDistance = result.getStatusDistance();
+                System.out.printf("| %-10s | %-30s | %-8s | %-40s | %-15s | %-20s | %-20s | %-8.2f |\n",
+                        jobPost.getCompany().getId(),
+                        jobPost.getCompany().getName(),
+                        jobPost.getJob().getId(),
+                        jobPost.getJob().getTitle(),
+                        jobPost.getDatePosted(),
+                        statusDistance,
+                        experienceStatus,
+                        result.getScore());
+
+            }
+        } else {
+            System.out.println("No match results found for student " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ").");
+
+        }
+        System.out.println("================================================================================================================================================================================");
+    }
+    
 }
