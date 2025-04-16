@@ -28,7 +28,6 @@ public class Student implements Serializable, Comparable<Student> {
     private String education;
     private int yearsOfExperience;
     private ListInterface<StudentSkill> studentSkillList = new DoublyLinkedList<>();
-//    private ListInterface<MatchingResult> matchResult = new DoublyLinkedList<>();
     private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
     private String[] desiredJobTypes;
 

@@ -7,6 +7,7 @@ package utility;
 import adt.ListInterface;
 import entity.Company;
 import entity.Job;
+import entity.JobPosting;
 
 /**
  *
@@ -159,6 +160,19 @@ public class JobPostingValidateFunction {
         }
 
         return true;
+    }
+
+    public static JobPosting isValidJobPosting(Company companyFound, Job jobFound, ListInterface<Company> companyList) {
+        for (Company c : companyList) {
+            if (c.equals(companyFound)) {
+                for (JobPosting jp : c.getJobPostingList()) {
+                    if (jp.getJob().equals(jobFound)) {
+                        return jp;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
 }

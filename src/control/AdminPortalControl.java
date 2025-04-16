@@ -4,6 +4,7 @@
  */
 package control;
 
+import adt.DoublyLinkedList;
 import adt.ListInterface;
 import boundary.*;
 import entity.*;
@@ -16,12 +17,11 @@ import java.util.Scanner;
 public class AdminPortalControl {
     Scanner scanner = new Scanner(System.in);
     
-    private ListInterface<Company> companyList;
-    private ListInterface<Student> studentList;
-    private ListInterface<Skill> skillList;
-    private ListInterface<Job> jobList;
-    private ListInterface<Interview> interviewList;
-    private Student loginStudent;
+    private ListInterface<Company> companyList = new DoublyLinkedList<>();
+    private ListInterface<Student> studentList = new DoublyLinkedList<>();
+    private ListInterface<Skill> skillList = new DoublyLinkedList<>();
+    private ListInterface<Job> jobList = new DoublyLinkedList<>();
+    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
     private AdminPortalUI adminPortalUI;
     private StudentControl studentControl;
     private JobApplicationControl jobApplicationControl;
@@ -31,17 +31,19 @@ public class AdminPortalControl {
     public AdminPortalControl() { 
     }
     
-    public AdminPortalControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList, ListInterface<Interview> interviewList) {
-        this.companyList                = companyList;
-        this.studentList                = studentList;
-        this.skillList                  = skillList;
-        this.jobList                    = jobList;
-        this.interviewList              = interviewList;
-        this.adminPortalUI              = new AdminPortalUI(this);
-        this.studentControl             = new StudentControl(companyList, studentList, skillList, jobList, interviewList);
-        this.jobApplicationControl      = new JobApplicationControl(companyList, studentList, skillList, jobList, interviewList);
-
-        runAdminPortalManagement();
+    public AdminPortalControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList,ListInterface<Job> jobList,ListInterface<Interview> interviewList) {
+        this.companyList            = companyList;
+        this.studentList            = studentList;
+        this.skillList              = skillList;
+        this.jobList                = jobList;
+        this.interviewList          = interviewList;
+        this.studentControl         = new StudentControl(companyList, studentList, skillList, jobList, interviewList);
+        this.studentControl.setAdminPortalControl(this);
+        this.jobApplicationControl  = new JobApplicationControl(companyList, studentList, skillList, jobList, interviewList); 
+        this.jobApplicationControl.setAdminPortalControl(this);
+        this.jobApplicationControl.setStudentControl(this.studentControl);
+        this.adminPortalUI          = new AdminPortalUI(this); 
+        runAdminPortalManagement(); 
     }
     
     public void runAdminPortalManagement() {
