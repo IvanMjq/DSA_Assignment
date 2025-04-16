@@ -10,6 +10,7 @@ package adt;
  * @author WEI ZHENG
  */
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -167,28 +168,27 @@ public class DoublyLinkedList<T extends Comparable<T>> implements ListInterface<
 //        // Step 3: Return the sorted clone
 //        return sortedList;
 //    }
+    @Override
+    public void bubbleSort(Comparator<T> comparator) {
+        boolean swapped;
+        Node end = null;
 
-//    @Override
-//    public void bubbleSort(Comparator<T> comparator) {
-//        boolean swapped;
-//        Node end = null;
-//
-//        do {
-//            swapped = false;
-//            Node<T> current = head;
-//
-//            while (current != null && current.next != end) {
-//                if (comparator.compare(current.data, current.next.data) > 0) {
-//                    T temp = current.data;
-//                    current.data = current.next.data;
-//                    current.next.data = temp;
-//                    swapped = true;
-//                }
-//                current = current.next;
-//            }
-//            end = current;
-//        } while (swapped);
-//    }
+        do {
+            swapped = false;
+            Node current = head;
+
+            while (current != null && current.next != end) {
+                if (comparator.compare(current.data, current.next.data) > 0) {
+                    T temp = current.data;
+                    current.data = current.next.data;
+                    current.next.data = temp;
+                    swapped = true;
+                }
+                current = current.next;
+            }
+            end = current;
+        } while (swapped);
+    }
 
     @Override
     public int indexOf(T data) {
