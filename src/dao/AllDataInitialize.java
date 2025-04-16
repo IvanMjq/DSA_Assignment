@@ -204,144 +204,162 @@ public class AllDataInitialize {
 
     private void initializeJob() {
         jobList.add(new Job(
-                "J-1",
-                "Software Engineer",
+                "J-1", 
+                "Software Engineer", 
                 "Computer & Technology",
-                "Responsible for designing, developing, and maintaining software applications. Collaborates with cross-functional teams to deliver scalable and efficient software solutions. Proficient in programming languages such as Java, C++, or Python. Strong problem-solving skills and knowledge of software development lifecycle are essential."
-        ));
-        jobList.add(new Job(
-                "J-2",
-                "Data Analyst",
-                "Computer & Technology",
-                "Analyze large datasets to extract actionable insights and support business decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI."
-        ));
-        jobList.add(new Job(
-                "J-3",
-                "Cybersecurity Analyst",
-                "Computer & Technology",
-                "Monitor and protect company networks and systems from cyber threats. Conduct risk assessments, manage firewalls, and ensure compliance with security protocols."
-        ));
-        jobList.add(new Job(
-                "J-4",
-                "Machine Learning Engineer",
-                "Computer & Technology",
-                "Design and implement machine learning models for automation, prediction, and data analysis. Requires knowledge of Python, TensorFlow, and data pipelines."
-        ));
-        jobList.add(new Job(
-                "J-5",
-                "Web Developer",
-                "Computer & Technology",
-                "Develop and maintain responsive websites using HTML, CSS, JavaScript, and frameworks like React.js or Vue.js. Collaborate with designers and backend teams."
-        ));
-        jobList.add(new Job(
-                "J-6",
-                "Mobile App Developer",
-                "Computer & Technology",
-                "Build and maintain mobile applications for iOS and Android platforms using technologies such as Flutter or Kotlin. Work closely with UI/UX designers and QA teams."
-        ));
-        jobList.add(new Job(
-                "J-7",
-                "Cloud Engineer",
-                "Computer & Technology",
-                "Manage and deploy applications on cloud platforms like AWS, Azure, or Google Cloud. Handle infrastructure-as-code, security, and resource optimization."
-        ));
-        jobList.add(new Job(
-                "J-8",
-                "Database Administrator",
-                "Computer & Technology",
-                "Design, maintain, and optimize databases to ensure high availability and performance. Skilled in SQL, data backup, and recovery strategies."
-        ));
-        jobList.add(new Job(
-                "J-9",
-                "AI Research Intern",
-                "Computer & Technology",
-                "Support the research and development of AI solutions. Assist with data preparation, training models, and evaluating performance. Python experience preferred."
-        ));
-        jobList.add(new Job(
-                "J-10",
-                "Full-Stack Developer",
-                "Computer & Technology",
-                "Develop complete web applications, working on both frontend and backend. Familiarity with React, Node.js, databases, and APIs is essential."
-        ));
-        jobList.add(new Job(
-                "J-11",
-                "Credit Risk Analyst",
-                "Finance & Banking",
-                "Evaluate credit data and financial statements to assess the risk in lending. Experience with credit scoring models and risk analysis is preferred."
-        ));
-        jobList.add(new Job(
-                "J-12",
-                "Financial Analyst",
-                "Finance & Banking",
-                "Analyze financial data, create financial models, and assist in strategic planning. Proficiency in Excel, financial forecasting, and risk assessment is required."
-        ));
-        jobList.add(new Job(
-                "J-13",
-                "Accountant",
-                "Finance & Banking",
-                "Manage financial records, prepare tax documents, and ensure regulatory compliance. Attention to detail and knowledge of accounting software are essential."
-        ));
-        jobList.add(new Job(
-                "J-14",
-                "Investment Banker",
-                "Finance",
-                "Help clients raise capital and provide strategic financial advice. Requires strong analytical skills, financial modeling, and knowledge of market trends."
-        ));
-        jobList.add(new Job(
-                "J-15",
-                "Budget Analyst",
-                "Finance & Banking",
-                "Evaluate budget proposals, monitor organizational spending, and prepare financial reports. Experience in budgeting tools and government finance is a plus."
-        ));
-        jobList.add(new Job(
-                "J-16",
-                "Medical Laboratory Technologist",
-                "Healthcare",
-                "Perform diagnostic tests on patient samples, analyze results, and support accurate medical diagnoses. Attention to detail and lab safety knowledge are essential."
-        ));
-        jobList.add(new Job(
-                "J-17",
-                "Secondary School Teacher",
-                "Education",
-                "Plan and deliver lessons for students aged 13–17 in accordance with the national curriculum. Patience, subject expertise, and classroom management are essential."
-        ));
-        jobList.add(new Job(
-                "J-18",
-                "Early Childhood Educator",
-                "Education",
-                "Design and implement learning activities for children aged 3–6. Strong understanding of child development and creative teaching methods is essential."
-        ));
-        jobList.add(new Job(
-                "J-19",
-                "Online Course Instructor",
-                "Education",
-                "Teach academic or professional subjects through online platforms. Requires excellent communication skills, subject expertise, and familiarity with e-learning tools."
-        ));
-        jobList.add(new Job(
-                "J-20",
-                "Mechanical Engineer",
-                "Engineering",
-                "Design, analyze, and improve mechanical systems and devices. Proficiency in CAD software and solid understanding of thermodynamics and materials required."
-        ));
-        jobList.add(new Job(
-                "J-21",
-                "Civil Engineer",
-                "Engineering",
-                "Plan and oversee construction projects including roads, bridges, and buildings. Requires strong project management skills and knowledge of structural analysis."
-        ));
+                "Design, develop, and maintain software applications. Work with cross-functional teams to deliver scalable and efficient solutions.")
+        );
 
         jobList.add(new Job(
-                "J-22",
-                "Electrical Engineer",
-                "Engineering",
-                "Develop and test electrical systems and equipment. Must have experience with circuit design, signal processing, and electrical safety standards."
-        ));
+                "J-2", 
+                "Data Analyst", 
+                "Computer & Technology",
+                "Analyze datasets to extract insights and support decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI.")
+        );
+
         jobList.add(new Job(
-                "J-23",
-                "Registered Nurse",
+                "J-3", 
+                "Cybersecurity Analyst", 
+                "Computer & Technology",
+                "Monitor and protect systems from cyber threats. Perform risk assessments, manage firewalls, and ensure compliance with security protocols.")
+        );
+
+        jobList.add(new Job(
+                "J-4", 
+                "Machine Learning Engineer", 
+                "Computer & Technology",
+                "Design and implement ML models for automation and prediction. Requires knowledge of Python, TensorFlow, and data pipelines.")
+        );
+
+        jobList.add(new Job(
+                "J-5", 
+                "Web Developer", 
+                "Computer & Technology",
+                "Develop and maintain websites using HTML, CSS, JavaScript, and frameworks like React.js or Vue.js. Collaborate with design and backend teams.")
+        );
+
+        jobList.add(new Job(
+                "J-6", 
+                "Mobile App Developer", 
+                "Computer & Technology",
+                "Build mobile apps for iOS and Android using Flutter or Kotlin. Work with UI/UX designers and QA teams to deliver quality applications.")
+        );
+
+        jobList.add(new Job(
+                "J-7", 
+                "Cloud Engineer", 
+                "Computer & Technology",
+                "Deploy and manage applications on AWS, Azure, or Google Cloud. Handle infrastructure-as-code, security, and resource optimization.")
+        );
+
+        jobList.add(new Job(
+                "J-8", 
+                "Database Administrator", 
+                "Computer & Technology",
+                "Design, maintain, and optimize databases for high performance and availability. Skilled in SQL, backups, and recovery strategies.")
+        );
+
+        jobList.add(new Job(
+                "J-9", 
+                "AI Research Intern", 
+                "Computer & Technology",
+                "Assist in research and development of AI solutions. Help with data preparation, model training, and performance evaluation. Python preferred.")
+        );
+
+        jobList.add(new Job(
+                "J-10", 
+                "Full-Stack Developer", 
+                "Computer & Technology",
+                "Build full web apps, working on both frontend and backend. Must know React, Node.js, databases, and APIs.")
+        );
+
+        jobList.add(new Job(
+                "J-11", 
+                "Credit Risk Analyst", 
+                "Finance & Banking",
+                "Assess credit data and financials to determine lending risk. Experience with credit scoring and financial analysis preferred.")
+        );
+
+        jobList.add(new Job(
+                "J-12", 
+                "Financial Analyst", 
+                "Finance & Banking",
+                "Analyze financial data, build models, and support strategic decisions. Requires Excel skills, forecasting, and risk evaluation.")
+        );
+
+        jobList.add(new Job(
+                "J-13", 
+                "Accountant", 
+                "Finance & Banking",
+                "Manage financial records, prepare tax reports, and ensure compliance. Must know accounting principles and software tools.")
+        );
+
+        jobList.add(new Job(
+                "J-14", 
+                "Investment Banker", 
+                "Finance",
+                "Help clients raise capital and offer strategic advice. Strong financial modeling, market knowledge, and analytical skills needed.")
+        );
+
+        jobList.add(new Job(
+                "J-15", 
+                "Budget Analyst", 
+                "Finance & Banking",
+                "Review budget plans, monitor spending, and create financial reports. Familiarity with budgeting tools and public finance is a plus.")
+        );
+
+        jobList.add(new Job(
+                "J-16", 
+                "Medical Laboratory Technologist", 
                 "Healthcare",
-                "Provide patient care, administer medications, and assist in treatment plans. Strong communication, empathy, and knowledge of clinical procedures are essential."
-        ));
+                "Conduct diagnostic tests, analyze samples, and ensure accuracy. Strong attention to detail and adherence to lab protocols are key.")
+        );
+
+        jobList.add(new Job(
+                "J-17", 
+                "Secondary School Teacher", 
+                "Education",
+                "Deliver lessons for ages 13–17 based on the national curriculum. Requires subject expertise, patience, and classroom control.")
+        );
+
+        jobList.add(new Job(
+                "J-18", 
+                "Early Childhood Educator", 
+                "Education",
+                "Create and conduct learning activities for children aged 3–6. Understanding of child development and creative methods essential.")
+        );
+
+        jobList.add(new Job(
+                "J-19", 
+                "Online Course Instructor", 
+                "Education",
+                "Teach subjects via online platforms. Strong communication, subject expertise, and knowledge of e-learning tools required.")
+        );
+
+        jobList.add(new Job(
+                "J-20", 
+                "Mechanical Engineer", 
+                "Engineering",
+                "Design and improve mechanical systems. Proficient in CAD and knowledgeable in thermodynamics, materials, and mechanics.")
+        );
+
+        jobList.add(new Job("J-21", 
+                "Civil Engineer", 
+                "Engineering",
+                "Manage construction projects such as roads and buildings. Skills in project management and structural analysis are essential.")
+        );
+
+        jobList.add(new Job("J-22", 
+                "Electrical Engineer", 
+                "Engineering",
+                "Develop and test electrical equipment. Must know circuit design, signal processing, and electrical safety standards.")
+        );
+
+        jobList.add(new Job("J-23", 
+                "Registered Nurse", 
+                "Healthcare",
+                "Provide patient care, administer meds, and assist in treatments. Requires empathy, communication, and clinical knowledge.")
+        );
     }
 
     private void intializeStudent() {
