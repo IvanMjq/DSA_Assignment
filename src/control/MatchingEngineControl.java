@@ -325,9 +325,9 @@ public class MatchingEngineControl {
         }
 
         System.out.println("==========================================================================================================================================================================================================================");
-        System.out.printf("| %-204s | %-8d |\n", "Total Match Results", matchResults.size());
-        System.out.printf("| %-204s | %-8d |\n", "Total Qualified Match", qualifiedCount);
-        System.out.printf("| %-204s | %-8d |\n", "Total Fail Match", failCount);
+        System.out.printf("| %-203s | %-8d |\n", "Total Match Results", matchResults.size());
+        System.out.printf("| %-188s ( %-8.2f  %%) | %-8d |\n", "Total Qualified Match", (qualifiedCount * 100.0 / matchResults.size()), qualifiedCount);
+        System.out.printf("| %-188s ( %-8.2f  %%) | %-8d |\n", "Total Fail Match", (failCount * 100.0 / matchResults.size()), failCount);
 
         System.out.println("==========================================================================================================================================================================================================================");
     }
@@ -375,8 +375,8 @@ public class MatchingEngineControl {
                     
                 case 3:
                     String input = matchingUI.SearchUI();
-                    if (input.equals("q") || input.equals("Q")) {
-                        System.out.println("Search cancelled.");
+                    if (input.equals("QUIT")) {
+                        System.out.println("Exit Search...");
                         break;
                     }
                     searchBy(input);

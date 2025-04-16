@@ -79,7 +79,7 @@ public class MatchingUI {
     
     public String SearchUI(){
         System.out.println("***Find Your Desired Information***");
-        System.out.print("Search Info(Enter Q/q to quit): ");
+        System.out.print("Search Info(Enter QUIT to quit): ");
         String input = scanner.nextLine().trim().toLowerCase();
         return input;
 
