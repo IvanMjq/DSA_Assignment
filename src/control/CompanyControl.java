@@ -9,10 +9,7 @@ import adt.ListInterface;
 import boundary.CompanyManagementUI;
 import dao.AllDataInitialize;
 import entity.Company;
-import entity.Interview;
-import entity.Job;
 import entity.JobPosting;
-import entity.Student;
 import java.time.LocalTime;
 import utility.*;
 
@@ -25,9 +22,8 @@ public class CompanyControl {
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
 
     CompanyManagementUI companyManagementUI = new CompanyManagementUI();
-    
-    //JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, studentList, interviewList, skillList);
 
+    //JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, studentList, interviewList, skillList);
     public CompanyControl(ListInterface<Company> companyList) {
         this.companyList = companyList;
     }
@@ -67,8 +63,8 @@ public class CompanyControl {
         String streetAddress;
         String area;
         String state;
-        double latitude = 0.0;
-        double longitude = 0.0;
+        double latitude;
+        double longitude;
         int foundedYear;
         LocalTime interviewStartTime;
         LocalTime interviewEndTime;
@@ -119,6 +115,10 @@ public class CompanyControl {
         } while (!CompanyValidateFunction.isValidConfirmation(addConfirmation));
 
         if (addConfirmation.equals("Y")) {
+
+            double[] tude = GeoUtilControl.getLatLong(area, state);
+            latitude = tude[0];
+            longitude = tude[1];
 
             Company newCompany = new Company(
                     id,
@@ -192,6 +192,9 @@ public class CompanyControl {
         String id;
         Company companyFound = null;
         String confirmationToEdit;
+        double[] tude;
+        double latitude;
+        double longitude;
 
         do {
             do {
@@ -254,14 +257,24 @@ public class CompanyControl {
                     do {
                         newArea = companyManagementUI.getStringInput("Enter New Area : ");
                     } while (!CompanyValidateFunction.isValidArea(newArea));
+                    tude = GeoUtilControl.getLatLong(newArea, companyFound.getState());
+                    latitude = tude[0];
+                    longitude = tude[1];
                     companyFound.setArea(newArea);
+                    companyFound.setLatitude(latitude);
+                    companyFound.setLongitude(longitude);
                     break;
                 case 6: // State
                     String newState;
                     do {
                         newState = companyManagementUI.getStringInput("Enter New State : ");
                     } while (!CompanyValidateFunction.isValidState(newState));
+                    tude = GeoUtilControl.getLatLong(companyFound.getArea(), newState);
+                    latitude = tude[0];
+                    longitude = tude[1];
                     companyFound.setState(newState);
+                    companyFound.setLatitude(latitude);
+                    companyFound.setLongitude(longitude);
                     break;
                 case 7: // Founded Year
                     int newFoundedYear;
@@ -327,31 +340,31 @@ public class CompanyControl {
         removeCompanyFromList(companyFound);
 
     }
-    
+
     public void removeCompanyFromList(Company companyFound) {
         ListInterface<JobPosting> jpList = companyFound.getJobPostingList();
-        
+
         for (JobPosting jp : jpList) {
             JobPostingControl.removeJobApplicationFromStudent(jp);
             JobPostingControl.removeJobApplicationFromInterview(jp);
             JobPostingControl.removeJobPostingFromJob(jp);
         }
-        
+
         companyFound.getJobPostingList().clear();
-        
+
         int companyIndex = companyList.indexOf(companyFound);
         Company removedCompany = companyList.remove(companyIndex);
         if (removedCompany != null) {
-            System.out.println("Successfully removed Company with ID : " + 
-                    removedCompany.getId()
+            System.out.println("Successfully removed Company with ID : "
+                    + removedCompany.getId()
             );
         } else {
-            System.err.println("Failed to remove Company wih ID : " + 
-                    companyFound.getId()
+            System.err.println("Failed to remove Company wih ID : "
+                    + companyFound.getId()
             );
-        } 
+        }
     }
-    
+
     // Just for testing purpose
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();

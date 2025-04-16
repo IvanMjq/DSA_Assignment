@@ -9,6 +9,7 @@ import adt.ListInterface;
 import java.io.Serializable;
 import java.util.Objects;
 import utility.IdGeneration;
+import utility.TrimToLength;
 
 /**
  *
@@ -92,12 +93,24 @@ public class Job implements Serializable, IdGeneration.Identifiable, Comparable<
 
     @Override
     public String toString() {
-        return "Job{" + "id=" + id + ", title=" + title + ", type=" + type + ", desc=" + desc + '}';
+        String line = "+---------------------------------------------------------------+\n";
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n").append(line);
+        sb.append(String.format("| %-61s |\n", "Job Information"));
+        sb.append(line);
+        sb.append(String.format("| %-15s : %-43s |\n", "Job ID", TrimToLength.trimToLength(id, 43)));
+        sb.append(String.format("| %-15s : %-43s |\n", "Title", TrimToLength.trimToLength(title, 43)));
+        sb.append(String.format("| %-15s : %-43s |\n", "Type", TrimToLength.trimToLength(type, 43)));
+        sb.append(String.format("| %-15s : %-43s |\n", "Description", TrimToLength.trimToLength(desc, 43)));
+        sb.append(line);
+
+        return sb.toString();
     }
 
     @Override
     public int compareTo(Job other) {
-        return 0;
+        return this.type.compareTo(other.getType());
     }
 
 }

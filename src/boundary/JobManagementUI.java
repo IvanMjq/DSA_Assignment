@@ -72,11 +72,11 @@ public class JobManagementUI {
             System.out.println(line);
             System.out.printf("|  %-30s|\n", "Job Type");
             System.out.println(line);
-            System.out.printf("|  %-30s|\n", "1. A");
-            System.out.printf("|  %-30s|\n", "2. B");
-            System.out.printf("|  %-30s|\n", "3. C");
-            System.out.printf("|  %-30s|\n", "4. D");
-            System.out.printf("|  %-30s|\n", "5. E");
+            System.out.printf("|  %-30s|\n", "1. Computer & Technology");
+            System.out.printf("|  %-30s|\n", "2. Finance & Banking");
+            System.out.printf("|  %-30s|\n", "3. Healthcare");
+            System.out.printf("|  %-30s|\n", "4. Education");
+            System.out.printf("|  %-30s|\n", "5. Engineering");
             System.out.println(line);
 
             // Check if the user input was invalid before
@@ -103,9 +103,15 @@ public class JobManagementUI {
 
         switch (option) {
             case 1:
-                return "aww";
+                return "Computer & Technology";
             case 2:
-                return "1";
+                return "Finance & Banking";
+            case 3:
+                return "Healthcare";
+            case 4:
+                return "Education";
+            case 5:
+                return "Engineering";
             default:
                 return null;
         }
@@ -155,13 +161,6 @@ public class JobManagementUI {
 
     }
 
-    public String trimToLength(String str, int length) {
-        if (str.length() > length) {
-            return str.substring(0, length - 3) + "...";
-        }
-        return String.format("%-" + length + "s", str);
-    }
-
     public String getStringInput(String promptMsg) {
         System.out.print(promptMsg);
         return sc.nextLine().trim();
@@ -175,7 +174,7 @@ public class JobManagementUI {
     // Just for testing purpose
     public static void main(String[] args) {
         JobManagementUI jm = new JobManagementUI();
-        System.out.println(jm.jobManagementMenu());
+        System.out.println(jm.getJobType());
     }
 
 }

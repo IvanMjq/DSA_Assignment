@@ -18,7 +18,7 @@ public class StudentUI {
     Scanner scanner = new Scanner(System.in);
     private StudentControl studentControl;
      
-    public StudentUI(StudentControl studentControl) {
+     public StudentUI(StudentControl studentControl) {
         this.studentControl = studentControl;
     }
      
@@ -179,7 +179,7 @@ public class StudentUI {
                 break;
             
             studentControl.skillList();
-            System.out.print("Choose min 1 to 3 Skill.");
+            System.out.println("Choose min 1 to 3 Skill.");
             System.out.print("Enter Skill ID, Q=Done: ");
             String skillInput = scanner.nextLine().trim();
             
@@ -191,22 +191,33 @@ public class StudentUI {
             } 
             
             if(!skillInput.equalsIgnoreCase("Q")) {
-                
-                System.out.print("Enter Proficiency Level: ");
-                String proficiencyLevelInput = scanner.nextLine().trim();
-                
-                if(digitValidation(proficiencyLevelInput)){
-                    int intProficiencyLevelInput = Integer.parseInt(proficiencyLevelInput);
-                    Skill tempSkill = studentControl.selectedSkill(skillInput);
-                    if(tempSkill != null){
-                        if(studentControl.noDuplicateSkillSelection(studentSkillList, tempSkill)) {
-                            studentSkillList.add(new StudentSkill(tempSkill, intProficiencyLevelInput));
-                            i++;
+                int intProficiencyLevelInput = 0;
+                while(intProficiencyLevelInput == 0){
+                    System.out.print("Enter Proficiency Level (1-5): ");
+                    String proficiencyLevelInput = scanner.nextLine().trim();
+                    
+                    if(digitValidation(proficiencyLevelInput)){
+                        int intInput = Integer.parseInt(proficiencyLevelInput);
+                        if((intInput >= 1) && (intInput <= 5)) {
+                            intProficiencyLevelInput = intInput;
+                        }else {
+                            System.out.println("Invalid input, Enter Proficiency within 1-5 ");
                         }
-                    }
-                } else {
-                    System.out.println("You must select existed ID only.");
+                    } 
                 }
+               
+                
+                Skill tempSkill = studentControl.selectedSkill(skillInput);
+                if(tempSkill != null){
+                    if(studentControl.duplicateSkillSelection(studentSkillList, tempSkill)) {
+                        studentSkillList.add(new StudentSkill(tempSkill, intProficiencyLevelInput));
+                        i++;
+                    }else{
+                        System.out.println("Duplicate Selection.");
+                    }
+                }else {
+                    System.out.println("You must select existed ID only.");
+                } 
 
             }
         }
@@ -396,7 +407,7 @@ public class StudentUI {
     
     public void removeStudentUI() {
         System.out.println("--------------------------------------");
-        System.out.println("Remove Student Post");
+        System.out.println("Remove Student");
     }
     
     public boolean confirmation(String message) {

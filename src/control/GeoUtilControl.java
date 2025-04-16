@@ -18,18 +18,18 @@ import java.net.URLEncoder;
  * @author WEI ZHENG
  */
 public class GeoUtilControl {
-    private ListInterface<Student> studentList;
-    private ListInterface<JobPosting> jobPost;
-    
-    public GeoUtilControl(ListInterface<Student> studentList, ListInterface<JobPosting> jobPost){
-        this.studentList = studentList;
-        this.jobPost = jobPost;
-    }
-    
+//    private ListInterface<Student> studentList;
+//    private ListInterface<JobPosting> jobPost;
+//    
+//    public GeoUtilControl(ListInterface<Student> studentList, ListInterface<JobPosting> jobPost){
+//        this.studentList = studentList;
+//        this.jobPost = jobPost;
+//    }
+
     public static double[] getLatLong(String area, String state) {
-        
+
         String location = area + ", " + state;
-     
+
         try {
             String encodedLocation = URLEncoder.encode(location, "UTF-8");
             String urlStr = "https://nominatim.openstreetmap.org/search?q=" + encodedLocation + "&format=json&limit=1";
@@ -69,24 +69,28 @@ public class GeoUtilControl {
 
         return new double[]{0.0, 0.0};
     }
-    
-    public void setLatLongForStdAddresses() {
-        for (int i = 1; i <= studentList.size() ; i++){
-            double[] coords = getLatLong(studentList.getData(i).getArea(), studentList.getData(i).getState());
-            studentList.getData(i).setLatitude(coords[0]);
-            studentList.getData(i).setLongitude(coords[1]);
-        }
-        
-    }
-    
-      public void setLatLongForJobAddresses() {
 
-        for(int j = 1; j <= jobPost.size(); j++){
-            double[] coords = getLatLong(jobPost.getData(j).getCompany().getArea(), jobPost.getData(j).getCompany().getState());
-            jobPost.getData(j).getCompany().setLatitude(coords[0]);
-            jobPost.getData(j).getCompany().setLongitude(coords[1]);
-        }
-        
+    public static void main(String[] args) {
+        double[] wutdafak = getLatLong("ns", "idk");
+        System.out.println("Latitude: " + wutdafak[0] + ", Longitude: " + wutdafak[1]);
     }
-    
+
+//    public void setLatLongForStdAddresses() {
+//        for (int i = 1; i <= studentList.size() ; i++){
+//            double[] coords = getLatLong(studentList.getData(i).getArea(), studentList.getData(i).getState());
+//            studentList.getData(i).setLatitude(coords[0]);
+//            studentList.getData(i).setLongitude(coords[1]);
+//        }
+//        
+//    }
+//    
+//      public void setLatLongForJobAddresses() {
+//
+//        for(int j = 1; j <= jobPost.size(); j++){
+//            double[] coords = getLatLong(jobPost.getData(j).getCompany().getArea(), jobPost.getData(j).getCompany().getState());
+//            jobPost.getData(j).getCompany().setLatitude(coords[0]);
+//            jobPost.getData(j).getCompany().setLongitude(coords[1]);
+//        }
+//        
+//    }
 }

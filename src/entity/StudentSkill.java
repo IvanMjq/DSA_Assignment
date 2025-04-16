@@ -5,6 +5,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -34,6 +35,18 @@ public class StudentSkill implements Serializable, Comparable<StudentSkill> {
 
     public void setProficiencyLevel(int proficiencyLevel) {
         this.proficiencyLevel = proficiencyLevel;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final StudentSkill other = (StudentSkill) obj;
+        return Objects.equals(this.skill, other.skill);
     }
 
     @Override

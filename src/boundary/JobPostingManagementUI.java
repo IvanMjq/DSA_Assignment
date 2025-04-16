@@ -199,13 +199,6 @@ public class JobPostingManagementUI {
         }
     }
 
-    public String trimToLength(String str, int length) {
-        if (str.length() > length) {
-            return str.substring(0, length - 3) + "...";
-        }
-        return String.format("%-" + length + "s", str);
-    }
-
     // Just for testing purpose
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();

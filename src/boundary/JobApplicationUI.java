@@ -27,8 +27,21 @@ public class JobApplicationUI {
         System.out.println("1. Listing");
         System.out.println("2. Register");
         System.out.println("3. Remove");
-        System.out.println("4. Update");
-        System.out.println("5. Filter");
+        System.out.println("0. Exit");
+        System.out.print("Enter option: ");
+
+        int option = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println();
+        return option;
+    }
+    
+    public int studentStudentMenu() {
+        System.out.println("\nJob Application Menu");
+        System.out.println("=====================================");
+        System.out.println("1. Listing");
+        System.out.println("2. Register");
+        System.out.println("3. Remove");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
 
@@ -42,10 +55,12 @@ public class JobApplicationUI {
         System.out.println("--------------------------------------");
         System.out.println("Job Appication Listing");
         System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-10s | %-30s | %-30s | %-30s | %-30s | %-30s | %-30s |\n",
+        System.out.printf("| %-15s | %-30s | %-15s | %-30s | %-15s | %-30s | %-30s | %-30s | %-30s |\n",
                     "Student ID",
                     "Student Name",
+                    "Company ID",
                     "Company Name",
+                    "Job ID",
                     "Job Title",
                     "Applied Date Time",
                     "Interview Status",
@@ -60,6 +75,11 @@ public class JobApplicationUI {
         System.out.println("--------------------------------------");
         System.out.println("Enter Job Appication Infomation:");
         System.out.println("======================================");  
+    }
+    
+    public void removeJobAppicationUI() {
+        System.out.println("--------------------------------------");
+        System.out.println("Remove Job Application");
     }
     
 //    public Student newJobAppicationDetails(Student currentStudent) {

@@ -10,6 +10,7 @@ import dao.AllDataInitialize;
 import entity.*;
 import java.time.LocalDate;
 import utility.JobPostingValidateFunction;
+import utility.TrimToLength;
 
 /**
  *
@@ -167,10 +168,10 @@ public class JobPostingControl {
 
                 System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12.2f | %-12.2f | %-10d | %-12s |\n",
                         company.getId(),
-                        jobPostingManagementUI.trimToLength(company.getName(), 28),
+                        TrimToLength.trimToLength(company.getName(), 28),
                         job.getId(),
-                        jobPostingManagementUI.trimToLength(job.getTitle(), 23),
-                        jobPostingManagementUI.trimToLength(posting.getDescription(), 47),
+                        TrimToLength.trimToLength(job.getTitle(), 23),
+                        TrimToLength.trimToLength(posting.getDescription(), 47),
                         posting.getMinimumSalary(),
                         posting.getMaximumSalary(),
                         posting.getRequiredExperience(),

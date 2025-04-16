@@ -744,8 +744,8 @@ public class AllDataInitialize {
     }
 
     private void initializeJobApplication() {
-        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1), companyList.getData(1).getJobPostingList().getData(1), interviewList.getData(1), LocalDateTime.of(2025, 4, 1, 13, 0)));
-        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1), companyList.getData(3).getJobPostingList().getData(2), interviewList.getData(3), LocalDateTime.of(2025, 7, 1, 13, 0)));
+        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1), companyList.getData(1).getJobPostingList().getData(1), interviewList.getData(1), LocalDate.of(2025, 4, 1)));
+        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1), companyList.getData(3).getJobPostingList().getData(2), interviewList.getData(3), LocalDate.of(2025, 7, 1)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
 //        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
@@ -945,7 +945,7 @@ public class AllDataInitialize {
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
 
-        for (Student a : dataInitialize.getStudentList()) {
+        for (JobPosting a : dataInitialize.getCompanyList().getData(1).getJobPostingList()) {
             System.out.println(a);
         }
     }
