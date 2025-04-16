@@ -40,6 +40,7 @@ public class StudentControl {
         this.interviewList          = interviewList;
         this.studentUI              = new StudentUI(this);
         this.jobApplicationControl  = new JobApplicationControl(companyList, studentList, skillList, jobList, interviewList); 
+        this.matchControl           = new MatchingEngineControl(companyList, studentList);
         this.jobApplicationControl.setStudentControl(this);
     }
  
