@@ -157,7 +157,7 @@ public class CompanyControl {
 
             switch (option) {
                 case 1:
-                    viewFoundedYearRangeFilter();
+                    viewbyFoundedYearRange();
                     break;
                 case 2:
                     viewAllCompanyList();
@@ -171,7 +171,7 @@ public class CompanyControl {
 
     }
 
-    public void viewFoundedYearRangeFilter() {
+    public void viewbyFoundedYearRange() {
         if (companyList.isEmpty()) {
             System.out.println("No Companies found.");
             return;

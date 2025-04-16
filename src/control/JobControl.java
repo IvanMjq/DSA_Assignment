@@ -110,7 +110,7 @@ public class JobControl {
 
             switch (option) {
                 case 1:
-                    viewJobTypesFilter();
+                    viewByJobTypes();
                     break;
                 case 2:
                     viewAllJobList();
@@ -124,7 +124,7 @@ public class JobControl {
 
     }
 
-    public void viewJobTypesFilter() {
+    public void viewByJobTypes() {
         if (jobList.isEmpty()) {
             System.out.println("No Jobs found.");
             return;

@@ -8,6 +8,8 @@ import adt.DoublyLinkedList;
 import adt.ListInterface;
 import dao.AllDataInitialize;
 import entity.Skill;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -112,6 +114,51 @@ public class JobPostingManagementUI {
         return option;
     }
 
+    public int getJobPostingViewOptions() {
+        int option = -1;
+        boolean validInput = false;
+        boolean isFirstInput = true;
+
+        String line = "+------------------------------------------+";
+
+        while (validInput != true) {
+            System.out.println("\n\n");
+            System.out.println(line);
+            System.out.printf("|  %-50s|\n", "View Options");
+            System.out.println(line);
+            System.out.printf("|  %-50s|\n", "1. Filtering by Minimum Salary (Range)");
+            System.out.printf("|  %-50s|\n", "2. Filtering by Maximum Salary (Range)");
+            System.out.printf("|  %-50s|\n", "3. Filtering by Required Experience (Range)");
+            System.out.printf("|  %-50s|\n", "4. Filtering by Date Posted Range (Range)");
+            System.out.printf("|  %-50s|\n", "5. Display all Job Posting");
+            System.out.printf("|  %-50s|\n", "0. Exit View.");
+            System.out.println(line);
+
+            // Check if the user input was invalid before
+            if (!isFirstInput) {
+                System.out.println("Invalid option. Please choose a number between 0 - 5.");
+            }
+
+            // Prompt user input message
+            System.out.print("Please enter your option (0-5) : ");
+
+            // Validate user input
+            if (sc.hasNextInt()) {
+                option = sc.nextInt();
+                sc.nextLine(); // Clear newline character
+                if (option >= 0 && option <= 5) {
+                    validInput = true;
+                }
+            } else {
+                sc.nextLine(); // Clear the invalid input
+            }
+            isFirstInput = false;
+
+        }
+
+        return option;
+    }
+
     public int jobPostingEditMenu() {
         int option = -1;
         boolean validInput = false;
@@ -199,13 +246,33 @@ public class JobPostingManagementUI {
         }
     }
 
+    public LocalDate getDatePrompt(String message) {
+        while (true) {
+            System.out.print(message + " (yyyy-MM-dd): ");
+            String input = sc.nextLine().trim();
+
+            if (input == null || input.isEmpty()) {
+                System.out.println("Input cannot be null or empty.");
+                System.err.flush();
+                continue;
+            }
+
+            try {
+                return LocalDate.parse(input); // Accepts format yyyy-MM-dd
+            } catch (DateTimeParseException e) {
+                System.err.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
+                System.err.flush();
+            }
+        }
+    }
+
     // Just for testing purpose
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
         ListInterface<Skill> skillList = dataInitialize.getSkillList();
 
         JobPostingManagementUI jp = new JobPostingManagementUI(skillList);
-        jp.displaySkillMenu();
+        jp.getJobPostingViewOptions();
     }
 
 }

@@ -48,7 +48,7 @@ public class JobPostingControl {
                     addJobPosting();
                     break;
                 case 2:
-                    //viewFunction();
+                    viewFunction();
                     break;
                 case 3:
                     editJobPosting();
@@ -57,7 +57,7 @@ public class JobPostingControl {
                     deleteJobPosting();
                     break;
                 case 5:
-
+                    reportFunction(companyList);
                     break;
                 case 0:
                     System.out.println("Returing to Main Menu ...");
@@ -135,7 +135,7 @@ public class JobPostingControl {
                 datePosted);
         newJobPosting.setJobRequiredSkillList(jobRequiredSkillList);
         System.out.println(newJobPosting);
-        
+
         do {
             addConfirmation = jobPostingManagementUI.getConfirmationPrompt("Do you want to add this Job Posting?");
         } while (!JobPostingValidateFunction.isValidConfirmation(addConfirmation));
@@ -166,7 +166,7 @@ public class JobPostingControl {
                     System.out.println("Invalid Importance. Must be between 1 and 5.");
                 }
             } while (importance < 1 || importance > 5);
-            
+
             JobRequiredSkill newJobRequiredSkill = new JobRequiredSkill(selectedSkill, importance);
             System.out.println(newJobRequiredSkill);
 
@@ -180,6 +180,265 @@ public class JobPostingControl {
         } while (confirmationToAdd.equalsIgnoreCase("Y"));
 
         return newJobRequiredSkillList;
+    }
+
+    public void viewFunction() {
+        int option;
+
+        do {
+            option = jobPostingManagementUI.getJobPostingViewOptions();
+
+            switch (option) {
+                case 1:
+                    viewByMinimumSalaryRange();
+                    break;
+                case 2:
+                    viewByMaximumSalaryRange();
+                    break;
+                case 3:
+                    viewByRequiredExperienceRange();
+                    break;
+                case 4:
+                    viewByDatePostedRange();
+                    break;
+                case 5:
+                    viewAllJobPostingList();
+                    break;
+                case 0:
+                    System.out.println("Exitting the View ...");
+                    break;
+            }
+
+        } while (option != 0);
+
+    }
+
+    public void viewByMinimumSalaryRange() {
+        if (companyList.isEmpty()) {
+            System.out.println("No companies found. Cannot filter job postings.");
+            return;
+        }
+
+        double startRange;
+        double endRange;
+
+        do {
+            startRange = jobPostingManagementUI.getDoubleInput("Enter Start Range of Minimum Salary: ");
+            endRange = jobPostingManagementUI.getDoubleInput("Enter End Range of Minimum Salary: ");
+        } while (!JobPostingValidateFunction.isValidSalaryRange(startRange, endRange));
+
+        boolean found = false;
+
+        String line = "+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+        System.out.println("\n-------------------------------------------------------------------------------");
+        System.out.printf(" View Job Postings with Minimum Salary Between RM %.2f and RM %.2f\n", startRange, endRange);
+        System.out.println("-------------------------------------------------------------------------------");
+
+        System.out.println(line);
+        System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12s | %-12s | %-10s | %-12s |\n",
+                "C-ID", "Company Name", "J-ID", "Job Title", "Job Posting Description",
+                "Min Salary", "Max Salary", "Experience", "Date Posted");
+        System.out.println(line);
+
+        for (Company company : companyList) {
+            for (JobPosting posting : company.getJobPostingList()) {
+                double salary = posting.getMinimumSalary();
+                if (salary >= startRange && salary <= endRange) {
+                    Job job = posting.getJob();
+
+                    System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12.2f | %-12.2f | %-10d | %-12s |\n",
+                            company.getId(),
+                            TrimToLength.trimToLength(company.getName(), 28),
+                            job.getId(),
+                            TrimToLength.trimToLength(job.getTitle(), 23),
+                            TrimToLength.trimToLength(posting.getDescription(), 47),
+                            posting.getMinimumSalary(),
+                            posting.getMaximumSalary(),
+                            posting.getRequiredExperience(),
+                            posting.getDatePosted());
+                    found = true;
+                }
+            }
+        }
+
+        if (!found) {
+            System.out.printf("|%160s|\n", "No job postings found with minimum salary between " + startRange + " and " + endRange);
+        }
+
+        System.out.println(line);
+    }
+
+    public void viewByMaximumSalaryRange() {
+        if (companyList.isEmpty()) {
+            System.out.println("No companies found. Cannot filter job postings.");
+            return;
+        }
+
+        double startRange;
+        double endRange;
+
+        do {
+            startRange = jobPostingManagementUI.getDoubleInput("Enter Start Range of Maximum Salary: ");
+            endRange = jobPostingManagementUI.getDoubleInput("Enter End Range of Maximum Salary: ");
+        } while (!JobPostingValidateFunction.isValidSalaryRange(startRange, endRange));
+
+        boolean found = false;
+
+        String line = "+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+        System.out.println("\n-------------------------------------------------------------------------------");
+        System.out.printf(" View Job Postings with Maximum Salary Between RM %.2f and RM %.2f\n", startRange, endRange);
+        System.out.println("-------------------------------------------------------------------------------");
+
+        System.out.println(line);
+        System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12s | %-12s | %-10s | %-12s |\n",
+                "C-ID", "Company Name", "J-ID", "Job Title", "Job Posting Description",
+                "Min Salary", "Max Salary", "Experience", "Date Posted");
+        System.out.println(line);
+
+        for (Company company : companyList) {
+            for (JobPosting posting : company.getJobPostingList()) {
+                double salary = posting.getMaximumSalary();
+                if (salary >= startRange && salary <= endRange) {
+                    Job job = posting.getJob();
+
+                    System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12.2f | %-12.2f | %-10d | %-12s |\n",
+                            company.getId(),
+                            TrimToLength.trimToLength(company.getName(), 28),
+                            job.getId(),
+                            TrimToLength.trimToLength(job.getTitle(), 23),
+                            TrimToLength.trimToLength(posting.getDescription(), 47),
+                            posting.getMinimumSalary(),
+                            posting.getMaximumSalary(),
+                            posting.getRequiredExperience(),
+                            posting.getDatePosted());
+                    found = true;
+                }
+            }
+        }
+
+        if (!found) {
+            System.out.printf("|%160s|\n", "No job postings found with maximum salary between " + startRange + " and " + endRange);
+        }
+
+        System.out.println(line);
+    }
+
+    public void viewByRequiredExperienceRange() {
+        if (companyList.isEmpty()) {
+            System.out.println("No companies found. Cannot filter job postings.");
+            return;
+        }
+
+        int minExperience;
+        int maxExperience;
+
+        do {
+            minExperience = jobPostingManagementUI.getIntegerInput("Enter Minimum Years of Experience: ");
+            maxExperience = jobPostingManagementUI.getIntegerInput("Enter Maximum Years of Experience: ");
+        } while (!JobPostingValidateFunction.isValidRequiredExperience(minExperience)
+                || !JobPostingValidateFunction.isValidRequiredExperience(maxExperience)
+                || minExperience > maxExperience);
+
+        boolean found = false;
+
+        String line = "+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+        System.out.println("\n-------------------------------------------------------------------------------------------");
+        System.out.printf(" View Job Postings with Experience Requirement Between %d and %d Years\n", minExperience, maxExperience);
+        System.out.println("-------------------------------------------------------------------------------------------");
+
+        System.out.println(line);
+        System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12s | %-12s | %-10s | %-12s |\n",
+                "C-ID", "Company Name", "J-ID", "Job Title", "Job Posting Description",
+                "Min Salary", "Max Salary", "Experience", "Date Posted");
+        System.out.println(line);
+
+        for (Company company : companyList) {
+            for (JobPosting posting : company.getJobPostingList()) {
+                int experience = posting.getRequiredExperience();
+                if (experience >= minExperience && experience <= maxExperience) {
+                    Job job = posting.getJob();
+
+                    System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12.2f | %-12.2f | %-10d | %-12s |\n",
+                            company.getId(),
+                            TrimToLength.trimToLength(company.getName(), 28),
+                            job.getId(),
+                            TrimToLength.trimToLength(job.getTitle(), 23),
+                            TrimToLength.trimToLength(posting.getDescription(), 47),
+                            posting.getMinimumSalary(),
+                            posting.getMaximumSalary(),
+                            posting.getRequiredExperience(),
+                            posting.getDatePosted());
+                    found = true;
+                }
+            }
+        }
+
+        if (!found) {
+            System.out.printf("|%160s|\n", "No job postings found with experience requirement between " + minExperience + " and " + maxExperience + " years.");
+        }
+
+        System.out.println(line);
+    }
+
+    public void viewByDatePostedRange() {
+        if (companyList.isEmpty()) {
+            System.out.println("No companies found. Cannot filter job postings.");
+            return;
+        }
+
+        LocalDate startDate;
+        LocalDate endDate;
+
+        do {
+            startDate = jobPostingManagementUI.getDatePrompt("Enter Start Date (yyyy-MM-dd): ");
+            endDate = jobPostingManagementUI.getDatePrompt("Enter End Date (yyyy-MM-dd): ");
+
+            // Check if the start date is not after the end date
+            if (startDate.isAfter(endDate)) {
+                System.err.println("Start date cannot be after end date. Please enter valid dates.");
+            }
+        } while (startDate.isAfter(endDate));
+
+        boolean found = false;
+        String line = "+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+        System.out.println("\n-------------------------------------------------------------------------------");
+        System.out.printf(" View Job Postings with Date Posted Between %s and %s\n", startDate, endDate);
+        System.out.println("-------------------------------------------------------------------------------");
+
+        System.out.println(line);
+        System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12s | %-12s | %-10s | %-12s |\n",
+                "C-ID", "Company Name", "J-ID", "Job Title", "Job Posting Description",
+                "Min Salary", "Max Salary", "Experience", "Date Posted");
+        System.out.println(line);
+
+        // Iterate over each company and its job postings
+        for (Company company : companyList) {
+            for (JobPosting posting : company.getJobPostingList()) {
+                LocalDate postingDate = posting.getDatePosted();  // Assume this method returns a LocalDate
+                // Check if posting date is within the range
+                if (!postingDate.isBefore(startDate) && !postingDate.isAfter(endDate)) {
+                    Job job = posting.getJob();
+                    System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12.2f | %-12.2f | %-10d | %-12s |\n",
+                            company.getId(),
+                            TrimToLength.trimToLength(company.getName(), 28),
+                            job.getId(),
+                            TrimToLength.trimToLength(job.getTitle(), 23),
+                            TrimToLength.trimToLength(posting.getDescription(), 47),
+                            posting.getMinimumSalary(),
+                            posting.getMaximumSalary(),
+                            posting.getRequiredExperience(),
+                            posting.getDatePosted());
+                    found = true;
+                }
+            }
+        }
+
+        // If no postings were found
+        if (!found) {
+            System.out.printf("|%160s|\n", "No job postings found within the date range.");
+        }
+
+        System.out.println(line);
     }
 
     public void viewAllJobPostingList() {
@@ -203,7 +462,7 @@ public class JobPostingControl {
 
         System.out.println(line);
         System.out.printf("| %-5s | %-30s | %-5s | %-25s | %-50s | %-12s | %-12s | %-10s | %-12s |\n",
-                "C_ID", "Company Name", "J_ID", "Job Title", "Job Posting Description",
+                "C-ID", "Company Name", "J-ID", "Job Title", "Job Posting Description",
                 "Min Salary", "Max Salary", "Experience", "Date Posted");
         System.out.println(line);
 
@@ -416,6 +675,63 @@ public class JobPostingControl {
 
     }
 
+    public static void reportFunction(ListInterface<Company> companyList) {
+        String title = "Company Job Posting Summary Report";
+        int totalWidth = 174; // Adjust the total width as needed
+        int titleWidth = title.length();
+        int spacesBefore = (totalWidth - titleWidth) / 2;
+        String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+
+        System.out.println("\n" + line);
+        System.out.printf("| %" + spacesBefore + "s%s%" + (totalWidth - spacesBefore - titleWidth) + "s |\n", "", title, "");
+        System.out.println(line);
+        System.out.printf("| %-50s | %-60s | %-15s | %-12s | %-25s |\n", "Company", "Job", "Total", "Offered", "");
+        System.out.printf("| %-50s | %-60s | %-15s | %-12s | %-25s |\n", "", "Titles", "Applications", "Unoffered", "");
+        System.out.println(line);
+
+        for (int i = 1; i <= companyList.size(); i++) {
+            Company company = companyList.getData(i);
+            ListInterface<JobPosting> jpList = company.getJobPostingList();
+
+            for (int j = 1; j <= jpList.size(); j++) {
+                JobPosting jp = jpList.getData(j);
+                ListInterface<JobApplication> jAppList = jp.getJobApplicationList();
+
+                int totaljApp = jAppList.size();
+                int offered = 0;
+
+                for (int k = 1; k <= totaljApp; k++) {
+                    JobApplication jApp = jAppList.getData(k);
+                    Interview interview = jApp.getInterview();
+                    if (interview != null && interview.getInterviewStatus() == Interview.InterviewStatus.OFFERED) {
+                        offered++;
+                    }
+                }
+
+                int unoffered = totaljApp - offered;
+                
+                String offeredBar = repeatChar('#', offered);
+                String unofferedBar = repeatChar('-', unoffered);
+
+                System.out.printf("| %-50s | %-60s | %-15d | %-12s | %-25s |\n",
+                        company.getName(), jp.getJob().getTitle(), totaljApp, "Offered", offeredBar);
+                System.out.printf("| %-50s | %-60s | %-15s | %-12s | %-25s |\n",
+                        "", "", "", "Unoffered", unofferedBar);
+            }
+
+            System.out.println(line); // space between companies
+        }
+
+    }
+
+    private static String repeatChar(char ch, int count) {
+        String result = "";
+        for (int i = 0; i < count; i++) {
+            result += ch;
+        }
+        return result;
+    }
+
     public static boolean removeJobApplicationFromStudent(JobPosting jobPosting) {
         ListInterface<JobApplication> jAppList = jobPosting.getJobApplicationList();
         boolean isSuccess = true;
@@ -517,9 +833,9 @@ public class JobPostingControl {
         ListInterface<Job> jobList = dataInitialize.getJobList();
         ListInterface<Skill> skillList = dataInitialize.getSkillList();
 
-        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
-
-        jobPostingControl.startJobPostingManagement();
+//        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
+//        jobPostingControl.startJobPostingManagement();
+        JobPostingControl.reportFunction(companyList);
     }
 
 }

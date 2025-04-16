@@ -110,7 +110,7 @@ public class JobPostingValidateFunction {
 
         if (min >= max) {
             System.err.flush();
-            System.err.println("Minimum salary must be less than maximum salary.");
+            System.err.println("Minimum must be less than maximum.");
             System.err.flush();
             return false;
 
