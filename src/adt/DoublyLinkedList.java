@@ -179,27 +179,6 @@ public class DoublyLinkedList<T extends Comparable<T>> implements ListInterface<
         } while (swapped);
     }
 
-//    @Override
-//    public ListInterface<MatchingResult> linearSearch(String target) {
-//        Node currentNode = head;
-//        ListInterface<MatchingResult> filteredList = new DoublyLinkedList<>();
-//
-//        while (currentNode != null) {
-//            MatchingResult result = (MatchingResult) currentNode.data;
-//            JobPosting jobPost = result.getJobPosting();
-//
-//            String companyName = jobPost.getCompany().getName().toLowerCase();
-//            String jobTitle = jobPost.getJob().getTitle().toLowerCase();
-//
-//            if (companyName.contains(target) || jobTitle.contains(target)) {
-//                filteredList.add((MatchingResult) currentNode.data); // Cast as needed
-//            }
-//            currentNode = currentNode.next;
-//        }
-//
-//        return filteredList;
-//    }
-
     @Override
     public int indexOf(T data) {
         int index = 1;

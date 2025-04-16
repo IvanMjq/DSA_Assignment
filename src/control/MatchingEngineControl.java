@@ -44,7 +44,7 @@ public class MatchingEngineControl {
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
     private ListInterface<JobPosting> jobPostList = new DoublyLinkedList<>();
     private ListInterface<MatchingResult> matchResults = new DoublyLinkedList<>();
-        // Comparator to sort by score in descending order
+    // Comparator to sort by score in descending order
     private final Comparator<MatchingResult> scoreComparator = (a, b) -> Double.compare(b.getScore(), a.getScore());
     private MatchingUI matchingUI;
 
@@ -268,11 +268,10 @@ public class MatchingEngineControl {
                     MatchingResult matchingResult = new MatchingResult(student, jobPost, totalScore, experienceStatus, distance, statusDistance);
                     matchResults.add(matchingResult);
                 }
-     
+
             }
         }
 
-        
     }
 
     public void displayAllMatchingResults() {
@@ -282,17 +281,16 @@ public class MatchingEngineControl {
         int failCount = 0;
         System.out.println("==========================================================================================================================================================================================================================");
         System.out.printf("| %-5s | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10s | %-13s | %-8s |\n",
-                "No.", "Student Name", "Company Id","Company", "Job Id","Job Title", "Status of Distance", "Experience Level", "Score", "Status", "Count");
+                "No.", "Student Name", "Company Id", "Company", "Job Id", "Job Title", "Status of Distance", "Experience Level", "Score", "Status", "Count");
         System.out.println("==========================================================================================================================================================================================================================");
 
         for (MatchingResult result : matchResults) {
-
 
             String studentName = result.getStudent().getName();
             String jobTitle = result.getJobPosting().getJob().getTitle();
             String company = result.getJobPosting().getCompany().getName();
             String companyId = result.getJobPosting().getCompany().getId();
-            String jobId  = result.getJobPosting().getJob().getId();
+            String jobId = result.getJobPosting().getJob().getId();
             double score = result.getScore();
             ExperienceCheck expLevel = result.getExperiencedCheck();
             MatchingResult.StatusDistance statusDistance = result.getStatusDistance();
@@ -317,10 +315,10 @@ public class MatchingEngineControl {
             if (!studentName.equals(lastStudentName)) {
                 displayStudent = studentName;
                 System.out.printf("| %-5d | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10.2f | %-13s | %-8d |\n",
-                        matchResults.indexOf(result), displayStudent, companyId, company, jobId,jobTitle, statusDistance, expLevel, score, status, accumulateCount);
+                        matchResults.indexOf(result), displayStudent, companyId, company, jobId, jobTitle, statusDistance, expLevel, score, status, accumulateCount);
             } else {
                 System.out.printf("| %-5d | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10.2f | %-13s | %-8s |\n",
-                        matchResults.indexOf(result), displayStudent, companyId, company, jobId,jobTitle, statusDistance, expLevel, score, status, "");
+                        matchResults.indexOf(result), displayStudent, companyId, company, jobId, jobTitle, statusDistance, expLevel, score, status, "");
             }
 
             lastStudentName = studentName;
@@ -340,7 +338,7 @@ public class MatchingEngineControl {
         do {
             choice = matchingUI.MatchingMenu(student);
             matchStudentsToJobs(student);
-            
+
             switch (choice) {
                 case 1:
                     listScoresForStudent(matchResults);
@@ -369,11 +367,21 @@ public class MatchingEngineControl {
                     break;
                 case 1:
                     displayAllMatchingResults();
-                    
+
                     break;
                 case 2:
                     DistributionGraph();
                     break;
+                    
+                case 3:
+                    String input = matchingUI.SearchUI();
+                    if (input.equals("q") || input.equals("Q")) {
+                        System.out.println("Search cancelled.");
+                        break;
+                    }
+                    searchBy(input);
+                    break;
+                    
 
                 default:
 
@@ -430,7 +438,6 @@ public class MatchingEngineControl {
         System.out.println("Vertical Distribution of Qualified Students by Job Posting");
         System.out.println("======================================================================");
 
-
         System.out.printf("%4s\n", "^");
 
         // Print vertical bars using assigned characters
@@ -468,14 +475,11 @@ public class MatchingEngineControl {
 
         System.out.println("======================================================================");
     }
-    
-    
-
 
     public void presentDescendingOrder() {
 
         if (!matchResults.isEmpty()) {
-            matchResults.bubbleSort((a, b) -> Double.compare(b.getScore(), a.getScore())); 
+            matchResults.bubbleSort((a, b) -> Double.compare(b.getScore(), a.getScore()));
 
             System.out.println("Match Scores for Student: " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ")");
             System.out.println("================================================================================================================================================================================");
@@ -504,12 +508,11 @@ public class MatchingEngineControl {
         }
         System.out.println("================================================================================================================================================================================");
     }
-    
-    
-    public void presentAscendingOrder(){
-        
+
+    public void presentAscendingOrder() {
+
         if (!matchResults.isEmpty()) {
-            matchResults.bubbleSort((a, b) -> Double.compare(a.getScore(), b.getScore())); 
+            matchResults.bubbleSort((a, b) -> Double.compare(a.getScore(), b.getScore()));
 
             System.out.println("Match Scores for Student: " + matchResults.getData(1).getStudent().getName() + " (" + matchResults.getData(1).getStudent().getId() + ")");
             System.out.println("================================================================================================================================================================================");
@@ -538,5 +541,58 @@ public class MatchingEngineControl {
         }
         System.out.println("================================================================================================================================================================================");
     }
-    
+
+    public void searchBy(String input) {
+        boolean found = false;
+        if (!matchResults.isEmpty()) {
+            System.out.println("======================================================================================================================================================================================================================");
+            System.out.printf("| %-5s | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10s | %-20s |\n",
+                    "No.", "Student Name", "Company Id", "Company", "Job Id", "Job Title", "Status of Distance", "Experience Level", "Score", "Status");
+            System.out.println("======================================================================================================================================================================================================================");
+
+            for (int i = 1; i <= matchResults.size(); i++) {
+                MatchingResult matchingResult = matchResults.getData(i);
+                if (matchingResult.getJobPosting().getJob().getId().toLowerCase().contains(input)
+                        || matchingResult.getJobPosting().getJob().getTitle().toLowerCase().contains(input)
+                        || matchingResult.getStudent().getId().toLowerCase().contains(input)
+                        || matchingResult.getStudent().getName().toLowerCase().toLowerCase().contains(input)
+                        || matchingResult.getJobPosting().getCompany().getId().toLowerCase().contains(input)
+                        || matchingResult.getJobPosting().getCompany().getName().toLowerCase().contains(input)
+                        || matchingResult.getExperiencedCheck().toString().toLowerCase().contains(input)
+                        || matchingResult.getStatusDistance().toString().toLowerCase().contains(input)
+                        || String.valueOf(matchingResult.getScore()).toLowerCase().contains(input)
+                )   {
+                    
+                    String studentName = matchingResult.getStudent().getName();
+                    String jobTitle = matchingResult.getJobPosting().getJob().getTitle();
+                    String company = matchingResult.getJobPosting().getCompany().getName();
+                    String companyId = matchingResult.getJobPosting().getCompany().getId();
+                    String jobId = matchingResult.getJobPosting().getJob().getId();
+                    double score = matchingResult.getScore();
+                    ExperienceCheck expLevel = matchingResult.getExperiencedCheck();
+                    MatchingResult.StatusDistance statusDistance = matchingResult.getStatusDistance();
+                    String status = "";
+
+                    if (score > 50) {
+                        status = "Qualified";
+                        
+                    } else {
+                        status = "Not Qualified";
+                        
+                    }
+                    System.out.printf("| %-5d | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10.2f | %-20s |\n",
+                            matchResults.indexOf(matchingResult), studentName, companyId, company, jobId, jobTitle, statusDistance, expLevel, score, status);
+                    found = true;
+                }
+               
+            }
+            if(!found){
+                System.out.println("No matching student found: " + input);
+            }
+        }else{
+            System.out.println("No matching results available to search.");        
+        }
+        System.out.println("======================================================================================================================================================================================================================");
+
+    }
 }

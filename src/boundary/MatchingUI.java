@@ -55,15 +55,15 @@ public class MatchingUI {
         int choice = -1;
 
         System.out.println("Welcome to Summary Report of MatchingEngine");
-        System.out.println("| 1 - All Matching Results");
+        System.out.println("| 1 - Check Matching Results");
         System.out.println("| 2 - Distribution Graph for Job Post vs Number of Student");
+        System.out.println("| 3 - Searching");
         System.out.println("| 0 - Exit");
-        System.out.print("Enter your choice (0, 1, or 2): ");
            while (true) {
-            System.out.print("Enter your choice (0, 1, 2, or 3): ");
+            System.out.print("Enter your choice (0, 1, 2, 3): ");
             try {
-                choice = Integer.parseInt(scanner.nextLine()); // Read input as String, then parse
-                if (choice >= 0 && choice <= 2) {
+                choice = Integer.parseInt(scanner.nextLine()); 
+                if (choice >= 0 && choice <= 3) {
                     break; // valid input
                 } else {
                     System.out.println("Invalid input. Please enter a number between 0 and 3.");
@@ -74,6 +74,14 @@ public class MatchingUI {
         }
 
         return choice;
+
+    }
+    
+    public String SearchUI(){
+        System.out.println("***Find Your Desired Information***");
+        System.out.print("Search Info(Enter Q/q to quit): ");
+        String input = scanner.nextLine().trim().toLowerCase();
+        return input;
 
     }
 }
