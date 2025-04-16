@@ -23,6 +23,7 @@ public class StudentPortalControl {
     private ListInterface<Interview> interviewList = new DoublyLinkedList<>();;
     private StudentPortalUI studentPortalUI;
     private StudentControl studentControl;
+    private JobApplicationControl jobApplicationControl;
     private MatchingEngineControl matchControl;
     
     
@@ -34,14 +35,17 @@ public class StudentPortalControl {
     }
     
     public StudentPortalControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList,ListInterface<Interview> interviewList){
-        this.companyList        = companyList;
-        this.studentList        = studentList;
-        this.skillList          = skillList;
-        this.jobList            = jobList;
-        this.interviewList      = interviewList;
-        this.studentPortalUI    = new StudentPortalUI(this);
-        this.studentControl     = new StudentControl(companyList, studentList, skillList, jobList, interviewList,this);
-        this.matchControl       = new MatchingEngineControl(companyList, studentList);
+        this.companyList                = companyList;
+        this.studentList                = studentList;
+        this.skillList                  = skillList;
+        this.jobList                    = jobList;
+        this.interviewList              = interviewList;
+        this.studentPortalUI            = new StudentPortalUI(this);
+        this.studentControl             = new StudentControl(companyList, studentList, skillList, jobList, interviewList);
+        this.studentControl.setStudentPortalControl(this);
+        this.jobApplicationControl      = new JobApplicationControl(companyList, studentList, skillList, jobList, interviewList);
+        this.jobApplicationControl.setStudentPortalControl(this);
+        this.matchControl               = new MatchingEngineControl(companyList, studentList);
         runStudentPortalManagement();
     }
     
@@ -87,6 +91,9 @@ public class StudentPortalControl {
                     studentControl.updateOwnStudent();
                     break;
                 case 3:
+                    jobApplicationControl.studentJobApplicationManagement();
+                    break;
+                case 4:
                     matchControl.MatchingRunner(loginStudent);
                     break;
                 default:

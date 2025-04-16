@@ -18,7 +18,7 @@ public class StudentUI {
     Scanner scanner = new Scanner(System.in);
     private StudentControl studentControl;
      
-    public StudentUI(StudentControl studentControl) {
+     public StudentUI(StudentControl studentControl) {
         this.studentControl = studentControl;
     }
      
@@ -407,7 +407,7 @@ public class StudentUI {
     
     public void removeStudentUI() {
         System.out.println("--------------------------------------");
-        System.out.println("Remove Student Post");
+        System.out.println("Remove Student");
     }
     
     public boolean confirmation(String message) {

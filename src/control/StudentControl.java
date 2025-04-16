@@ -29,37 +29,28 @@ public class StudentControl {
     private JobApplicationControl jobApplicationControl;
     private AdminPortalControl adminPortalControl;
 
-    public StudentControl() {
-    }
+//    public StudentControl() {
+//    }
 
     public StudentControl(ListInterface<Company> companyList, ListInterface<Student> studentList,ListInterface<Skill> skillList,ListInterface<Job> jobList, ListInterface<Interview> interviewList) {
-        this.companyList = companyList;
-        this.studentList = studentList;
-        this.skillList = skillList;
-        this.jobList = jobList;
-        this.interviewList = interviewList;
+        this.companyList            = companyList;
+        this.studentList            = studentList;
+        this.skillList              = skillList;
+        this.jobList                = jobList;
+        this.interviewList          = interviewList;
+        this.studentUI              = new StudentUI(this);
+        this.jobApplicationControl  = new JobApplicationControl(companyList, studentList, skillList, jobList, interviewList); 
+        this.jobApplicationControl.setStudentControl(this);
     }
-
-    public StudentControl(ListInterface<Company> companyList,ListInterface<Student> studentList,ListInterface<Skill> skillList, ListInterface<Job> jobList, ListInterface<Interview> interviewList, AdminPortalControl adminPortalControl) {
-        this.companyList = companyList;
-        this.studentList = studentList;
-        this.skillList = skillList;
-        this.jobList = jobList;
-        this.interviewList = interviewList;
+ 
+    public void setAdminPortalControl(AdminPortalControl adminPortalControl) {
         this.adminPortalControl = adminPortalControl;
-        this.studentUI = new StudentUI(this);
     }
-
-    public StudentControl(ListInterface<Company> companyList,  ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList, ListInterface<Interview> interviewList, StudentPortalControl studentPortalControl) {
-        this.companyList = companyList;
-        this.studentList = studentList;
-        this.skillList = skillList;
-        this.jobList = jobList;
-        this.interviewList = interviewList;
+    
+    public void setStudentPortalControl(StudentPortalControl studentPortalControl) {
         this.studentPortalControl = studentPortalControl;
-        this.studentUI = new StudentUI(this);
-    }   
-
+    }
+    
     public void adminStudentManagement() {
         int option = 0;
 
@@ -172,36 +163,6 @@ public class StudentControl {
 
         return result;
     }
-    
-//private String convertJobApplicationListToString(ListInterface<JobApplication> jobApplications) {
-//    StringBuilder sb = new StringBuilder();
-//    for (int i = 1; i <= jobApplications.size(); i++) {
-//        JobApplication ja = jobApplications.getData(i);
-//        String companyName = ja.getJobPosting().getCompany().getName();
-//        String jobTitle = ja.getJobPosting().getJob().getTitle();
-//
-//        String interviewStatus = "N/A";
-//        Interview interview = ja.getInterviewList();
-//        if (interview != null && interview.getInterviewStatus() != null) {
-//            interviewStatus = interview.getInterviewStatus().toString();
-//            
-//          sb.append("Company Name: ").append(companyName)
-//          .append(" , Job Title: ").append(jobTitle)
-//          .append(" , Interview Status: ").append(interviewStatus);
-//        }else {
-//          sb.append("Company Name: ").append(companyName)
-//          .append(" , Job Title: ").append(jobTitle)
-//          .append(" , Interview Status: ").append("null");
-//        }
-//
-//        
-//
-//        if (i < jobApplications.size()) {
-//            sb.append("\n");
-//        }
-//    }
-//    return sb.toString();
-//}
 
     public void addStudent() {
         studentUI.addStudentUI();
@@ -783,31 +744,46 @@ public class StudentControl {
     }
     
     public void removeCompanySide(Student input) {
-        for(int i = 1; i <= companyList.size(); i ++) {
+        if (input == null || input.getJobApplicationList() == null) {
+            System.out.println("Input student or their job application list is null.");
+            return;
+        }
+
+        for (int i = 1; i <= companyList.size(); i++) {
             Company c = companyList.getData(i);
-            for(int k = 1; k <= c.getJobPostingList().size(); k++) {
+            if (c == null || c.getJobPostingList() == null) continue;
+
+            for (int k = 1; k <= c.getJobPostingList().size(); k++) {
                 JobPosting jp = c.getJobPostingList().getData(k);
-                for(int h = 1; h <= jp.getJobApplicationList().size(); h++) {
+                if (jp == null || jp.getJobApplicationList() == null) continue;
+
+                for (int h = jp.getJobApplicationList().size(); h >= 1; h--) {
                     JobApplication ja = jp.getJobApplicationList().getData(h);
-                    if(input.getJobApplicationList().indexOf(ja) != -1) {
+                    if (ja != null && input.getJobApplicationList().indexOf(ja) != -1) {
                         jp.getJobApplicationList().remove(h);
                     }
-                }   
-            }
-        }
-    }
-    
-    public void removeInterviewSide(Student input) {
-        for(int i = 1; i <= interviewList.size(); i ++) {
-            Interview in = interviewList.getData(i);
-            for(int k = 1; k <= in.getJobApplicationList().size(); k++) {
-                JobApplication ja = in.getJobApplicationList().getData(k);
-                if(input.getJobApplicationList().indexOf(ja) != -1) {
-                        in.getJobApplicationList().remove(k);
                 }
             }
         }
     }
+
+
+    
+    public void removeInterviewSide(Student input) {
+        for (int i = 1; i <= interviewList.size(); i++) {
+            Interview interview = interviewList.getData(i);
+            ListInterface<JobApplication> jobApps = interview.getJobApplicationList();
+
+           
+            for (int k = jobApps.size(); k >= 1; k--) {
+                JobApplication ja = jobApps.getData(k);
+                if (ja != null && input.getJobApplicationList().indexOf(ja) != -1) {
+                    jobApps.remove(k);
+                }
+            }
+        }
+    }
+
 
     public int findStudent(String input) {
         int count = 1;
