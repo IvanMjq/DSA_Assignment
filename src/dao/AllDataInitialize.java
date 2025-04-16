@@ -900,49 +900,16 @@ public class AllDataInitialize {
     }
     
     public void initializeInterview(){
- /*       
-        // Company 1
-        companyJob = new CompanyJob(
-                companyList.getData(1),
-                jobList.getData(1)
-        );
-        companyList.getData(1).getCompanyJobList().add(companyJob);
-        jobList.getData(1).getCompanyJobList().add(companyJob);
-
-        companyJob = new CompanyJob(
-                companyList.getData(1),
-                jobList.getData(2)
-        );
-        companyList.getData(1).getCompanyJobList().add(companyJob);
-        jobList.getData(2).getCompanyJobList().add(companyJob);
-
-        // Company 2 
-        companyJob = new CompanyJob(
-                companyList.getData(2),
-                jobList.getData(3)
-        );
-        companyList.getData(2).getCompanyJobList().add(companyJob);
-        jobList.getData(3).getCompanyJobList().add(companyJob);
-
-        companyJob = new CompanyJob(
-                companyList.getData(2),
-                jobList.getData(4)
-        );
-        companyList.getData(2).getCompanyJobList().add(companyJob);
-        jobList.getData(4).getCompanyJobList().add(companyJob);     
-*/
- 
-        //Interiew 1
         interviewList.add(new Interview("itv-1", LocalDateTime.of(2025, 4, 1, 13, 0), InterviewStatus.INTERVIEWED, 78));
         interviewList.add(new Interview("itv-2", LocalDateTime.of(2025, 4, 2, 14, 0), InterviewStatus.OFFERED, 80));
         interviewList.add(new Interview("itv-3", LocalDateTime.of(2025, 4, 3, 9, 0), InterviewStatus.REJECTED, 45));
-        interviewList.add(new Interview("itv-4", LocalDateTime.of(2025, 4, 5, 10, 0), InterviewStatus.ACCEPTED, 92));
-        interviewList.add(new Interview("itv-5", LocalDateTime.of(2025, 4, 7, 15, 0), InterviewStatus.INTERVIEW_SCHEDULED, 56));
-        interviewList.add(new Interview("itv-6", LocalDateTime.of(2025, 4, 8, 16, 0), InterviewStatus.DECLINED, 63));
+        interviewList.add(new Interview("itv-4", LocalDateTime.of(2025, 4, 5, 10, 0), InterviewStatus.OFFERED, 92));
+        interviewList.add(new Interview("itv-5", LocalDateTime.of(2025, 4, 7, 15, 0), InterviewStatus.REJECTED, 56));
+        interviewList.add(new Interview("itv-6", LocalDateTime.of(2025, 4, 8, 16, 0), InterviewStatus.INTERVIEWED, 63));
         interviewList.add(new Interview("itv-7", LocalDateTime.of(2025, 4, 9, 13, 0), InterviewStatus.OFFERED, 89));
-        interviewList.add(new Interview("itv-8", LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.INTERVIEWED, 77));
+        interviewList.add(new Interview("itv-8", LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.REJECTED, 77));
         interviewList.add(new Interview("itv-9", LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
-        interviewList.add(new Interview("itv-10", LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.ACCEPTED, 95));
+        interviewList.add(new Interview("itv-10", LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.OFFERED, 95));
 
     }
 
