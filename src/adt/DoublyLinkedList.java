@@ -9,8 +9,6 @@ package adt;
  * @author ivanmjq
  * @author WEI ZHENG
  */
-import entity.JobPosting;
-import entity.MatchingResult;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Iterator;

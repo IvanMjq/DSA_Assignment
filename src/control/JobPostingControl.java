@@ -22,7 +22,8 @@ public class JobPostingControl {
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
 
     private ListInterface<Skill> skillList = new DoublyLinkedList<>();
-    JobPostingManagementUI jobPostingManagementUI = new JobPostingManagementUI(skillList);
+
+    JobPostingManagementUI jobPostingManagementUI;
     JobControl jobControl;
     CompanyControl companyControl;
 
@@ -31,6 +32,7 @@ public class JobPostingControl {
         this.jobList = jobList;
         this.skillList = skillList;
 
+        jobPostingManagementUI = new JobPostingManagementUI(skillList);
         jobControl = new JobControl(jobList);
         companyControl = new CompanyControl(companyList);
     }
@@ -46,7 +48,7 @@ public class JobPostingControl {
                     addJobPosting();
                     break;
                 case 2:
-                    viewAllJobPostingList();
+                    //viewFunction();
                     break;
                 case 3:
                     editJobPosting();
@@ -74,16 +76,18 @@ public class JobPostingControl {
         int requiredExperience;
         LocalDate datePosted = LocalDate.now();
 
+        ListInterface<JobRequiredSkill> jobRequiredSkillList = new DoublyLinkedList<>();
+
         String addConfirmation;
 
         System.out.println("\n--------------------");
         System.out.println(" Add Job Posting");
         System.out.println("--------------------");
 
-        String exitString = "Type 0 or X to return to the previous menu.\n";
+        String exitString = "\nType 0 or X to return to the previous menu.\n";
 
         do {
-            companyControl.viewAllCompanyList();
+            companyControl.viewFunction();
             System.out.println(exitString);
             String id = jobPostingManagementUI.getStringInput("Enter Company ID : ");
             id = id.toUpperCase();
@@ -96,7 +100,7 @@ public class JobPostingControl {
         } while (company == null);
 
         do {
-            jobControl.viewAllJobList();
+            jobControl.viewFunction();
             System.out.println(exitString);
             String id = jobPostingManagementUI.getStringInput("Enter Job ID : ");
             id = id.toUpperCase();
@@ -121,9 +125,7 @@ public class JobPostingControl {
             requiredExperience = jobPostingManagementUI.getIntegerInput("Enter Required Experience (Years) : ");
         } while (!JobPostingValidateFunction.isValidRequiredExperience(requiredExperience));
 
-        do {
-            addConfirmation = jobPostingManagementUI.getConfirmationPrompt("Do you want to add this Job Posting?");
-        } while (!JobPostingValidateFunction.isValidConfirmation(addConfirmation));
+        jobRequiredSkillList = addSkillsForNewJobPosting(jobRequiredSkillList);
 
         JobPosting newJobPosting = new JobPosting(company,
                 job, description,
@@ -131,10 +133,53 @@ public class JobPostingControl {
                 maxinumSalary,
                 requiredExperience,
                 datePosted);
+        newJobPosting.setJobRequiredSkillList(jobRequiredSkillList);
+        System.out.println(newJobPosting);
+        
+        do {
+            addConfirmation = jobPostingManagementUI.getConfirmationPrompt("Do you want to add this Job Posting?");
+        } while (!JobPostingValidateFunction.isValidConfirmation(addConfirmation));
 
-        company.getJobPostingList().add(newJobPosting);
-        job.getJobPostingList().add(newJobPosting);
+        if (addConfirmation.equalsIgnoreCase("Y")) {
+            company.getJobPostingList().add(newJobPosting);
+            job.getJobPostingList().add(newJobPosting);
+            System.out.println("Job Posting added successfully!");
+        } else {
+            System.out.println("Job Posting addition canceled.");
+        }
 
+    }
+
+    private ListInterface<JobRequiredSkill> addSkillsForNewJobPosting(ListInterface<JobRequiredSkill> jobRequiredSkillList) {
+        ListInterface<JobRequiredSkill> newJobRequiredSkillList = jobRequiredSkillList;
+        String confirmationToAdd;
+
+        do {
+            int choice = jobPostingManagementUI.displaySkillMenu(); // Get skill selection
+            Skill selectedSkill = skillList.getData(choice);
+            System.out.println(selectedSkill);
+
+            int importance;
+            do {
+                importance = jobPostingManagementUI.getIntegerInput("Enter importance for this skill (1-5) : ");
+                if (importance < 1 || importance > 5) {
+                    System.out.println("Invalid Importance. Must be between 1 and 5.");
+                }
+            } while (importance < 1 || importance > 5);
+            
+            JobRequiredSkill newJobRequiredSkill = new JobRequiredSkill(selectedSkill, importance);
+            System.out.println(newJobRequiredSkill);
+
+            newJobRequiredSkillList.add(new JobRequiredSkill(selectedSkill, importance));
+            System.out.println("Job Required Skill added : " + newJobRequiredSkill.getSkill().getName() + " (Importance: " + newJobRequiredSkill.getImportance() + ")");
+
+            do {
+                confirmationToAdd = jobPostingManagementUI.getConfirmationPrompt("Do you want to add another skill?");
+            } while (!JobPostingValidateFunction.isValidConfirmation(confirmationToAdd));
+
+        } while (confirmationToAdd.equalsIgnoreCase("Y"));
+
+        return newJobRequiredSkillList;
     }
 
     public void viewAllJobPostingList() {

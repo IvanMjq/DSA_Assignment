@@ -23,7 +23,6 @@ public class CompanyControl {
 
     CompanyManagementUI companyManagementUI = new CompanyManagementUI();
 
-    //JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, studentList, interviewList, skillList);
     public CompanyControl(ListInterface<Company> companyList) {
         this.companyList = companyList;
     }
@@ -39,7 +38,7 @@ public class CompanyControl {
                     addCompany();
                     break;
                 case 2:
-                    viewAllCompanyList();
+                    viewFunction();
                     break;
                 case 3:
                     editCompany();
@@ -110,30 +109,32 @@ public class CompanyControl {
             interviewEndTime = companyManagementUI.getInterviewTimePrompt("Enter Interview End Time : ");
         } while (!CompanyValidateFunction.isValidTimeRange(interviewStartTime, interviewEndTime));
 
+        double[] tude = GeoUtilControl.getLatLong(area, state);
+        latitude = tude[0];
+        longitude = tude[1];
+
+        Company newCompany = new Company(
+                id,
+                name,
+                phone,
+                email,
+                streetAddress,
+                area,
+                state,
+                latitude,
+                longitude,
+                foundedYear,
+                interviewStartTime,
+                interviewEndTime
+        );
+        System.out.println(newCompany);
+
         do {
             addConfirmation = companyManagementUI.getConfirmationPrompt("Do you want to add this company?");
         } while (!CompanyValidateFunction.isValidConfirmation(addConfirmation));
 
         if (addConfirmation.equals("Y")) {
 
-            double[] tude = GeoUtilControl.getLatLong(area, state);
-            latitude = tude[0];
-            longitude = tude[1];
-
-            Company newCompany = new Company(
-                    id,
-                    name,
-                    phone,
-                    email,
-                    streetAddress,
-                    area,
-                    state,
-                    latitude,
-                    longitude,
-                    foundedYear,
-                    interviewStartTime,
-                    interviewEndTime
-            );
             boolean isAdded = companyList.add(newCompany);
             if (isAdded) {
                 System.out.println("Company added successfully!");
@@ -146,6 +147,90 @@ public class CompanyControl {
             System.out.println("Company addition canceled.");
         }
 
+    }
+
+    public void viewFunction() {
+        int option;
+
+        do {
+            option = companyManagementUI.getCompanyViewOptions();
+
+            switch (option) {
+                case 1:
+                    viewFoundedYearRangeFilter();
+                    break;
+                case 2:
+                    viewAllCompanyList();
+                    break;
+                case 0:
+                    System.out.println("Exitting the View ...");
+                    break;
+            }
+
+        } while (option != 0);
+
+    }
+
+    public void viewFoundedYearRangeFilter() {
+        if (companyList.isEmpty()) {
+            System.out.println("No Companies found.");
+            return;
+        }
+
+        int startYear;
+        int endYear;
+
+        // Loop to get valid year range input from the user
+        do {
+            do {
+                startYear = companyManagementUI.getIntegerInput("Enter Start Founded Year: ");
+            } while (!CompanyValidateFunction.isValidFoundedYear(startYear));
+
+            do {
+                endYear = companyManagementUI.getIntegerInput("Enter End Founded Year: ");
+            } while (!CompanyValidateFunction.isValidFoundedYear(endYear));
+
+        } while (startYear > endYear);
+
+        String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+        System.out.println("\n----------------------------------------------------------------");
+        System.out.println(" Filtered Companies List (Founded Between " + startYear + " and " + endYear + ")");
+        System.out.println("----------------------------------------------------------------");
+
+        System.out.println(line);
+        System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-17s | %-9s | %-9s | %-6s | %-6s | %-6s |\n",
+                "ID", "Name", "Phone", "Email", "Street", "Area", "State",
+                "Latitude", "Longitude", "Year", "Start", "End");
+        System.out.println(line);
+
+        boolean found = false;
+
+        // Iterate through companies and filter based on founded year range
+        for (Company c : companyList) {
+            if (c.getFoundedYear() >= startYear && c.getFoundedYear() <= endYear) {
+                System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-17s | %-9.4f | %-9.4f | %-6d | %-6s | %-6s |\n",
+                        c.getId(),
+                        TrimToLength.trimToLength(c.getName(), 30),
+                        TrimToLength.trimToLength(c.getPhone(), 14),
+                        TrimToLength.trimToLength(c.getEmail(), 30),
+                        TrimToLength.trimToLength(c.getStreetAddress(), 50),
+                        TrimToLength.trimToLength(c.getArea(), 25),
+                        TrimToLength.trimToLength(c.getState(), 17),
+                        c.getLatitude(),
+                        c.getLongitude(),
+                        c.getFoundedYear(),
+                        c.getInterviewStartTime(),
+                        c.getInterviewEndTime());
+                found = true;
+            }
+        }
+
+        // If no companies were found within the range
+        if (!found) {
+            System.out.println("No companies found in the specified year range.");
+        }
+
+        System.out.println(line);
     }
 
     public void viewAllCompanyList() {

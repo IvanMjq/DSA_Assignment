@@ -80,7 +80,7 @@ public class JobPostingManagementUI {
         while (validInput != true) {
             System.out.println("");
             System.out.println(line);
-            System.out.printf("|  %-30s|\n", "Skill List");
+            System.out.printf("|  %-30s|\n", "Job Required Skill List");
             for (int i = 1; i <= skillListSize; i++) {
                 Skill sk = skillList.getData(i);
                 System.out.printf("|  %-30s|\n", i + ". " + sk.getName());
@@ -205,7 +205,7 @@ public class JobPostingManagementUI {
         ListInterface<Skill> skillList = dataInitialize.getSkillList();
 
         JobPostingManagementUI jp = new JobPostingManagementUI(skillList);
-        jp.jobPostingEditMenu();
+        jp.displaySkillMenu();
     }
 
 }
