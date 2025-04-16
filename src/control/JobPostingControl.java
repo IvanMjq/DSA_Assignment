@@ -573,9 +573,12 @@ public class JobPostingControl {
                 case 4: // Required Experience
                     int experience;
                     do {
-                        experience = jobPostingManagementUI.getIntegerInput("Enter Required Experience (Years): ");
+                        experience = jobPostingManagementUI.getIntegerInput("Enter Required Experience (Years) : ");
                     } while (!JobPostingValidateFunction.isValidRequiredExperience(experience));
                     jobPostingFound.setRequiredExperience(experience);
+                    break;
+                case 5:
+                    
                     break;
                 case 0:
                     System.out.println("Returning to Job Posting Management Menu..");
@@ -586,7 +589,7 @@ public class JobPostingControl {
             }
 
             // Show updated job posting
-            System.out.println("\n\nUpdated Job Posting:");
+            System.out.println("\n\nUpdated Job Posting : ");
             System.out.println(jobPostingFound);
 
         } while (option != 0);

@@ -203,7 +203,7 @@ public class JobControl {
 
         do {
             do {
-                viewAllJobList();
+                viewFunction();
                 System.out.println("Type 0 or X to return to the Job Management Menu.\n");
                 id = jobManagementUI.getStringInput("Enter Job ID : ");
                 id = id.toUpperCase();
@@ -271,7 +271,7 @@ public class JobControl {
 
         do {
             do {
-                viewAllJobList();
+                viewFunction();
                 System.out.println("Type 0 or X to return to the Job Management Menu.\n");
                 id = jobManagementUI.getStringInput("Enter Job ID : ");
                 id = id.toUpperCase();

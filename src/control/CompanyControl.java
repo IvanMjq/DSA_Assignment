@@ -283,7 +283,7 @@ public class CompanyControl {
 
         do {
             do {
-                viewAllCompanyList();
+                viewFunction();
                 System.out.println("Type 0 or X to return to the previous menu.\n");
                 id = companyManagementUI.getStringInput("Enter Company ID : ");
                 id = id.toUpperCase();
@@ -402,7 +402,7 @@ public class CompanyControl {
 
         do {
             do {
-                viewAllCompanyList();
+                viewFunction();
                 System.out.println("Type 0 or X to return to the previous menu.\n");
                 id = companyManagementUI.getStringInput("Enter Company ID : ");
                 id = id.toUpperCase();
