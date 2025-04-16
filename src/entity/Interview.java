@@ -8,12 +8,13 @@ import adt.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import utility.IdGeneration;
 
 /**
  *
  * @author Lim Zi Qi
  */
-public class Interview implements Serializable, Comparable<Interview> {
+public class Interview implements Serializable, IdGeneration.Identifiable, Comparable<Interview>{
 
     public enum InterviewStatus {
         APPLIED,
@@ -21,8 +22,6 @@ public class Interview implements Serializable, Comparable<Interview> {
         INTERVIEWED,
         OFFERED,
         REJECTED,
-        ACCEPTED,
-        DECLINED
     }
 
     private String id;
@@ -42,6 +41,7 @@ public class Interview implements Serializable, Comparable<Interview> {
         this.interviewMark = interviewMark;
     }
 
+    @Override
     public String getId() {
         return id;
     }
