@@ -11,7 +11,6 @@ import dao.AllDataInitialize;
 import entity.Company;
 import entity.Interview;
 import entity.Job;
-import entity.JobApplication;
 import entity.JobPosting;
 import entity.Student;
 import java.time.LocalTime;
@@ -24,17 +23,13 @@ import utility.*;
 public class CompanyControl {
 
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
-    private ListInterface<Job> jobList = new DoublyLinkedList<>();
-    private ListInterface<Student> studentList = new DoublyLinkedList<>();
-    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
 
     CompanyManagementUI companyManagementUI = new CompanyManagementUI();
+    
+    //JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, studentList, interviewList, skillList);
 
-    public CompanyControl(ListInterface<Company> companyList, ListInterface<Job> jobList, ListInterface<Student> studentList, ListInterface<Interview> interviewList) {
+    public CompanyControl(ListInterface<Company> companyList) {
         this.companyList = companyList;
-        this.jobList = jobList;
-        this.studentList = studentList;
-        this.interviewList = interviewList;
     }
 
     public void startCompanyManagement() {
@@ -48,7 +43,7 @@ public class CompanyControl {
                     addCompany();
                     break;
                 case 2:
-                    viewCompanyList();
+                    viewAllCompanyList();
                     break;
                 case 3:
                     editCompany();
@@ -153,7 +148,7 @@ public class CompanyControl {
 
     }
 
-    public void viewCompanyList() {
+    public void viewAllCompanyList() {
         String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
         System.out.println("\n--------------------");
         System.out.println(" View Companies List ");
@@ -190,7 +185,7 @@ public class CompanyControl {
 
     public void editCompany() {
         if (companyList.isEmpty()) {
-            System.out.println("No companies available to edit.");
+            System.out.println("No Companies available to edit.");
             return;
         }
 
@@ -200,7 +195,7 @@ public class CompanyControl {
 
         do {
             do {
-                viewCompanyList();
+                viewAllCompanyList();
                 System.out.println("Type 0 or X to return to the previous menu.\n");
                 id = companyManagementUI.getStringInput("Enter Company ID : ");
                 id = id.toUpperCase();
@@ -309,7 +304,7 @@ public class CompanyControl {
 
         do {
             do {
-                viewCompanyList();
+                viewAllCompanyList();
                 System.out.println("Type 0 or X to return to the previous menu.\n");
                 id = companyManagementUI.getStringInput("Enter Company ID : ");
                 id = id.toUpperCase();
@@ -329,116 +324,41 @@ public class CompanyControl {
 
         } while (confirmationToDelete.equals("N"));
 
-        // Remove JobApplication of the company in the Student and the JobPosting of the company in the Job
-        removeJobPostingsFromJobs(companyFound);
-        removeJobApplicationsFromStudents(companyFound);
-        removeJobApplicationsFromInterviews(companyFound);
-        
-        // Clear the JobPosting list of the company 
-        companyFound.getJobPostingList().clear();
+        removeCompanyFromList(companyFound);
 
-        // Remove the company
-        int companyIndex = companyList.indexOf(companyFound);
-
-        if (companyIndex != -1) {
-            Company removedCompany = companyList.remove(companyIndex);
-
-            if (removedCompany != null) {
-                System.out.println("Successfully removed Company with ID : " + removedCompany.getId());
-                System.out.println("Remaining companies: " + companyList.size());
-            } else {
-                System.err.println("Error. Failed to removed Company with ID : " + companyFound.getId());
-                System.err.flush();
-            }
-        } else {
-            System.err.println("Error. Failed to get company. ");
-            System.err.flush();
-        }
-
-    }
-
-    private void removeJobPostingsFromJobs(Company company) {
-        for (int i = company.getJobPostingList().size(); i > 0; i--) {
-            JobPosting cJp = company.getJobPostingList().getData(i);
-
-            for (int j = jobList.size(); j > 0; j--) {
-                ListInterface<JobPosting> jJpList = jobList.getData(j).getJobPostingList();
-                
-                for (int k = jJpList.size(); k > 0; k--) {
-                    JobPosting jJp = jJpList.getData(k);
-                    if (jJp.equals(cJp)) {
-                        JobPosting removedJobPosting = jJpList.remove(k);
-                        if (removedJobPosting != null) {
-                            System.out.println("Successfully removed JobPosting with ID: " + removedJobPosting.getCompany().getId() + ", " + removedJobPosting.getJob().getId());
-                        } else {
-                            System.err.println("Failed to remove JobPosting with ID: " + jJp.getCompany().getId() + ", " + jJp.getJob().getId());
-                        } 
-                    }
-                }
-            }
-        }
-    }
-
-    private void removeJobApplicationsFromStudents(Company company) {
-        for (int i = company.getJobPostingList().size(); i > 0; i--) {
-            JobPosting cJp = company.getJobPostingList().getData(i);
-            
-            for (JobApplication cJApp : cJp.getJobApplicationList()) {
-                for (Student student : studentList) {
-                    ListInterface<JobApplication> studentJobApplicationList = student.getJobApplicationList();
-                    
-                    for (int j = studentJobApplicationList.size(); j > 0; j--) {
-                        JobApplication sJApp = studentJobApplicationList.getData(j);
-                        
-                        if (sJApp.equals(cJApp)) {
-                            JobApplication removedJobApplication = studentJobApplicationList.remove(j);
-                            if (removedJobApplication != null) {
-                                System.out.println("Successfully removed JobApplication with ID : " + removedJobApplication.getJobPosting().getCompany().getId() + ", " + removedJobApplication.getStudent().getId());
-                            } else {
-                                System.err.println("Failed to remove JobApplication with ID : " + sJApp.getJobPosting().getCompany().getId() + ", " + sJApp.getStudent().getId());
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
     
-    private void removeJobApplicationsFromInterviews(Company company) {
-        for (int i = company.getJobPostingList().size(); i > 0; i--) {
-            JobPosting cJp = company.getJobPostingList().getData(i);
-            
-            for (JobApplication cJApp : cJp.getJobApplicationList()) {
-                for (Interview interview : interviewList) {
-                    ListInterface<JobApplication> interviewJobApplicationList = interview.getJobApplicationList();
-                    
-                    for (int j = interviewJobApplicationList.size(); j > 0; j--) {
-                        JobApplication sJApp = interviewJobApplicationList.getData(j);
-                        
-                        if (sJApp.equals(cJApp)) {
-                            JobApplication removedJobApplication = interviewJobApplicationList.remove(j);
-                            if (removedJobApplication != null) {
-                                System.out.println("Successfully removed JobApplication with ID : " + removedJobApplication.getJobPosting().getCompany().getId() + ", " + removedJobApplication.getStudent().getId());
-                            } else {
-                                System.err.println("Failed to remove JobApplication with ID : " + sJApp.getJobPosting().getCompany().getId() + ", " + sJApp.getStudent().getId());
-                            }
-                        }
-                    }
-                }
-            }
+    public void removeCompanyFromList(Company companyFound) {
+        ListInterface<JobPosting> jpList = companyFound.getJobPostingList();
+        
+        for (JobPosting jp : jpList) {
+            JobPostingControl.removeJobApplicationFromStudent(jp);
+            JobPostingControl.removeJobApplicationFromInterview(jp);
+            JobPostingControl.removeJobPostingFromJob(jp);
         }
+        
+        companyFound.getJobPostingList().clear();
+        
+        int companyIndex = companyList.indexOf(companyFound);
+        Company removedCompany = companyList.remove(companyIndex);
+        if (removedCompany != null) {
+            System.out.println("Successfully removed Company with ID : " + 
+                    removedCompany.getId()
+            );
+        } else {
+            System.err.println("Failed to remove Company wih ID : " + 
+                    companyFound.getId()
+            );
+        } 
     }
-
+    
     // Just for testing purpose
     public static void main(String[] args) {
         AllDataInitialize dataInitialize = new AllDataInitialize();
 
         ListInterface<Company> companyList = dataInitialize.getCompanyList();
-        ListInterface<Job> jobList = dataInitialize.getJobList();
-        ListInterface<Student> studentList = dataInitialize.getStudentList();
-        ListInterface<Interview> interviewList = dataInitialize.getInterviewList();
 
-        CompanyControl companyControl = new CompanyControl(companyList, jobList, studentList, interviewList);
+        CompanyControl companyControl = new CompanyControl(companyList);
 
         companyControl.startCompanyManagement();
     }

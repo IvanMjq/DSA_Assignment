@@ -65,7 +65,7 @@ public class JobPosting implements Serializable, Comparable<JobPosting> {
         return minimumSalary;
     }
 
-    public void setMinimumSalary(int minimumSalary) {
+    public void setMinimumSalary(double minimumSalary) {
         this.minimumSalary = minimumSalary;
     }
 
@@ -73,7 +73,7 @@ public class JobPosting implements Serializable, Comparable<JobPosting> {
         return maximumSalary;
     }
 
-    public void setMaximumSalary(int maximumSalary) {
+    public void setMaximumSalary(double maximumSalary) {
         this.maximumSalary = maximumSalary;
     }
 
