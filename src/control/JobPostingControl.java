@@ -19,19 +19,15 @@ public class JobPostingControl {
 
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
-    private ListInterface<Student> studentList = new DoublyLinkedList<>();
-    private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
 
     private ListInterface<Skill> skillList = new DoublyLinkedList<>();
     JobPostingManagementUI jobPostingManagementUI = new JobPostingManagementUI(skillList);
     JobControl jobControl;
     CompanyControl companyControl;
 
-    public JobPostingControl(ListInterface<Company> companyList, ListInterface<Job> jobList, ListInterface<Student> studentList, ListInterface<Interview> interviewList, ListInterface<Skill> skillList) {
+    public JobPostingControl(ListInterface<Company> companyList, ListInterface<Job> jobList, ListInterface<Skill> skillList) {
         this.companyList = companyList;
         this.jobList = jobList;
-        this.studentList = studentList;
-        this.interviewList = interviewList;
         this.skillList = skillList;
 
         jobControl = new JobControl(jobList);
@@ -473,11 +469,9 @@ public class JobPostingControl {
 
         ListInterface<Company> companyList = dataInitialize.getCompanyList();
         ListInterface<Job> jobList = dataInitialize.getJobList();
-        ListInterface<Student> studentList = dataInitialize.getStudentList();
-        ListInterface<Interview> interviewList = dataInitialize.getInterviewList();
         ListInterface<Skill> skillList = dataInitialize.getSkillList();
 
-        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, studentList, interviewList, skillList);
+        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
 
         jobPostingControl.startJobPostingManagement();
     }
