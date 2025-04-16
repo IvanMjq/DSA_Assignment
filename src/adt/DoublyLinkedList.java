@@ -76,41 +76,29 @@ public class DoublyLinkedList<T extends Comparable<T>> implements ListInterface<
     public T remove(int givenPosition) {
         T result = null;
 
-        if (givenPosition >= 1 && givenPosition <= numberOfEntries) {
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
             if (givenPosition == 1) {
                 result = head.data;
                 head = head.next;
-                if (head != null) {
-                    head.prev = null;
-                } else {
-                    tail = null; // list is now empty
-                }
             } else {
-                Node nodeToRemove = head;
-                for (int i = 1; i < givenPosition; i++) {
-                    nodeToRemove = nodeToRemove.next;
+                Node choosenNode = head;
+                for (int i = 0; i < givenPosition - 1; ++i) {
+                    choosenNode = choosenNode.next;
                 }
-                result = nodeToRemove.data;
-
-                Node prevNode = nodeToRemove.prev;
-                Node nextNode = nodeToRemove.next;
-
-                if (prevNode != null) {
-                    prevNode.next = nextNode;
-                }
-                if (nextNode != null) {
-                    nextNode.prev = prevNode;
+                result = choosenNode.data;
+                // change next node
+                if (choosenNode.next != null) {
+                    choosenNode.next.prev = choosenNode.prev;
+                    choosenNode.prev.next = choosenNode.next;
                 } else {
-                    tail = prevNode; // removed last node
+                    tail = choosenNode.prev;
+                    tail.next = null;
                 }
             }
-
             numberOfEntries--;
         }
-
-        return result; // returns null if givenPosition is invalid
+        return result; // Return rmemoved entry, or null for failed operations
     }
-
 
     // Get the data with the given entry
     @Override
