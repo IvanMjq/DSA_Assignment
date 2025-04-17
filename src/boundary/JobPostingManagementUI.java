@@ -119,7 +119,7 @@ public class JobPostingManagementUI {
         boolean validInput = false;
         boolean isFirstInput = true;
 
-        String line = "+------------------------------------------+";
+        String line = "+----------------------------------------------------+";
 
         while (validInput != true) {
             System.out.println("\n\n");
