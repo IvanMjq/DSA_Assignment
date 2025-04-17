@@ -116,9 +116,9 @@ public class JobPostingControl {
             if (JobPostingValidateFunction.isJobPostingExist(company, job)) {
                 continue;
             }
-            
+
             break;
-            
+
         } while (true);
 
         do {
@@ -835,6 +835,91 @@ public class JobPostingControl {
 
     }
 
+    public static void reportGraphFunction(ListInterface<Company> companyList) {
+        final int INITIAL_MAX_BAR_WIDTH = 100;
+        int initialApplications = 3;
+        int maxApplications = initialApplications;
+
+        int longestString = 0;
+
+        if (maxApplications % 2 != 0) {
+            maxApplications++; // Round up to the next even number, to make sure proper division for each job application
+        }
+
+        int maxBarWidth = calculateDynamicBarWidth(maxApplications, INITIAL_MAX_BAR_WIDTH);
+        int charPerJobApplication = maxBarWidth / maxApplications;
+
+        // Find the maximum number of applications
+        System.out.println("\n    Job Posting Bar Chart (Applications)");
+        System.out.println("\n    Legend: [# = Offered, - = Unoffered]\n");
+
+        // Step 2: Print bars
+        for (Company company : companyList) {
+            ListInterface<JobPosting> jpList = company.getJobPostingList();
+            for (JobPosting jp : jpList) {
+                ListInterface<JobApplication> jAppList = jp.getJobApplicationList();
+                int totalJApp = jAppList.size();
+                int offeredJApp = 0;
+
+                for (JobApplication jApp : jAppList) {
+                    Interview interview = jApp.getInterview();
+                    if (interview != null && interview.getInterviewStatus() == Interview.InterviewStatus.OFFERED) {
+                        offeredJApp++;
+                    }
+
+                }
+                int unofferedJApp = totalJApp - offeredJApp;
+
+                int offeredLength = offeredJApp * charPerJobApplication;
+                int unofferedLength = unofferedJApp * charPerJobApplication;
+
+                // Construct the bars using the repeatChar method
+                String offeredBar = repeatChar('#', offeredLength);
+                String unofferedBar = repeatChar('-', unofferedLength);
+
+                // Concatenate offered and unoffered parts to form the full bar
+                String fullBar = offeredBar + unofferedBar;
+                
+                if (fullBar.length() > longestString) {
+                    longestString = fullBar.length();
+                }
+                
+                String counts = String.format("(%d)(%d)", offeredJApp, unofferedJApp);
+
+                String label = company.getName() + " - " + jp.getJob().getTitle();
+                label = TrimToLength.trimToLength(label, 50);
+
+                System.out.printf("%-50s | %-" + initialApplications*charPerJobApplication + "s %s\n", 
+                        label, 
+                        fullBar, 
+                        counts);
+
+            }
+
+        }
+
+    }
+
+    public static int calculateDynamicBarWidth(int maxApplications, int initialMaxBarWidth) {
+        int maxBarWidth = initialMaxBarWidth;
+
+        // While there is a fraction in the calculation, reduce MAX_BAR_WIDTH and recalculate
+        while (true) {
+            // Calculate the number of characters per application
+            double charactersPerApplication = (double) maxBarWidth / maxApplications;
+
+            // If there is no fraction, we have a valid bar width
+            if (charactersPerApplication == Math.floor(charactersPerApplication)) {
+                break;
+            }
+
+            // Otherwise, reduce the maxBarWidth by 1 (or a smaller step if needed)
+            maxBarWidth--;
+        }
+
+        return maxBarWidth;
+    }
+
     private static String repeatChar(char ch, int count) {
         String result = "";
         for (int i = 0; i < count; i++) {
@@ -944,8 +1029,9 @@ public class JobPostingControl {
         ListInterface<Job> jobList = dataInitialize.getJobList();
         ListInterface<Skill> skillList = dataInitialize.getSkillList();
 
-        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
-        jobPostingControl.startJobPostingManagement();
+//        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
+//        jobPostingControl.startJobPostingManagement();
+        JobPostingControl.reportGraphFunction(companyList);
 //        JobPostingControl.reportFunction(companyList);
     }
 
