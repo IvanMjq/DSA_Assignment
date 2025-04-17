@@ -60,6 +60,48 @@ public class JobManagementUI {
 
         return option;
     }
+    
+    public int getJobViewOptions() {
+        int option = -1;
+        boolean validInput = false;
+        boolean isFirstInput = true;
+
+        String line = "+--------------------------------+";
+
+        while (validInput != true) {
+            System.out.println("\n\n");
+            System.out.println(line);
+            System.out.printf("|  %-30s|\n", "View Options");
+            System.out.println(line);
+            System.out.printf("|  %-30s|\n", "1. Filtering by Job Types");
+            System.out.printf("|  %-30s|\n", "2. Display all Job");
+            System.out.printf("|  %-30s|\n", "0. Exit View.");
+            System.out.println(line);
+
+            // Check if the user input was invalid before
+            if (!isFirstInput) {
+                System.out.println("Invalid option. Please choose a number between 0 - 2.");
+            }
+
+            // Prompt user input message
+            System.out.print("Please enter your option (0-2) : ");
+
+            // Validate user input
+            if (sc.hasNextInt()) {
+                option = sc.nextInt();
+                sc.nextLine(); // Clear newline character
+                if (option >= 0 && option <= 2) {
+                    validInput = true;
+                }
+            } else {
+                sc.nextLine(); // Clear the invalid input
+            }
+            isFirstInput = false;
+
+        }
+
+        return option;
+    }
 
     public String getJobType() {
         int option = -1;
@@ -174,7 +216,7 @@ public class JobManagementUI {
     // Just for testing purpose
     public static void main(String[] args) {
         JobManagementUI jm = new JobManagementUI();
-        System.out.println(jm.getJobType());
+        System.out.println(jm.getJobViewOptions());
     }
 
 }

@@ -73,26 +73,33 @@ public class JobPostingValidateFunction {
         return null;
     }
 
+    public static boolean isJobPostingExist(Company company, Job job) {
+        ListInterface<JobPosting> jpList = company.getJobPostingList();
+        
+        for (JobPosting jp : jpList) {
+            if (jp.getJob().equals(job)) {
+                System.out.println("A job posting for this company and job already exists.");
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     public static boolean isValidDescription(String description) {
         if (description == null || description.trim().isEmpty()) {
-            System.err.flush();
-            System.err.println("Description cannot be null or empty.");
-            System.err.flush();
+            System.out.println("Description cannot be null or empty.");
             return false;
         }
 
         int length = description.length();
         if (length < 10) {
-            System.err.flush();
-            System.err.println("Invalid Job Posting Description. Descirption is too short. Minimum 10 characters long.");
-            System.err.flush();
+            System.out.println("Invalid Job Posting Description. Descirption is too short. Minimum 10 characters long.");
             return false;
         }
 
         if (length > 500) {
-            System.err.flush();
-            System.err.println("Invalid Job Posting Descirption. Description is too long. Maximum 500 characters allowed.");
-            System.err.flush();
+            System.out.println("Invalid Job Posting Descirption. Description is too long. Maximum 500 characters allowed.");
             return false;
         }
 
@@ -101,17 +108,13 @@ public class JobPostingValidateFunction {
 
     public static boolean isValidSalaryRange(double min, double max) {
         if (min < 0 || max < 0) {
-            System.err.flush();
-            System.err.println("Salary values cannot be negative.");
-            System.err.flush();
+            System.out.println("Salary values cannot be negative.");
             return false;
 
         }
 
         if (min >= max) {
-            System.err.flush();
-            System.err.println("Minimum salary must be less than maximum salary.");
-            System.err.flush();
+            System.out.println("Minimum must be less than maximum.");
             return false;
 
         }
@@ -121,16 +124,12 @@ public class JobPostingValidateFunction {
 
     public static boolean isValidRequiredExperience(int years) {
         if (years < 0) {
-            System.err.flush();
-            System.err.println("Invaid Required Experience. Required experience cannot be negative.");
-            System.err.flush();
+            System.out.println("Invaid Required Experience. Required experience cannot be negative.");
             return false;
         }
 
         if (years > 25) {
-            System.err.flush();
-            System.err.println("That's an unusually high experience requirement. Please enter a value between 0 and 25.");
-            System.err.flush();
+            System.out.println("That's an unusually high experience requirement. Please enter a value between 0 and 25.");
             return false;
         }
 
@@ -139,23 +138,17 @@ public class JobPostingValidateFunction {
 
     public static boolean isValidConfirmation(String confirmation) {
         if (confirmation == null || confirmation.isEmpty()) {
-            System.err.flush();
-            System.err.println("Confirmation Input cannot be null or empty.");
-            System.err.flush();
+            System.out.println("Confirmation Input cannot be null or empty.");
             return false;
         }
 
         if (confirmation.length() != 1) {
-            System.err.flush();
-            System.err.println("Invalid input. Please enter a single character: 'Y' or 'N'.");
-            System.err.flush();
+            System.out.println("Invalid input. Please enter a single character: 'Y' or 'N'.");
             return false;
         }
 
         if (!(confirmation.equals("Y")) && !confirmation.equals("N")) {
-            System.err.flush();
-            System.err.println("Invalid input. Please enter 'Y' for Yes or 'N' for No.");
-            System.err.flush();
+            System.out.println("Invalid input. Please enter 'Y' for Yes or 'N' for No.");
             return false;
         }
 

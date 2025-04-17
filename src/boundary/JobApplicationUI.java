@@ -81,35 +81,7 @@ public class JobApplicationUI {
         System.out.println("--------------------------------------");
         System.out.println("Remove Job Application");
     }
-    
-//    public Student newJobAppicationDetails(Student currentStudent) {
-//        Company companySelected = null;
-//        while(companySelected == null) {
-//            System.out.print("Company ID/Name, (X=Show list): ");
-//            String input = scanner.nextLine().trim();
-//            
-//            if(Character.toUpperCase(input.charAt(0)) == 'X') {
-//                compannyList();
-//            }
-//            
-//            companySelected = jobApplicationControl.isCompanyExist(input);
-//            
-//            if( (companySelected == null) && (Character.toUpperCase(input.charAt(0)) != 'X'))
-//                System.out.println("Company Not Found");
-//         
-//        }
-//         
-//        
-//    }
-    
-//    public void compannyList() {
-//        System.out.println("==========================================================================================================================================================================");
-//        System.out.printf("| %-5s | %-40s | %-20s | %-30s | %-30s | %-30s | %-30s |  %-15s |\n",
-//                        "ID", "Name", "Phone", "Email", "Address", "Street Address", "Area","State","Founded Year");
-//        jobApplicationControl.companyList();
-//        System.out.println("==========================================================================================================================================================================");
-//    }
-//    
+      
     public boolean confirmation(String message) {
         System.out.print(message + " (Y/N): ");
         char confirmation = scanner.nextLine().toUpperCase().charAt(0);

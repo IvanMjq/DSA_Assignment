@@ -31,18 +31,18 @@ public class AllDataInitialize {
         initializeCompanyList();
 
         initializeJob();
-        
+
         initializeInterview();
 
         intializeStudent();
 
         initializeJobPosting();
-        
+
         initializeJobApplication();
 
         initializeStudentSkillList();
 
-        initializeJobRequiredSkill();        
+        initializeJobRequiredSkill();
     }
 
     private void initializeSkillList() {
@@ -207,141 +207,159 @@ public class AllDataInitialize {
                 "J-1",
                 "Software Engineer",
                 "Computer & Technology",
-                "Responsible for designing, developing, and maintaining software applications. Collaborates with cross-functional teams to deliver scalable and efficient software solutions. Proficient in programming languages such as Java, C++, or Python. Strong problem-solving skills and knowledge of software development lifecycle are essential."
-        ));
+                "Design, develop, and maintain software applications. Work with cross-functional teams to deliver scalable and efficient solutions.")
+        );
+
         jobList.add(new Job(
                 "J-2",
                 "Data Analyst",
                 "Computer & Technology",
-                "Analyze large datasets to extract actionable insights and support business decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI."
-        ));
+                "Analyze datasets to extract insights and support decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI.")
+        );
+
         jobList.add(new Job(
                 "J-3",
                 "Cybersecurity Analyst",
                 "Computer & Technology",
-                "Monitor and protect company networks and systems from cyber threats. Conduct risk assessments, manage firewalls, and ensure compliance with security protocols."
-        ));
+                "Monitor and protect systems from cyber threats. Perform risk assessments, manage firewalls, and ensure compliance with security protocols.")
+        );
+
         jobList.add(new Job(
                 "J-4",
                 "Machine Learning Engineer",
                 "Computer & Technology",
-                "Design and implement machine learning models for automation, prediction, and data analysis. Requires knowledge of Python, TensorFlow, and data pipelines."
-        ));
+                "Design and implement ML models for automation and prediction. Requires knowledge of Python, TensorFlow, and data pipelines.")
+        );
+
         jobList.add(new Job(
                 "J-5",
                 "Web Developer",
                 "Computer & Technology",
-                "Develop and maintain responsive websites using HTML, CSS, JavaScript, and frameworks like React.js or Vue.js. Collaborate with designers and backend teams."
-        ));
+                "Develop and maintain websites using HTML, CSS, JavaScript, and frameworks like React.js or Vue.js. Collaborate with design and backend teams.")
+        );
+
         jobList.add(new Job(
                 "J-6",
                 "Mobile App Developer",
                 "Computer & Technology",
-                "Build and maintain mobile applications for iOS and Android platforms using technologies such as Flutter or Kotlin. Work closely with UI/UX designers and QA teams."
-        ));
+                "Build mobile apps for iOS and Android using Flutter or Kotlin. Work with UI/UX designers and QA teams to deliver quality applications.")
+        );
+
         jobList.add(new Job(
                 "J-7",
                 "Cloud Engineer",
                 "Computer & Technology",
-                "Manage and deploy applications on cloud platforms like AWS, Azure, or Google Cloud. Handle infrastructure-as-code, security, and resource optimization."
-        ));
+                "Deploy and manage applications on AWS, Azure, or Google Cloud. Handle infrastructure-as-code, security, and resource optimization.")
+        );
+
         jobList.add(new Job(
                 "J-8",
                 "Database Administrator",
                 "Computer & Technology",
-                "Design, maintain, and optimize databases to ensure high availability and performance. Skilled in SQL, data backup, and recovery strategies."
-        ));
+                "Design, maintain, and optimize databases for high performance and availability. Skilled in SQL, backups, and recovery strategies.")
+        );
+
         jobList.add(new Job(
                 "J-9",
                 "AI Research Intern",
                 "Computer & Technology",
-                "Support the research and development of AI solutions. Assist with data preparation, training models, and evaluating performance. Python experience preferred."
-        ));
+                "Assist in research and development of AI solutions. Help with data preparation, model training, and performance evaluation. Python preferred.")
+        );
+
         jobList.add(new Job(
                 "J-10",
                 "Full-Stack Developer",
                 "Computer & Technology",
-                "Develop complete web applications, working on both frontend and backend. Familiarity with React, Node.js, databases, and APIs is essential."
-        ));
+                "Build full web apps, working on both frontend and backend. Must know React, Node.js, databases, and APIs.")
+        );
+
         jobList.add(new Job(
                 "J-11",
                 "Credit Risk Analyst",
                 "Finance & Banking",
-                "Evaluate credit data and financial statements to assess the risk in lending. Experience with credit scoring models and risk analysis is preferred."
-        ));
+                "Assess credit data and financials to determine lending risk. Experience with credit scoring and financial analysis preferred.")
+        );
+
         jobList.add(new Job(
                 "J-12",
                 "Financial Analyst",
                 "Finance & Banking",
-                "Analyze financial data, create financial models, and assist in strategic planning. Proficiency in Excel, financial forecasting, and risk assessment is required."
-        ));
+                "Analyze financial data, build models, and support strategic decisions. Requires Excel skills, forecasting, and risk evaluation.")
+        );
+
         jobList.add(new Job(
                 "J-13",
                 "Accountant",
                 "Finance & Banking",
-                "Manage financial records, prepare tax documents, and ensure regulatory compliance. Attention to detail and knowledge of accounting software are essential."
-        ));
+                "Manage financial records, prepare tax reports, and ensure compliance. Must know accounting principles and software tools.")
+        );
+
         jobList.add(new Job(
-                "J-14",
-                "Investment Banker",
-                "Finance",
-                "Help clients raise capital and provide strategic financial advice. Requires strong analytical skills, financial modeling, and knowledge of market trends."
-        ));
+                "J-14", 
+                "Investment Banker", 
+                "Finance & Banking",
+                "Help clients raise capital and offer strategic advice. Strong financial modeling, market knowledge, and analytical skills needed.")
+        );
+
         jobList.add(new Job(
                 "J-15",
                 "Budget Analyst",
                 "Finance & Banking",
-                "Evaluate budget proposals, monitor organizational spending, and prepare financial reports. Experience in budgeting tools and government finance is a plus."
-        ));
+                "Review budget plans, monitor spending, and create financial reports. Familiarity with budgeting tools and public finance is a plus.")
+        );
+
         jobList.add(new Job(
                 "J-16",
                 "Medical Laboratory Technologist",
                 "Healthcare",
-                "Perform diagnostic tests on patient samples, analyze results, and support accurate medical diagnoses. Attention to detail and lab safety knowledge are essential."
-        ));
+                "Conduct diagnostic tests, analyze samples, and ensure accuracy. Strong attention to detail and adherence to lab protocols are key.")
+        );
+
         jobList.add(new Job(
                 "J-17",
                 "Secondary School Teacher",
                 "Education",
-                "Plan and deliver lessons for students aged 13–17 in accordance with the national curriculum. Patience, subject expertise, and classroom management are essential."
-        ));
+                "Deliver lessons for ages 13–17 based on the national curriculum. Requires subject expertise, patience, and classroom control.")
+        );
+
         jobList.add(new Job(
                 "J-18",
                 "Early Childhood Educator",
                 "Education",
-                "Design and implement learning activities for children aged 3–6. Strong understanding of child development and creative teaching methods is essential."
-        ));
+                "Create and conduct learning activities for children aged 3–6. Understanding of child development and creative methods essential.")
+        );
+
         jobList.add(new Job(
                 "J-19",
                 "Online Course Instructor",
                 "Education",
-                "Teach academic or professional subjects through online platforms. Requires excellent communication skills, subject expertise, and familiarity with e-learning tools."
-        ));
+                "Teach subjects via online platforms. Strong communication, subject expertise, and knowledge of e-learning tools required.")
+        );
+
         jobList.add(new Job(
                 "J-20",
                 "Mechanical Engineer",
                 "Engineering",
-                "Design, analyze, and improve mechanical systems and devices. Proficiency in CAD software and solid understanding of thermodynamics and materials required."
-        ));
-        jobList.add(new Job(
-                "J-21",
+                "Design and improve mechanical systems. Proficient in CAD and knowledgeable in thermodynamics, materials, and mechanics.")
+        );
+
+        jobList.add(new Job("J-21",
                 "Civil Engineer",
                 "Engineering",
-                "Plan and oversee construction projects including roads, bridges, and buildings. Requires strong project management skills and knowledge of structural analysis."
-        ));
+                "Manage construction projects such as roads and buildings. Skills in project management and structural analysis are essential.")
+        );
 
-        jobList.add(new Job(
-                "J-22",
+        jobList.add(new Job("J-22",
                 "Electrical Engineer",
                 "Engineering",
-                "Develop and test electrical systems and equipment. Must have experience with circuit design, signal processing, and electrical safety standards."
-        ));
-        jobList.add(new Job(
-                "J-23",
+                "Develop and test electrical equipment. Must know circuit design, signal processing, and electrical safety standards.")
+        );
+
+        jobList.add(new Job("J-23",
                 "Registered Nurse",
                 "Healthcare",
-                "Provide patient care, administer medications, and assist in treatment plans. Strong communication, empathy, and knowledge of clinical procedures are essential."
-        ));
+                "Provide patient care, administer meds, and assist in treatments. Requires empathy, communication, and clinical knowledge.")
+        );
     }
 
     private void intializeStudent() {
@@ -358,13 +376,13 @@ public class AllDataInitialize {
                 "alan.chopper@example.com",
                 "Dean's List Award",
                 "Bachelor of Computer Science",
-                1, 
+                1,
                 "Engineering", "Healthcare"
         ));
 
         studentList.add(new Student(
                 "STU-2",
-                "Brenda Lee",
+                "Lavenda Lee",
                 "abc12345",
                 24,
                 "33 Jalan Tun Razak",
@@ -375,7 +393,7 @@ public class AllDataInitialize {
                 "brenda.lee@example.com",
                 "Hackathon Winner",
                 "Bachelor of Software Engineering",
-                2, "Healthcare"));
+                2, "Healthcare", "Computer & Technology"));
 
         studentList.add(new Student(
                 "STU-3",
@@ -498,13 +516,27 @@ public class AllDataInitialize {
                 2, "Engineering"));
     }
 
+    public void initializeInterview() {
+        interviewList.add(new Interview("itv-1", LocalDateTime.of(2025, 4, 1, 13, 0), InterviewStatus.INTERVIEWED, 78));
+        interviewList.add(new Interview("itv-2", LocalDateTime.of(2025, 4, 2, 14, 0), InterviewStatus.OFFERED, 80));
+        interviewList.add(new Interview("itv-3", LocalDateTime.of(2025, 4, 3, 9, 0), InterviewStatus.REJECTED, 45));
+        interviewList.add(new Interview("itv-4", LocalDateTime.of(2025, 4, 5, 10, 0), InterviewStatus.OFFERED, 92));
+        interviewList.add(new Interview("itv-5", LocalDateTime.of(2025, 4, 7, 15, 0), InterviewStatus.REJECTED, 56));
+        interviewList.add(new Interview("itv-6", LocalDateTime.of(2025, 4, 8, 16, 0), InterviewStatus.INTERVIEWED, 63));
+        interviewList.add(new Interview("itv-7", LocalDateTime.of(2025, 4, 9, 13, 0), InterviewStatus.OFFERED, 89));
+        interviewList.add(new Interview("itv-8", LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.REJECTED, 77));
+        interviewList.add(new Interview("itv-9", LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
+        interviewList.add(new Interview("itv-10", LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.OFFERED, 95));
+
+    }
+
     private void initializeJobPosting() {
         JobPosting jp;
 
         jp = new JobPosting(
                 companyList.getData(1),
                 jobList.getData(1),
-                "Analyze complex datasets and present insights for business decisions.",
+                "Design, develop, and maintain software applications. Collaborate with cross-functional teams to deliver scalable and efficient software solutions.",
                 3500.00,
                 5000.00,
                 1,
@@ -516,7 +548,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(1),
                 jobList.getData(2),
-                "Create and manage data visualizations using tools like Tableau and Power BI.",
+                "Create and manage data visualizations using tools like Tableau and Power BI. Analyze complex datasets to provide actionable insights for business decisions.",
                 4000.00,
                 6000.00,
                 2,
@@ -528,7 +560,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(1),
                 jobList.getData(5),
-                "Support data-driven decision-making with advanced analytics.",
+                "Support data-driven decision-making by analyzing datasets, creating reports, and presenting actionable insights to improve business performance.",
                 3700.00,
                 5200.00,
                 2,
@@ -540,7 +572,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(2),
                 jobList.getData(2),
-                "Develop and maintain scalable backend services using Java and Spring Boot.",
+                "Develop and maintain scalable backend services, ensuring high performance and reliability. Experience with Java and Spring Boot is essential.",
                 5000.00,
                 7500.00,
                 3,
@@ -552,7 +584,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(2),
                 jobList.getData(3),
-                "Manage large-scale projects and lead development teams using Agile methodology.",
+                "Lead development teams and manage large-scale projects. Utilize Agile methodologies to ensure efficient project execution and delivery.",
                 5500.00,
                 8000.00,
                 3,
@@ -564,7 +596,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(3),
                 jobList.getData(3),
-                "Work with AI pipelines to optimize ML model deployment.",
+                "Work with AI pipelines to optimize model deployment and scalability. Collaborate with data scientists and engineers to streamline AI solutions.",
                 4800.00,
                 7200.00,
                 2,
@@ -576,7 +608,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(3),
                 jobList.getData(4),
-                "Create machine learning models for predictive analysis and forecasting.",
+                "Develop and implement machine learning models to address business problems, including predictive analysis and forecasting.",
                 4800.00,
                 7500.00,
                 1,
@@ -588,7 +620,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(4),
                 jobList.getData(4),
-                "Develop enterprise applications with modern backend frameworks.",
+                "Design and develop enterprise applications using modern backend frameworks. Ensure applications are scalable, secure, and maintainable.",
                 4000.00,
                 6000.00,
                 3,
@@ -600,7 +632,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(4),
                 jobList.getData(5),
-                "Lead design and development of mobile applications for iOS and Android.",
+                "Lead the design and development of mobile applications for iOS and Android platforms. Collaborate with design and backend teams.",
                 5000.00,
                 7000.00,
                 1,
@@ -612,7 +644,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(5),
                 jobList.getData(5),
-                "Design and develop cross-platform mobile applications using Flutter and Kotlin.",
+                "Design and develop cross-platform mobile applications using frameworks such as Flutter and Kotlin. Ensure high performance and user satisfaction.",
                 4500.00,
                 6000.00,
                 2,
@@ -624,7 +656,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(5),
                 jobList.getData(6),
-                "Develop software to prevent cyberattacks and enhance organizational security.",
+                "Develop software solutions that prevent cyberattacks and enhance organizational security. Experience with network security protocols is essential.",
                 5200.00,
                 7500.00,
                 2,
@@ -636,7 +668,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(6),
                 jobList.getData(6),
-                "Implement and monitor cybersecurity protocols to safeguard company data.",
+                "Implement and monitor cybersecurity protocols to protect data and systems from potential threats. Strong knowledge of encryption and firewall systems is required.",
                 5000.00,
                 7500.00,
                 1,
@@ -648,7 +680,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(6),
                 jobList.getData(7),
-                "Oversee encryption technologies to ensure safe data storage and transmission.",
+                "Oversee the implementation of encryption technologies to ensure safe storage and transmission of data across platforms.",
                 5300.00,
                 7800.00,
                 1,
@@ -660,7 +692,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(7),
                 jobList.getData(7),
-                "Maintain and optimize large-scale SQL databases for high performance.",
+                "Maintain and optimize large-scale SQL databases, ensuring high performance and availability for the organization.",
                 4000.00,
                 6500.00,
                 2,
@@ -672,7 +704,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(7),
                 jobList.getData(8),
-                "Lead migration of cloud-based systems and oversee architecture optimization.",
+                "Lead the migration of cloud-based systems and oversee the architecture optimization to improve scalability and performance.",
                 5800.00,
                 8200.00,
                 3,
@@ -684,7 +716,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(8),
                 jobList.getData(8),
-                "Develop full-stack web applications with seamless integration of frontend and backend.",
+                "Design and develop full-stack web applications, ensuring seamless integration between the frontend and backend components.",
                 4800.00,
                 7000.00,
                 1,
@@ -696,7 +728,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(8),
                 jobList.getData(9),
-                "Collaborate with teams to deliver full-stack web applications on time.",
+                "Collaborate with teams to deliver innovative, high-quality full-stack web applications on time. Expertise in React.js and Node.js required.",
                 4800.00,
                 7000.00,
                 2,
@@ -708,7 +740,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(9),
                 jobList.getData(9),
-                "Assist in AI model training and evaluation for real-world research projects.",
+                "Assist with AI model training and evaluation, contributing to real-world research projects and performance assessments.",
                 3000.00,
                 4000.00,
                 1,
@@ -720,7 +752,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(9),
                 jobList.getData(10),
-                "Conduct research and create innovative AI solutions for clients.",
+                "Conduct research and develop innovative AI solutions. Work closely with engineers to design systems that address client-specific needs.",
                 6000.00,
                 8500.00,
                 1,
@@ -740,57 +772,86 @@ public class AllDataInitialize {
         );
         companyList.getData(10).getJobPostingList().add(jp);
         jobList.getData(10).getJobPostingList().add(jp);
+        
+        jp = new JobPosting(
+                companyList.getData(10),
+                jobList.getData(11),
+                "Lead the development of innovative solutions in the field of AI and machine learning.",
+                6000.00,
+                9000.00,
+                3,
+                LocalDate.of(2024, 7, 1)
+        );
+        companyList.getData(10).getJobPostingList().add(jp);
+        jobList.getData(11).getJobPostingList().add(jp);
 
     }
 
     private void initializeJobApplication() {
-        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1), companyList.getData(1).getJobPostingList().getData(1), interviewList.getData(1), LocalDate.of(2025, 4, 1)));
-        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1), companyList.getData(3).getJobPostingList().getData(2), interviewList.getData(3), LocalDate.of(2025, 7, 1)));
-//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
-//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
-//        studentList.getData(1).getJobApplicationList().add(new JobApplication(studentList.getData(1),  LocalDateTime.of(2025, 4, 1, 13, 0)));
-        
-//        jobApplicationList.add(new JobApplication(
-//                "JA-1", 
-//                studentList.getData(1),
-//                LocalDateTime.of(2025, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-2",
-//                studentList.getData(2),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-3",
-//                studentList.getData(4),
-//                LocalDateTime.of(2024, 6, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-4",
-//                studentList.getData(6),
-//                LocalDateTime.of(2024, 7, 1, 19, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-5",
-//                studentList.getData(5),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-6", 
-//                studentList.getData(3),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-7",
-//                studentList.getData(1),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
-//        jobApplicationList.add(new JobApplication(
-//                "JA-8",
-//                studentList.getData(2),
-//                LocalDateTime.of(2024, 7, 1, 13, 0)
-//        ));
+        JobApplication jApp;
+
+        // STU-1 → Job 1 at Company 1
+        jApp = new JobApplication(studentList.getData(1), companyList.getData(1).getJobPostingList().getData(1), interviewList.getData(1), LocalDate.of(2025, 4, 1));
+        studentList.getData(1).getJobApplicationList().add(jApp);
+        companyList.getData(1).getJobPostingList().getData(1).getJobApplicationList().add(jApp);
+        interviewList.getData(1).getJobApplicationList().add(jApp);
+
+        // STU-1 → Job 4 at Company 3
+        jApp = new JobApplication(studentList.getData(1), companyList.getData(3).getJobPostingList().getData(2), interviewList.getData(2), LocalDate.of(2025, 7, 1));
+        studentList.getData(1).getJobApplicationList().add(jApp);
+        companyList.getData(3).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(2).getJobApplicationList().add(jApp);
+
+        // STU-2 → Healthcare (J-16)
+        jApp = new JobApplication(studentList.getData(2), companyList.getData(10).getJobPostingList().getData(1), interviewList.getData(3), LocalDate.of(2025, 4, 2));
+        studentList.getData(2).getJobApplicationList().add(jApp);
+        companyList.getData(10).getJobPostingList().getData(1).getJobApplicationList().add(jApp);
+        interviewList.getData(3).getJobApplicationList().add(jApp);
+
+        // STU-3 → Job 3 at Company 2
+        jApp = new JobApplication(studentList.getData(3), companyList.getData(2).getJobPostingList().getData(2), interviewList.getData(4), LocalDate.of(2025, 6, 15));
+        studentList.getData(3).getJobApplicationList().add(jApp);
+        companyList.getData(2).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(4).getJobApplicationList().add(jApp);
+
+        // STU-3 → Registered Nurse (J-23)
+        jApp = new JobApplication(studentList.getData(3), companyList.getData(10).getJobPostingList().getData(2), interviewList.getData(5), LocalDate.of(2025, 6, 20));
+        studentList.getData(3).getJobApplicationList().add(jApp);
+        companyList.getData(10).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(5).getJobApplicationList().add(jApp);
+
+        // STU-4 → Cybersecurity Job at Company 6
+        jApp = new JobApplication(studentList.getData(4), companyList.getData(6).getJobPostingList().getData(2), interviewList.getData(6), LocalDate.of(2025, 9, 17));
+        studentList.getData(4).getJobApplicationList().add(jApp);
+        companyList.getData(6).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(6).getJobApplicationList().add(jApp);
+
+        // STU-5 → Healthcare: Medical Lab Tech (J-16)
+        jApp = new JobApplication(studentList.getData(5), companyList.getData(10).getJobPostingList().getData(1), interviewList.getData(7), LocalDate.of(2025, 7, 10));
+        studentList.getData(5).getJobApplicationList().add(jApp);
+        companyList.getData(10).getJobPostingList().getData(1).getJobApplicationList().add(jApp);
+        interviewList.getData(7).getJobApplicationList().add(jApp);
+
+        // STU-6 → Cybersecurity at Company 5
+        jApp = new JobApplication(studentList.getData(6), companyList.getData(5).getJobPostingList().getData(2), interviewList.getData(8), LocalDate.of(2025, 11, 1));
+        studentList.getData(6).getJobApplicationList().add(jApp);
+        companyList.getData(5).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(8).getJobApplicationList().add(jApp);
+
+        // STU-7 → Full-Stack at Company 9
+        jApp = new JobApplication(studentList.getData(7), companyList.getData(9).getJobPostingList().getData(2), interviewList.getData(9), LocalDate.of(2025, 12, 1));
+        studentList.getData(7).getJobApplicationList().add(jApp);
+        companyList.getData(9).getJobPostingList().getData(2).getJobApplicationList().add(jApp);
+        interviewList.getData(9).getJobApplicationList().add(jApp);
+
+        // STU-8 → AI Intern at Company 10
+        jApp = new JobApplication(studentList.getData(8), companyList.getData(10).getJobPostingList().getData(1), interviewList.getData(10), LocalDate.of(2025, 8, 30));
+        studentList.getData(8).getJobApplicationList().add(jApp);
+        companyList.getData(10).getJobPostingList().getData(1).getJobApplicationList().add(jApp);
+        interviewList.getData(10).getJobApplicationList().add(jApp);
     }
+
+
 
     private void initializeStudentSkillList() {
         studentList.getData(1).getStudentSkillList().add(new StudentSkill(skillList.getData(1), 3));
@@ -898,20 +959,6 @@ public class AllDataInitialize {
         companyList.getData(9).getJobPostingList().getData(1).getJobRequiredSkillList().add(jrs);
 
     }
-    
-    public void initializeInterview(){
-        interviewList.add(new Interview("itv-1", LocalDateTime.of(2025, 4, 1, 13, 0), InterviewStatus.INTERVIEWED, 78));
-        interviewList.add(new Interview("itv-2", LocalDateTime.of(2025, 4, 2, 14, 0), InterviewStatus.OFFERED, 80));
-        interviewList.add(new Interview("itv-3", LocalDateTime.of(2025, 4, 3, 9, 0), InterviewStatus.REJECTED, 45));
-        interviewList.add(new Interview("itv-4", LocalDateTime.of(2025, 4, 5, 10, 0), InterviewStatus.OFFERED, 92));
-        interviewList.add(new Interview("itv-5", LocalDateTime.of(2025, 4, 7, 15, 0), InterviewStatus.REJECTED, 56));
-        interviewList.add(new Interview("itv-6", LocalDateTime.of(2025, 4, 8, 16, 0), InterviewStatus.INTERVIEWED, 63));
-        interviewList.add(new Interview("itv-7", LocalDateTime.of(2025, 4, 9, 13, 0), InterviewStatus.OFFERED, 89));
-        interviewList.add(new Interview("itv-8", LocalDateTime.of(2025, 4, 10, 14, 0), InterviewStatus.REJECTED, 77));
-        interviewList.add(new Interview("itv-9", LocalDateTime.of(2025, 4, 12, 9, 0), InterviewStatus.REJECTED, 50));
-        interviewList.add(new Interview("itv-10", LocalDateTime.of(2025, 4, 14, 11, 0), InterviewStatus.OFFERED, 95));
-
-    }
 
     // -----------------
     // Getter
@@ -938,7 +985,7 @@ public class AllDataInitialize {
     public ListInterface<Interview> getInterviewList() {
         return interviewList;
     }
-    
+
     // -----------------
     // Display for testing
     public static void main(String[] args) {
@@ -948,5 +995,5 @@ public class AllDataInitialize {
             System.out.println(a);
         }
     }
-    
+
 }

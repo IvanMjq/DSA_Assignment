@@ -133,19 +133,32 @@ public class JobPosting implements Serializable, Comparable<JobPosting> {
     @Override
     public String toString() {
         String line = "+-------------------------------------------------------------------------------------+\n";
+        String output = "\n" + line;
+        output += String.format("| %-83s |\n", "Job Posting Details");
+        output += line;
+        output += String.format("| %-20s : %-60s |\n", "Company Name", TrimToLength.trimToLength(company.getName(), 60));
+        output += String.format("| %-20s : %-60s |\n", "Job Title", TrimToLength.trimToLength(job.getTitle(), 60));
+        output += String.format("| %-20s : %-60s |\n", "Description", TrimToLength.trimToLength(description, 60));
+        output += String.format("| %-20s : RM %-57.2f |\n", "Minimum Salary", minimumSalary);
+        output += String.format("| %-20s : RM %-57.2f |\n", "Maximum Salary", maximumSalary);
+        output += String.format("| %-20s : %-60d |\n", "Required Experience", requiredExperience);
+        output += String.format("| %-20s : %-60s |\n", "Date Posted", datePosted);
+        output += line;
 
-        // Adjusting the format for the header and content
-        return "\n" + line
-                + String.format("| %-83s |\n", "Job Posting Details")
-                + line
-                + String.format("| %-20s : %-60s |\n", "Company Name", TrimToLength.trimToLength(company.getName(), 60))
-                + String.format("| %-20s : %-60s |\n", "Job Title", TrimToLength.trimToLength(job.getTitle(), 60))
-                + String.format("| %-20s : %-60s |\n", "Description", TrimToLength.trimToLength(description, 60))
-                + String.format("| %-20s : RM %-57.2f |\n", "Minimum Salary", minimumSalary)
-                + String.format("| %-20s : RM %-57.2f |\n", "Maximum Salary", maximumSalary)
-                + String.format("| %-20s : %-60d |\n", "Required Experience", requiredExperience)
-                + String.format("| %-20s : %-60s |\n", "Date Posted", datePosted)
-                + line;
+        output += String.format("| %-83s |\n", "Required Skills : ");
+
+        if (jobRequiredSkillList == null || jobRequiredSkillList.isEmpty()) {
+            output += String.format("| %-83s |\n", "No skills listed.");
+        } else {
+            for (int i = 1; i <= jobRequiredSkillList.size(); i++) {
+                JobRequiredSkill jrs = jobRequiredSkillList.getData(i);
+                String skillName = TrimToLength.trimToLength(jrs.getSkill().getName(), 35);
+                output += String.format("| Name : %-30s   %-38s |\n", skillName, "Importance : " + jrs.getImportance());
+            }
+        }
+
+        output += line;
+        return output;
     }
 
     @Override

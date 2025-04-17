@@ -8,12 +8,8 @@ import adt.DoublyLinkedList;
 import adt.ListInterface;
 import boundary.JobManagementUI;
 import dao.AllDataInitialize;
-import entity.Company;
-import entity.Interview;
 import entity.Job;
 import entity.JobPosting;
-import entity.Skill;
-import entity.Student;
 import utility.IdGeneration;
 import utility.JobValidateFunction;
 import utility.TrimToLength;
@@ -43,7 +39,7 @@ public class JobControl {
                     addJob();
                     break;
                 case 2:
-                    viewAllJobList();
+                    viewFunction();
                     break;
                 case 3:
                     editJob();
@@ -83,13 +79,15 @@ public class JobControl {
             desc = jobManagementUI.getStringInput("Enter Job Description : ");
         } while (!JobValidateFunction.isValidDescription(desc));
 
+        Job newJob = new Job(id, title, type, desc);
+        System.out.println(newJob);
+        
         do {
             addConfirmation = jobManagementUI.getConfirmationPrompt("Do you want to add this job?");
         } while (!JobValidateFunction.isValidConfirmation(addConfirmation));
 
         if (addConfirmation.equals("Y")) {
 
-            Job newJob = new Job(id, title, type, desc);
             boolean isAdded = jobList.add(newJob);
             if (isAdded) {
                 System.out.println("Company added successfully!");
@@ -101,6 +99,68 @@ public class JobControl {
             // Cancel the addition
             System.out.println("Job addition canceled.");
         }
+
+    }
+
+    public void viewFunction() {
+        int option;
+
+        do {
+            option = jobManagementUI.getJobViewOptions();
+
+            switch (option) {
+                case 1:
+                    viewByJobTypes();
+                    break;
+                case 2:
+                    viewAllJobList();
+                    break;
+                case 0:
+                    System.out.println("Exitting the View ...");
+                    break;
+            }
+
+        } while (option != 0);
+
+    }
+
+    public void viewByJobTypes() {
+        if (jobList.isEmpty()) {
+            System.out.println("No Jobs found.");
+            return;
+        }
+
+        String selectedJobType = jobManagementUI.getJobType();
+
+        System.out.println("\n------------------------------------------");
+        System.out.println(" Filter Jobs by" + selectedJobType);
+        System.out.println("------------------------------------------");
+
+        String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+
+        System.out.println(line);
+        System.out.printf("| %-8s | %-35s | %-25s | %-85s |\n",
+                "ID", "Title", "Type", "Description");
+        System.out.println(line);
+
+        boolean found = false;
+
+        for (Job job : jobList) {
+            if (job.getType().equalsIgnoreCase(selectedJobType)) {
+                System.out.printf("| %-8s | %-35s | %-25s | %-85s |\n",
+                        job.getId(),
+                        TrimToLength.trimToLength(job.getTitle(), 28),
+                        TrimToLength.trimToLength(job.getType(), 22),
+                        TrimToLength.trimToLength(job.getDesc(), 82));
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No jobs found for the selected job type.");
+        }
+
+        System.out.println(line);
 
     }
 
@@ -143,7 +203,7 @@ public class JobControl {
 
         do {
             do {
-                viewAllJobList();
+                viewFunction();
                 System.out.println("Type 0 or X to return to the Job Management Menu.\n");
                 id = jobManagementUI.getStringInput("Enter Job ID : ");
                 id = id.toUpperCase();
@@ -211,7 +271,7 @@ public class JobControl {
 
         do {
             do {
-                viewAllJobList();
+                viewFunction();
                 System.out.println("Type 0 or X to return to the Job Management Menu.\n");
                 id = jobManagementUI.getStringInput("Enter Job ID : ");
                 id = id.toUpperCase();
@@ -234,29 +294,29 @@ public class JobControl {
         removeJobFromList(jobFound);
 
     }
-    
+
     public void removeJobFromList(Job jobFound) {
         ListInterface<JobPosting> jpList = jobFound.getJobPostingList();
-        
+
         for (JobPosting jp : jpList) {
             JobPostingControl.removeJobApplicationFromStudent(jp);
             JobPostingControl.removeJobApplicationFromInterview(jp);
             JobPostingControl.removeJobPostingFromJob(jp);
         }
-        
+
         jobFound.getJobPostingList().clear();
-        
+
         int jobIndex = jobList.indexOf(jobFound);
         Job removedJob = jobList.remove(jobIndex);
         if (removedJob != null) {
-            System.out.println("Successfully removed Job with ID : " + 
-                    removedJob.getId()
+            System.out.println("Successfully removed Job with ID : "
+                    + removedJob.getId()
             );
         } else {
-            System.err.println("Failed to remove Job wih ID : " + 
-                    jobFound.getId()
+            System.err.println("Failed to remove Job wih ID : "
+                    + jobFound.getId()
             );
-        } 
+        }
     }
 
     // Just for testing purpose 

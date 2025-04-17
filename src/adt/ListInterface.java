@@ -4,7 +4,6 @@
  */
 package adt;
 
-
 import java.util.Comparator;
 
 /**
@@ -38,5 +37,4 @@ public interface ListInterface<T> extends Iterable<T> {
     
     public void bubbleSort(Comparator<T> comparator);
     
-//    public ListInterface<MatchingResult> linearSearch(String target);
 }

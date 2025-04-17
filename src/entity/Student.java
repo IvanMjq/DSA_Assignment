@@ -31,6 +31,8 @@ public class Student implements Serializable, Comparable<Student> {
     private ListInterface<MatchingResult> matchingResults = new DoublyLinkedList<>();
     private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
     private String[] desiredJobTypes;
+    
+    private ListInterface<MatchingResult> matchingResultList = new DoublyLinkedList<>();
 
     public Student(String id, String name, String password, int age, String streetAddress, String area, String state, double latitude, double longitude, String email, String achievement, String education, int yearsOfExperience, String... desiredJobTypes) {
         this.id = id;
@@ -184,6 +186,16 @@ public class Student implements Serializable, Comparable<Student> {
     public void setJobApplicationList(ListInterface<JobApplication> jobApplicationList) {
         this.jobApplicationList = jobApplicationList;
     }
+
+    public ListInterface<MatchingResult> getMatchingResultList() {
+        return matchingResultList;
+    }
+
+    public void setMatchingResultList(ListInterface<MatchingResult> matchingResultList) {
+        this.matchingResultList = matchingResultList;
+    }
+    
+    
 
     @Override
     public int hashCode() {

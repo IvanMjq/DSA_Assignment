@@ -30,7 +30,7 @@ public class Company implements Serializable, IdGeneration.Identifiable, Compara
 
     private LocalTime interviewStartTime;
     private LocalTime interviewEndTime;
-    
+
     private ListInterface<JobPosting> jobPostingList = new DoublyLinkedList<>();
 
     public Company(String id, String name, String phone, String email, String streetAddress, String area, String state, double latitude, double longitude, int foundedYear, LocalTime interviewStartTime, LocalTime interviewEndTime) {
@@ -192,10 +192,19 @@ public class Company implements Serializable, IdGeneration.Identifiable, Compara
                 + String.format("| %-20s : %-50s |\n", "Interview End", interviewEndTime.toString())
                 + line;
     }
-    
+
+    public int getTotalJobApplications() {
+        int total = 0;
+        for (int i = 1; i <= jobPostingList.size(); i++) {
+            JobPosting posting = jobPostingList.getData(i);
+            total += posting.getJobApplicationList().size();
+        }
+        return total;
+    }
+
     @Override
     public int compareTo(Company other) {
-        return 0;
+        return Integer.compare(this.getTotalJobApplications(), other.getTotalJobApplications());
     }
 
 }
