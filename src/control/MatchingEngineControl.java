@@ -45,8 +45,7 @@ public class MatchingEngineControl {
     private ListInterface<JobPosting> jobPostList = new DoublyLinkedList<>();
     ListInterface <MatchingResult> filteredResults = new DoublyLinkedList<>();
     private ListInterface<MatchingResult> matchResults = new DoublyLinkedList<>();
-    // Comparator to sort by score in descending order
-    private final Comparator<MatchingResult> scoreComparator = (a, b) -> Double.compare(b.getScore(), a.getScore());
+   
     private MatchingUI matchingUI;
 
     public MatchingEngineControl() {
@@ -280,6 +279,7 @@ public class MatchingEngineControl {
         String lastStudentId = null;
         int qualifiedCount = 0;
         int failCount = 0;
+        System.out.println("                                                                                                **** Matching Result SUMMARY ****                                                                                                ");
         System.out.println("==========================================================================================================================================================================================================================");
         System.out.printf("| %-5s | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10s | %-13s | %-8s |\n",
                 "No.", "Student Name", "Company Id", "Company", "Job Id", "Job Title", "Status of Distance", "Experience Level", "Score", "Status", "Count");
@@ -549,6 +549,7 @@ public class MatchingEngineControl {
         int qualifiedCount = 0;
         int failCount = 0;
         if (!matchResults.isEmpty()) {
+            System.out.println("                                                                                        **** Filtered Matching Result SUMMARY ****                                                                                                ");
             System.out.println("==========================================================================================================================================================================================================================");
             System.out.printf("| %-5s | %-20s | %-10s | %-30s | %-8s | %-40s | %-20s | %-20s | %-10s | %-13s | %-8s |\n",
                     "No.", "Student Name", "Company Id", "Company", "Job Id", "Job Title", "Status of Distance", "Experience Level", "Score", "Status", "Count");

@@ -4,7 +4,7 @@
  */
 package adt;
 
-import entity.MatchingResult;
+
 import java.util.Comparator;
 
 /**
