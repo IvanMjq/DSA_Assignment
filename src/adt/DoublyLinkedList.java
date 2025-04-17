@@ -195,6 +195,18 @@ public class DoublyLinkedList<T extends Comparable<T>> implements ListInterface<
     }
 
     @Override
+    public DoublyLinkedList<T> cloneList() 
+    {
+        DoublyLinkedList<T> clone = new DoublyLinkedList<>();
+        Node current = head;
+        while (current != null) {
+            clone.add(current.data);
+            current = current.next;
+        }
+        return clone;
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             private Node current = head;
