@@ -204,92 +204,92 @@ public class AllDataInitialize {
 
     private void initializeJob() {
         jobList.add(new Job(
-                "J-1", 
-                "Software Engineer", 
+                "J-1",
+                "Software Engineer",
                 "Computer & Technology",
                 "Design, develop, and maintain software applications. Work with cross-functional teams to deliver scalable and efficient solutions.")
         );
 
         jobList.add(new Job(
-                "J-2", 
-                "Data Analyst", 
+                "J-2",
+                "Data Analyst",
                 "Computer & Technology",
                 "Analyze datasets to extract insights and support decision-making. Proficient in SQL, Excel, and data visualization tools like Tableau or Power BI.")
         );
 
         jobList.add(new Job(
-                "J-3", 
-                "Cybersecurity Analyst", 
+                "J-3",
+                "Cybersecurity Analyst",
                 "Computer & Technology",
                 "Monitor and protect systems from cyber threats. Perform risk assessments, manage firewalls, and ensure compliance with security protocols.")
         );
 
         jobList.add(new Job(
-                "J-4", 
-                "Machine Learning Engineer", 
+                "J-4",
+                "Machine Learning Engineer",
                 "Computer & Technology",
                 "Design and implement ML models for automation and prediction. Requires knowledge of Python, TensorFlow, and data pipelines.")
         );
 
         jobList.add(new Job(
-                "J-5", 
-                "Web Developer", 
+                "J-5",
+                "Web Developer",
                 "Computer & Technology",
                 "Develop and maintain websites using HTML, CSS, JavaScript, and frameworks like React.js or Vue.js. Collaborate with design and backend teams.")
         );
 
         jobList.add(new Job(
-                "J-6", 
-                "Mobile App Developer", 
+                "J-6",
+                "Mobile App Developer",
                 "Computer & Technology",
                 "Build mobile apps for iOS and Android using Flutter or Kotlin. Work with UI/UX designers and QA teams to deliver quality applications.")
         );
 
         jobList.add(new Job(
-                "J-7", 
-                "Cloud Engineer", 
+                "J-7",
+                "Cloud Engineer",
                 "Computer & Technology",
                 "Deploy and manage applications on AWS, Azure, or Google Cloud. Handle infrastructure-as-code, security, and resource optimization.")
         );
 
         jobList.add(new Job(
-                "J-8", 
-                "Database Administrator", 
+                "J-8",
+                "Database Administrator",
                 "Computer & Technology",
                 "Design, maintain, and optimize databases for high performance and availability. Skilled in SQL, backups, and recovery strategies.")
         );
 
         jobList.add(new Job(
-                "J-9", 
-                "AI Research Intern", 
+                "J-9",
+                "AI Research Intern",
                 "Computer & Technology",
                 "Assist in research and development of AI solutions. Help with data preparation, model training, and performance evaluation. Python preferred.")
         );
 
         jobList.add(new Job(
-                "J-10", 
-                "Full-Stack Developer", 
+                "J-10",
+                "Full-Stack Developer",
                 "Computer & Technology",
                 "Build full web apps, working on both frontend and backend. Must know React, Node.js, databases, and APIs.")
         );
 
         jobList.add(new Job(
-                "J-11", 
-                "Credit Risk Analyst", 
+                "J-11",
+                "Credit Risk Analyst",
                 "Finance & Banking",
                 "Assess credit data and financials to determine lending risk. Experience with credit scoring and financial analysis preferred.")
         );
 
         jobList.add(new Job(
-                "J-12", 
-                "Financial Analyst", 
+                "J-12",
+                "Financial Analyst",
                 "Finance & Banking",
                 "Analyze financial data, build models, and support strategic decisions. Requires Excel skills, forecasting, and risk evaluation.")
         );
 
         jobList.add(new Job(
-                "J-13", 
-                "Accountant", 
+                "J-13",
+                "Accountant",
                 "Finance & Banking",
                 "Manage financial records, prepare tax reports, and ensure compliance. Must know accounting principles and software tools.")
         );
@@ -302,61 +302,61 @@ public class AllDataInitialize {
         );
 
         jobList.add(new Job(
-                "J-15", 
-                "Budget Analyst", 
+                "J-15",
+                "Budget Analyst",
                 "Finance & Banking",
                 "Review budget plans, monitor spending, and create financial reports. Familiarity with budgeting tools and public finance is a plus.")
         );
 
         jobList.add(new Job(
-                "J-16", 
-                "Medical Laboratory Technologist", 
+                "J-16",
+                "Medical Laboratory Technologist",
                 "Healthcare",
                 "Conduct diagnostic tests, analyze samples, and ensure accuracy. Strong attention to detail and adherence to lab protocols are key.")
         );
 
         jobList.add(new Job(
-                "J-17", 
-                "Secondary School Teacher", 
+                "J-17",
+                "Secondary School Teacher",
                 "Education",
                 "Deliver lessons for ages 13–17 based on the national curriculum. Requires subject expertise, patience, and classroom control.")
         );
 
         jobList.add(new Job(
-                "J-18", 
-                "Early Childhood Educator", 
+                "J-18",
+                "Early Childhood Educator",
                 "Education",
                 "Create and conduct learning activities for children aged 3–6. Understanding of child development and creative methods essential.")
         );
 
         jobList.add(new Job(
-                "J-19", 
-                "Online Course Instructor", 
+                "J-19",
+                "Online Course Instructor",
                 "Education",
                 "Teach subjects via online platforms. Strong communication, subject expertise, and knowledge of e-learning tools required.")
         );
 
         jobList.add(new Job(
-                "J-20", 
-                "Mechanical Engineer", 
+                "J-20",
+                "Mechanical Engineer",
                 "Engineering",
                 "Design and improve mechanical systems. Proficient in CAD and knowledgeable in thermodynamics, materials, and mechanics.")
         );
 
-        jobList.add(new Job("J-21", 
-                "Civil Engineer", 
+        jobList.add(new Job("J-21",
+                "Civil Engineer",
                 "Engineering",
                 "Manage construction projects such as roads and buildings. Skills in project management and structural analysis are essential.")
         );
 
-        jobList.add(new Job("J-22", 
-                "Electrical Engineer", 
+        jobList.add(new Job("J-22",
+                "Electrical Engineer",
                 "Engineering",
                 "Develop and test electrical equipment. Must know circuit design, signal processing, and electrical safety standards.")
         );
 
-        jobList.add(new Job("J-23", 
-                "Registered Nurse", 
+        jobList.add(new Job("J-23",
+                "Registered Nurse",
                 "Healthcare",
                 "Provide patient care, administer meds, and assist in treatments. Requires empathy, communication, and clinical knowledge.")
         );
@@ -536,7 +536,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(1),
                 jobList.getData(1),
-                "Analyze complex datasets and present insights for business decisions.",
+                "Design, develop, and maintain software applications. Collaborate with cross-functional teams to deliver scalable and efficient software solutions.",
                 3500.00,
                 5000.00,
                 1,
@@ -548,7 +548,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(1),
                 jobList.getData(2),
-                "Create and manage data visualizations using tools like Tableau and Power BI.",
+                "Create and manage data visualizations using tools like Tableau and Power BI. Analyze complex datasets to provide actionable insights for business decisions.",
                 4000.00,
                 6000.00,
                 2,
@@ -560,7 +560,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(1),
                 jobList.getData(5),
-                "Support data-driven decision-making with advanced analytics.",
+                "Support data-driven decision-making by analyzing datasets, creating reports, and presenting actionable insights to improve business performance.",
                 3700.00,
                 5200.00,
                 2,
@@ -572,7 +572,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(2),
                 jobList.getData(2),
-                "Develop and maintain scalable backend services using Java and Spring Boot.",
+                "Develop and maintain scalable backend services, ensuring high performance and reliability. Experience with Java and Spring Boot is essential.",
                 5000.00,
                 7500.00,
                 3,
@@ -584,7 +584,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(2),
                 jobList.getData(3),
-                "Manage large-scale projects and lead development teams using Agile methodology.",
+                "Lead development teams and manage large-scale projects. Utilize Agile methodologies to ensure efficient project execution and delivery.",
                 5500.00,
                 8000.00,
                 3,
@@ -596,7 +596,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(3),
                 jobList.getData(3),
-                "Work with AI pipelines to optimize ML model deployment.",
+                "Work with AI pipelines to optimize model deployment and scalability. Collaborate with data scientists and engineers to streamline AI solutions.",
                 4800.00,
                 7200.00,
                 2,
@@ -608,7 +608,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(3),
                 jobList.getData(4),
-                "Create machine learning models for predictive analysis and forecasting.",
+                "Develop and implement machine learning models to address business problems, including predictive analysis and forecasting.",
                 4800.00,
                 7500.00,
                 1,
@@ -620,7 +620,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(4),
                 jobList.getData(4),
-                "Develop enterprise applications with modern backend frameworks.",
+                "Design and develop enterprise applications using modern backend frameworks. Ensure applications are scalable, secure, and maintainable.",
                 4000.00,
                 6000.00,
                 3,
@@ -632,7 +632,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(4),
                 jobList.getData(5),
-                "Lead design and development of mobile applications for iOS and Android.",
+                "Lead the design and development of mobile applications for iOS and Android platforms. Collaborate with design and backend teams.",
                 5000.00,
                 7000.00,
                 1,
@@ -644,7 +644,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(5),
                 jobList.getData(5),
-                "Design and develop cross-platform mobile applications using Flutter and Kotlin.",
+                "Design and develop cross-platform mobile applications using frameworks such as Flutter and Kotlin. Ensure high performance and user satisfaction.",
                 4500.00,
                 6000.00,
                 2,
@@ -656,7 +656,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(5),
                 jobList.getData(6),
-                "Develop software to prevent cyberattacks and enhance organizational security.",
+                "Develop software solutions that prevent cyberattacks and enhance organizational security. Experience with network security protocols is essential.",
                 5200.00,
                 7500.00,
                 2,
@@ -668,7 +668,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(6),
                 jobList.getData(6),
-                "Implement and monitor cybersecurity protocols to safeguard company data.",
+                "Implement and monitor cybersecurity protocols to protect data and systems from potential threats. Strong knowledge of encryption and firewall systems is required.",
                 5000.00,
                 7500.00,
                 1,
@@ -680,7 +680,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(6),
                 jobList.getData(7),
-                "Oversee encryption technologies to ensure safe data storage and transmission.",
+                "Oversee the implementation of encryption technologies to ensure safe storage and transmission of data across platforms.",
                 5300.00,
                 7800.00,
                 1,
@@ -692,7 +692,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(7),
                 jobList.getData(7),
-                "Maintain and optimize large-scale SQL databases for high performance.",
+                "Maintain and optimize large-scale SQL databases, ensuring high performance and availability for the organization.",
                 4000.00,
                 6500.00,
                 2,
@@ -704,7 +704,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(7),
                 jobList.getData(8),
-                "Lead migration of cloud-based systems and oversee architecture optimization.",
+                "Lead the migration of cloud-based systems and oversee the architecture optimization to improve scalability and performance.",
                 5800.00,
                 8200.00,
                 3,
@@ -716,7 +716,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(8),
                 jobList.getData(8),
-                "Develop full-stack web applications with seamless integration of frontend and backend.",
+                "Design and develop full-stack web applications, ensuring seamless integration between the frontend and backend components.",
                 4800.00,
                 7000.00,
                 1,
@@ -728,7 +728,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(8),
                 jobList.getData(9),
-                "Collaborate with teams to deliver full-stack web applications on time.",
+                "Collaborate with teams to deliver innovative, high-quality full-stack web applications on time. Expertise in React.js and Node.js required.",
                 4800.00,
                 7000.00,
                 2,
@@ -740,7 +740,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(9),
                 jobList.getData(9),
-                "Assist in AI model training and evaluation for real-world research projects.",
+                "Assist with AI model training and evaluation, contributing to real-world research projects and performance assessments.",
                 3000.00,
                 4000.00,
                 1,
@@ -752,7 +752,7 @@ public class AllDataInitialize {
         jp = new JobPosting(
                 companyList.getData(9),
                 jobList.getData(10),
-                "Conduct research and create innovative AI solutions for clients.",
+                "Conduct research and develop innovative AI solutions. Work closely with engineers to design systems that address client-specific needs.",
                 6000.00,
                 8500.00,
                 1,
@@ -784,7 +784,6 @@ public class AllDataInitialize {
         );
         companyList.getData(10).getJobPostingList().add(jp);
         jobList.getData(11).getJobPostingList().add(jp);
-
 
     }
 

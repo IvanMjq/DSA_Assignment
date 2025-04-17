@@ -175,22 +175,23 @@ public class JobPostingManagementUI {
             System.out.printf("|  %-36s|\n", "2. Job Minimum Salary");
             System.out.printf("|  %-36s|\n", "3. Job Maximum Salary");
             System.out.printf("|  %-36s|\n", "4. Job Required Experience (Year)");
+            System.out.printf("|  %-36s|\n", "4. Job Required Skills");
             System.out.printf("|  %-36s|\n", "0. Exit to Job Management Menu");
             System.out.println(line);
 
             // Check if the user input was invalid before
             if (!isFirstInput) {
-                System.out.println("Invalid option. Please choose a number between 0 - 4.");
+                System.out.println("Invalid option. Please choose a number between 0 - 5.");
             }
 
             // Prompt user input message
-            System.out.print("Please enter your option (0-4) : ");
+            System.out.print("Please enter your option (0-5) : ");
 
             // Validate user input
             if (sc.hasNextInt()) {
                 option = sc.nextInt();
                 sc.nextLine(); // Clear newline character
-                if (option >= 0 && option <= 4) {
+                if (option >= 0 && option <= 5) {
                     validInput = true;
                 }
             } else {
