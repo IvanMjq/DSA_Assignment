@@ -788,6 +788,7 @@ public class JobPostingControl {
 
     public void reportFunction() {
         int option;
+        int userChoice;
 
         do {
             option = jobPostingManagementUI.getJobPostingReportOptions();
@@ -797,13 +798,26 @@ public class JobPostingControl {
                     reportTableFunction(companyList);
                     break;
                 case 2:
-                    int userChoice;
                     do {
                         userChoice = jobPostingManagementUI.getIntegerInput("Enter the number of company : ");
                         if (userChoice <= companyList.size()) {
-                            ListInterface<Company> cloneCompanyList = companyList.cloneList(); 
+                            ListInterface<Company> cloneCompanyList = companyList.cloneList();
                             cloneCompanyList.bubbleSort((a, b) -> Integer.compare(b.getTotalJobApplications(), a.getTotalJobApplications()));
-                            reportTopGraphFunction(cloneCompanyList, userChoice);
+                            reportTopCompanyGraphFunction(cloneCompanyList, userChoice);
+                            break;
+                        } else {
+                            System.out.println("Invalid option. Must between 3 - " + companyList.size());
+                        }
+                    } while (true);
+
+                    break;
+                case 3:
+                    do {
+                        userChoice = jobPostingManagementUI.getIntegerInput("Enter the number of job : ");
+                        if (userChoice <= jobList.size()) {
+                            ListInterface<Job> cloneJobList = jobList.cloneList();
+                            cloneJobList.bubbleSort((a, b) -> Integer.compare(b.getTotalJobApplications(), a.getTotalJobApplications()));
+                            reportTopJobGraphFunction(cloneJobList, userChoice);
                             break;
                         } else {
                             System.out.println("Invalid option. Must between 3 - " + companyList.size());
@@ -869,7 +883,7 @@ public class JobPostingControl {
 
     }
 
-    public static void reportTopGraphFunction(ListInterface<Company> companyList, int top) {
+    public static void reportTopCompanyGraphFunction(ListInterface<Company> companyList, int top) {
         final int INITIAL_MAX_BAR_WIDTH = 100;
         int initialMaxApplications;
 
@@ -891,7 +905,7 @@ public class JobPostingControl {
 
         // Find the maximum number of applications
         System.out.println("\n\n" + line);
-        System.out.printf(" %-40s Top %d Company Job Posting Bar Chart Report\n", "", top);
+        System.out.printf(" %-40s Top %d Company - Job Posting Bar Chart Report\n", "", top);
         System.out.printf("\n %-40s Legend: [+ = Offered, | = Unoffered]\n", "");
         System.out.println(line + "\n");
 
@@ -930,6 +944,100 @@ public class JobPostingControl {
                 String counts = String.format("(%d)(%d)", offeredJApp, unofferedJApp);
 
                 String label = company.getName() + " - " + jp.getJob().getTitle();
+                label = TrimToLength.trimToLength(label, 50);
+
+                System.out.printf("%-50s | %-" + longestBarLength + "s %s\n",
+                        label,
+                        fullBar,
+                        counts);
+
+            }
+            System.out.println();
+
+        }
+
+        String labelBar = "+" + repeatChar('-', longestBarLength + 9);
+
+        System.out.printf("%-50s %-" + longestBarLength + "s> counts\n",
+                "",
+                labelBar
+        );
+
+        String scale = "";
+        for (int i = 0; i <= longestBarLength / charPerJobApplication; i++) {
+            if (i == 0) {
+                scale += i + repeatChar(' ', charPerJobApplication - String.valueOf(i).length());
+                scale += " ";
+                continue;
+            }
+            scale += i + repeatChar(' ', charPerJobApplication - String.valueOf(i).length());
+
+        }
+        System.out.printf("%-50s %s\n", "", scale);
+
+    }
+
+    public static void reportTopJobGraphFunction(ListInterface<Job> jobList, int top) {
+        final int INITIAL_MAX_BAR_WIDTH = 100;
+        int initialMaxApplications;
+
+        initialMaxApplications = jobList.getData(1).getTotalJobApplications();
+
+        int maxApplications = initialMaxApplications;
+
+        int longestString = 0;
+
+        if (maxApplications % 2 != 0) {
+            maxApplications++; // Round up to the next even number, to make sure proper division for each job application
+        }
+
+        int maxBarWidth = calculateDynamicBarWidth(maxApplications, INITIAL_MAX_BAR_WIDTH);
+        int charPerJobApplication = maxBarWidth / maxApplications;
+        int longestBarLength = initialMaxApplications * charPerJobApplication;
+
+        String line = repeatChar('-', longestBarLength + 70);
+
+        // Find the maximum number of applications
+        System.out.println("\n\n" + line);
+        System.out.printf(" %-40s Top %d Company - Job Posting Bar Chart Report\n", "", top);
+        System.out.printf("\n %-40s Legend: [+ = Offered, | = Unoffered]\n", "");
+        System.out.println(line + "\n");
+
+        // Step 2: Print bars
+        for (int i = 1; i <= top; i++) {
+            Job job = jobList.getData(i);
+            ListInterface<JobPosting> jpList = job.getJobPostingList();
+            for (JobPosting jp : jpList) {
+                ListInterface<JobApplication> jAppList = jp.getJobApplicationList();
+                int totalJApp = jAppList.size();
+                int offeredJApp = 0;
+
+                for (JobApplication jApp : jAppList) {
+                    Interview interview = jApp.getInterview();
+                    if (interview != null && interview.getInterviewStatus() == Interview.InterviewStatus.OFFERED) {
+                        offeredJApp++;
+                    }
+
+                }
+                int unofferedJApp = totalJApp - offeredJApp;
+
+                int offeredLength = offeredJApp * charPerJobApplication;
+                int unofferedLength = unofferedJApp * charPerJobApplication;
+
+                // Construct the bars using the repeatChar method
+                String offeredBar = repeatChar('+', offeredLength);
+                String unofferedBar = repeatChar('|', unofferedLength);
+
+                // Concatenate offered and unoffered parts to form the full bar
+                String fullBar = offeredBar + unofferedBar;
+
+                if (fullBar.length() > longestString) {
+                    longestString = fullBar.length();
+                }
+
+                String counts = String.format("(%d)(%d)", offeredJApp, unofferedJApp);
+
+                String label = job.getTitle() + " - " + jp.getCompany().getName();
                 label = TrimToLength.trimToLength(label, 50);
 
                 System.out.printf("%-50s | %-" + longestBarLength + "s %s\n",

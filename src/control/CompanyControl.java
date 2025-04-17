@@ -4,19 +4,19 @@
  */
 package control;
 
+/**
+ *
+ * @author Mok Jun Quan Ivan
+ */
+
 import adt.DoublyLinkedList;
 import adt.ListInterface;
 import boundary.CompanyManagementUI;
-import dao.AllDataInitialize;
 import entity.Company;
 import entity.JobPosting;
 import java.time.LocalTime;
 import utility.*;
 
-/**
- *
- * @author ivanmjq
- */
 public class CompanyControl {
 
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
@@ -47,7 +47,7 @@ public class CompanyControl {
                     deleteCompany();
                     break;
                 case 0:
-                    System.out.println("Returing to Main Menu ...");
+                    System.out.println("Returning to Main Menu ...");
                     break;
             }
 
@@ -444,21 +444,10 @@ public class CompanyControl {
                     + removedCompany.getId()
             );
         } else {
-            System.err.println("Failed to remove Company wih ID : "
+            System.err.println("Failed to remove Company with ID : "
                     + companyFound.getId()
             );
         }
-    }
-
-    // Just for testing purpose
-    public static void main(String[] args) {
-        AllDataInitialize dataInitialize = new AllDataInitialize();
-
-        ListInterface<Company> companyList = dataInitialize.getCompanyList();
-
-        CompanyControl companyControl = new CompanyControl(companyList);
-
-        companyControl.startCompanyManagement();
     }
 
 }
