@@ -1366,23 +1366,6 @@ public class AllDataInitialize {
         }
     }
 
-
-    public void displayJobApplications() {
-        System.out.printf("%-15s%-15s%-20s%-10s\n", "Student ID", "Company ID", "Job Title", "Application Date");
-
-        for (int i = 1; i <= jobApplicationList.size(); i++) {
-            JobApplication jobApplication = jobApplicationList.getData(i);
-            Student student = jobApplication.getStudent();
-            Company company = jobApplication.getJobPosting().getCompany();
-            Job job = jobApplication.getJobPosting().getJob();
-            System.out.printf("%-15s%-15s%-20s%-10s\n",
-                              student.getId(),
-                              company.getId(),
-                              job.getTitle(),
-                              jobApplication.getAppliedDateTime());
-        }
-    }
-
     public void displayInterviews() {
         System.out.printf("%-15s%-25s%-15s%-10s\n", "Interview ID", "Interview Date", "Status", "Score");
 
@@ -1402,7 +1385,7 @@ public class AllDataInitialize {
         System.out.printf("%-15s%-50s%-15s%-50s%-100s%-15s%-15s%-15s%-15s\n", "Company ID", "Company Name", "Job ID", "Job Title", "Description", "Minimum Salary", "Maximum Salary", "Required Experience", "Date Posted","Interview Date", "Status", "Score");
         for (int i = 1; i <= companyList.size(); i++) {
             Company c =  companyList.getData(i);
-            for(int j = 1; j < c.getJobPostingList().size(); j++) {
+            for(int j = 1; j <= c.getJobPostingList().size(); j++) {
                 JobPosting jp = c.getJobPostingList().getData(j);
                 System.out.printf("%-15s%-50s%-15s%-50s%-100s%-15.2f%-15.2f%-15d%-15s\n",
                               c.getId(),
@@ -1420,28 +1403,28 @@ public class AllDataInitialize {
         }
     }
     
-//        public void displayJobSppication() {
-//        System.out.printf("%-15s%-50s%-15s%-50s%-100s%-15s%-15s%-15s%-15s\n", "Company ID", "Company Name", "Job ID", "Job Title", "Description", "Minimum Salary", "Maximum Salary", "Required Experience", "Date Posted","Interview Date", "Status", "Score");
-//        for (int i = 1; i <= studentList.size(); i++) {
-//            Student s =  studentList.getData(i);
-//            for(int j = 1; j < s.getJobApplicationList().size(); j++) {
-//                JobApplication ja = s.getJobApplicationList().getData(j);
-//                System.out.printf("%-15s%-50s%-15s%-50s%-100s%-15.2f%-15.2f%-15d%-15s\n",
-//                              s.getId(),
-//                              s.getName(),
-//                              ja.getJobPosting().getCompany().getId(),
-//                              ja.getJobPosting().getCompany().,
-//                              jp.getJob().getTitle(),
-//                              jp.getDescription(),
-//                              jp.getMinimumSalary(),
-//                              jp.getMaximumSalary(),
-//                              jp.getRequiredExperience(),
-//                              jp.getDatePosted()
-//                );
-//            }
-//            
-//        }
-//    }
+        public void displayJobApplication() {
+        System.out.printf("%-15s%-30s%-15s%-50s%-15s%-50s%-25s%-15s%-50s%-25s\n", "Student ID","Student Name","Company ID", "Company Name", "Job ID", "Job Title", "Applied Date", "Interview ID", "Interview Status","Interview Schedule DateTime");
+        for (int i = 1; i <= studentList.size(); i++) {
+            Student s =  studentList.getData(i);
+            for(int j = 1; j <= s.getJobApplicationList().size(); j++) {
+                JobApplication ja = s.getJobApplicationList().getData(j);
+                System.out.printf("%-15s%-30s%-15s%-50s%-15s%-50s%-25s%-15s%-50s%-25s\n",
+                              s.getId(),
+                              s.getName(),
+                              ja.getJobPosting().getCompany().getId(),
+                              ja.getJobPosting().getCompany().getName(),
+                              ja.getJobPosting().getJob().getId(),
+                              ja.getJobPosting().getJob().getTitle(),
+                              ja.getAppliedDateTime(),
+                              ja.getInterview().getId(),
+                              ja.getInterview().getInterviewStatus(),
+                              ja.getInterview().getScheduledDateTime()
+                );
+            }
+            
+        }
+    }
 
     public void displayAllData()
     {
@@ -1455,10 +1438,11 @@ public class AllDataInitialize {
         displayJobPosting();
         System.out.println("\n==== Students ====");
         displayStudents();
-        System.out.println("\n==== Job Applications ====");
-        displayJobApplications();
         System.out.println("\n==== Interviews ====");
         displayInterviews();
+        System.out.println("\n==== Job Applications ====");
+        displayJobApplication();
+
     }
 
         // -----------------
