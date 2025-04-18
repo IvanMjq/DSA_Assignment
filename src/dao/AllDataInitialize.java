@@ -1397,7 +1397,33 @@ public class AllDataInitialize {
                               
         }
     }
+    public void displayJobRequiredSkills() 
+    {
+        System.out.printf("%-20s%-30s%-10s\n", "Company", "Skill", "Importance");
+        System.out.println("------------------------------------------------------------");
 
+        // Loop through each company in the company list
+        for (int i = 1; i <= companyList.size(); i++) {
+            Company currentCompany = companyList.getData(i);
+
+            // Loop through each job posting for the current company
+            for (int j = 1; j <= currentCompany.getJobPostingList().size(); j++) {
+                JobPosting currentJobPosting = currentCompany.getJobPostingList().getData(j);
+
+                // Loop through each JobRequiredSkill for this job posting
+                for (int k = 1; k <= currentJobPosting.getJobRequiredSkillList().size(); k++) {
+                    JobRequiredSkill jobRequiredSkill = currentJobPosting.getJobRequiredSkillList().getData(k);
+
+                    // Print the company name, job posting id, skill name, and importance in table format
+                    System.out.printf("%-20s%-30s%-10d\n", 
+                                      currentCompany.getName(),
+                                      jobRequiredSkill.getSkill().getName(),
+                                      jobRequiredSkill.getImportance());
+                }
+            }
+        }
+    }
+    
     public void displayAllData()
     {
         System.out.println("==== Skills ====");
@@ -1412,8 +1438,9 @@ public class AllDataInitialize {
         displayJobApplications();
         System.out.println("\n==== Interviews ====");
         displayInterviews();
+        System.out.println("\n==== Job Required Skills ====");
+        displayJobRequiredSkills();
     }
-
         // -----------------
         // Display for testing
         public static void main(String[] args) {
