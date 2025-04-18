@@ -126,25 +126,25 @@ public class StudentUI {
         System.out.print("Enter Street Address: ");
         String address = scanner.nextLine().trim();
                 
-        String area = null;
-        while(area == null){
+//        String area = null;
+//        while(area == null){
             System.out.print("Enter area: ");
-            String input = scanner.nextLine().trim();
+            String area = scanner.nextLine().trim();
             
 //            if(alphabetValidation(input)){
 //                area = input;
 //            }
-        }
+//        }
 
         String state = null;
-        while(state == null) {
+//        while(state == null) {
             System.out.print("Enter state: ");
-            String input = scanner.nextLine().trim();
+             state = scanner.nextLine().trim();
             
 //            if(alphabetValidation(input)){
 //                state = input;
 //            }
-        }
+//        }
        
         
         String email = null;
@@ -159,8 +159,8 @@ public class StudentUI {
         
         String achievement = null;
 //        while (achievement == null) {
-//            System.out.print("Enter Achievement: ");
-//            String input = scanner.nextLine().trim();
+            System.out.print("Enter Achievement: ");
+            achievement = scanner.nextLine().trim();
 //    
 //            if (achievementValidation(input)) {
 //                achievement = input; 
