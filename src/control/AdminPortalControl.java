@@ -84,7 +84,7 @@ public class AdminPortalControl {
                 case 5:
                     jobApplicationControl.adminJobApplicationManagement();
                     break;
-                case 4:
+                case 6:
                     interviewControl.interviewMenu();
                     break;
                 default:

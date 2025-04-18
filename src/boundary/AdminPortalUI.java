@@ -28,7 +28,7 @@ public class AdminPortalUI {
         System.out.println("3. Student");
         System.out.println("4. Job Posting");
         System.out.println("5. Job Appication");
-        System.out.println("4. Interview");
+        System.out.println("6. Interview");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
 
