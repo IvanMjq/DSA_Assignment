@@ -1301,12 +1301,12 @@ public class AllDataInitialize {
     }
     
     public void displayCompanies() {
-        System.out.printf("%-10s%-30s%-20s%-15s%-20s%-20s%-15s%-15s%-15s%-20s\n", 
+        System.out.printf("%-10s%-30s%-20s%-30s%-30s%-15s%-25s%-15s%-15s%-20s\n", 
                           "Company ID", "Name", "Phone", "Email", "Street Address", "Area", "State", "Latitude", "Longitude", "Founded Year");
 
         for (int i = 1; i <= companyList.size(); i++) {
             Company company = companyList.getData(i);
-            System.out.printf("%-10s%-30s%-20s%-15s%-20s%-20s%-15s%-15.6f%-15.6f%-20d\n",
+            System.out.printf("%-10s%-30s%-20s%-30s%-30s%-15s%-25s%-15.6f%-15.6f%-20d\n",
                               company.getId(),
                               company.getName(),
                               company.getPhone(),
@@ -1330,21 +1330,25 @@ public class AllDataInitialize {
         }
     }
     
-    public void displayStudents() {
-
-        System.out.printf("%-10s%-25s%-25s%-15s%-20s%-20s%-10s%-15s%-25s%-20s%-20s%-20s%-20s\n", 
+    public void displayStudents() 
+    {
+        // Adjusted widths for better alignment (increase or decrease based on actual data size)
+        System.out.printf("%-12s%-25s%-15s%-5s%-30s%-20s%-25s%-15s%-25s%-32s%-32s%-40s%-20s\n", 
                           "Student ID", "Name", "Password", "Age", "Address", "Area", "State", 
                           "Latitude", "Longitude", "Email", "Achievement", "Education", 
                           "Years of Experience", "Desired Job Types");
 
-        for (int i = 1; i <= studentList.size(); i++) {
+        for (int i = 1; i <= studentList.size(); i++) 
+        {
             Student student = studentList.getData(i);
 
+            // Handle desiredJobTypes to avoid null values or empty arrays
             String desiredJobTypesStr = (student.getDesiredJobTypes() != null && student.getDesiredJobTypes().length > 0) 
                 ? String.join(", ", student.getDesiredJobTypes()) 
-                : "None";
+                : "None";  // Default if no job types
 
-            System.out.printf("%-10s%-25s%-25s%-15s%-20s%-20s%-10s%-15s%-25s%-20s%-20s%-20s%-20s\n", 
+            // Adjust the column width if the fields can be larger than specified
+            System.out.printf("%-12s%-25s%-15s%-5s%-30s%-20s%-25s%-15s%-25s%-32s%-32s%-40s%-20s\n", 
                               student.getId(),
                               student.getName(),
                               student.getPassword(),
@@ -1417,9 +1421,9 @@ public class AllDataInitialize {
             
             dataInitialize.displayAllData();
 
-            for (JobPosting a : dataInitialize.getCompanyList().getData(1).getJobPostingList()) {
-                System.out.println(a);
-            }
+//            for (JobPosting a : dataInitialize.getCompanyList().getData(1).getJobPostingList()) {
+//                System.out.println(a);
+//            }
         }
 
     }
