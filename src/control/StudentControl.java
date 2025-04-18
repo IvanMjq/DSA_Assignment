@@ -964,10 +964,10 @@ public class StudentControl {
         
 
     // Display Report
-        System.out.println("Report");
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Student Job Appication Report");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("| %-30s | %-200s | %-10s | %-25s |\n", "Job Type", "Student Applied", "Total", "Total Applied Success");
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         for (int i = 0; i < jobTypeExisted.length; i++) {
             System.out.printf("| %-30s | %-200s | %-10d | %-25d |\n", 
@@ -978,9 +978,79 @@ public class StudentControl {
             );
         }
 
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
         generateAsciiChart(jobTypeExisted, numberOfJobTypeExisted, numberSuccessInterview);
+        
+        // Highest / Lowest Applied (Manual) ===
+        int maxApplied = numberOfJobTypeExisted[0];
+        int minApplied = numberOfJobTypeExisted[0];
+
+        // First, find max and min
+        for (int i = 1; i < numberOfJobTypeExisted.length; i++) {
+            if (numberOfJobTypeExisted[i] > maxApplied) {
+                maxApplied = numberOfJobTypeExisted[i];
+            }
+            if (numberOfJobTypeExisted[i] < minApplied) {
+                minApplied = numberOfJobTypeExisted[i];
+            }
+        }
+
+        // Now, collect job types that match max/min
+        String maxAppliedTypes = "";
+        String minAppliedTypes = "";
+
+        for (int i = 0; i < numberOfJobTypeExisted.length; i++) {
+            if (numberOfJobTypeExisted[i] == maxApplied) {
+                if (!maxAppliedTypes.isEmpty()) maxAppliedTypes += ", ";
+                maxAppliedTypes += jobTypeExisted[i];
+            }
+            if (numberOfJobTypeExisted[i] == minApplied) {
+                if (!minAppliedTypes.isEmpty()) minAppliedTypes += ", ";
+                minAppliedTypes += jobTypeExisted[i];
+            }
+        }
+
+        //Highest / Lowest Success Rate (Manual) ===
+        double maxRate = -1;
+        double minRate = Double.MAX_VALUE;
+
+        // Find max and min rate
+        for (int i = 0; i < jobTypeExisted.length; i++) {
+            if (numberOfJobTypeExisted[i] == 0) continue; // skip to avoid division by zero
+            double rate = (double) numberSuccessInterview[i] / numberOfJobTypeExisted[i];
+            if (rate > maxRate) {
+                maxRate = rate;
+            }
+            if (rate < minRate) {
+                minRate = rate;
+            }
+        }
+
+        // Collect job types that match those rates
+        String maxRateTypes = "";
+        String minRateTypes = "";
+
+        for (int i = 0; i < jobTypeExisted.length; i++) {
+            if (numberOfJobTypeExisted[i] == 0) continue;
+            double rate = (double) numberSuccessInterview[i] / numberOfJobTypeExisted[i];
+
+            if (Math.abs(rate - maxRate) < 0.0001) {
+                if (!maxRateTypes.isEmpty()) maxRateTypes += ", ";
+                maxRateTypes += jobTypeExisted[i];
+            }
+            if (Math.abs(rate - minRate) < 0.0001) {
+                if (!minRateTypes.isEmpty()) minRateTypes += ", ";
+                minRateTypes += jobTypeExisted[i];
+            }
+        }
+
+        // === Summary ===
+        System.out.println("Summary:");
+        System.out.printf("Highest Applied (%d applications): %s\n", maxApplied, maxAppliedTypes);
+        System.out.printf("Lowest Applied (%d applications): %s\n", minApplied, minAppliedTypes);
+        System.out.printf("Highest Success Rate (%.2f%%): %s\n", maxRate * 100, maxRateTypes);
+        System.out.printf("Lowest Success Rate (%.2f%%): %s\n", minRate * 100, minRateTypes);
     }
     
     private void generateAsciiChart(String[] jobTypes, int[] totalApps, int[] successApps) {
@@ -993,7 +1063,7 @@ public class StudentControl {
                 boolean isTotal = totalApps[i] >= level;
                 boolean isSuccess = successApps[i] >= level;
 
-                String symbol = " ".repeat(Math.max(colWidth, 0));
+                String symbol = repeatChar(' ', colWidth); // manually repeat spaces
                 if (isSuccess) {
                     symbol = center(ANSI_RED + "*" + ANSI_RESET, colWidth);
                 } else if (isTotal) {
@@ -1006,7 +1076,7 @@ public class StudentControl {
 
         System.out.print("   +");
         for (int i = 0; i < jobTypes.length; i++) {
-            System.out.print("-".repeat(colWidth));
+            System.out.print(repeatChar('-', colWidth)); // manually repeat '-'
         }
         System.out.println("+");
 
@@ -1028,6 +1098,22 @@ public class StudentControl {
         System.out.println("Y-axis: Number of Applications");
     }
 
+    private String center(String text, int width) {
+        int textLen = text.replaceAll("\\u001B\\[[;\\d]*m", "").length();
+        int padSize = (width - textLen) / 2;
+        int extra = (width - textLen) % 2;
+        if (padSize < 0) padSize = 0;
+        return repeatChar(' ', padSize) + text + repeatChar(' ', padSize + extra);
+    }
+
+    private String repeatChar(char c, int times) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < times; i++) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
     private int getMax(int[] arr) {
         int max = 0;
         for (int val : arr) {
@@ -1036,13 +1122,6 @@ public class StudentControl {
         return max;
     }
 
-    private String center(String text, int width) {
-        int textLen = text.replaceAll("\\u001B\\[[;\\d]*m", "").length();
-        int padSize = (width - textLen) / 2;
-        int extra = (width - textLen) % 2;
-        if (padSize < 0) padSize = 0;
-        return " ".repeat(padSize) + text + " ".repeat(padSize + extra);
-    }
 
     
     public String[] jobTypeExist() {
