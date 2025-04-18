@@ -1264,7 +1264,7 @@ public class AllDataInitialize {
         jrs = new JobRequiredSkill(skillList.getData(25), 4);
         companyList.getData(21).getJobPostingList().getData(2).getJobRequiredSkillList().add(jrs);
     }
-
+    
     // -----------------
     // Getter
     public ListInterface<Skill> getSkillList() {
