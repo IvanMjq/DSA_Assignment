@@ -25,13 +25,14 @@ public class InterviewControl {
     
     private ListInterface<Interview> interviewList = new DoublyLinkedList<>();
     private ListInterface<JobApplication> jobApplicationList = new DoublyLinkedList<>();
-    private InterviewSchedulingControl interviewScheduling = new InterviewSchedulingControl();
+    private ListInterface<Company> companyList = new DoublyLinkedList();
     Scanner scanner = new Scanner(System.in);
     
     InterviewUI interviewUI = new InterviewUI();
     
-    public InterviewControl(ListInterface<Interview> interviewList) {
+    public InterviewControl(ListInterface<Interview> interviewList, ListInterface<Company> companyList) {
         this.interviewList = interviewList;
+        this.companyList = companyList;
     }
     
     public void interviewMenu() {
@@ -42,7 +43,7 @@ public class InterviewControl {
 
             switch (choose) {
                 case 1:
-                    addInterview();
+                    interviewScheduling();
                     break;
                 case 2:
                     viewInterview();
@@ -58,6 +59,9 @@ public class InterviewControl {
                 case 5:
                     interviewReportMenu();
                     break;
+                case 6:
+                    interviewRanking();
+                    break;
                 case 0:
                     System.out.println("\nExiting Interview Menu...");
                     break;
@@ -66,27 +70,146 @@ public class InterviewControl {
         } while (choose != 0);
     }
 
-    // Add a new interview
-    public void addInterview() {
+    public void interviewScheduling() 
+    {
+        System.out.println("\t============================");
+        System.out.println("\t   Interview Scheduling");
+        System.out.println("\t============================");
         
-        int interviewMark = 0;
-        LocalDateTime scheduledDateTime = null;
+        String id;
         
-        System.out.println("========================");
-        System.out.println("    Add New Interview   ");
-        System.out.println("========================/n/n/n/n");
-        
-        String id = IdGeneration.generateID(interviewList, "itv");
+        if(interviewList.isEmpty())
+        {
+            System.out.println("No interview can remove");
+            System.out.println("Enter any key to continue...");
+            scanner.nextLine();
+            return;
+        }
+        else
+        {
+            viewInterview();
+            System.out.print("\nEnter the interview id you want schedule interview time: ");
+            id = scanner.nextLine();
+            
+            if (id.equalsIgnoreCase("X")) 
+            {
+                System.out.println("\n\nExiting the Interview Scheduling...");
+                scanner.nextLine();
+                return; 
+            }
+            
+            boolean interviewFound = false;
+            
+            for (int i = 1; i <= interviewList.size(); i++) 
+            {
+                Interview currentInterview = interviewList.getData(i);
+                if (currentInterview.getId().equals(id)) 
+                {
+                    interviewFound = true;
+                    System.out.println("Please select the interview date");
+                    
+                    int interviewDay = -1;
+                    
+                    while (true) 
+                    {
+                        try {
+                            System.out.print("Select a day for the interview (1 = Monday, 2 = Tuesday, ..., 5 = Friday) or 0 to exit: ");
+                            interviewDay = scanner.nextInt();
+                            
+                           if (interviewDay == 0) 
+                           {
+                                System.out.println("Interview scheduling cancelled.");
+                                return;
+                            }
 
-        InterviewStatus status = InterviewStatus.APPLIED;
+                            if (interviewDay < 1 || interviewDay > 5) {
+                                System.out.println("Invalid day. Please select a number between 1 (Monday) and 5 (Friday).");
+                            } 
+                            else 
+                            {
+                                Calendar calendar = Calendar.getInstance();
+                                int currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+                                int difference = interviewDay - currentDayOfWeek;
+                                if (difference < 0) {
+                                    difference += 8;
+                                }
 
-        
-        
-        Interview newInterview = new Interview(id, scheduledDateTime, status, interviewMark);
-        interviewList.add(newInterview);
-        System.out.println("Interview added successfully!");
+                                calendar.add(Calendar.DAY_OF_YEAR, difference);
+                                int year = calendar.get(Calendar.YEAR);
+                                int month = calendar.get(Calendar.MONTH) + 1;
+                                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+                                Company currentCompany = currentInterview.getJobApplicationList().getData(1).getJobPosting().getCompany();
+
+                                boolean validTime = false;
+                                int hour = -1;
+                                int minute = -1;
+                                LocalDateTime localDateTime = null;
+
+                                while (!validTime) 
+                                {
+                                    System.out.println("The interview time is between " + currentCompany.getInterviewStartTime() + " and " 
+                                        + currentCompany.getInterviewEndTime() + ".");
+
+                                    hour = timeValidation("Enter the time for the interview (hour): ", 0, 23);
+                                    if (hour == 0) 
+                                    {
+                                        System.out.println("Exiting the interview scheduling...");
+                                        interviewMenu();
+                                        break;
+                                    }
+
+                                    minute = timeValidation("Enter the time for the interview (minute): ", 0, 59);
+                                    if (minute == 0) {
+                                        System.out.println("Exiting the interview scheduling...");
+                                        interviewMenu();
+                                        break;  // Exit the scheduling process if user enters 0
+                                    }
+
+                                    // Create the LocalTime for the interview
+                                    LocalTime interviewTime = LocalTime.of(hour, minute);
+
+                                    // Check if the interview time is within the company's interview hours
+                                    if (isTimeSlotWithinInterviewHours(interviewTime, currentCompany)) {
+                                        validTime = true; // Time is valid, break the loop
+                                        System.out.println("Interview time is scheduled successful.");
+                                        localDateTime = LocalDateTime.of(year, month, dayOfMonth, interviewTime.getHour(), interviewTime.getMinute(), interviewTime.getSecond());
+                                        // Continue with the interview scheduling process here
+                                    } else {
+                                        System.out.println("Invalid time! The interview time must be between " 
+                                            + currentCompany.getInterviewStartTime() + " and " 
+                                            + currentCompany.getInterviewEndTime() + ". Please try again.");
+                                    }
+                                }
+                                currentInterview.setScheduledDateTime(localDateTime);
+                                interviewList.replace(i, currentInterview);
+                                ListInterface<JobApplication> currentJobApplicationList = currentInterview.getJobApplicationList();
+
+                                for(int p = 1; currentJobApplicationList.size() >= p; p++){
+                                    currentJobApplicationList.getData(p).setInterview(currentInterview);
+                                }
+
+                                System.out.println("Interview successfully scheduled for Interview ID: " + currentInterview.getId());
+                                System.out.println("\nPress any key to continue...");
+                                scanner.nextLine();
+                                interviewMenu();
+                            }
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid input. Please enter a number between 1 and 5.");
+                            scanner.nextLine();
+                        }
+                    }
+                } 
+            }
+            if (!interviewFound) 
+            {
+                System.out.println("\n\nInterview ID does not exist");
+                scanner.nextLine();
+                return;
+            }
+        }
     }
-
+    
     // Remove an interview by ID
     public void removeInterview() {
         
@@ -102,7 +225,7 @@ public class InterviewControl {
         else
         {
             viewInterview();
-            System.out.print("Enter the interview id that you want remove: ");
+            System.out.println("Enter the interview id that you want remove: ");
             id = scanner.nextLine();
 
             for (int i = 1; i <= interviewList.size(); i++) 
@@ -132,14 +255,25 @@ public class InterviewControl {
         {
             System.out.println("No companies found.");
             return;
-        } else {
-            System.out.println("\n");
+        } else 
+        {
+            interviewUI.displayInterviewHeader();
+
             for (Interview interview : interviewList) 
             {
-                System.out.printf("%8s %15s %5s\n",
+                String scheduledDateTime = "";
+                if (interview.getScheduledDateTime() != null) {
+                    scheduledDateTime = interview.getScheduledDateTime().toLocalDate() + " " + interview.getScheduledDateTime().toLocalTime();
+                } else {
+                    scheduledDateTime = "Not scheduled";
+                }
+
+                System.out.printf("%-10s%-15s%-10s%-12s%-15s\n",
                         interview.getId(),
                         interview.getInterviewStatus(),
-                        interview.getInterviewMark());
+                        interview.getInterviewMark(),
+                        scheduledDateTime.split(" ")[0],
+                        scheduledDateTime.split(" ")[1]); 
             }
             return;
         }
@@ -149,7 +283,7 @@ public class InterviewControl {
     {
         String id;
         int interviewDay = -1;
-        InterviewSchedulingControl scheduling = new InterviewSchedulingControl();
+        boolean interviewFound = false;
         
         if(interviewList.isEmpty())
         {
@@ -167,6 +301,7 @@ public class InterviewControl {
 
                 if (currentInterview.getId().equals(id)) 
                 {
+                    interviewFound = true;
                     int choose;
 
                     do {
@@ -174,19 +309,30 @@ public class InterviewControl {
 
                         switch (choose) {
                             case 1:
-                                while (true) {
+                                while (true) 
+                                {
                                     try {
-                                        System.out.println("Select a day for the interview (1 = Monday, 2 = Tuesday, ..., 5 = Friday)or enter 0 to cancel: ");
+                                        System.out.print("Select a day for the interview (1 = Monday, 2 = Tuesday, ..., 5 = Friday) or enter 0 to cancel: ");
                                         interviewDay = scanner.nextInt();
-                                        if (interviewDay < 0 || interviewDay > 5) {
+                                        
+                                        // Check if the input is valid
+                                        if (interviewDay == 0) {
+                                            System.out.println("Interview edit is cancelled.");
+                                            return; 
+                                        }
+                                        
+                                        if (interviewDay < 1 || interviewDay > 5) 
+                                        {
                                             System.out.println("Invalid day. Please select a number between 1 (Monday) and 5 (Friday).");
-                                            
+                                        }
+                                        else
+                                        {
                                             Calendar calendar = Calendar.getInstance();
                                             int currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
                                             int difference = interviewDay - currentDayOfWeek;
 
                                             if (difference < 0) {
-                                                difference += 7;
+                                                difference += 8;
                                             }
 
                                             calendar.add(Calendar.DAY_OF_YEAR, difference);
@@ -197,23 +343,28 @@ public class InterviewControl {
                                             LocalDateTime currentDateTime = currentInterview.getScheduledDateTime();
                                             LocalDateTime newScheduledDateTime = LocalDateTime.of(year, month, dayOfMonth, currentDateTime.getHour(), currentDateTime.getMinute(), currentDateTime.getSecond());
 
-                                            if (scheduling.checkTimeSlotAvailability(newScheduledDateTime)) {
+                                            if (checkTimeSlotAvailability(newScheduledDateTime)) 
+                                            {
                                                 currentInterview.setScheduledDateTime(newScheduledDateTime);
+                                                ListInterface<JobApplication> currentJobApplicationList = currentInterview.getJobApplicationList();
+
+                                                for(int p = 1; currentJobApplicationList.size() >= p; p++){
+                                                    currentJobApplicationList.getData(p).setInterview(currentInterview);
+                                                }
+                                                
                                                 interviewList.replace(i, currentInterview);
-                                                System.out.println("Interview date edited successfully.");
+                                                System.out.println("Interview date edit successfully.");
                                                 return;
                                             } else {
                                                 System.out.println("The time slot is not available. Please choose a different time.");
                                             }
-                                        } else {
-                                            break;
                                         }
                                     } catch (InputMismatchException e) {
                                         System.out.println("Invalid input. Please enter a number between 1 and 5 or 0 to cancel.");
                                         scanner.nextLine();
                                     }
                                 }
-                                break;
+                                
                                 
                             case 2:
                                 
@@ -262,9 +413,15 @@ public class InterviewControl {
 
                                     LocalDateTime newScheduledDateTime = LocalDateTime.of(currentDateTime.toLocalDate(), LocalTime.of(hour, minute));
 
-                                    if (scheduling.checkTimeSlotAvailability(newScheduledDateTime)) {
+                                    if (checkTimeSlotAvailability(newScheduledDateTime)) {
                                         
                                         currentInterview.setScheduledDateTime(newScheduledDateTime);
+                                        ListInterface<JobApplication> currentJobApplicationList = currentInterview.getJobApplicationList();
+
+                                        for(int p = 1; currentJobApplicationList.size() >= p; p++){
+                                            currentJobApplicationList.getData(p).setInterview(currentInterview);
+                                        }
+
                                         interviewList.replace(i, currentInterview);
                                         System.out.println("Interview time edited successfully.");      
                                         break;
@@ -276,6 +433,8 @@ public class InterviewControl {
                                 }  
                                 break;
                             case 0:
+                                System.out.println("Returning to Interview Menu...");
+                                scanner.nextLine();
                                 interviewMenu();
                                 break;
                         }
@@ -283,10 +442,13 @@ public class InterviewControl {
                     } while (choose != 0);
                 }
             }
-            System.out.println("Interview with ID " + id + " not found.");
-            System.out.println("\nPress any key to continue...");
-            scanner.nextLine();
-            return;
+            if (!interviewFound) 
+            {
+                System.out.println("\n\nInterview ID does not exist");
+                System.out.println("\nPress any key to continue...");
+                scanner.nextLine();
+                return;
+            }
         }
     }
 
@@ -339,6 +501,11 @@ public class InterviewControl {
             return;
         }else
         {
+            ListInterface<Interview> interviewCopy = new DoublyLinkedList<>();
+            for (int i = 1; i <= interviewList.size(); i++) 
+            {
+                interviewCopy.add(interviewList.getData(i));
+            }
             Comparator<Interview> interviewMarkComparator = new Comparator<Interview>() 
             {
                 public int compare(Interview interview1, Interview interview2) 
@@ -348,12 +515,11 @@ public class InterviewControl {
             };
 
             // Sort the interview list by interview mark (descending order)
-            interviewList.bubbleSort(interviewMarkComparator);
+            interviewCopy.bubbleSort(interviewMarkComparator);
 
-            // Generate the sorted report
-            System.out.println("===== Sorted Interview Report (Ranked by Interview Marks) =====");
-            for (int i = 1; i <= interviewList.size(); i++) {
-                Interview currentInterview = interviewList.getData(i);
+            System.out.println("\n===== Sorted Interview Report (Ranked by Interview Marks) =====");
+            for (int i = 1; i <= interviewCopy.size(); i++) {
+                Interview currentInterview = interviewCopy.getData(i);
                 System.out.println("Rank " + (i) + ":");
                 System.out.println("Interview ID: " + currentInterview.getId());
                 System.out.println("Scheduled Time: " + currentInterview.getScheduledDateTime());
@@ -384,6 +550,11 @@ public class InterviewControl {
             return;
         }else
         {
+            ListInterface<Interview> interviewCopy = new DoublyLinkedList<>();
+            for (int i = 1; i <= interviewList.size(); i++) 
+            {
+                interviewCopy.add(interviewList.getData(i));
+            }
             Comparator<Interview> interviewMarkComparator = new Comparator<Interview>() {
             @Override
             public int compare(Interview interview1, Interview interview2) {
@@ -391,12 +562,12 @@ public class InterviewControl {
                 }
             };
 
-            interviewList.bubbleSort(interviewMarkComparator);
+            interviewCopy.bubbleSort(interviewMarkComparator);
 
             System.out.println("===== Sorted Interview Report (Ranked by Interview Marks - Ascending) =====");
-            for (int i = 1; i <= interviewList.size(); i++)
+            for (int i = 1; i <= interviewCopy.size(); i++)
             {
-                Interview currentInterview = interviewList.getData(i);
+                Interview currentInterview = interviewCopy.getData(i);
 
                 System.out.println("Rank " + (i) + ":");
                 System.out.println("Interview ID: " + currentInterview.getId());
@@ -501,31 +672,171 @@ public class InterviewControl {
     }
     
     public void interviewReportMenu() {
-    int choose;
+        int choose;
 
-    do {
-        choose = interviewUI.reportMenu();
+        do {
+            choose = interviewUI.reportMenu();
 
-        switch (choose) {
-            case 1:
-                interviewStatusDistributionGraph();
-                generateInterviewReport();
-                break;
-            case 2:
-                interviewStatusDistributionGraph();
-                generateAscendingSortedInterviewReport();
-                break;
-            case 3:
-                interviewStatusDistributionGraph();
-                generateDescendingInterviewReport();
-                break;
-            case 0:
-                System.out.println("\nReturning to Interview Edit Menu...");
-                break;
-            default:
-                System.out.println("Invalid option selected! Please try again.");
+            switch (choose) {
+                case 1:
+                    interviewStatusDistributionGraph();
+                    generateInterviewReport();
+                    break;
+                case 2:
+                    interviewStatusDistributionGraph();
+                    generateAscendingSortedInterviewReport();
+                    break;
+                case 3:
+                    interviewStatusDistributionGraph();
+                    generateDescendingInterviewReport();
+                    break;
+                case 0:
+                    System.out.println("\nReturning to Interview Edit Menu...");
+                    break;
+                default:
+                    System.out.println("Invalid option selected! Please try again.");
+            }
+        } while (choose != 0);
+    }
+    
+    public void interviewRanking() 
+    {
+        System.out.println("\t==============================");
+        System.out.println("\t   Interview Ranking");
+        System.out.println("\t==============================");
+
+        viewInterview();
+        System.out.println("Enter the interview ID you want to rank: ");
+        String id = scanner.nextLine();
+
+        if (interviewList.isEmpty()) {
+            System.out.println("No interviews available.");
+            return;
+        } else {
+            boolean interviewFound = false;
+
+            for (int i = 1; i <= interviewList.size(); i++) {
+                Interview currentInterview = interviewList.getData(i);
+
+                if (currentInterview.getId().equals(id)) {
+                    interviewFound = true;
+
+                    int result = -1;
+
+                    while (true) {
+                        try {
+                            System.out.print("Enter the result for the interview (0-100): ");
+                            result = scanner.nextInt();
+
+                            if (result < 0 || result > 100) {
+                                System.out.print("Invalid input. Please enter a number between 0 and 100.");
+                            } else {
+                                break;
+                            }
+                        } catch (InputMismatchException e) {
+                            System.out.print("Invalid input. Please enter a valid number between 0 and 100.");
+                            scanner.nextLine(); // Clear the invalid input
+                        }
+                    }
+
+                    // Set the interview mark
+                    currentInterview.setInterviewMark(result);
+
+                    // If the result is below 50, set the status to REJECTED, otherwise, set to OFFERED
+                    if (result < 50) {
+                        currentInterview.setInterviewStatus(Interview.InterviewStatus.REJECTED);
+                        System.out.println("Interview ranking updated to: " + result + ". The candidate is REJECTED.");
+                    } else {
+                        currentInterview.setInterviewStatus(Interview.InterviewStatus.OFFERED);
+                        System.out.println("Interview ranking updated to: " + result + ". The candidate is OFFERED.");
+                    }
+
+                    // Replace the updated interview in the list
+                    interviewList.replace(i, currentInterview);
+
+                    // Now, update the interview in the job application list
+                    ListInterface<JobApplication> jobApplicationList = currentInterview.getJobApplicationList();
+                    for (int p = 1; p <= jobApplicationList.size(); p++) {
+                        JobApplication jobApplication = jobApplicationList.getData(p);
+                        jobApplication.setInterview(currentInterview);  // Set the interview for each job application
+                    }
+
+                    System.out.println("Interview ranking and status updated successfully.");
+                    scanner.nextLine();
+                    return;
+                }
+            }
+
+            if (!interviewFound) {
+                System.out.println("Interview with ID " + id + " not found.");
+                scanner.nextLine();
+                return;
+            }
         }
-    } while (choose != 0);
-}
+    }
+
+    
+    public boolean checkTimeSlotAvailability(LocalDateTime localDateTime) 
+    {
+        int numberOfInterviewer = 0;
+
+        for (Interview interviewer : interviewList) {
+            if (interviewer.getScheduledDateTime().equals(localDateTime)) {
+                numberOfInterviewer++;
+            }
+        }
+
+        if (numberOfInterviewer >= 3) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    public boolean isTimeSlotWithinInterviewHours(LocalTime interviewTime, Company company) {
+    
+        LocalTime interviewStart = company.getInterviewStartTime();
+        LocalTime interviewEnd = company.getInterviewEndTime();
+        
+        
+        if (interviewTime.isAfter(interviewStart) && interviewTime.isBefore(interviewEnd)) {
+        return true;
+        } else 
+        {
+            System.out.println("Interview time is outside the company's allowed range.");
+            return false;
+        }
+    }
+    
+    private int timeValidation(String prompt, int minValue, int maxValue) 
+    {
+        int value = -1;
+        
+        while (value < minValue || value > maxValue) 
+        {
+            System.out.print(prompt);
+
+            // Check if the input is an integer
+            try {
+                value = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                if (value == 0) {
+                    return 0;  // Exit condition if user enters 0
+                }
+
+                // Validate input range
+                if (value < minValue || value > maxValue) {
+                    System.out.println("Invalid input. Please enter a number between " + minValue + " and " + maxValue + ".");
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine(); // Consume invalid input
+            }
+        }
+
+        return value;
+    }
 
 }

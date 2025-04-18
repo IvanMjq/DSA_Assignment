@@ -27,31 +27,32 @@ public class InterviewUI {
         String line = "+--------------------------------+";
 
         while (validInput != true) {
-            System.out.println("\n\n");
+            System.out.println("\n");
             System.out.println(line);
-            System.out.printf("|  %-30s|\n", "Interview Management Menu");
+            System.out.printf("|  %-30s|\n", " Interview Management Menu");
             System.out.println(line);
-            System.out.printf("|  %-30s|\n", "1. Add Interview");
+            System.out.printf("|  %-30s|\n", "1. Interview Scheduling");
             System.out.printf("|  %-30s|\n", "2. View Interiew");
             System.out.printf("|  %-30s|\n", "3. Edit Interview");
             System.out.printf("|  %-30s|\n", "4. Delete Interview");
             System.out.printf("|  %-30s|\n", "5. Report");
+            System.out.printf("|  %-30s|\n", "6. Interview Ranking");
             System.out.printf("|  %-30s|\n", "0. Returnin to Main Menu...");
             System.out.println(line);
 
             // Check if the user input was invalid before
             if (!isFirstInput) {
-                System.out.println("Invalid option. Please choose a number between 0 - 5.");
+                System.out.println("Invalid option. Please choose a number between 0 - 6.");
             }
 
             // Prompt user input message
-            System.out.print("Please enter your option (0-5) : ");
+            System.out.print("Please enter your option (0-6) : ");
 
             // Validate user input
             if (scanner.hasNextInt()) {
                 choose = scanner.nextInt();
                 scanner.nextLine(); // Clear newline character
-                if (choose >= 0 && choose <= 5) {
+                if (choose >= 0 && choose <= 6) {
                     validInput = true;
                 }
             } else {
@@ -64,6 +65,10 @@ public class InterviewUI {
         return choose;
     }
     
+    public void displayInterviewHeader() {
+        System.out.printf("\n\n%-10s%-15s%-10s%-12s%-15s\n", "ID", "Status", "Mark", "Date", "Time");
+    }
+    
     public int interviewEditMenu() {
         int choose = -1;
         boolean validInput = false;
@@ -74,7 +79,7 @@ public class InterviewUI {
         while (validInput != true) {
             System.out.println("\n\n");
             System.out.println(line);
-            System.out.printf("|  %-30s|\n", "Interview Edit Menu");
+            System.out.printf("|  %-30s|\n", "     Interview Edit Menu");
             System.out.println(line);
             System.out.printf("|  %-30s|\n", "1. Edit Interiew Date");
             System.out.printf("|  %-30s|\n", "2. Edit Interview Time");
@@ -116,7 +121,7 @@ public class InterviewUI {
         while (validInput != true) {
             System.out.println("\n");
             System.out.println(line);
-            System.out.printf("|  %-30s|\n", "Interview Report Menu");
+            System.out.printf("|  %-30s|\n", "   Interview Report Menu");
             System.out.println(line);
             System.out.printf("|  %-30s|\n", "1. Summary Report");
             System.out.printf("|  %-30s|\n", "2. Report Ascending Rank");

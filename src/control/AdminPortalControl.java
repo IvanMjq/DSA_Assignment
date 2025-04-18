@@ -50,7 +50,7 @@ public class AdminPortalControl {
         this.companyControl = new CompanyControl(companyList);
         this.jobControl = new JobControl(jobList);
         this.jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
-        this.interviewControl = new InterviewControl(interviewList);
+        this.interviewControl = new InterviewControl(interviewList, companyList);
         this.adminPortalUI = new AdminPortalUI(this);
 
         if (login()) {
