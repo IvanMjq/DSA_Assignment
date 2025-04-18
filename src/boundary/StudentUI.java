@@ -131,9 +131,9 @@ public class StudentUI {
             System.out.print("Enter area: ");
             String input = scanner.nextLine().trim();
             
-            if(alphabetValidation(input)){
-                area = input;
-            }
+//            if(alphabetValidation(input)){
+//                area = input;
+//            }
         }
 
         String state = null;
@@ -141,9 +141,9 @@ public class StudentUI {
             System.out.print("Enter state: ");
             String input = scanner.nextLine().trim();
             
-            if(alphabetValidation(input)){
-                state = input;
-            }
+//            if(alphabetValidation(input)){
+//                state = input;
+//            }
         }
        
         
@@ -158,14 +158,14 @@ public class StudentUI {
         }
         
         String achievement = null;
-        while (achievement == null) {
-            System.out.print("Enter Achievement: ");
-            String input = scanner.nextLine().trim();
-    
-            if (achievementValidation(input)) {
-                achievement = input; 
-            }
-        }
+//        while (achievement == null) {
+//            System.out.print("Enter Achievement: ");
+//            String input = scanner.nextLine().trim();
+//    
+//            if (achievementValidation(input)) {
+//                achievement = input; 
+//            }
+//        }
         
         String education = null;
         while (education == null) {
