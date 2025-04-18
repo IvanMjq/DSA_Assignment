@@ -215,7 +215,7 @@ public class JobControl {
                 jobFound = JobValidateFunction.isValidJobId(id, jobList);
             } while (jobFound == null);
 
-            System.out.println(jobList);
+            System.out.println(jobFound);
 
             do {
                 confirmationToEdit = jobManagementUI.getConfirmationPrompt("Do you want to edit this company?");
