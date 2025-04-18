@@ -4,18 +4,17 @@
  */
 package control;
 
+/**
+ *
+ * @author Ivanmjq
+ */
 import adt.*;
 import boundary.JobPostingManagementUI;
-import dao.AllDataInitialize;
 import entity.*;
 import java.time.LocalDate;
 import utility.JobPostingValidateFunction;
 import utility.TrimToLength;
 
-/**
- *
- * @author Ivanmjq
- */
 public class JobPostingControl {
 
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
@@ -60,7 +59,7 @@ public class JobPostingControl {
                     reportFunction();
                     break;
                 case 0:
-                    System.out.println("Returing to Main Menu ...");
+                    System.out.println("Returning to Main Menu ...");
                     break;
             }
 
@@ -183,7 +182,7 @@ public class JobPostingControl {
 
             JobRequiredSkill newJobRequiredSkill = new JobRequiredSkill(selectedSkill, importance);
 
-            newJobRequiredSkillList.add(new JobRequiredSkill(selectedSkill, importance));
+            newJobRequiredSkillList.add(newJobRequiredSkill);
             System.out.println("Job Required Skill added : " + newJobRequiredSkill.getSkill().getName() + " (Importance: " + newJobRequiredSkill.getImportance() + ")");
 
             do {
@@ -228,7 +227,7 @@ public class JobPostingControl {
                     viewAllJobPostingList();
                     break;
                 case 0:
-                    System.out.println("Exitting the View ...");
+                    System.out.println("Exiting the View ...");
                     break;
             }
 
@@ -237,8 +236,16 @@ public class JobPostingControl {
     }
 
     public void viewByMinimumSalaryRange() {
-        if (companyList.isEmpty()) {
-            System.out.println("No companies found. Cannot filter job postings.");
+        boolean isEmpty = true;
+        for (Company company : companyList) {
+            if (!company.getJobPostingList().isEmpty()) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        if (isEmpty) {
+            System.out.println("No Job Postings found.");
             return;
         }
 
@@ -292,8 +299,16 @@ public class JobPostingControl {
     }
 
     public void viewByMaximumSalaryRange() {
-        if (companyList.isEmpty()) {
-            System.out.println("No companies found. Cannot filter job postings.");
+        boolean isEmpty = true;
+        for (Company company : companyList) {
+            if (!company.getJobPostingList().isEmpty()) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        if (isEmpty) {
+            System.out.println("No Job Postings found.");
             return;
         }
 
@@ -347,8 +362,16 @@ public class JobPostingControl {
     }
 
     public void viewByRequiredExperienceRange() {
-        if (companyList.isEmpty()) {
-            System.out.println("No companies found. Cannot filter job postings.");
+        boolean isEmpty = true;
+        for (Company company : companyList) {
+            if (!company.getJobPostingList().isEmpty()) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        if (isEmpty) {
+            System.out.println("No Job Postings found.");
             return;
         }
 
@@ -404,8 +427,16 @@ public class JobPostingControl {
     }
 
     public void viewByDatePostedRange() {
-        if (companyList.isEmpty()) {
-            System.out.println("No companies found. Cannot filter job postings.");
+        boolean isEmpty = true;
+        for (Company company : companyList) {
+            if (!company.getJobPostingList().isEmpty()) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        if (isEmpty) {
+            System.out.println("No Job Postings found.");
             return;
         }
 
@@ -437,7 +468,7 @@ public class JobPostingControl {
         // Iterate over each company and its job postings
         for (Company company : companyList) {
             for (JobPosting posting : company.getJobPostingList()) {
-                LocalDate postingDate = posting.getDatePosted();  // Assume this method returns a LocalDate
+                LocalDate postingDate = posting.getDatePosted();
                 // Check if posting date is within the range
                 if (!postingDate.isBefore(startDate) && !postingDate.isAfter(endDate)) {
                     Job job = posting.getJob();
@@ -788,6 +819,7 @@ public class JobPostingControl {
 
     public void reportFunction() {
         int option;
+        int userChoice;
 
         do {
             option = jobPostingManagementUI.getJobPostingReportOptions();
@@ -797,13 +829,26 @@ public class JobPostingControl {
                     reportTableFunction(companyList);
                     break;
                 case 2:
-                    int userChoice;
                     do {
                         userChoice = jobPostingManagementUI.getIntegerInput("Enter the number of company : ");
                         if (userChoice <= companyList.size()) {
-                            ListInterface<Company> cloneCompanyList = companyList.cloneList(); 
+                            ListInterface<Company> cloneCompanyList = companyList.cloneList();
                             cloneCompanyList.bubbleSort((a, b) -> Integer.compare(b.getTotalJobApplications(), a.getTotalJobApplications()));
-                            reportTopGraphFunction(cloneCompanyList, userChoice);
+                            reportTopCompanyGraphFunction(cloneCompanyList, userChoice);
+                            break;
+                        } else {
+                            System.out.println("Invalid option. Must between 3 - " + companyList.size());
+                        }
+                    } while (true);
+
+                    break;
+                case 3:
+                    do {
+                        userChoice = jobPostingManagementUI.getIntegerInput("Enter the number of job : ");
+                        if (userChoice <= jobList.size()) {
+                            ListInterface<Job> cloneJobList = jobList.cloneList();
+                            cloneJobList.bubbleSort((a, b) -> Integer.compare(b.getTotalJobApplications(), a.getTotalJobApplications()));
+                            reportTopJobGraphFunction(cloneJobList, userChoice);
                             break;
                         } else {
                             System.out.println("Invalid option. Must between 3 - " + companyList.size());
@@ -812,7 +857,7 @@ public class JobPostingControl {
 
                     break;
                 case 0:
-                    System.out.println("Returing to Job Posting Management Menu ...");
+                    System.out.println("Returning to Job Posting Management Menu ...");
                     break;
             }
 
@@ -822,7 +867,7 @@ public class JobPostingControl {
 
     public static void reportTableFunction(ListInterface<Company> companyList) {
         String title = "Company Job Posting Summary Table Report";
-        int totalWidth = 174; // Adjust the total width as needed
+        int totalWidth = 174;
         int titleWidth = title.length();
         int spacesBefore = (totalWidth - titleWidth) / 2;
         String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
@@ -869,7 +914,7 @@ public class JobPostingControl {
 
     }
 
-    public static void reportTopGraphFunction(ListInterface<Company> companyList, int top) {
+    public static void reportTopCompanyGraphFunction(ListInterface<Company> companyList, int top) {
         final int INITIAL_MAX_BAR_WIDTH = 100;
         int initialMaxApplications;
 
@@ -891,7 +936,7 @@ public class JobPostingControl {
 
         // Find the maximum number of applications
         System.out.println("\n\n" + line);
-        System.out.printf(" %-40s Top %d Company Job Posting Bar Chart Report\n", "", top);
+        System.out.printf(" %-40s Top %d Company - Job Posting Bar Chart Report\n", "", top);
         System.out.printf("\n %-40s Legend: [+ = Offered, | = Unoffered]\n", "");
         System.out.println(line + "\n");
 
@@ -930,6 +975,100 @@ public class JobPostingControl {
                 String counts = String.format("(%d)(%d)", offeredJApp, unofferedJApp);
 
                 String label = company.getName() + " - " + jp.getJob().getTitle();
+                label = TrimToLength.trimToLength(label, 50);
+
+                System.out.printf("%-50s | %-" + longestBarLength + "s %s\n",
+                        label,
+                        fullBar,
+                        counts);
+
+            }
+            System.out.println();
+
+        }
+
+        String labelBar = "+" + repeatChar('-', longestBarLength + 9);
+
+        System.out.printf("%-50s %-" + longestBarLength + "s> counts\n",
+                "",
+                labelBar
+        );
+
+        String scale = "";
+        for (int i = 0; i <= longestBarLength / charPerJobApplication; i++) {
+            if (i == 0) {
+                scale += i + repeatChar(' ', charPerJobApplication - String.valueOf(i).length());
+                scale += " ";
+                continue;
+            }
+            scale += i + repeatChar(' ', charPerJobApplication - String.valueOf(i).length());
+
+        }
+        System.out.printf("%-50s %s\n", "", scale);
+
+    }
+
+    public static void reportTopJobGraphFunction(ListInterface<Job> jobList, int top) {
+        final int INITIAL_MAX_BAR_WIDTH = 100;
+        int initialMaxApplications;
+
+        initialMaxApplications = jobList.getData(1).getTotalJobApplications();
+
+        int maxApplications = initialMaxApplications;
+
+        int longestString = 0;
+
+        if (maxApplications % 2 != 0) {
+            maxApplications++; // Round up to the next even number, to make sure proper division for each job application
+        }
+
+        int maxBarWidth = calculateDynamicBarWidth(maxApplications, INITIAL_MAX_BAR_WIDTH);
+        int charPerJobApplication = maxBarWidth / maxApplications;
+        int longestBarLength = initialMaxApplications * charPerJobApplication;
+
+        String line = repeatChar('-', longestBarLength + 70);
+
+        // Find the maximum number of applications
+        System.out.println("\n\n" + line);
+        System.out.printf(" %-40s Top %d Company - Job Posting Bar Chart Report\n", "", top);
+        System.out.printf("\n %-40s Legend: [+ = Offered, | = Unoffered]\n", "");
+        System.out.println(line + "\n");
+
+        // Step 2: Print bars
+        for (int i = 1; i <= top; i++) {
+            Job job = jobList.getData(i);
+            ListInterface<JobPosting> jpList = job.getJobPostingList();
+            for (JobPosting jp : jpList) {
+                ListInterface<JobApplication> jAppList = jp.getJobApplicationList();
+                int totalJApp = jAppList.size();
+                int offeredJApp = 0;
+
+                for (JobApplication jApp : jAppList) {
+                    Interview interview = jApp.getInterview();
+                    if (interview != null && interview.getInterviewStatus() == Interview.InterviewStatus.OFFERED) {
+                        offeredJApp++;
+                    }
+
+                }
+                int unofferedJApp = totalJApp - offeredJApp;
+
+                int offeredLength = offeredJApp * charPerJobApplication;
+                int unofferedLength = unofferedJApp * charPerJobApplication;
+
+                // Construct the bars using the repeatChar method
+                String offeredBar = repeatChar('+', offeredLength);
+                String unofferedBar = repeatChar('|', unofferedLength);
+
+                // Concatenate offered and unoffered parts to form the full bar
+                String fullBar = offeredBar + unofferedBar;
+
+                if (fullBar.length() > longestString) {
+                    longestString = fullBar.length();
+                }
+
+                String counts = String.format("(%d)(%d)", offeredJApp, unofferedJApp);
+
+                String label = job.getTitle() + " - " + jp.getCompany().getName();
                 label = TrimToLength.trimToLength(label, 50);
 
                 System.out.printf("%-50s | %-" + longestBarLength + "s %s\n",
@@ -1083,18 +1222,6 @@ public class JobPostingControl {
             System.err.println("Failed to find the Job Posting in its Job's Job Posting List.");
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        AllDataInitialize dataInitialize = new AllDataInitialize();
-
-        ListInterface<Company> companyList = dataInitialize.getCompanyList();
-        ListInterface<Job> jobList = dataInitialize.getJobList();
-        ListInterface<Skill> skillList = dataInitialize.getSkillList();
-
-        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
-//        jobPostingControl.startJobPostingManagement();
-        jobPostingControl.reportFunction();
     }
 
 }

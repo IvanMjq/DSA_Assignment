@@ -4,20 +4,20 @@
  */
 package control;
 
+/**
+ *
+ * @author Ivanmjq
+ */
+
 import adt.DoublyLinkedList;
 import adt.ListInterface;
 import boundary.JobManagementUI;
-import dao.AllDataInitialize;
 import entity.Job;
 import entity.JobPosting;
 import utility.IdGeneration;
 import utility.JobValidateFunction;
 import utility.TrimToLength;
 
-/**
- *
- * @author Ivanmjq
- */
 public class JobControl {
 
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
@@ -48,7 +48,7 @@ public class JobControl {
                     deleteJob();
                     break;
                 case 0:
-                    System.out.println("Returing to Main Menu ...");
+                    System.out.println("Returning to Main Menu ...");
                     break;
             }
 
@@ -92,7 +92,7 @@ public class JobControl {
             if (isAdded) {
                 System.out.println("Company added successfully!");
             } else {
-                System.err.println("Failed to add company. Please try agian.");
+                System.err.println("Failed to add company. Please try again.");
                 System.err.flush();
             }
         } else {
@@ -116,7 +116,7 @@ public class JobControl {
                     viewAllJobList();
                     break;
                 case 0:
-                    System.out.println("Exitting the View ...");
+                    System.out.println("Exiting the View ...");
                     break;
             }
 
@@ -146,7 +146,7 @@ public class JobControl {
         boolean found = false;
 
         for (Job job : jobList) {
-            if (job.getType().equalsIgnoreCase(selectedJobType)) {
+            if (job.getType().equals(selectedJobType)) {
                 System.out.printf("| %-8s | %-35s | %-25s | %-85s |\n",
                         job.getId(),
                         TrimToLength.trimToLength(job.getTitle(), 28),
@@ -313,21 +313,10 @@ public class JobControl {
                     + removedJob.getId()
             );
         } else {
-            System.err.println("Failed to remove Job wih ID : "
+            System.err.println("Failed to remove Job with ID : "
                     + jobFound.getId()
             );
         }
-    }
-
-    // Just for testing purpose 
-    public static void main(String[] args) {
-        AllDataInitialize dataInitialize = new AllDataInitialize();
-
-        ListInterface<Job> jobList = dataInitialize.getJobList();
-
-        JobControl jobControl = new JobControl(jobList);
-
-        jobControl.startJobManagement();
     }
 
 }

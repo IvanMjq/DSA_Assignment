@@ -172,7 +172,8 @@ public class JobPostingManagementUI {
             System.out.printf("|  %-50s|\n", "Reports Options");
             System.out.println(line);
             System.out.printf("|  %-50s|\n", "1. Company Job Posting Summary Table");
-            System.out.printf("|  %-50s|\n", "2. Top Company Job Posting Bar Chart");
+            System.out.printf("|  %-50s|\n", "2. Top Company - Job Posting Bar Chart");
+            System.out.printf("|  %-50s|\n", "3. Top Job - Job Posting Bar Chart");
             System.out.printf("|  %-50s|\n", "0. Exit Report.");
             System.out.println(line);
 
@@ -182,13 +183,13 @@ public class JobPostingManagementUI {
             }
 
             // Prompt user input message
-            System.out.print("Please enter your option (0-2) : ");
+            System.out.print("Please enter your option (0-3) : ");
 
             // Validate user input
             if (sc.hasNextInt()) {
                 option = sc.nextInt();
                 sc.nextLine(); // Clear newline character
-                if (option >= 0 && option <= 2) {
+                if (option >= 0 && option <= 3) {
                     validInput = true;
                 }
             } else {

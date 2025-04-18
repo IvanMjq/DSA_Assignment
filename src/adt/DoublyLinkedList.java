@@ -132,29 +132,6 @@ public class DoublyLinkedList<T extends Comparable<T>> implements ListInterface<
         return numberOfEntries == 0;
     }
 
-    // For testing
-    @Override
-    public String displayForward() {
-        String outputStr = "";
-        Node current = head;
-        while (current != null) {
-            outputStr += current.data + "\n";
-            current = current.next;
-        }
-        return outputStr;
-    }
-
-    @Override
-    public String displayBackward() {
-        String outputStr = "";
-        Node current = tail;
-        while (current != null) {
-            outputStr += current.data + "\n";
-            current = current.prev;
-        }
-        return outputStr;
-    }
-
     @Override
     public void bubbleSort(Comparator<T> comparator) {
         boolean swapped;

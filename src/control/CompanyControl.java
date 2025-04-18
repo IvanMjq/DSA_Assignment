@@ -4,19 +4,19 @@
  */
 package control;
 
+/**
+ *
+ * @author Mok Jun Quan Ivan
+ */
+
 import adt.DoublyLinkedList;
 import adt.ListInterface;
 import boundary.CompanyManagementUI;
-import dao.AllDataInitialize;
 import entity.Company;
 import entity.JobPosting;
 import java.time.LocalTime;
 import utility.*;
 
-/**
- *
- * @author ivanmjq
- */
 public class CompanyControl {
 
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
@@ -47,7 +47,7 @@ public class CompanyControl {
                     deleteCompany();
                     break;
                 case 0:
-                    System.out.println("Returing to Main Menu ...");
+                    System.out.println("Returning to Main Menu ...");
                     break;
             }
 
@@ -139,7 +139,7 @@ public class CompanyControl {
             if (isAdded) {
                 System.out.println("Company added successfully!");
             } else {
-                System.err.println("Failed to add company. Please try agian.");
+                System.err.println("Failed to add company. Please try again.");
                 System.err.flush();
             }
         } else {
@@ -163,7 +163,7 @@ public class CompanyControl {
                     viewAllCompanyList();
                     break;
                 case 0:
-                    System.out.println("Exitting the View ...");
+                    System.out.println("Exiting the View ...");
                     break;
             }
 
@@ -192,13 +192,13 @@ public class CompanyControl {
 
         } while (startYear > endYear);
 
-        String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+        String line = "+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
         System.out.println("\n----------------------------------------------------------------");
         System.out.println(" Filtered Companies List (Founded Between " + startYear + " and " + endYear + ")");
         System.out.println("----------------------------------------------------------------");
 
         System.out.println(line);
-        System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-17s | %-9s | %-9s | %-6s | %-6s | %-6s |\n",
+        System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-25s | %-9s | %-9s | %-6s | %-6s | %-6s |\n",
                 "ID", "Name", "Phone", "Email", "Street", "Area", "State",
                 "Latitude", "Longitude", "Year", "Start", "End");
         System.out.println(line);
@@ -208,14 +208,14 @@ public class CompanyControl {
         // Iterate through companies and filter based on founded year range
         for (Company c : companyList) {
             if (c.getFoundedYear() >= startYear && c.getFoundedYear() <= endYear) {
-                System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-17s | %-9.4f | %-9.4f | %-6d | %-6s | %-6s |\n",
+                System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-25s | %-9.4f | %-9.4f | %-6d | %-6s | %-6s |\n",
                         c.getId(),
                         TrimToLength.trimToLength(c.getName(), 30),
                         TrimToLength.trimToLength(c.getPhone(), 14),
                         TrimToLength.trimToLength(c.getEmail(), 30),
                         TrimToLength.trimToLength(c.getStreetAddress(), 50),
                         TrimToLength.trimToLength(c.getArea(), 25),
-                        TrimToLength.trimToLength(c.getState(), 17),
+                        TrimToLength.trimToLength(c.getState(), 25),
                         c.getLatitude(),
                         c.getLongitude(),
                         c.getFoundedYear(),
@@ -234,13 +234,13 @@ public class CompanyControl {
     }
 
     public void viewAllCompanyList() {
-        String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+        String line = "+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
         System.out.println("\n--------------------");
         System.out.println(" View Companies List ");
         System.out.println("--------------------");
 
         System.out.println(line);
-        System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-17s | %-9s | %-9s | %-6s | %-6s | %-6s |\n",
+        System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-25s | %-9s | %-9s | %-6s | %-6s | %-6s |\n",
                 "ID", "Name", "Phone", "Email", "Street", "Area", "State",
                 "Latitude", "Longitude", "Year", "Start", "End");
         System.out.println(line);
@@ -249,7 +249,7 @@ public class CompanyControl {
             System.out.println("No companies found.");
         } else {
             for (Company c : companyList) {
-                System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-17s | %-9.4f | %-9.4f | %-6d | %-6s | %-6s |\n",
+                System.out.printf("| %-5s | %-30s | %-14s | %-30s | %-50s | %-25s | %-25s | %-9.4f | %-9.4f | %-6d | %-6s | %-6s |\n",
                         c.getId(),
                         c.getName(),
                         c.getPhone(),
@@ -444,21 +444,10 @@ public class CompanyControl {
                     + removedCompany.getId()
             );
         } else {
-            System.err.println("Failed to remove Company wih ID : "
+            System.err.println("Failed to remove Company with ID : "
                     + companyFound.getId()
             );
         }
-    }
-
-    // Just for testing purpose
-    public static void main(String[] args) {
-        AllDataInitialize dataInitialize = new AllDataInitialize();
-
-        ListInterface<Company> companyList = dataInitialize.getCompanyList();
-
-        CompanyControl companyControl = new CompanyControl(companyList);
-
-        companyControl.startCompanyManagement();
     }
 
 }
