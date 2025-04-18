@@ -16,6 +16,8 @@ import utility.JobPostingValidateFunction;
 import utility.TrimToLength;
 
 public class JobPostingControl {
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLACK = "\u001B[30m";
 
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
     private ListInterface<Job> jobList = new DoublyLinkedList<>();
@@ -901,11 +903,11 @@ public class JobPostingControl {
                 int unoffered = totaljApp - offered;
 
                 String offeredBar = repeatChar('#', offered);
-                String unofferedBar = repeatChar('*', unoffered);
+                String unofferedBar = ANSI_RED + repeatChar('*', unoffered) + ANSI_BLACK;
 
                 System.out.printf("| %-50s | %-60s | %-15d | %-12s | %-25s |\n",
                         company.getName(), jp.getJob().getTitle(), totaljApp, "Offered", offeredBar);
-                System.out.printf("| %-50s | %-60s | %-15s | %-12s | %-25s |\n",
+                System.out.printf("| %-50s | %-60s | %-15s | %-12s | %-35s |\n",
                         "", "", "", "Unoffered", unofferedBar);
             }
 
@@ -930,14 +932,14 @@ public class JobPostingControl {
 
         int maxBarWidth = calculateDynamicBarWidth(maxApplications, INITIAL_MAX_BAR_WIDTH);
         int charPerJobApplication = maxBarWidth / maxApplications;
-        int longestBarLength = initialMaxApplications * charPerJobApplication;
+        int longestBarLength = initialMaxApplications * charPerJobApplication + 10;
 
         String line = repeatChar('-', longestBarLength + 70);
 
         // Find the maximum number of applications
         System.out.println("\n\n" + line);
         System.out.printf(" %-40s Top %d Company - Job Posting Bar Chart Report\n", "", top);
-        System.out.printf("\n %-40s Legend: [+ = Offered, | = Unoffered]\n", "");
+        System.out.printf("\n %-40s Legend: [+ = Offered," + ANSI_RED + " |" + ANSI_BLACK  + " = Unoffered]\n", "");
         System.out.println(line + "\n");
 
         // Step 2: Print bars
@@ -963,7 +965,7 @@ public class JobPostingControl {
 
                 // Construct the bars using the repeatChar method
                 String offeredBar = repeatChar('+', offeredLength);
-                String unofferedBar = repeatChar('|', unofferedLength);
+                String unofferedBar = ANSI_RED+ repeatChar('|', unofferedLength) + ANSI_BLACK;
 
                 // Concatenate offered and unoffered parts to form the full bar
                 String fullBar = offeredBar + unofferedBar;
@@ -987,7 +989,7 @@ public class JobPostingControl {
 
         }
 
-        String labelBar = "+" + repeatChar('-', longestBarLength + 9);
+        String labelBar = "+" + repeatChar('-', longestBarLength);
 
         System.out.printf("%-50s %-" + longestBarLength + "s> counts\n",
                 "",
@@ -1024,14 +1026,14 @@ public class JobPostingControl {
 
         int maxBarWidth = calculateDynamicBarWidth(maxApplications, INITIAL_MAX_BAR_WIDTH);
         int charPerJobApplication = maxBarWidth / maxApplications;
-        int longestBarLength = initialMaxApplications * charPerJobApplication;
+        int longestBarLength = initialMaxApplications * charPerJobApplication + 10;
 
         String line = repeatChar('-', longestBarLength + 70);
 
         // Find the maximum number of applications
         System.out.println("\n\n" + line);
-        System.out.printf(" %-40s Top %d Company - Job Posting Bar Chart Report\n", "", top);
-        System.out.printf("\n %-40s Legend: [+ = Offered, | = Unoffered]\n", "");
+        System.out.printf(" %-40s Top %d Job - Job Posting Bar Chart Report\n", "", top);
+        System.out.printf("\n %-40s Legend: [+ = Offered," + ANSI_RED + " |" + ANSI_BLACK  + " = Unoffered]\n", "");
         System.out.println(line + "\n");
 
         // Step 2: Print bars
@@ -1057,7 +1059,7 @@ public class JobPostingControl {
 
                 // Construct the bars using the repeatChar method
                 String offeredBar = repeatChar('+', offeredLength);
-                String unofferedBar = repeatChar('|', unofferedLength);
+                String unofferedBar = ANSI_RED+ repeatChar('|', unofferedLength) + ANSI_BLACK;
 
                 // Concatenate offered and unoffered parts to form the full bar
                 String fullBar = offeredBar + unofferedBar;
@@ -1081,7 +1083,7 @@ public class JobPostingControl {
 
         }
 
-        String labelBar = "+" + repeatChar('-', longestBarLength + 9);
+        String labelBar = "+" + repeatChar('-', longestBarLength);
 
         System.out.printf("%-50s %-" + longestBarLength + "s> counts\n",
                 "",
