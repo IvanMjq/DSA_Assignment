@@ -96,6 +96,9 @@ public class StudentPortalControl {
                 case 4:
                     matchControl.MatchingRunner(loginStudent);
                     break;
+                case 5:
+                    studentControl.generateReport();;
+                    break;
                 default:
                     System.out.println("This is an invalid option!!!");
 

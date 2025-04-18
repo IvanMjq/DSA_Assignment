@@ -41,6 +41,7 @@ public class StudentPortalUI {
         System.out.println("2. Update");
         System.out.println("3. Job Application");
         System.out.println("4. Matching");
+        System.out.println("5. Report");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
 
