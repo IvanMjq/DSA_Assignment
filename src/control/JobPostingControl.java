@@ -57,7 +57,7 @@ public class JobPostingControl {
                     deleteJobPosting();
                     break;
                 case 5:
-                    reportFunction(companyList);
+                    reportFunction();
                     break;
                 case 0:
                     System.out.println("Returing to Main Menu ...");
@@ -87,30 +87,39 @@ public class JobPostingControl {
         String exitString = "\nType 0 or X to return to the previous menu.\n";
 
         do {
-            companyControl.viewFunction();
-            System.out.println(exitString);
-            String id = jobPostingManagementUI.getStringInput("Enter Company ID : ");
-            id = id.toUpperCase();
+            do {
+                companyControl.viewFunction();
+                System.out.println(exitString);
+                String id = jobPostingManagementUI.getStringInput("Enter Company ID : ");
+                id = id.toUpperCase();
 
-            if (id.equals("0") || id.equals("X")) {
-                return;
+                if (id.equals("0") || id.equals("X")) {
+                    return;
+                }
+
+                company = JobPostingValidateFunction.isValidCompanyId(id, companyList);
+            } while (company == null);
+
+            do {
+                jobControl.viewFunction();
+                System.out.println(exitString);
+                String id = jobPostingManagementUI.getStringInput("Enter Job ID : ");
+                id = id.toUpperCase();
+
+                if (id.equals("0") || id.equals("X")) {
+                    return;
+                }
+
+                job = JobPostingValidateFunction.isValidJobId(id, jobList);
+            } while (job == null);
+
+            if (JobPostingValidateFunction.isJobPostingExist(company, job)) {
+                continue;
             }
 
-            company = JobPostingValidateFunction.isValidCompanyId(id, companyList);
-        } while (company == null);
+            break;
 
-        do {
-            jobControl.viewFunction();
-            System.out.println(exitString);
-            String id = jobPostingManagementUI.getStringInput("Enter Job ID : ");
-            id = id.toUpperCase();
-
-            if (id.equals("0") || id.equals("X")) {
-                return;
-            }
-
-            job = JobPostingValidateFunction.isValidJobId(id, jobList);
-        } while (job == null);
+        } while (true);
 
         do {
             description = jobPostingManagementUI.getStringInput("Enter Job Posting Description : ");
@@ -125,7 +134,7 @@ public class JobPostingControl {
             requiredExperience = jobPostingManagementUI.getIntegerInput("Enter Required Experience (Years) : ");
         } while (!JobPostingValidateFunction.isValidRequiredExperience(requiredExperience));
 
-        jobRequiredSkillList = addSkillsForNewJobPosting(jobRequiredSkillList);
+        jobRequiredSkillList = addSkillsForJobPosting(jobRequiredSkillList);
 
         JobPosting newJobPosting = new JobPosting(company,
                 job, description,
@@ -150,14 +159,19 @@ public class JobPostingControl {
 
     }
 
-    private ListInterface<JobRequiredSkill> addSkillsForNewJobPosting(ListInterface<JobRequiredSkill> jobRequiredSkillList) {
+    private ListInterface<JobRequiredSkill> addSkillsForJobPosting(ListInterface<JobRequiredSkill> jobRequiredSkillList) {
         ListInterface<JobRequiredSkill> newJobRequiredSkillList = jobRequiredSkillList;
-        String confirmationToAdd;
+        String confirmationToAdd = "Y";
 
         do {
             int choice = jobPostingManagementUI.displaySkillMenu(); // Get skill selection
             Skill selectedSkill = skillList.getData(choice);
-            System.out.println(selectedSkill);
+
+            // Check for duplicate
+            if (isSkillAlreadyAdded(selectedSkill, jobRequiredSkillList)) {
+                System.out.println("This skill is already added to the job posting.");
+                continue;
+            }
 
             int importance;
             do {
@@ -168,7 +182,6 @@ public class JobPostingControl {
             } while (importance < 1 || importance > 5);
 
             JobRequiredSkill newJobRequiredSkill = new JobRequiredSkill(selectedSkill, importance);
-            System.out.println(newJobRequiredSkill);
 
             newJobRequiredSkillList.add(new JobRequiredSkill(selectedSkill, importance));
             System.out.println("Job Required Skill added : " + newJobRequiredSkill.getSkill().getName() + " (Importance: " + newJobRequiredSkill.getImportance() + ")");
@@ -177,9 +190,19 @@ public class JobPostingControl {
                 confirmationToAdd = jobPostingManagementUI.getConfirmationPrompt("Do you want to add another skill?");
             } while (!JobPostingValidateFunction.isValidConfirmation(confirmationToAdd));
 
-        } while (confirmationToAdd.equalsIgnoreCase("Y"));
+        } while (confirmationToAdd.equals("Y"));
 
         return newJobRequiredSkillList;
+    }
+
+    private boolean isSkillAlreadyAdded(Skill selectedSkill, ListInterface<JobRequiredSkill> jobRequiredSkills) {
+        for (int i = 1; i <= jobRequiredSkills.size(); i++) {
+            JobRequiredSkill existing = jobRequiredSkills.getData(i);
+            if (existing.getSkill().equals(selectedSkill)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void viewFunction() {
@@ -498,7 +521,7 @@ public class JobPostingControl {
         String confirmationToEdit = "N";
 
         do {
-            viewAllJobPostingList();
+            viewFunction();
             System.out.println(exitString);
             Company companyFound;
             Job jobFound;
@@ -573,9 +596,12 @@ public class JobPostingControl {
                 case 4: // Required Experience
                     int experience;
                     do {
-                        experience = jobPostingManagementUI.getIntegerInput("Enter Required Experience (Years): ");
+                        experience = jobPostingManagementUI.getIntegerInput("Enter Required Experience (Years) : ");
                     } while (!JobPostingValidateFunction.isValidRequiredExperience(experience));
                     jobPostingFound.setRequiredExperience(experience);
+                    break;
+                case 5:
+                    modifyJobRequiredSkill(jobPostingFound.getJobRequiredSkillList());
                     break;
                 case 0:
                     System.out.println("Returning to Job Posting Management Menu..");
@@ -586,10 +612,95 @@ public class JobPostingControl {
             }
 
             // Show updated job posting
-            System.out.println("\n\nUpdated Job Posting:");
+            System.out.println("\n\nUpdated Job Posting : ");
             System.out.println(jobPostingFound);
 
         } while (option != 0);
+    }
+
+    public void modifyJobRequiredSkill(ListInterface<JobRequiredSkill> jobRequiredSkills) {
+        int choice;
+        do {
+            System.out.println("\n========== Modify Job Required Skills ==========");
+            System.out.println("1. View All Required Skills");
+            System.out.println("2. Add New Skill");
+            System.out.println("3. Edit Skill Importance");
+            System.out.println("4. Remove Skill");
+            System.out.println("0. Done Editing Skills");
+
+            choice = jobPostingManagementUI.getIntegerInput("Enter your option: ");
+
+            switch (choice) {
+                case 1:
+                    viewAllJobRequiredSkills(jobRequiredSkills);
+                    break;
+                case 2:
+                    addSkillsForJobPosting(jobRequiredSkills);
+                    break;
+                case 3:
+                    editSkillImportance(jobRequiredSkills);
+                    break;
+                case 4:
+                    removeJobRequiredSkill(jobRequiredSkills);
+                    break;
+                case 0:
+                    System.out.println("Finished editing skills.");
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+            }
+        } while (choice != 0);
+    }
+
+    private void viewAllJobRequiredSkills(ListInterface<JobRequiredSkill> jobRequiredSkills) {
+        if (jobRequiredSkills.isEmpty()) {
+            System.out.println("No Job Required Skills added yet.");
+            return;
+        }
+
+        for (int i = 1; i <= jobRequiredSkills.size(); i++) {
+            JobRequiredSkill jrs = jobRequiredSkills.getData(i);
+            System.out.printf("%d. %s (Importance: %d)\n", i, jrs.getSkill().getName(), jrs.getImportance());
+        }
+    }
+
+    private void editSkillImportance(ListInterface<JobRequiredSkill> jobRequiredSkills) {
+        if (jobRequiredSkills.isEmpty()) {
+            System.out.println("No skills to edit.");
+            return;
+        }
+
+        viewAllJobRequiredSkills(jobRequiredSkills);
+        int editIndex = jobPostingManagementUI.getIntegerInput("Enter the skill number to edit: ");
+        if (editIndex < 1 || editIndex > jobRequiredSkills.size()) {
+            System.out.println("Invalid index.");
+            return;
+        }
+
+        int newImportance;
+        do {
+            newImportance = jobPostingManagementUI.getIntegerInput("Enter new importance (1-5): ");
+        } while (newImportance < 1 || newImportance > 5);
+
+        jobRequiredSkills.getData(editIndex).setImportance(newImportance);
+        System.out.println("Importance updated.");
+    }
+
+    private void removeJobRequiredSkill(ListInterface<JobRequiredSkill> jobRequiredSkills) {
+        if (jobRequiredSkills.isEmpty()) {
+            System.out.println("No skills to remove.");
+            return;
+        }
+
+        viewAllJobRequiredSkills(jobRequiredSkills);
+        int removeIndex = jobPostingManagementUI.getIntegerInput("Enter the skill number to remove: ");
+        if (removeIndex < 1 || removeIndex > jobRequiredSkills.size()) {
+            System.out.println("Invalid index.");
+            return;
+        }
+
+        JobRequiredSkill removed = jobRequiredSkills.remove(removeIndex);
+        System.out.println("Removed skill: " + removed.getSkill().getName());
     }
 
     public void deleteJobPosting() {
@@ -675,8 +786,56 @@ public class JobPostingControl {
 
     }
 
-    public static void reportFunction(ListInterface<Company> companyList) {
-        String title = "Company Job Posting Summary Report";
+    public void reportFunction() {
+        int option;
+        int userChoice;
+
+        do {
+            option = jobPostingManagementUI.getJobPostingReportOptions();
+
+            switch (option) {
+                case 1:
+                    reportTableFunction(companyList);
+                    break;
+                case 2:
+                    do {
+                        userChoice = jobPostingManagementUI.getIntegerInput("Enter the number of company : ");
+                        if (userChoice <= companyList.size()) {
+                            ListInterface<Company> cloneCompanyList = companyList.cloneList();
+                            cloneCompanyList.bubbleSort((a, b) -> Integer.compare(b.getTotalJobApplications(), a.getTotalJobApplications()));
+                            reportTopCompanyGraphFunction(cloneCompanyList, userChoice);
+                            break;
+                        } else {
+                            System.out.println("Invalid option. Must between 3 - " + companyList.size());
+                        }
+                    } while (true);
+
+                    break;
+                case 3:
+                    do {
+                        userChoice = jobPostingManagementUI.getIntegerInput("Enter the number of job : ");
+                        if (userChoice <= jobList.size()) {
+                            ListInterface<Job> cloneJobList = jobList.cloneList();
+                            cloneJobList.bubbleSort((a, b) -> Integer.compare(b.getTotalJobApplications(), a.getTotalJobApplications()));
+                            reportTopJobGraphFunction(cloneJobList, userChoice);
+                            break;
+                        } else {
+                            System.out.println("Invalid option. Must between 3 - " + companyList.size());
+                        }
+                    } while (true);
+
+                    break;
+                case 0:
+                    System.out.println("Returing to Job Posting Management Menu ...");
+                    break;
+            }
+
+        } while (option != 0);
+
+    }
+
+    public static void reportTableFunction(ListInterface<Company> companyList) {
+        String title = "Company Job Posting Summary Table Report";
         int totalWidth = 174; // Adjust the total width as needed
         int titleWidth = title.length();
         int spacesBefore = (totalWidth - titleWidth) / 2;
@@ -709,9 +868,9 @@ public class JobPostingControl {
                 }
 
                 int unoffered = totaljApp - offered;
-                
+
                 String offeredBar = repeatChar('#', offered);
-                String unofferedBar = repeatChar('-', unoffered);
+                String unofferedBar = repeatChar('*', unoffered);
 
                 System.out.printf("| %-50s | %-60s | %-15d | %-12s | %-25s |\n",
                         company.getName(), jp.getJob().getTitle(), totaljApp, "Offered", offeredBar);
@@ -722,6 +881,214 @@ public class JobPostingControl {
             System.out.println(line); // space between companies
         }
 
+    }
+
+    public static void reportTopCompanyGraphFunction(ListInterface<Company> companyList, int top) {
+        final int INITIAL_MAX_BAR_WIDTH = 100;
+        int initialMaxApplications;
+
+        initialMaxApplications = companyList.getData(1).getTotalJobApplications();
+
+        int maxApplications = initialMaxApplications;
+
+        int longestString = 0;
+
+        if (maxApplications % 2 != 0) {
+            maxApplications++; // Round up to the next even number, to make sure proper division for each job application
+        }
+
+        int maxBarWidth = calculateDynamicBarWidth(maxApplications, INITIAL_MAX_BAR_WIDTH);
+        int charPerJobApplication = maxBarWidth / maxApplications;
+        int longestBarLength = initialMaxApplications * charPerJobApplication;
+
+        String line = repeatChar('-', longestBarLength + 70);
+
+        // Find the maximum number of applications
+        System.out.println("\n\n" + line);
+        System.out.printf(" %-40s Top %d Company - Job Posting Bar Chart Report\n", "", top);
+        System.out.printf("\n %-40s Legend: [+ = Offered, | = Unoffered]\n", "");
+        System.out.println(line + "\n");
+
+        // Step 2: Print bars
+        for (int i = 1; i <= top; i++) {
+            Company company = companyList.getData(i);
+            ListInterface<JobPosting> jpList = company.getJobPostingList();
+            for (JobPosting jp : jpList) {
+                ListInterface<JobApplication> jAppList = jp.getJobApplicationList();
+                int totalJApp = jAppList.size();
+                int offeredJApp = 0;
+
+                for (JobApplication jApp : jAppList) {
+                    Interview interview = jApp.getInterview();
+                    if (interview != null && interview.getInterviewStatus() == Interview.InterviewStatus.OFFERED) {
+                        offeredJApp++;
+                    }
+
+                }
+                int unofferedJApp = totalJApp - offeredJApp;
+
+                int offeredLength = offeredJApp * charPerJobApplication;
+                int unofferedLength = unofferedJApp * charPerJobApplication;
+
+                // Construct the bars using the repeatChar method
+                String offeredBar = repeatChar('+', offeredLength);
+                String unofferedBar = repeatChar('|', unofferedLength);
+
+                // Concatenate offered and unoffered parts to form the full bar
+                String fullBar = offeredBar + unofferedBar;
+
+                if (fullBar.length() > longestString) {
+                    longestString = fullBar.length();
+                }
+
+                String counts = String.format("(%d)(%d)", offeredJApp, unofferedJApp);
+
+                String label = company.getName() + " - " + jp.getJob().getTitle();
+                label = TrimToLength.trimToLength(label, 50);
+
+                System.out.printf("%-50s | %-" + longestBarLength + "s %s\n",
+                        label,
+                        fullBar,
+                        counts);
+
+            }
+            System.out.println();
+
+        }
+
+        String labelBar = "+" + repeatChar('-', longestBarLength + 9);
+
+        System.out.printf("%-50s %-" + longestBarLength + "s> counts\n",
+                "",
+                labelBar
+        );
+
+        String scale = "";
+        for (int i = 0; i <= longestBarLength / charPerJobApplication; i++) {
+            if (i == 0) {
+                scale += i + repeatChar(' ', charPerJobApplication - String.valueOf(i).length());
+                scale += " ";
+                continue;
+            }
+            scale += i + repeatChar(' ', charPerJobApplication - String.valueOf(i).length());
+
+        }
+        System.out.printf("%-50s %s\n", "", scale);
+
+    }
+
+    public static void reportTopJobGraphFunction(ListInterface<Job> jobList, int top) {
+        final int INITIAL_MAX_BAR_WIDTH = 100;
+        int initialMaxApplications;
+
+        initialMaxApplications = jobList.getData(1).getTotalJobApplications();
+
+        int maxApplications = initialMaxApplications;
+
+        int longestString = 0;
+
+        if (maxApplications % 2 != 0) {
+            maxApplications++; // Round up to the next even number, to make sure proper division for each job application
+        }
+
+        int maxBarWidth = calculateDynamicBarWidth(maxApplications, INITIAL_MAX_BAR_WIDTH);
+        int charPerJobApplication = maxBarWidth / maxApplications;
+        int longestBarLength = initialMaxApplications * charPerJobApplication;
+
+        String line = repeatChar('-', longestBarLength + 70);
+
+        // Find the maximum number of applications
+        System.out.println("\n\n" + line);
+        System.out.printf(" %-40s Top %d Company - Job Posting Bar Chart Report\n", "", top);
+        System.out.printf("\n %-40s Legend: [+ = Offered, | = Unoffered]\n", "");
+        System.out.println(line + "\n");
+
+        // Step 2: Print bars
+        for (int i = 1; i <= top; i++) {
+            Job job = jobList.getData(i);
+            ListInterface<JobPosting> jpList = job.getJobPostingList();
+            for (JobPosting jp : jpList) {
+                ListInterface<JobApplication> jAppList = jp.getJobApplicationList();
+                int totalJApp = jAppList.size();
+                int offeredJApp = 0;
+
+                for (JobApplication jApp : jAppList) {
+                    Interview interview = jApp.getInterview();
+                    if (interview != null && interview.getInterviewStatus() == Interview.InterviewStatus.OFFERED) {
+                        offeredJApp++;
+                    }
+
+                }
+                int unofferedJApp = totalJApp - offeredJApp;
+
+                int offeredLength = offeredJApp * charPerJobApplication;
+                int unofferedLength = unofferedJApp * charPerJobApplication;
+
+                // Construct the bars using the repeatChar method
+                String offeredBar = repeatChar('+', offeredLength);
+                String unofferedBar = repeatChar('|', unofferedLength);
+
+                // Concatenate offered and unoffered parts to form the full bar
+                String fullBar = offeredBar + unofferedBar;
+
+                if (fullBar.length() > longestString) {
+                    longestString = fullBar.length();
+                }
+
+                String counts = String.format("(%d)(%d)", offeredJApp, unofferedJApp);
+
+                String label = job.getTitle() + " - " + jp.getCompany().getName();
+                label = TrimToLength.trimToLength(label, 50);
+
+                System.out.printf("%-50s | %-" + longestBarLength + "s %s\n",
+                        label,
+                        fullBar,
+                        counts);
+
+            }
+            System.out.println();
+
+        }
+
+        String labelBar = "+" + repeatChar('-', longestBarLength + 9);
+
+        System.out.printf("%-50s %-" + longestBarLength + "s> counts\n",
+                "",
+                labelBar
+        );
+
+        String scale = "";
+        for (int i = 0; i <= longestBarLength / charPerJobApplication; i++) {
+            if (i == 0) {
+                scale += i + repeatChar(' ', charPerJobApplication - String.valueOf(i).length());
+                scale += " ";
+                continue;
+            }
+            scale += i + repeatChar(' ', charPerJobApplication - String.valueOf(i).length());
+
+        }
+        System.out.printf("%-50s %s\n", "", scale);
+
+    }
+
+    public static int calculateDynamicBarWidth(int maxApplications, int initialMaxBarWidth) {
+        int maxBarWidth = initialMaxBarWidth;
+
+        // While there is a fraction in the calculation, reduce MAX_BAR_WIDTH and recalculate
+        while (true) {
+            // Calculate the number of characters per application
+            double charactersPerApplication = (double) maxBarWidth / maxApplications;
+
+            // If there is no fraction, we have a valid bar width
+            if (charactersPerApplication == Math.floor(charactersPerApplication)) {
+                break;
+            }
+
+            // Otherwise, reduce the maxBarWidth by 1 (or a smaller step if needed)
+            maxBarWidth--;
+        }
+
+        return maxBarWidth;
     }
 
     private static String repeatChar(char ch, int count) {
@@ -833,9 +1200,9 @@ public class JobPostingControl {
         ListInterface<Job> jobList = dataInitialize.getJobList();
         ListInterface<Skill> skillList = dataInitialize.getSkillList();
 
-//        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
+        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
 //        jobPostingControl.startJobPostingManagement();
-        JobPostingControl.reportFunction(companyList);
+        jobPostingControl.reportFunction();
     }
 
 }

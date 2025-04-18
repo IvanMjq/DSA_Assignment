@@ -29,8 +29,24 @@ public class StudentUI {
         System.out.println("2. Register");
         System.out.println("3. Remove");
         System.out.println("4. Update");
-        System.out.println("5. Filter");
+        System.out.println("5. Report");
         System.out.println("6. Matching Report");
+        System.out.println("0. Exit");
+        System.out.print("Enter option: ");
+        
+
+        int option = scanner.nextInt();
+        System.out.println("You selected option: " + option);
+        scanner.nextLine();
+        System.out.println();
+        return option;
+    }
+    
+    public int studentListingOption() {
+        System.out.println("\nStudent Listing");
+        System.out.println("=====================================");
+        System.out.println("1. Listing");
+        System.out.println("2. Listing Sort By Name");
         System.out.println("0. Exit");
         System.out.print("Enter option: ");
         

@@ -11,7 +11,7 @@ import java.util.Comparator;
  * @author ivanmjq
  * @param <T>
  */
-public interface ListInterface<T> extends Iterable<T> {
+public interface ListInterface<T extends Comparable<T>> extends Iterable<T> {
     
     public void clear();
     
@@ -27,14 +27,12 @@ public interface ListInterface<T> extends Iterable<T> {
     
     public T getLastData();
     
-    public boolean isEmpty();
-    
-    public String displayForward();    
-    
-    public String displayBackward();   
+    public boolean isEmpty(); 
 
     public int indexOf(T data);
     
     public void bubbleSort(Comparator<T> comparator);
+    
+    public DoublyLinkedList<T> cloneList();
     
 }
