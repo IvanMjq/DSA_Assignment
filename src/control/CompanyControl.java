@@ -139,7 +139,7 @@ public class CompanyControl {
             if (isAdded) {
                 System.out.println("Company added successfully!");
             } else {
-                System.err.println("Failed to add company. Please try agian.");
+                System.err.println("Failed to add company. Please try again.");
                 System.err.flush();
             }
         } else {
@@ -163,7 +163,7 @@ public class CompanyControl {
                     viewAllCompanyList();
                     break;
                 case 0:
-                    System.out.println("Exitting the View ...");
+                    System.out.println("Exiting the View ...");
                     break;
             }
 

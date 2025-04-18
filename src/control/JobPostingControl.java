@@ -4,18 +4,17 @@
  */
 package control;
 
+/**
+ *
+ * @author Ivanmjq
+ */
 import adt.*;
 import boundary.JobPostingManagementUI;
-import dao.AllDataInitialize;
 import entity.*;
 import java.time.LocalDate;
 import utility.JobPostingValidateFunction;
 import utility.TrimToLength;
 
-/**
- *
- * @author Ivanmjq
- */
 public class JobPostingControl {
 
     private ListInterface<Company> companyList = new DoublyLinkedList<>();
@@ -60,7 +59,7 @@ public class JobPostingControl {
                     reportFunction();
                     break;
                 case 0:
-                    System.out.println("Returing to Main Menu ...");
+                    System.out.println("Returning to Main Menu ...");
                     break;
             }
 
@@ -183,7 +182,7 @@ public class JobPostingControl {
 
             JobRequiredSkill newJobRequiredSkill = new JobRequiredSkill(selectedSkill, importance);
 
-            newJobRequiredSkillList.add(new JobRequiredSkill(selectedSkill, importance));
+            newJobRequiredSkillList.add(newJobRequiredSkill);
             System.out.println("Job Required Skill added : " + newJobRequiredSkill.getSkill().getName() + " (Importance: " + newJobRequiredSkill.getImportance() + ")");
 
             do {
@@ -228,7 +227,7 @@ public class JobPostingControl {
                     viewAllJobPostingList();
                     break;
                 case 0:
-                    System.out.println("Exitting the View ...");
+                    System.out.println("Exiting the View ...");
                     break;
             }
 
@@ -237,8 +236,16 @@ public class JobPostingControl {
     }
 
     public void viewByMinimumSalaryRange() {
-        if (companyList.isEmpty()) {
-            System.out.println("No companies found. Cannot filter job postings.");
+        boolean isEmpty = true;
+        for (Company company : companyList) {
+            if (!company.getJobPostingList().isEmpty()) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        if (isEmpty) {
+            System.out.println("No Job Postings found.");
             return;
         }
 
@@ -292,8 +299,16 @@ public class JobPostingControl {
     }
 
     public void viewByMaximumSalaryRange() {
-        if (companyList.isEmpty()) {
-            System.out.println("No companies found. Cannot filter job postings.");
+        boolean isEmpty = true;
+        for (Company company : companyList) {
+            if (!company.getJobPostingList().isEmpty()) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        if (isEmpty) {
+            System.out.println("No Job Postings found.");
             return;
         }
 
@@ -347,8 +362,16 @@ public class JobPostingControl {
     }
 
     public void viewByRequiredExperienceRange() {
-        if (companyList.isEmpty()) {
-            System.out.println("No companies found. Cannot filter job postings.");
+        boolean isEmpty = true;
+        for (Company company : companyList) {
+            if (!company.getJobPostingList().isEmpty()) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        if (isEmpty) {
+            System.out.println("No Job Postings found.");
             return;
         }
 
@@ -404,8 +427,16 @@ public class JobPostingControl {
     }
 
     public void viewByDatePostedRange() {
-        if (companyList.isEmpty()) {
-            System.out.println("No companies found. Cannot filter job postings.");
+        boolean isEmpty = true;
+        for (Company company : companyList) {
+            if (!company.getJobPostingList().isEmpty()) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        if (isEmpty) {
+            System.out.println("No Job Postings found.");
             return;
         }
 
@@ -437,7 +468,7 @@ public class JobPostingControl {
         // Iterate over each company and its job postings
         for (Company company : companyList) {
             for (JobPosting posting : company.getJobPostingList()) {
-                LocalDate postingDate = posting.getDatePosted();  // Assume this method returns a LocalDate
+                LocalDate postingDate = posting.getDatePosted();
                 // Check if posting date is within the range
                 if (!postingDate.isBefore(startDate) && !postingDate.isAfter(endDate)) {
                     Job job = posting.getJob();
@@ -826,7 +857,7 @@ public class JobPostingControl {
 
                     break;
                 case 0:
-                    System.out.println("Returing to Job Posting Management Menu ...");
+                    System.out.println("Returning to Job Posting Management Menu ...");
                     break;
             }
 
@@ -836,7 +867,7 @@ public class JobPostingControl {
 
     public static void reportTableFunction(ListInterface<Company> companyList) {
         String title = "Company Job Posting Summary Table Report";
-        int totalWidth = 174; // Adjust the total width as needed
+        int totalWidth = 174;
         int titleWidth = title.length();
         int spacesBefore = (totalWidth - titleWidth) / 2;
         String line = "+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
@@ -1191,18 +1222,6 @@ public class JobPostingControl {
             System.err.println("Failed to find the Job Posting in its Job's Job Posting List.");
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        AllDataInitialize dataInitialize = new AllDataInitialize();
-
-        ListInterface<Company> companyList = dataInitialize.getCompanyList();
-        ListInterface<Job> jobList = dataInitialize.getJobList();
-        ListInterface<Skill> skillList = dataInitialize.getSkillList();
-
-        JobPostingControl jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
-//        jobPostingControl.startJobPostingManagement();
-        jobPostingControl.reportFunction();
     }
 
 }
