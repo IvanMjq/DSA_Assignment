@@ -73,22 +73,23 @@ public class InterviewSchedulingControl {
 
                 boolean isTimeSlotAvailable = checkTimeSlotAvailability(localDateTime);
                 if (!isTimeSlotAvailable) {
-                    System.out.println("This time slot is already taken. Please select another time.");
+                    System.out.println("This time slot is already taken. Please select another day.");
                     return;
-                }
+                }else
+                {
+                    Interview interviewer = new Interview("itv" + count++, localDateTime, Interview.InterviewStatus.INTERVIEW_SCHEDULED, 0);
 
-                Interview interviewer = new Interview("itv" + count++, localDateTime, Interview.InterviewStatus.INTERVIEW_SCHEDULED, 0);
+                    interviewList.add(interviewer);
+                    jobApplicant.setInterview(interviewer);
 
-                interviewList.add(interviewer);
-                jobApplicant.setInterview(interviewer);
+                    boolean isReplaced = jobApplicationList.replace(i, jobApplicant);
 
-                boolean isReplaced = jobApplicationList.replace(i, jobApplicant);
-
-                if (isReplaced) {
-                    System.out.println("Interview successfully scheduled for Job Application ID: " + jobApplicant.getStudent().getId());
-                } else {
-                    System.out.println("Failed to schedule the interview for Job Application ID: " + jobApplicant.getStudent().getId());
-                }
+                    if (isReplaced) {
+                        System.out.println("Interview successfully scheduled for Job Application ID: " + jobApplicant.getStudent().getId());
+                    } else {
+                        System.out.println("Failed to schedule the interview for Job Application ID: " + jobApplicant.getStudent().getId());
+                    }
+                }     
             }
         }
     }
@@ -100,7 +101,7 @@ public class InterviewSchedulingControl {
 
             if (currentJobApplication.getStudent().getId().equals(jobApplicant.getStudent().getId())) {
 
-                Interview interview = currentJobApplication.getInterview();
+
 
                 if (interview != null) {
                     
@@ -142,38 +143,20 @@ public class InterviewSchedulingControl {
     }
     
     // Method to check if the time slot is available
-    private boolean checkTimeSlotAvailability(LocalDateTime localDateTime) 
+    public boolean checkTimeSlotAvailability(LocalDateTime localDateTime) 
     {
         int numberOfInterviewer = 0;
 
-        for (Interview interview : interviewList) {
-            if (interview.getScheduledDateTime().equals(localDateTime)) {
+        for (Interview interviewer : interviewList) {
+            if (interviewer.getScheduledDateTime().equals(localDateTime)) {
                 numberOfInterviewer++;
             }
         }
 
         if (numberOfInterviewer >= 3) {
             return false;
+        }else{
+            return true;
         }
-
-        return true;
     }
-/*
-     Method to check if a time slot is available
-    private boolean isTimeSlotAvailable(Calendar calendar, LocalTime timeSlot) {
-         Check if the given time slot already exists for the selected day
-        int person = 0;
-        String key = calendar.getTime().toString() + timeSlot;
-        return !scheduledInterviews.containsKey(key);
-    }
-
-
-    public void interviewTimesReport() {
-        interviewList.put(calendar.getTime().toString() + timeSlot, interview);
-        System.out.println("Interview scheduled for " + calendar.getTime() + " at " + timeSlot);
-        
-        
-    }
-*/
 }
-
