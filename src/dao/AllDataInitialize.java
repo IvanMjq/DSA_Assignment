@@ -1397,6 +1397,51 @@ public class AllDataInitialize {
                               
         }
     }
+    
+    public void displayJobPosting() {
+        System.out.printf("%-15s%-50s%-15s%-50s%-100s%-15s%-15s%-15s%-15s\n", "Company ID", "Company Name", "Job ID", "Job Title", "Description", "Minimum Salary", "Maximum Salary", "Required Experience", "Date Posted","Interview Date", "Status", "Score");
+        for (int i = 1; i <= companyList.size(); i++) {
+            Company c =  companyList.getData(i);
+            for(int j = 1; j < c.getJobPostingList().size(); j++) {
+                JobPosting jp = c.getJobPostingList().getData(j);
+                System.out.printf("%-15s%-50s%-15s%-50s%-100s%-15.2f%-15.2f%-15d%-15s\n",
+                              c.getId(),
+                              c.getName(),
+                              jp.getJob().getId(),
+                              jp.getJob().getTitle(),
+                              jp.getDescription(),
+                              jp.getMinimumSalary(),
+                              jp.getMaximumSalary(),
+                              jp.getRequiredExperience(),
+                              jp.getDatePosted()
+                );
+            }
+            
+        }
+    }
+    
+//        public void displayJobSppication() {
+//        System.out.printf("%-15s%-50s%-15s%-50s%-100s%-15s%-15s%-15s%-15s\n", "Company ID", "Company Name", "Job ID", "Job Title", "Description", "Minimum Salary", "Maximum Salary", "Required Experience", "Date Posted","Interview Date", "Status", "Score");
+//        for (int i = 1; i <= studentList.size(); i++) {
+//            Student s =  studentList.getData(i);
+//            for(int j = 1; j < s.getJobApplicationList().size(); j++) {
+//                JobApplication ja = s.getJobApplicationList().getData(j);
+//                System.out.printf("%-15s%-50s%-15s%-50s%-100s%-15.2f%-15.2f%-15d%-15s\n",
+//                              s.getId(),
+//                              s.getName(),
+//                              ja.getJobPosting().getCompany().getId(),
+//                              ja.getJobPosting().getCompany().,
+//                              jp.getJob().getTitle(),
+//                              jp.getDescription(),
+//                              jp.getMinimumSalary(),
+//                              jp.getMaximumSalary(),
+//                              jp.getRequiredExperience(),
+//                              jp.getDatePosted()
+//                );
+//            }
+//            
+//        }
+//    }
 
     public void displayAllData()
     {
@@ -1406,6 +1451,8 @@ public class AllDataInitialize {
         displayCompanies();
         System.out.println("\n==== Jobs ====");
         displayJobs();
+        System.out.println("\n==== Job Postings ====");
+        displayJobPosting();
         System.out.println("\n==== Students ====");
         displayStudents();
         System.out.println("\n==== Job Applications ====");
