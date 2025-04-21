@@ -158,6 +158,49 @@ public class JobPostingManagementUI {
 
         return option;
     }
+    
+    public int getJobPostingReportOptions() {
+        int option = -1;
+        boolean validInput = false;
+        boolean isFirstInput = true;
+
+        String line = "+----------------------------------------------------+";
+
+        while (validInput != true) {
+            System.out.println("\n\n");
+            System.out.println(line);
+            System.out.printf("|  %-50s|\n", "Reports Options");
+            System.out.println(line);
+            System.out.printf("|  %-50s|\n", "1. Company Job Posting Summary Table");
+            System.out.printf("|  %-50s|\n", "2. Top Company - Job Posting Bar Chart");
+            System.out.printf("|  %-50s|\n", "3. Top Job - Job Posting Bar Chart");
+            System.out.printf("|  %-50s|\n", "0. Exit Report.");
+            System.out.println(line);
+
+            // Check if the user input was invalid before
+            if (!isFirstInput) {
+                System.out.println("Invalid option. Please choose a number between 0 - 2.");
+            }
+
+            // Prompt user input message
+            System.out.print("Please enter your option (0-3) : ");
+
+            // Validate user input
+            if (sc.hasNextInt()) {
+                option = sc.nextInt();
+                sc.nextLine(); // Clear newline character
+                if (option >= 0 && option <= 3) {
+                    validInput = true;
+                }
+            } else {
+                sc.nextLine(); // Clear the invalid input
+            }
+            isFirstInput = false;
+
+        }
+
+        return option;
+    }
 
     public int jobPostingEditMenu() {
         int option = -1;

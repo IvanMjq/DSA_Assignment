@@ -163,7 +163,7 @@ public class JobPosting implements Serializable, Comparable<JobPosting> {
 
     @Override
     public int compareTo(JobPosting other) {
-        return 0;
+        return Integer.compare(this.getJobApplicationList().size(), other.getJobApplicationList().size());
     }
 
 }

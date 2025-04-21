@@ -108,9 +108,18 @@ public class Job implements Serializable, IdGeneration.Identifiable, Comparable<
         return sb.toString();
     }
 
+    public int getTotalJobApplications() {
+        int total = 0;
+        for (int i = 1; i <= jobPostingList.size(); i++) {
+            JobPosting posting = jobPostingList.getData(i);
+            total += posting.getJobApplicationList().size();
+        }
+        return total;
+    }
+
     @Override
     public int compareTo(Job other) {
-        return this.type.compareTo(other.getType());
+        return Integer.compare(this.getTotalJobApplications(), other.getTotalJobApplications());
     }
 
 }

@@ -30,8 +30,10 @@ public class AdminPortalControl {
     private JobPostingControl jobPostingControl;
     private JobApplicationControl jobApplicationControl;
     private MatchingEngineControl matchControl;
-
-    public AdminPortalControl() {
+    private InterviewControl interviewControl;
+    
+    
+    public AdminPortalControl() { 
     }
 
     public AdminPortalControl(ListInterface<Company> companyList, ListInterface<Student> studentList, ListInterface<Skill> skillList, ListInterface<Job> jobList, ListInterface<Interview> interviewList) {
@@ -48,6 +50,7 @@ public class AdminPortalControl {
         this.companyControl = new CompanyControl(companyList);
         this.jobControl = new JobControl(jobList);
         this.jobPostingControl = new JobPostingControl(companyList, jobList, skillList);
+        this.interviewControl = new InterviewControl(interviewList, companyList);
         this.adminPortalUI = new AdminPortalUI(this);
 
         if (login()) {
@@ -80,6 +83,9 @@ public class AdminPortalControl {
                     break;
                 case 5:
                     jobApplicationControl.adminJobApplicationManagement();
+                    break;
+                case 6:
+                    interviewControl.interviewMenu();
                     break;
                 default:
                     System.out.println("This is an invalid option!!!");
